@@ -1,0 +1,38 @@
+<section class="commonBackground interview-details">
+    <div class="candidate-desc">
+        <ul class="clearfix">
+            <li class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-list">
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 clearfix">
+                    <img ng-src="{{recruiterData.profilePicURL.thumbnail}}" alt="" />
+                    <div class="profile-description">
+                        <h4 style="text-transform: capitalize; margin-bottom: 5px">{{recruiterData.firstName}}</h4>
+                        <ul>
+                            <li class="place">{{recruiterData.country}}India</li>
+                            <li class="experience">{{recruiterData.workExperience.min}}3 Yrs</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pull-right text-right status-rating visitedDate">
+                    <label>Viewed on {{recruiterData.visitedDate | date: 'MMMM dd, yyyy'}}</label>
+                </div>
+            </li>
+        </ul>
+        <!--<h5><strong>Job Description</strong></h5>-->
+        <!--<div class="candidate-edit-profile brief-job-details clearfix">-->
+            <!--<p>{{jobData.jobDescription}}</p>-->
+            <!--<p><strong>Work Location:</strong><br />{{jobData.state}} - {{jobData.country}}</p>-->
+            <!--<p><strong>Experience Required:</strong><br />Minimum {{jobData.workExperience.min}} Yrs</p>-->
+            <!--<p><strong>Skills Required:</strong><br />Java, Android</p>-->
+            <!--<p><strong>Functional Area:</strong><br />{{jobData.jobTitle}}</p>-->
+
+        <!--</div>-->
+        <h5><strong>Recruiter Detail</strong></h5>
+        <div class="candidate-edit-profile brief-job-details clearfix">
+            <p><strong>Company Name:</strong> {{recruiterData.companyName}}<span ng-if="recruiterData.companyName == ''">N.A.</span></p>
+            <p><strong>Email:</strong> {{recruiterData.email}}</p>
+            <p><strong>Telephone:</strong> {{recruiterData.phoneNo}}</p>
+
+        </div>
+    </div>
+</section>
+<div ng-include src="'app/inbox/recentlySearchJobs.html'"></div>

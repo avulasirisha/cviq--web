@@ -1,0 +1,132 @@
+<!--<script type="text/javascript">-->
+    <!--var config = {-->
+        <!--apiKey: 'a42fcebd-5b43-4b89-a065-74450fb91255', // SDK-->
+        <!--apiKeyCC: '9c967f6b-a846-4df2-b43d-5167e47d81e1' // SDK+UI-->
+    <!--};-->
+    <!--var Application-->
+
+    <!--Skype.initialize({ apiKey: config.apiKey }, function (api) {-->
+        <!--window.skypeWebAppCtor = api.application;-->
+        <!--window.skypeWebApp = new api.application();-->
+        <!--//Make sign in table appear-->
+        <!--$(".menu #sign-in").click();-->
+        <!--// whenever client.state changes, display its value-->
+        <!--window.skypeWebApp.signInManager.state.changed(function (state) {-->
+            <!--$('#client_state').text(state);-->
+        <!--});-->
+    <!--}, function (err) {-->
+        <!--console.log(err);-->
+        <!--alert('Cannot load the SDK.');-->
+    <!--});-->
+<!--</script>-->
+<!--<section class="skype clearfix">-->
+    <!--<div class="container">-->
+        <!--<div class="interview-pic col-lg-2">-->
+            <!--<h3 class="text-center">Candidate</h3>-->
+            <!--<div class="profile-pic text-center">-->
+                <!--<img src="images/image.png" alt="" />-->
+                <!--<h5>Mark Smith</h5>-->
+            <!--</div>-->
+            <!--<p>Start Time<span>02:00 PM</span></p>-->
+        <!--</div>-->
+        <!--<div class="col-lg-8">-->
+
+        <!--</div>-->
+    <!--</div>-->
+<!--</section>-->
+<script src="bower_components/tokboxLayout.js" type="text/javascript"></script>
+<section class="skype clearfix">
+    <div class="container">
+        <div class="interview-pic1">
+            <h3>Interviewer</h3>
+            <div class="profile-pic text-center">
+                <div class="change-photo">
+                    <img class="dp" ng-src="{{interviewerData.interviewerID.profilePicURL.original}}" alt="" />
+                </div>
+                <h5>{{interviewData.interviewerID.firstName + ' ' + interviewData.interviewerID.lastName}}<img src="images/badge.png" alt="" /></h5>
+                <p style="text-transform: capitalize">{{interviewData.candidateID.profileTitle}}</p>
+                <!--<input type="text" class="designation" placeholder="Enter Designation" ng-model="designation">-->
+            </div>
+            <p class="show-time">Start Time<span>{{interviewData.interviewStartTime}}</span></p>
+        </div>
+        <div class="col-lg-9 col-md-9 col-xs-12 col-sm-12 pull-right video-panel-outer">
+            <div class="video-panel">
+                <!--<div id="videos">-->
+                <!--<div id="subscriber"></div>-->
+                <!--<div id="publisher"></div>-->
+                <!--</div>-->
+                <div id="layout" class="layout">
+                    <div id="publisherDiv">
+
+                    </div>
+                    <div id="subscribersDiv">
+
+                    </div>
+                </div>
+
+                <div>
+                    <div class="controlBtn">
+                        <div class="full-width" style="position: relative;">
+                            <!--<div class="full-width gb" ng-show="preloader" style="top:-230px;position: absolute;">-->
+                            <!--<img src="assets/images/350.gif" alt="preloader" style="opacity:0.45;">-->
+                            <!--</div>-->
+                        </div>
+                        <!--<a href="javascript:void (0);"   class="btn btn-info" ng-click="disableVid()" ng-hide="showVid" style="padding: 10px 15px;margin-right:20px;border-radius: 50% !important;" id="DisableVideo">-->
+                        <!--<span class="fa fa-video-camera"></span>-->
+                        <!--</a>-->
+                        <!--<a href="javascript:void (0);"   class="btn btn-info" ng-click="enableVid()" ng-show="showVid"  style="padding: 10px 15px;margin-right:20px;border-radius: 50% !important;">-->
+                        <!--<span style="position: relative;"><span class="fa fa-video-camera" style="color: #fff;"></span><span class="disAud" style="color:#fff;font-size: 20px;">/</span></span>-->
+                        <!--&lt;!&ndash;<span class="fa fa-video-camera"></span>&ndash;&gt;-->
+                        <!--</a>-->
+                        <!--<a href="javascript:void(0);"   class="btn btn-info" ng-click="disconnected()" style="background: #e75445;border-color: #e75445;padding: 10px 17px;border-radius: 50% !important;"  id="disconnectBtn">-->
+                        <!--<span class="fa fa-pause"></span>-->
+                        <!--</a>-->
+                        <!--<a href="javascript:void (0);"   class="btn btn-info" ng-hide="showAud" ng-click="disableAud()" style="padding: 11px 17px;margin-left:20px;border-radius: 50% !important;" >-->
+                        <!--<span class="fa fa-microphone" style="font-size: 21px;"></span>-->
+                        <!--</a>-->
+                        <!--<a href="javascript:void (0);"   class="btn btn-info" ng-show="showAud" ng-click="enableAud()" style="padding: 11px 17px;margin-left:20px;border-radius: 50% !important;" >-->
+                        <!--<span style="position: relative;"><span class="fa fa-microphone" style="font-size: 21px;color: #fff;"></span><span class="disAud" style="color:#fff;font-size: 20px;">/</span></span>-->
+
+                        <!--</a>-->
+
+                        <ul class="video-controls">
+                            <li ng-hide="showVid"><a href="javascript:void (0);" class="btn enable-video" ng-click="disableVid()" id="DisableVideo"></a></li>
+                            <li ng-show="showVid"><a href="javascript:void (0);" class="btn disable-video" ng-click="enableVid()"></a></li>
+                            <li ng-hide="showAud"><a href="javascript:void (0);" class="btn enable-audio" ng-click="disableAud()"></a></li>
+                            <li ng-show="showAud"><a href="javascript:void (0);" class="btn disable-audio" ng-click="enableAud()"></a></li>
+                            <li><a href="javascript:void (0);" class="btn call-drop" ng-click="disconnect(1)"></a></li>
+                        </ul>
+
+
+                        <!--<h4 class="text-center"><md-button href="#" ng-click="JobCompletion()"  class="btn btn-color" style="padding:5px 20px;color: #fff;"><span ng-hide="completing">Job Complete</span><span ng-show="completing">Completing your job</span></md-button></h4>-->
+                        <!--<input type="button" value="Leave" id ="disconnectBtn" ng-Click="disconnected()" />-->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <form name="chatForm" ng-submit='chatForm.$valid&&sendMessage()' novalidate>
+            <div class="chat-container col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="chat-box">
+                    <p ng-repeat='message in messages' ng-class="{'candidate-side': message.messageTo == 'INTERVIEWER'}"><span ng-class="{'fLeft': message.messageTo == 'INTERVIEWER'}">{{message.text}}<br /><i>{{message.createdAt | date:"dd-MMM-yy, HH:mm a"}}</i></span></p>
+                </div>
+                <div class="send-signal clearfix">
+                    <input type="text" placeholder="Write here…." name="textMessage" ng-class="{'emptyField': chatForm.textMessage.$error.required == true && chatForm.$submitted}" ng-model='message' required>
+                    <button type="submit">Send</button>
+                </div>
+            </div>
+        </form>
+        <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">-->
+            <!--<div class="row">-->
+                <!--<div class="text-right">-->
+                    <!--<button class="sbmt-btn col-lg-2 col-md-2 col-sm-2 col-xs-2 pull-right" ng-click="finishInterviewByCandidate(interviewData._id)">FINISH INTERVIEW</button>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+</section>
+
+<!--<script type="text/ng-template" id="rateInterviewer">-->
+    <!--HII-->
+<!--</script>-->

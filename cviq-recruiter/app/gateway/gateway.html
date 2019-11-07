@@ -1,0 +1,276 @@
+
+
+    <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 banner" style="min-height: 522px;">
+
+        <div class="container" style="margin-top: 20px">
+            <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 col-xs-12 pad">
+
+                <span class="paymentDetails">PAYMENT DETAILS</span><br>
+                <span class="packageCost">Your package cost is $ {{packageSelected}}</span>
+                <!--<span ng-show="!promoApplied" class="packageCost">Your package cost is $ {{packageSelected}}</span>-->
+                <!--<span ng-show="promoApplied" class="packageCost">Your package cost is $ {{newCost}}</span>-->
+            </div>
+
+            <div class="main-section col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 col-xs-12 candidate-profile-section clearfix">
+                <div class="row">
+                    <div class="search-wrapper">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form">
+
+                            <!--<form name="gatewayPromo" ng-submit="promoCode.length>2 && gatewayPromofunc(payment)" novalidate>-->
+                                <!--<div class="clearfix">-->
+                                    <!--<div class="col-xs-12 col-sm-3 col-md-3 co-lg-2" >-->
+                                        <!--<div class="form-elements" style="margin-top: 20px;text-align: center">-->
+                                            <!--<div class="ProfileFormElements clearfix form-elements text-left" style="margin: 15px 0">-->
+                                                <!--<span class="gatewayText" >Promo Code</span>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-xs-12 col-sm-9 col-md-9 co-lg-10" >-->
+                                        <!--<div class="form-elements">-->
+                                            <!--<label>PROMO CODE</label>-->
+                                            <!--<input style="text-transform: uppercase" type="text" name="promoCode" placeholder="Enter Promo Code"  ng-model="promoCode" >-->
+                                            <!--<div class="error-message" ng-show="gatewayPromo.$submitted && promoCode.length<3"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter Valid Promo Code.</div>-->
+
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class=" col-lg-4 col-md-4 col-sm-6 col-xs-8 col-lg-offset-4 col-md-offset-4 col-sm-offset-3 col-xs-offset-2 ">-->
+                                    <!--<button type="submit" class="sbmt-btn col-xs-12 col-sm-12 col-md-12 co-lg-12 ">APPLY</button>-->
+                                <!--</div>-->
+
+                                <!--<div class="col-xs-12 col-sm-12 col-md-12 co-lg-12 lineGrey" ></div>-->
+                            <!--</form>-->
+
+
+
+
+                            <!--<div class="form-elements fullWidth pull-right ProfileFormElements clearfix">-->
+                                <!--<div class="dropdown custom-select-box main-dropdown">-->
+                                    <!--<label>PROMO CODE</label>-->
+                                    <!--<select name="pcode" ng-model="promoCodes" class="selectpicker" ng-options="p.promoName for p in promoCodeLists">-->
+                                        <!--<option value="" disabled hidden>Select Promo Code</option>-->
+                                    <!--</select>-->
+                                <!--</div>-->
+                                <!--<p ng-if="promoCodes.description" class="text-left applyPromo promocodeDesc">Description: {{promoCodes.description}}</p>-->
+                            <!--</div>-->
+                            <!--<p class="applyPromo"><span ng-click="applyPromoCode(promoCodes)">Apply promo code.</span></p>-->
+
+
+
+                                <!--<div class="form-elements">-->
+                                <!--<label>PROMO CODE</label>-->
+                                <!--<input type="text" ng-model="payment.promo" name="email" placeholder="Enter Promo Code">-->
+                                <!--</div>-->
+                            <div class="col-xs-12 col-sm-3 col-md-3 co-lg-2" >
+                                <div class="form-elements" style="margin-top: 20px;text-align: center">
+                                    <div class="ProfileFormElements clearfix form-elements text-left" style="margin: 15px 0">
+                                     <span class="gatewayText" >Promo Code</span>
+                                     </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-9 col-md-9 co-lg-10 form-elements ProfileFormElements clearfix" >
+                                <div class="dropdown custom-select-box main-dropdown">
+                                    <label>PROMO CODE</label>
+                                    <select name="pcode" ng-model="promoCodes" class="selectpicker" ng-options="p.promoName for p in promoCodeLists">
+                                        <option value="" disabled hidden>Select Promo Code</option>
+                                    </select>
+                                </div>
+                                <!--<div class="error-message" ng-show="promoCodes == undefined"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Select Promo Code First.</div>-->
+                                <p ng-if="promoCodes.description" class="text-left applyPromo promocodeDesc"><b>Description: </b> {{promoCodes.description}}</p>
+                                <p class="applyPromo" ng-if="appliedPromoCode.promoID == undefined"><span ng-click=" applyPromoCode(promoCodes)">Apply promo code.</span></p>
+                                <p class="applyPromo promoSuccess" ng-if="appliedPromoCode.promoID != undefined"><span>Promo code ("{{successPromo}}") applied successfully.<i> Now you have to pay</i> ${{appliedPromoCode.amount}}.</span></p>
+                                <p class="applyPromo" ng-if="appliedPromoCode.promoID != undefined"><i ng-click="applyPromoCode(promoCodes)" class="pull-right">Apply another promo code.</i></p>
+
+                            </div>
+
+
+
+                            <form name="gateway" ng-submit="gateway.$valid && gatewayfunc(payment)" novalidate>
+                                <div  class="col-xs-12 col-sm-12 col-md-12 co-lg-12" style="margin: 15px 0" >
+
+
+                                    <span class="gatewayText">Enter Card Details</span>
+
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 co-lg-12" style="padding: 5px 0 0 0" >
+                                    <div class="col-xs-12 col-sm-12 col-md-12 co-lg-12">
+                                        <div class="form-elements ">
+                                            <label>CARD NO</label>
+                                            <input id="myCardType" limit-to="18" type="text" ng-keypress='isNumberKey($event)' name="cardNo" placeholder="Enter Card No" ng-model="payment.cardNo" required>
+                                            <div ng-show="gateway.$submitted || gateway.cardNo.$touched">
+                                                <div class="error-message" ng-show="gateway.cardNo.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter Card NO.</div>
+                                                <!--<div class="error-message" ng-show="gateway.cardNo.$invalid&&gateway.cardNo.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Phone Number must be at least 10 characters long.</div>-->
+                                            </div>
+                                            <p class="log"></p>
+                                            <div class="cardimages" style="position: absolute;right: 6px;top: 3px">
+                                                <img id="amex" src="images/single/amex.svg" style="display: none;">
+                                                <img id="mastercard" src="images/single/mastercard.svg" style="display: none; ">
+                                                <img id="visa" src="images/single/visa.svg" style="display: none;  ">
+                                                <img id="discover" src="images/single/discover.svg" style="width: 60px;display: none;     margin-top: 15px;">
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-12 col-md-12 co-lg-12">
+                                        <div class=" col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding-left: 0;padding-right: 6px">
+                                            <div class="ProfileFormElements clearfix  form-elements col-xs-12 col-sm-12 col-md-12 co-lg-12 pad">
+                                                <div class="dropdown custom-select-box main-dropdown">
+                                                    <label >EXPIRY MONTH</label>
+                                                    <select  name="month" ng-model="payment.month" class="selectpicker" required ng-options="obj for obj in month">
+                                                        <option value="" disabled hidden>Select Month</option>
+                                                    </select>
+                                                    <div ng-show="gateway.$submitted ">
+                                                        <div class="error-message" ng-show="gateway.month.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter Expiry Month.</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class=" col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding-left: 0;padding-right: 6px">
+                                            <div class="ProfileFormElements clearfix  form-elements col-xs-12 col-sm-12 col-md-12 co-lg-12 pad">
+                                                <div class="dropdown custom-select-box main-dropdown">
+                                                    <label >EXPIRY YEAR</label>
+                                                    <select  name="year" ng-model="payment.year" class="selectpicker" required ng-options="set for set in year">
+                                                        <option value="" disabled hidden>Select Year</option>
+                                                    </select>
+                                                    <div ng-show="gateway.$submitted ">
+                                                        <div class="error-message" ng-show="gateway.year.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter Expiry Year .</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class=" col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding-left: 6px;padding-right: 0">
+                                            <div class=" form-elements col-xs-12 col-sm-12 col-md-12 co-lg-12 pad">
+                                                <label>CVV</label>
+                                                <input  minlength="3" maxlength="3" ng-keypress='isNumberKey($event)' name="cvv" placeholder="Enter CVV" ng-model="payment.cvc" required>
+                                                <div ng-show="gateway.$submitted || gateway.cvv.$touched">
+                                                    <div class="error-message" ng-show="gateway.cvv.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter CVV.</div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12 co-lg-12 pad">
+                                            <div class="form-elements ">
+                                                <label>NAME ON CARD </label>
+                                                <input type="text" ng-keypress='FirsText($event)' name="name" placeholder="Enter Name" ng-model="payment.name" required>
+                                                <div ng-show="gateway.$submitted || gateway.name.$touched">
+                                                    <div class="error-message" ng-show="gateway.name.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter Name.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="new-user container-fluid">
+                                            <div class="row">
+                                                <button type="submit" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sbmt-btn">PAY NOW</button>
+                                            </div>
+                                            <!--<div class="row"></div>-->
+                                            <!--<script src="https://www.paypalobjects.com/js/external/paypal-button.min.js?merchant=kashish.nalwa@mail.click-labs.com"-->
+                                            <!--data-button="buynow"-->
+                                            <!--data-name="CVIQ"-->
+                                            <!--data-amount= {{packageSelected}}-->
+                                            <!--data-env="sandbox"-->
+                                            <!--data-callback="http://52.24.206.96/cviq-recruiter-test/#/home/package"-->
+                                            <!--data-return="http://52.24.206.96/cviq-recruiter-test/#/home/package"-->
+                                            <!--async-->
+                                            <!--&gt;</script>-->
+                                        </div>
+                                        <div style="margin-top: 20px">
+                                            you can also <a ng-click="payPalPayment()" style="cursor: pointer">pay with  <img src="images/single/paypal.svg" style="width: 65px"></a>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </form>
+
+
+                            <!--<div class="col-xs-12 col-sm-4 col-md-4 co-lg-4" style="padding-bottom: 20px">-->
+                                <!--<div class="col-xs-6 col-sm-12 col-md-12 co-lg-12 mycards pad" >-->
+                                <!--<div class="form-elements cards cardsActive" id="debitCard" ng-click="paymentMethod(1)" >-->
+                                    <!--<div class="ProfileFormElements clearfix form-elements" >-->
+                                        <!--<span class="cardTextInActive cardTextActive" id="debitCard2">DEBIT CARD</span>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                    <!--</div>-->
+                                <!--<div class="col-xs-6 col-sm-12 col-md-12 co-lg-12 mycards pad" >-->
+                                    <!--<div class="form-elements cards" id="creditCard" ng-click="paymentMethod(2)" >-->
+                                        <!--<div class="ProfileFormElements clearfix form-elements" >-->
+                                            <!--<span class="cardTextInActive cardTextActive" id="creditCard2">CREDIT CARD</span>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                            <!--</div>-->
+
+
+                           <!-- <div class="clearfix">
+                                <div class="form-elements one-third" style="padding: 20px 0;text-align: right">
+                                    <div class="ProfileFormElements clearfix form-elements">
+                                        <span>DEBIT CARD</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-elements more-half">
+                                    <label>CARD NO</label>
+                                    <input class="phone" type="text" minlength="10" maxlength="10" ng-keypress='isNumberKey($event)' name="mobile" placeholder="Enter Card No" ng-model="register.mobileNumber" required>
+                                    &lt;!&ndash;<div ng-show="signupForm.$submitted || signupForm.mobile.$touched">&ndash;&gt;
+                                        &lt;!&ndash;<div class="error-message" ng-show="signupForm.mobile.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>&ndash;&gt;
+                                        &lt;!&ndash;<div class="error-message" ng-show="signupForm.mobile.$invalid&&signupForm.mobile.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Phone Number must be at least 10 characters long.</div>&ndash;&gt;
+                                    &lt;!&ndash;</div>&ndash;&gt;
+                                </div>
+
+                            </div>-->
+                          <!--  <div class="clearfix">
+                                <div class="form-elements one-third" style="padding: 20px 0;text-align: right">
+                                    <div class="ProfileFormElements clearfix form-elements">
+                                        <span>CREDIT CARD</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-elements more-half">
+                                    <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-left: 0;padding-right: 6px">
+                                        <label>MM/YY</label>
+                                        <input class="phone" type="text" minlength="10" maxlength="10" ng-keypress='isNumberKey($event)' name="mobile" placeholder="Enter Expiry Date" ng-model="register.mobileNumber" required>
+                                        &lt;!&ndash;<div ng-show="signupForm.$submitted || signupForm.mobile.$touched">&ndash;&gt;
+                                        &lt;!&ndash;<div class="error-message" ng-show="signupForm.mobile.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>&ndash;&gt;
+                                        &lt;!&ndash;<div class="error-message" ng-show="signupForm.mobile.$invalid&&signupForm.mobile.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Phone Number must be at least 10 characters long.</div>&ndash;&gt;
+                                        &lt;!&ndash;</div>&ndash;&gt;
+                                    </div>
+                                    <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-left: 6px;padding-right: 0">
+                                        <label>CVC</label>
+                                        <input class="phone" type="text" minlength="10" maxlength="10" ng-keypress='isNumberKey($event)' name="mobile" placeholder="Enter CVC" ng-model="register.mobileNumber" required>
+                                        &lt;!&ndash;<div ng-show="signupForm.$submitted || signupForm.mobile.$touched">&ndash;&gt;
+                                        &lt;!&ndash;<div class="error-message" ng-show="signupForm.mobile.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>&ndash;&gt;
+                                        &lt;!&ndash;<div class="error-message" ng-show="signupForm.mobile.$invalid&&signupForm.mobile.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Phone Number must be at least 10 characters long.</div>&ndash;&gt;
+                                        &lt;!&ndash;</div>&ndash;&gt;
+                                    </div>
+                                </div>
+
+                            </div>-->
+                           <!-- <div class="clearfix">
+                                <div class="form-elements one-third" style="margin-top: 20px">
+                                    <div class="ProfileFormElements clearfix form-elements">
+                                    </div>
+                                </div>
+
+                                <div class="new-user container-fluid more-half">
+                                    <div class="row">
+                                        <button type="submit" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sbmt-btn">PAY NOW</button>
+                                    </div>
+                                </div>
+
+                            </div>-->
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+<script>
+    $('.selectpicker').selectpicker({});
+</script>
+
+

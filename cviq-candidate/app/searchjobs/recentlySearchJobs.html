@@ -1,0 +1,27 @@
+<section class="commonBackground interview-details">
+    <div class="candidate-desc">
+        <h5>Similar Jobs</h5>
+        <ul class="clearfix">
+            <li class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-list" ng-repeat="recent in recentlysearchedJobs">
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                    <img ng-src="" alt="" />
+                    <div class="profile-description">
+                        <h4 ng-click="jobDetails(recent._id)">{{recent.jobTitle}}</h4>
+                        <p>{{recent.jobDescription}}</p>
+                        <ul>
+                            <li class="place">{{recent.country}}</li>
+                            <li class="experience">{{recent.workExperience.min}} Yrs</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pull-right text-right status-rating">
+                    <label>Posted on {{recent.postedOn | date: 'MMMM dd, yyyy'}}</label>
+                    <label>Minimum Score to apply this job is <span class="credit">{{recent.aggregatedScore.min}}</span></label>
+                    <label ng-if="recent.appliedDate != undefined">Applied on {{res.appliedDate | date:'MMM dd, yyyy'}}</label>
+                    <span class="status-complete" ng-click="applyForJob(recent._id)" ng-if="recent.alreadyApplied ==  false">Apply</span>
+                    <span class="status-complete" ng-if="recent.alreadyApplied == true">Applied</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>

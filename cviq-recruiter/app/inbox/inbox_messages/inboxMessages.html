@@ -1,0 +1,55 @@
+<section class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="min-height: 986px;box-shadow: inset 0 16px 20px -20px rgba(0,0,0,0.8);">
+
+    <div class="container" style="margin-top: 30px">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " >
+                <div class="inboxHeading ">
+                    <p class="text-center" style="color: #4f5f72">{{inboxMessages.messageTitle}}</p>
+                </div>
+                <div style="min-height: 432px;margin-bottom: 40px">
+                    <ul class="commonBackground" >
+                        <li  ng-repeat="message in messagesArray">
+                            <div class="row  " style="padding: 15px 15px">
+                                <div ng-show="message.messageTo == 'CANDIDATE'" class="col-xs-12 col-sm-12 col-md-12 col-lg-12  pad">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 inboxrecruiter" >
+                                        <p style="text-align: right;"><span>{{message.addedAt | date: 'dd MMM, yyyy hh:mm a'}}</span>You</p>
+                                    </div>
+                                    <div class=" inboxMessagesDescriptior" style="max-width: 85%;float: right;padding-right: 15px">
+                                        <p class="recruiterMessage"><span ng-hide="message.message == 'undefined'">{{message.message}}<br/></span>
+                                            <span ng-if="message.attachment"> <a class="attach" ng-href="{{message.attachment}}" target="_blank">{{message.attachmentName}}</a></span>
+                                            <!--<span ng-if="message.attachment"> <a  ng-href="{{message.attachment}}" download="{{message.attachmentName}}" target="_blank"><img style="height: 200px;width: 200px" ng-src="{{message.attachment}}"><br>{{message.attachmentName}}</a></span>-->
+                                        </p>
+                                    </div>
+                                </div>
+                                <div ng-hide="message.messageTo == 'CANDIDATE'" class="col-xs-12 col-sm-12 col-md-12 col-lg-12  pad">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 inboxcandidate" >
+                                        <p style="text-align: left;">{{inboxMessages.candidateID.firstName}} {{inboxMessages.candidateID.lastName }}<span>{{message.addedAt | date: 'dd MMM, yyyy hh:mm a'}}</span></p>
+                                    </div>
+
+                                    <div class=" inboxMessagesDescriptior" style="max-width: 85%;float: left;padding-left: 15px">
+                                        <p class="candidateMessage"><span ng-hide="message.message == 'undefined'">{{message.message}}<br/></span>
+                                            <span ng-if="message.attachment"> <a class="attach" ng-href="{{message.attachment}}" target="_blank">{{message.attachmentName}}</a></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="inboxline2 container-fluid" ng-if="$index != messagesArray.length"></div>
+                        </li>
+                        <div style="margin: 0px 20px">
+                            <div class="inboxMessageDescription">
+                                <div class="error-message" ng-show="textareaError"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please enter your Message or Attach a file.</div>
+                                <textarea  type="text" name="Description" ng-model="messageText" placeholder="Click here to reply" ></textarea>
+                                 </div>
+                            <div style="background-color: #e3e3e3;padding: 10px;margin-bottom: 15px;">
+
+                                <label for="messagefile" class="attachlabel"><span>{{attachmentName}} </span><span class="attach"></span>Attach a File</label>
+                                <input id="messagefile" valid-file style="display: none;" ng-change="test()" ng-model="files" type="file">
+                                <button class="inboxThreadButton" type="submit" ng-click="sendMessage()">Send</button>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,77 @@
+<section class="success-applied-status" ng-if="jobData.alreadyApplied ==  true">
+    <h2>Your Application has been submitted successfully</h2>
+    <p><span>Job Detail: </span> {{jobData.jobTitle+' at '+jobData.companyName+' in '+jobData.country}}</p>
+</section>
+<section class="commonBackground interview-details">
+    <div class="candidate-desc">
+        <ul class="clearfix">
+            <li><a ui-sref="home.search.searchJobs"> <i class="fa fa-arrow-left" aria-hidden="true"> </i> </li>
+            <li class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-list"> 
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 clearfix">
+                    <img ng-src="" alt="" />
+                    <div class="profile-description">
+                        <h4>{{jobData.jobTitle}}</h4>
+                        <p>{{jobData.jobDescription}}</p>
+                        <ul>
+                            <li class="place">{{jobData.country}}</li>
+                            <li class="experience">{{jobData.workExperience.min}} Yrs</li>
+                            <li >{{jobData.numOfCandidatesApplied }} Responses</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pull-right text-right status-rating">
+                    <label>Posted on {{jobData.postedOn | date: 'MMMM dd, yyyy'}}</label>
+                    <label>Minimum Score to apply this job is <span class="credit">{{jobData.aggregatedScore.min}}</span></label>
+                    <label ng-if="jobData.isExpired == true"><span class="credit">Job Expired</span></label>
+                    <label ng-if="jobData.appliedDate != undefined">Applied on {{res.appliedDate | date:'MMM dd, yyyy'}}</label>
+                    <button ng-disabled="disLink" class="status-complete apply-job-tag" ng-click="applyForJob(jobData._id)" ng-if="jobData.alreadyApplied ==  false && jobData.isActive == true">Apply</button>
+                    <span style="cursor: auto" class="status-complete" ng-if="jobData.alreadyApplied ==  true">Applied</span>
+                </div>
+            </li>
+        </ul>
+        <h5><strong>Job Description</strong></h5>
+        <div class="candidate-edit-profile brief-job-details clearfix">
+            <p>{{jobData.jobDescription}}</p>
+            <p><strong>Work Location:</strong><br />{{jobData.city}} - {{jobData.state}} - {{jobData.country}}</p>
+            <p><strong>Experience Required:</strong><br />Minimum {{jobData.workExperience.min}} Yrs</p>
+            <p><strong>Functional Area:</strong><br />{{jobData.functionalArea}}</p>
+            <p><strong>Job Type:</strong><br />{{jobData.jobType}}</p>
+            <p><strong>Job Skills:</strong><br />{{ jobData.keySkills }}</p>
+        </div>
+        <h5><strong>Recruiter Detail</strong></h5>
+        <div class="candidate-edit-profile brief-job-details clearfix">
+            <p><strong>Company Name:</strong> {{jobData.companyName}}</p>
+            <p><strong>Email:</strong> {{jobData.contactEmail}}</p>
+            <p><strong>Telephone:</strong> {{jobData.contactNumber}}</p>
+
+        </div>
+    </div>
+</section>
+<div ng-include src="'app/searchjobs/recentlySearchJobs.html'"></div>
+<!--<section class="commonBackground interview-details">-->
+    <!--<div class="candidate-desc">-->
+        <!--<h5>Similar Jobs</h5>-->
+        <!--<ul class="clearfix">-->
+            <!--<li class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-list" ng-repeat="recent in recentlysearchedJobs">-->
+                <!--<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">-->
+                    <!--<img ng-src="" alt="" />-->
+                    <!--<div class="profile-description">-->
+                        <!--<h4 ng-click="jobDetails(recent._id)">{{recent.jobTitle}}</h4>-->
+                        <!--<p>{{recent.jobDescription}}</p>-->
+                        <!--<ul>-->
+                            <!--<li class="place">{{recent.country}}</li>-->
+                            <!--<li class="experience">{{recent.workExperience.min}} Yrs</li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pull-right text-right status-rating">-->
+                    <!--<label>Posted on {{recent.postedOn | date: 'MMMM dd, yyyy'}}</label>-->
+                    <!--<label>Minimum Score to apply this job is <span class="credit">{{recent.aggregatedScore.min}}</span></label>-->
+                    <!--<span class="status-complete" ng-click="applyForJob(recent._id)" ng-if="recent.alreadyApplied ==  false">Apply</span>-->
+                    <!--<span class="status-complete" ng-if="recent.alreadyApplied == true">Applied</span>-->
+                <!--</div>-->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</div>-->
+<!--</section>-->
+

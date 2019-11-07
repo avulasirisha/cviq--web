@@ -1,0 +1,569 @@
+.landing-page {
+    background: #EFF2F5 url("../images/searchCandidate.png") no-repeat center top;
+    background-size: cover;
+    /*height: calc(100vh - 88px - 142px);*/
+}
+.landing-page-main-inner{
+    display: table;
+    width: 100%;
+    height: 100vh;
+}
+.landing-page-inner{
+    border-radius: 3px;
+    display: table-cell;
+    vertical-align: middle;
+}
+.landing-page-main-inner .question-bank{
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 30px 20px;
+}
+.landing-page-inner .question-bank input.search-input{
+    margin: 0 0 10px;
+    border-radius: 3px;
+    /*border: solid 1px #dedede;*/
+    padding: 22px 10px 10px 10px;
+    font-size: 13px;
+    width: 100%;
+    color: #4f5f72;
+    letter-spacing: 1px;
+}
+.candidates{
+    margin-top: 10px;
+}
+.candidatesHeading{
+   padding: 10px 0;
+    background-color: #d1d1d1 ;
+}
+.inboxHeading{
+   padding: 10px 0;
+    background-color: #e9ecee ;
+}
+.inboxcandidatename p{
+    font-size: 14px;
+    font-weight: 600;
+    color: #4f5f72;
+}
+.inboxdate {
+
+    padding-left: 0px;
+}
+.inboxdate{
+    text-align: right;
+}
+.inboxdate p{
+
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #000000;
+}
+@media (max-width: 768px){
+    .inboxdate{
+        text-align: center;
+    }
+    .inboxcandidatename {
+        text-align: center;
+    }
+    .inboxrecruitername {
+        text-align: center;
+    }
+    .inboxTitle {
+        text-align: center;
+    }
+    .inboxDescriptior {
+        text-align: center;
+    }
+
+}
+
+.inboxcandidate{
+    font-size: 14px;
+    font-weight: 600;
+    color: #4f5f72;
+
+}
+.inboxcandidate p span{
+    text-align: left;padding-left: 15px;font-size: 10px;color: #4f5f72;
+
+}
+.inboxrecruiter{
+    font-size: 14px;
+    font-weight: 600;
+    color: #4f5f72;
+
+}
+.inboxrecruiter p span {
+    text-align: left;padding-right: 15px;font-size: 10px;color: #4f5f72;
+
+}
+.recruiterMessage{
+    position: relative;
+    text-align: justify;background-color: #e1e1e1 ;padding: 10px;
+}
+
+.recruiterMessage::before{
+    content: '';
+    background: transparent;
+    position: absolute;
+    right: -15px;
+    top: 0;
+    width: 0;
+    height: 0;
+    border: 8px solid #e1e1e1;
+    /* border-top-color: transparent; */
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+
+}
+.candidateMessage{
+    position: relative;
+    text-align: justify;background-color: white;padding: 10px;
+}
+.candidateMessage::before{
+    content: '';
+    background: transparent;
+    position: absolute;
+    left: -15px;
+    top: 0;
+    width: 0;
+    height: 0;
+    border: 8px solid white;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+
+}
+.inboxTitle  p{
+
+    overflow: hidden;
+    height: 15px;
+    width: 100%;
+
+    margin: 4px 0px 0px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.25;
+    color: #3d3e3f;
+}
+.inboxDescriptior  p{
+
+    /* text-overflow: ellipsis; */
+    /*white-space: nowrap; */
+    overflow: hidden;
+    height: 30px;
+    width: 100%;
+
+
+
+    margin: 4px 0px 0px;
+    font-size: 12px!important;
+    font-weight: 400;
+    line-height: 1.25;
+    color: #8b8b8b;
+}
+.inboxMessagesTitle  p{
+    margin: 4px 0px 0px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.25;
+    color: #3d3e3f;
+}
+.inboxMessagesDescriptior  p{
+    margin: 4px 0px 0px;
+    font-size: 12px!important;
+    font-weight: 400;
+    line-height: 1.25;
+    color: #8b8b8b;
+}
+.candidates ul li{
+
+    width:100%;
+}
+.candidates ul{
+    background-color: #e9ecee;
+    border-right: 1px solid #d9d9d9;
+    border-left: 1px solid #d9d9d9;
+    border-bottom: 1px solid #d9d9d9;
+}
+.candidates{
+    margin-bottom: 30px;
+}
+.line2{
+    height: 1px;
+    width: 100%;
+    background-color: #d9d9d9;
+    margin-bottom: 10px;
+}
+.inboxline2{
+    height: 1px;
+    width: 95%;
+    background-color: #d9d9d9;
+    margin-bottom: 10px;
+}
+.candidateImage{
+    /*height: 70px;*/
+    background-image: url("../images/profile-placeholder.png");
+    background-size:     cover;                      /* <------ */
+    background-repeat:   no-repeat;
+    background-position: center center;
+    /*max-width: 90%;*/
+    width:70px;
+    margin: 0 auto;
+    height: 80px;
+    display:block;
+    /*padding: 0 6px;*/
+    border: solid 1px #d1d1d1;
+
+}
+.fixHeight{
+    height:250px;
+}
+.candidateDiv2span{
+    color: #4f5f72;font-size: 15px;font-weight: 600;
+}
+.candidateViewDetails{
+    text-decoration: underline;color: #0297cf;font-size: 10px;cursor: pointer;
+}
+.filterHeading{
+    padding: 10px 0;
+}
+.filter-elements input{
+    display: block;
+    margin-right: 10px;
+}
+.filter-elements p {
+    color: #4f5f72 !important;
+    padding-top:5px;
+    padding-bottom: 5px;
+}
+.filter-elements p span{
+    color: #4f5f72 !important;
+}
+.filter-elements p input{
+    color: #4f5f72 !important;
+}
+.searchjob-btn1{
+    border-radius: 3px;
+    background-color: #0297cf;
+    color: #fff;
+    font-family: 'Graphik-Medium';
+    display: inline-block;
+    text-align: center;
+    padding: 5px 0;
+    margin: 15px 12%;
+    /* font-size: 15px; */
+    border: none;
+    cursor: pointer;
+    width: 75%;
+}
+.filtersearchjob-btn1{
+    border-radius: 3px;
+    background-color: #0297cf;
+    color: #fff;
+    font-family: 'Graphik-Medium';
+    display: inline-block;
+    text-align: center;
+    padding: 5px 0;
+    margin: 15px 0%;
+    /* font-size: 15px; */
+    border: none;
+    cursor: pointer;
+    width: 75%;
+}
+.search-input{
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+    padding: 5px 25px 6px 12px;
+    margin-bottom: 10px;
+}
+/*.searchInput{*/
+    /*position: relative;*/
+/*}*/
+/*.searchInput label{*/
+    /*position: absolute;*/
+    /*left: 12px;*/
+    /*top: 7px;*/
+    /*!* color: rgba(0, 0, 0, 0.6); *!*/
+    /*color: #535353;*/
+    /*font-weight: 500;*/
+/*}*/
+
+
+
+.filter ul{
+    background-color: white !important;
+}
+.filter .ProfileFormElements .advance-search button{
+    padding: 8px 12px 8px 12px !important;
+}
+
+
+
+
+/*===========================toggle menu=================================*/
+
+
+.navigation-bar-left{ position: absolute;
+    left: 10px;
+    z-index: 999;
+    top: 50px;
+    background: #fff;
+    display: none;
+}
+.newsletter-section-right{ width: 100%; float: right; }
+.information-section-middle{ width: 100%; margin: 0; }
+/*.left-navigation-menu{ display: block; margin: 0 0 20px; }*/
+
+.left-navigation-menu {
+    margin-left: 30px;
+    border: 1px solid #efefef;
+    background: #e9ecee;
+    border-radius: 6px;
+    width: 50px;
+    padding: 5px 15px;
+    display: none;
+    float: left;
+    margin-top: 15px;
+    cursor: pointer;
+}
+.left-navigation-menu span {
+    height: 2px;
+    background: #000;
+    margin: 3px 0 0;
+    display: block;
+}
+/*===========================toggle menu=================================*/
+
+
+
+/*===========================progress bar linear css changes=================================*/
+
+
+
+md-progress-linear .md-container {
+    width: 100%!important;
+    height: 18px!important;
+    border-radius: 10px!important;
+    background-color: #d8d8d8!important;
+}
+md-progress-linear .md-bar {
+    width: 100%!important;
+    height: 18px!important;
+    border-radius: 10px!important;
+    background-color: #02a9e0!important;
+}
+
+
+/*===========================progress bar round css changes=================================*/
+
+
+.progress-wrapper{
+    position: relative;
+    margin:20px auto;
+    font-size: 40px;
+}
+.progress1{
+    position: absolute;
+    color: #02a5db;
+    font-weight: 100;
+    line-height: 1;
+    top: 50%;
+    bottom: auto;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    font-size: 35px;
+
+}
+.progress1 p{
+
+    line-height: 1.2;
+    color: #02a5db;
+    font-size: 14px;
+
+}
+.circlecontentposition{
+    height: 120px;width: 120px;margin: 0 auto;
+    position: relative;
+}
+.scoretext{
+    text-align: right;
+    /*padding: 4px 0px;*/
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+
+    color: #4f5f72;
+}
+@media (max-width: 768px) {
+    .scoretext{
+        text-align: left;
+        padding: 0px 0px 0px 15px;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.5;
+
+        color: #4f5f72;
+
+    }
+
+
+}
+.progress2{
+    position: absolute;
+    color: #000;
+    line-height: 1;
+    top: 50%;
+    bottom: auto;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    font-size: 35px;
+    font-weight: 800;
+    font-family: Graphik-Medium;
+
+}
+.progress2 span{
+
+    color: #000;
+    font-size: 35px;
+
+}
+.progress3{
+    position: absolute;
+    color: #000;
+    line-height: 1;
+    top: 50%;
+    bottom: auto;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    font-size: 35px;
+    font-weight: 800;
+    font-family: Graphik-Medium;
+
+}
+.progress3 span{
+
+    color: #000;
+    font-size: 35px;
+
+}
+.circledivborders {
+    margin: 24px 0px;border-right: 1px solid #d6d6d6;
+    min-height: 80px;
+}
+.circledivshadows {
+    box-shadow: 0px 24px 3px -24px #aaa;
+
+}
+.circledivborders2 {
+    margin: 24px 0px;
+    min-height: 80px;
+}
+.progressbartext{
+    color: #4f5f72;font-size: 15px;font-weight: 600; padding: 10px 0px;
+}
+
+
+@media  (min-width:550px) and (max-width: 992px){
+    .circledivshadows2 {
+        box-shadow: 0px 24px 3px -24px #aaa;
+        min-height: 80px;
+    }
+    .circledivborders {
+        margin: 24px 0px;
+        min-height: 80px;
+    }
+    .circledivborders3 {
+        border-right: none !important;
+        min-height: 80px;
+    }
+    .circledivborders2 {
+        margin: 24px 0px;
+        border-right: 1px solid #d6d6d6;
+        min-height: 80px;
+    }
+}
+
+@media  (max-width: 549px){
+    .circledivshadows2 {
+        box-shadow: 0px 24px 3px -24px #aaa;
+        width:100%;
+    }
+    .circledivshadows {
+        box-shadow: 0px 24px 3px -24px #aaa;
+        width:100%;
+    }
+    .circledivshadows3 {
+        box-shadow: 0px 24px 3px -24px #aaa;
+        width:100%;
+    }
+    .circledivshadows4 {
+        width:100%;
+        margin-left: 0px;
+    }
+    .circledivborders {
+        margin: 24px 0px;
+        border-right: none!important;
+        min-height: 30px;
+    }
+    .circledivborders3 {
+        border-right: none !important;
+        min-height: 30px;
+    }
+    .circledivborders2 {
+        margin: 24px 0px;
+        border-right: none!important;
+        min-height: 30px;
+    }
+}
+
+/*===========================slider css changes=================================*/
+
+.ngrs-range-slider .ngrs-value{
+    display: block !important;
+}
+
+.ngrs-range-slider .ngrs-handle{
+    background: #0297cf !important;
+    border-radius: 50% !important;
+    border: none !important;
+}
+.ngrs-range-slider {
+    margin:0 auto !important;
+    padding: 0px !important;
+    border: none !important;
+    -webkit-box-shadow: none !important;
+     box-shadow: none !important;
+}
+.ngrs-range-slider .ngrs-join{
+  background-color: #0297cf !important;
+}
+.sliderBox{
+    border: solid 2px #d1d1d1;
+    width: 240px;
+    padding: 10px;
+    border-radius: 8px;
+    background: #eff2f5;
+    height: 58px;
+}
+.sliderBoxDiv{
+    width: 220px;
+    background: #eff2f5 !important;
+}
+.noCandidate{
+    margin-top: 20px;
+    color: #5c6b7d;
+}
+
+
+@media (max-width: 992px){
+    .left-navigation-menu{ display: block;}
+    .filter{ display: none; position: absolute;z-index: 1;background-color: white;  width: 300px; margin-top: 52px; }
+    .mycandidatedetails p { text-align: center;}
+    .mycandidatedetails p:first-child span {padding-top: 10px;}
+    .candidates{ position: relative}
+
+}
+@media (min-width: 993px){
+    .filter{ display: block !important; margin-top: 10px}
+}

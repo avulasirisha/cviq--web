@@ -1,0 +1,37 @@
+<section class="commonBackground interview-details" ng-init="pageFunction(1)">
+    <div class="candidate-desc">
+        <div class="col-lg-12 headingSpan">
+            <span><strong>{{numberOFJobs}}</strong><span ng-show="numberOFJobs <= 1"> Job</span><span ng-show="numberOFJobs > 1"> Jobs</span> Applied</span>
+        </div>
+        <ul class="clearfix">
+            <h6 style="margin: 10px 0; font-size: 15px;" class="text-center col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="filteredData.length == 0">No Data Found.</h6>
+            <li class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-list" ng-repeat="res in filteredData">
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                    <img ng-src="" alt="" />
+                    <div class="profile-description">
+                        <h4 ng-click="jobDetails(res._id)">{{res.jobTitle}}</h4>
+                        <p>{{res.jobDescription}}</p>
+                        <ul>
+                            <li class="place">{{res.country}}</li>
+                            <li class="experience">{{res.workExperience.min}} Yrs</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pull-right text-right status-rating">
+                    <label>Posted on {{res.postedOn | date: 'MMMM dd, yyyy'}}</label>
+                    <label>Minimum Score to apply this job is <span class="credit">{{res.aggregatedScore.min}}</span></label>
+                    <label ng-if="res.appliedDate != undefined">Applied on {{res.appliedDate | date:'MMM dd, yyyy'}}</label>
+                    <span class="status-complete" style="cursor: auto">Applied</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>
+<div class="pagination-container">
+    <pagination ng-if="numberOFJobs > 10"
+                ng-model="currentPage"
+                total-items="numberOFJobs"
+                max-size="maxSize"
+                boundary-links="true" ng-click="pageFunction(currentPage)">
+    </pagination>
+</div>

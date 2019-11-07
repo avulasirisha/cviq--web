@@ -1,0 +1,49 @@
+<!--<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">-->
+<form name="postLater" ng-submit="postLater.$valid" novalidate>
+
+    <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 banner">
+        <div class="container">
+            <div class="main-section col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 col-xs-12 candidate-profile-section clearfix">
+                <h1 class="text-left">JOB SCHEDULE</h1>
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="row" style="margin-top: 20px">
+                    <h4 style="padding:0px 14px">Default time for job activeness is 30 days</h4><br>
+                    <div class="search-wrapper ">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form">
+
+                            <div class="form-elements input-group date col-md-12 col-sm-12 col-xs-12 col-lg-12" id='datetimepicker1'>
+                                <label>From</label>
+                                <em class="input-group-addon dateTime" ></em>
+                                <em class=" fa fa-calendar fa-lg iconColor"  ></em>
+                                <input type='text' required />
+                                <!--<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>-->
+                                <div ng-show="date1error ">
+                                    <div class="error-message" ><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                </div>
+                            </div>
+                            <div class="form-elements input-group date col-md-12 col-sm-12 col-xs-12 col-lg-12" id='datetimepicker2'>
+                                <label>To</label>
+                                <em class="input-group-addon dateTime" ></em>
+                                <em class=" fa fa-calendar fa-lg iconColor" ></em>
+                                <input type='text' required  id="date2calander"/>
+                                <!--<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>-->
+                                <div ng-show="date2error">
+                                    <div class="error-message" ><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad ">
+                    <div class="col-lg-6 col-md-6 col-lg-offset-6 col-md-offset-6 col-sm-12 co-xs-12  " >
+                        <button type="submit" class="col-lg-12 col-md-12 col-sm-12 col-xs-12  sbmt-btn" ng-click="post()">Save Job</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+

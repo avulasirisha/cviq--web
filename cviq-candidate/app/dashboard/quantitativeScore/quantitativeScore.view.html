@@ -1,0 +1,192 @@
+<section class="score-container quantitative-score">
+    <p>Quantitative score is based on your profile.<span class="pull-right">Total Score: <strong>{{quantitativeScore.totalQuantitativeScore}}</strong></span></p>
+    <div class="quantitative-score-inner col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <ul>
+            <li>
+                <div class="score-progress">
+                    <round-progress
+                            max="quantitativeScore.totalQuantitativeScore"
+                            current="quantitativeScore.candidateQuantitativeScore"
+                            color="#02699d"
+                            bgcolor="#e4e4e4"
+                            radius="56"
+                            stroke="8"
+                            semi="false"
+                            rounded="false"
+                            clockwise="true"
+                            responsive="false"
+                            duration="800"
+                            animation="easeInOutQuart"
+                            on-render=""
+                            animation-delay="0">
+                    </round-progress>
+                    <strong>{{quantitativeScore.candidateQuantitativeScore}}</strong>
+                </div>
+                <h5>Total Quantitative Score</h5>
+                <div class="progress-bar-quantitative clearfix">
+                    <label>Your Score</label>
+                    <div isteven-omni-bar current-value="quantitativeScore.candidateQuantitativeScore" max-value="quantitativeScore.totalQuantitativeScore" current-style="loadingCurrent1" container-style="loadingBarStyle1">{{quantitativeScore.candidateQuantitativeScore}}</div>
+                </div>
+                <div class="progress-bar-quantitative clearfix">
+                    <label>Total Score</label>
+                    <div isteven-omni-bar current-value="quantitativeScore.totalQuantitativeScore" max-value="quantitativeScore.totalQuantitativeScore" current-style="loadingCurrent1" container-style="loadingBarStyle1">{{quantitativeScore.totalQuantitativeScore}}</div>
+                </div>
+            </li>
+            <li>
+                <div class="circle-on-border"></div>
+                <div class="score-progress">
+                    <round-progress
+                            max="quantitativeScore.totalExperiencePoints"
+                            current="quantitativeScore.candidateExperiencePoints"
+                            color="#02699d"
+                            bgcolor="#e4e4e4"
+                            radius="56"
+                            stroke="8"
+                            semi="false"
+                            rounded="false"
+                            clockwise="true"
+                            responsive="false"
+                            duration="800"
+                            animation="easeInOutQuart"
+                            on-render=""
+                            animation-delay="0">
+                    </round-progress>
+                    <strong>{{quantitativeScore.candidateExperiencePoints}}</strong>
+                </div>
+                <h5>Number of years of experience</h5>
+                <div class="progress-bar-quantitative clearfix">
+                    <label>Your Score</label>
+                    <div isteven-omni-bar current-value="quantitativeScore.candidateExperiencePoints" max-value="quantitativeScore.totalExperiencePoints" current-style="loadingCurrent1" container-style="loadingBarStyle1">{{quantitativeScore.candidateExperiencePoints}}</div>
+                </div>
+                <div class="progress-bar-quantitative clearfix">
+                    <label>Total Score</label>
+                    <div isteven-omni-bar current-value="quantitativeScore.totalExperiencePoints" max-value="quantitativeScore.totalExperiencePoints" current-style="loadingCurrent1" container-style="loadingBarStyle1">{{quantitativeScore.totalExperiencePoints}}</div>
+                </div>
+            </li>
+            <li>
+                <div class="circle-on-border"></div>
+                <div class="score-progress">
+                    <round-progress
+                            max="quantitativeScore.totalCertificationPoints"
+                            current="quantitativeScore.candidateCertificationPoints"
+                            color="#02699d"
+                            bgcolor="#e4e4e4"
+                            radius="56"
+                            stroke="8"
+                            semi="false"
+                            rounded="false"
+                            clockwise="true"
+                            responsive="false"
+                            duration="800"
+                            animation="easeInOutQuart"
+                            on-render=""
+                            animation-delay="0">
+                    </round-progress>
+                    <strong>{{quantitativeScore.candidateCertificationPoints}}</strong>
+                </div>
+                <h5>Certifications</h5>
+                <div class="progress-bar-quantitative clearfix">
+                    <label>Your Score</label>
+                    <div isteven-omni-bar current-value="quantitativeScore.candidateCertificationPoints" max-value="quantitativeScore.totalCertificationPoints" current-style="loadingCurrent1" container-style="loadingBarStyle1">{{quantitativeScore.candidateCertificationPoints}}</div>
+                </div>
+                <div class="progress-bar-quantitative clearfix">
+                    <label>Total Score</label>
+                    <div isteven-omni-bar current-value="quantitativeScore.totalCertificationPoints" max-value="quantitativeScore.totalCertificationPoints" current-style="loadingCurrent1" container-style="loadingBarStyle1">{{quantitativeScore.totalCertificationPoints}}</div>
+                </div>
+            </li>
+            <li>
+                <div class="score-progress">
+                    <round-progress
+                            max="quantitativeScore.totalAwardPoints"
+                            current="quantitativeScore.candidateAwardPoints"
+                            color="#02699d"
+                            bgcolor="#e4e4e4"
+                            radius="56"
+                            stroke="8"
+                            semi="false"
+                            rounded="false"
+                            clockwise="true"
+                            responsive="false"
+                            duration="800"
+                            animation="easeInOutQuart"
+                            on-render=""
+                            animation-delay="0">
+                    </round-progress>
+                    <strong>{{quantitativeScore.candidateAwardPoints}}</strong>
+                </div>
+                <h5>Awards & Accomplishments</h5>
+                <div class="progress-bar-quantitative clearfix">
+                    <label>Your Score</label>
+                    <div isteven-omni-bar current-value="quantitativeScore.candidateAwardPoints" max-value="quantitativeScore.totalAwardPoints" current-style="loadingCurrent1" container-style="loadingBarStyle1">{{quantitativeScore.candidateAwardPoints}}</div>
+                </div>
+                <div class="progress-bar-quantitative clearfix">
+                    <label>Total Score</label>
+                    <div isteven-omni-bar current-value="quantitativeScore.totalAwardPoints" max-value="quantitativeScore.totalAwardPoints" current-style="loadingCurrent1" container-style="loadingBarStyle1">{{quantitativeScore.totalAwardPoints}}</div>
+                </div>
+            </li>
+            <li>
+                <div class="score-progress">
+                    <round-progress
+                            max="quantitativeScore.totalPatentPoints"
+                            current="quantitativeScore.candidatePatentPoints"
+                            color="#02699d"
+                            bgcolor="#e4e4e4"
+                            radius="56"
+                            stroke="8"
+                            semi="false"
+                            rounded="false"
+                            clockwise="true"
+                            responsive="false"
+                            duration="800"
+                            animation="easeInOutQuart"
+                            on-render=""
+                            animation-delay="0">
+                    </round-progress>
+                    <strong>{{quantitativeScore.candidatePatentPoints}}</strong>
+                </div>
+                <h5>Patents</h5>
+                <div class="progress-bar-quantitative clearfix">
+                    <label>Your Score</label>
+                    <div isteven-omni-bar current-value="quantitativeScore.candidatePatentPoints" max-value="quantitativeScore.totalPatentPoints" current-style="loadingCurrent1" container-style="loadingBarStyle1">{{quantitativeScore.candidatePatentPoints}}</div>
+                </div>
+                <div class="progress-bar-quantitative clearfix">
+                    <label>Total Score</label>
+                    <div isteven-omni-bar current-value="quantitativeScore.totalPatentPoints" max-value="quantitativeScore.totalPatentPoints" current-style="loadingCurrent1" container-style="loadingBarStyle1">{{quantitativeScore.totalPatentPoints}}</div>
+                </div>
+            </li>
+            <li>
+                <div class="score-progress">
+                    <round-progress
+                            max="quantitativeScore.totalEducationPoints"
+                            current="quantitativeScore.candidateEducationPoints"
+                            color="#02699d"
+                            bgcolor="#e4e4e4"
+                            radius="56"
+                            stroke="8"
+                            semi="false"
+                            rounded="false"
+                            clockwise="true"
+                            responsive="false"
+                            duration="800"
+                            animation="easeInOutQuart"
+                            on-render=""
+                            animation-delay="0">
+                    </round-progress>
+                    <strong>{{quantitativeScore.candidateEducationPoints}}</strong>
+                </div>
+                <h5>Education level</h5>
+                <div class="progress-bar-quantitative clearfix">
+                    <label>Your Score</label>
+                    <div isteven-omni-bar current-value="quantitativeScore.candidateEducationPoints" max-value="quantitativeScore.totalEducationPoints" current-style="loadingCurrent1" container-style="loadingBarStyle1">{{quantitativeScore.candidateEducationPoints}}</div>
+                </div>
+                <div class="progress-bar-quantitative clearfix">
+                    <label>Total Score</label>
+                    <div isteven-omni-bar current-value="quantitativeScore.totalEducationPoints" max-value="quantitativeScore.totalEducationPoints" current-style="loadingCurrent1" container-style="loadingBarStyle1">{{quantitativeScore.totalEducationPoints}}</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!--<div class="score-container-inner col-lg-12 col-md-12 col-sm-12 col-xs-12">-->
+        <!--<button style="float: none;" class="col-lg-3 sbmt-btn">GET YOUR SCORE</button>-->
+    <!--</div>-->
+</section>

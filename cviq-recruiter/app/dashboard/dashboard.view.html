@@ -1,0 +1,218 @@
+
+    <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 candidate-dashboard">
+        <div class="container">
+            <div class="row padonsmallscreen">
+                <div ng-hide="edit" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 commonBackground"  style="position: relative">
+                    <span class="profileEdit" ng-click="editDetails()"><span class="editprofile"></span>Edit</span>
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 profile-pic">
+
+                            <div class="change-photo">
+                                <img class="dp" style="width:160px;height: 160px" ng-src="{{profile.profilePicURL.original}}" alt="" />
+
+                            </div>
+
+                        <h5>{{profile.firstName}} {{profile.lastName}}</h5>
+                    </div>
+                    <div class="col-md-9 col-lg-9 col-sm 12 col-xs-12 profileDetails">
+                        <div style="word-break: break-all;">
+                            <h4>Contact Details</h4>
+                            <p><span>Email : </span>{{profile.email}}</p>
+                            <p><span>Phone No : </span><span ng-if="profile.countryCode">{{profile.countryCode}} - </span>{{profile.phoneNo}}</p>
+
+                        </div>
+                        <div>
+                            <h4>Membership Plan</h4>
+                            <p>{{profile.membershipPlanType}}</p>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div ng-show="edit" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 commonBackground" style="position: relative">
+                    <span style="text-decoration: underline;position: absolute;bottom: 10px;right: 10px;cursor: pointer;z-index: 10" ng-click="cancel()">Cancel</span>
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 profile-pic" style="position: relative">
+                        <div class="change-photo">
+
+
+                            <form id="form1" runat="server">
+
+                                <input name="file" style="position: absolute;display: none" type='file' id="imgInp" />
+                                <a ng-click="croppedImagePopup()"  data-toggle="modal" data-target="#myModal" data-backdrop="static" data-keyboard="false"><label> </label></a>
+                                <img  style="width:160px;height: 160px" ng-src="{{profile.profilePicURL.original}}" alt="" />
+
+
+                                <!--<input name="file" style="position: absolute;display: none" type='file' id="imgInp" />-->
+                                <!--<label for="imgInp">Choose Image</label>-->
+                                <!--<img id="blah" style="width:160px;height: 160px" ng-src="{{profile.profilePicURL.original}}" alt="" />-->
+
+                            </form>
+
+
+
+                            <!--<img class="dp" ng-src="{{profile.profilePicURL.original}}" alt="" />-->
+                            <!--<input style="display: none" type="file" ng-model="myfile" id="dp" class="file2" name="profilePicture" onchange="angular.element(this).scope().profilePic(this.files)"data-button-text="Single" uploader="uploader" accept="image/*" />-->
+                            <!--&lt;!&ndash;<input  type="file" ng-model="myfile"   />&ndash;&gt;-->
+                        </div>
+                        <h5>{{profile.firstName}} {{profile.lastName}}</h5>
+                    </div>
+                    <div class="col-md-9 col-lg-9 col-sm 12 col-xs-12 ">
+                        <form name="editForm" ng-submit="editForm.$valid&&editProfile(profile)" novalidate>
+                            <div class="main-section1 col-lg-8 col-md-8 col-sm-12 col-xs-12 candidate-profile-section clearfix">
+                                <div class="form">
+                                    <div class="clearfix">
+                                        <div class="form-elements ">
+                                            <label>FIRST NAME</label>
+                                            <input type="text" class="fname" minlength="3" style="text-transform: capitalize" ng-keypress='FirsText($event)' maxlength="20" placeholder="Enter First Name" name="firstName" ng-model="profile.firstName" required />
+                                            <div ng-show="editForm.$submitted || editForm.firstName.$touched">
+                                                <div class="error-message" ng-show="editForm.firstName.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <div class="error-message" ng-show="editForm.firstName.$invalid&&editForm.firstName.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> First Name must be at least 3 characters long.</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-elements ">
+                                            <label>LAST NAME</label>
+                                            <input class="lname" type="text" minlength="3" style="text-transform: capitalize" ng-keypress='FirsText($event)' maxlength="20" placeholder="Enter Last Name" name="lastName" ng-model="profile.lastName" required />
+                                            <div ng-show="editForm.$submitted || editForm.lastName.$touched">
+                                                <div class="error-message" ng-show="editForm.lastName.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <div class="error-message" ng-show="editForm.lastName.$invalid&&editForm.lastName.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Last Name must be at least 3 characters long.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix">
+                                        <div class="form-elements ">
+                                            <label>EMAIL ADDRESS</label>
+                                            <input class="mail" id='mail' type="text" name="email" placeholder="Enter Email" ng-model="profile.email" disabled/>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix">
+                                        <div class="form-elements one-third">
+                                            <div class="ProfileFormElements clearfix form-elements">
+                                                <div class="dropdown custom-select-box main-dropdown">
+                                                    <label>COUNTRY CODE</label>
+                                                    <select name="code" id="countryCode" ng-model="profile.countryCode" class="selectpicker" data-live-search="true" ng-options="country.countryCode as (country.countryName +'('+country.countryCode+')') for country in countryLists" required>
+                                                        <option value="" disabled hidden>Country Code</option>
+                                                    </select>
+                                                    <div ng-show="editForm.$submitted">
+                                                        <div class="error-message err" ng-show="editForm.code.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-elements more-half">
+                                            <label>MOBILE NUMBER</label>
+                                            <input class="phone" type="text" minlength="10" maxlength="10" ng-keypress='isNumberKey($event)' ng-pattern="phoneRegex" name="mobile" placeholder="Enter Mobile Number" ng-model="profile.phoneNo" required>
+                                            <div ng-show="editForm.$submitted || editForm.mobile.$touched">
+                                                <div class="error-message" ng-show="editForm.mobile.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <div class="error-message" ng-show="editForm.mobile.$invalid&&editForm.mobile.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Phone Number must be 10 characters long & can't start with 0.</div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <button type="submit" style="width: 50%;margin-left: 25%;" class="sbmt-btn text-center">UPDATE</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="row padonsmallscreen">
+                <div class="scores-obtained">
+                    <!--<h3>CVIQ SCORES</h3>-->
+                    <div class="borderAsLine"></div>
+                    <div class="borderAsLine"></div>
+                </div>
+                <section class="inboxMenu" style="position: relative">
+                    <div class="text-center"  ng-if="membership" ><button class="btn createNewJobBtn" id="createNewJob" ui-sref="home.createNewJob"  ng-click="var = 'JOBS'" ng-class="{'selected': var == 'JOBS'}">CREATE NEW JOB &nbsp<i class="fa fa-plus" aria-hidden="true"></i></button></div>
+                    <ul class="inboxMenu-inner">
+                        <li ng-click="variable='RECENT'" ng-class="{'act': variable == 'RECENT'}"><a ui-sref="home.dashboard.recentlyPostedJobs">Recently Posted Jobs</a></li>
+                        <li ng-click="variable='SCHEDULED'" ng-class="{'act': variable == 'SCHEDULED'}"><a ui-sref="home.dashboard.scheduledJobs">Scheduled Jobs </a></li>
+                        <li ng-click="variable='FAVOURITE'" ng-class="{'act': variable == 'FAVOURITE'}"><a ui-sref="home.dashboard.favouriteCandidates">Favourite Candidates</a></li>
+                    </ul>
+                    <div ui-view=""></div>
+                </section>
+            </div>
+        </div>
+    </section>
+    <!--<section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 candidate-dashboard">-->
+        <!--<div class="container">-->
+            <!--<div class="row">-->
+                <!--<div class="profile-pic text-center">-->
+                    <!--<div class="change-photo">-->
+                        <!--<img class="dp" ng-src="{{profile.profilePicURL.original}}" alt="" />-->
+                        <!--<input style="display: none" type="file" ng-model="myfile" id="dp" class="file2" name="profilePicture" onchange="angular.element(this).scope().profilePic(this.files)"data-button-text="Single" uploader="uploader" accept="image/*" />-->
+
+                        <!--<a class="upload-file2">Change Photo</a>-->
+                    <!--</div>-->
+                    <!--<h5>{{profile.firstName}} {{profile.lastName}}</h5>-->
+                    <!--<p>Software Developer</p>-->
+                <!--</div>-->
+                <!--<div class="memberShip">-->
+                   <!--&lt;!&ndash; <div class="text-right"><button class="sbmt-btn">BUY MEMBERSHIP</button></div>&ndash;&gt;-->
+                    <!--<section class="commonBackground interview-details">-->
+                        <!--<div class="candidate-desc clearfix">-->
+                            <!--<h5>Description</h5>-->
+                            <!--<div class="candidate-edit-profile clearfix">-->
+                                <!--<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>-->
+                                <!--<div class="social-bar">-->
+                                    <!--<label>Maximum 250 words</label>-->
+                                    <!--<p><strong>Skills</strong><br />Java, Angular JS</p>-->
+                                    <!--<ul class="text-right">-->
+                                        <!--<li><a href="">Edit Profile</a></li>-->
+                                        <!--<li><a href="">Add Linked in Profile</a></li>-->
+                                    <!--</ul>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</section>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="row">-->
+                <!--<div class="scores-obtained">-->
+                    <!--<h3>CVIQ SCORES</h3>-->
+                    <!--<div class="borderAsLine"></div>-->
+                    <!--<div class="borderAsLine"></div>-->
+                <!--</div>-->
+                <!--<section class="inboxMenu">-->
+                    <!--<ul class="inboxMenu-inner">-->
+                        <!--<li ng-click="variable='RECENT'" ng-class="{'act': variable == 'RECENT'}"><a ui-sref="home.dashboard.recentlyPostedJobs">Recently Posted Jobs</a></li>-->
+                        <!--<li ng-click="variable='SCHEDULED'" ng-class="{'act': variable == 'SCHEDULED'}"><a ui-sref="home.dashboard.scheduledJobs">Scheduled Jobs</a></li>-->
+                        <!--<li ng-click="variable='FAVOURITE'" ng-class="{'act': variable == 'FAVOURITE'}"><a ui-sref="home.dashboard.favouriteCandidates">Favourite Candidates</a></li>-->
+                    <!--</ul>-->
+                    <!--<div ui-view=""></div>-->
+
+                    <!--<div class="text-center">-->
+                        <!--<button class="btn " id="createNewJob" ui-sref="home.createNewJob">CREATE NEW JOB</button>-->
+                    <!--</div>-->
+                <!--</section>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</section>-->
+
+<!--====================modal to show image to be cropped=================-->
+
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content" style="border-radius: 20px 0px;">
+                <div class="modal-header">
+                    <h1>Crop Image</h1>
+                </div>
+                <div class="modal-body clearfix">
+                    <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label style="line-height: 40px;" class="pull-left">Upload Image:</label>
+                        <input type="file" id="fileInput" class="resume-file pull-left" style="margin-left: 20px; border: solid 1px #d9d9d9; color: #626262; padding: 10px;" accept="image/*" valid-file ng-model="resume" name="res">
+                    </div>
+                    <div class="cropArea col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <img-crop area-type="square" image="myImage" result-image="myCroppedImage"></img-crop>
+                    </div>
+                    <div class="croppedImageSection" ng-if="showcropped">
+                        <label  style="margin-top: 10px;">Cropped Image:</label>
+                        <div class="text-center"><img ng-src="{{myCroppedImage}}" /></div>
+                        <button class="sbmt-btn" ng-click="confirm(profile)" style="padding:5px 20px;" data-dismiss="modal">Upload</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,306 @@
+/*=============================== Start : Live interview custom Css Rules ======================*/
+
+.skype .interview-pic1{ width: 190px; padding: 0; float: left; }
+.skype .interview-pic1 p.show-time{ width: 100%; float: left; margin: 10px 0; }
+.skype .video-panel{ background: #eff2f5; padding: 10px; height: 350px; }
+.layout{ width: 100%; float: left; }
+.layout #publisherDiv{ float: right;
+    position: absolute !important;
+    top: 10px !important;
+    width: initial !important;
+    height: initial !important;
+    z-index: 9;
+    right: 10px;
+    left: initial !important; }
+
+.skype .controlBtn{ width: 100%;
+    text-align: center;
+    z-index: 1;
+    position: absolute;
+    bottom: 20px; }
+.skype ul.video-controls li { display: inline-block; margin: 0 5px; }
+.skype ul.video-controls li a{ box-shadow: none; }
+.skype .enable-video{ background:url("../images/enable-video.png") no-repeat; width: 48px; height: 48px; }
+.skype .disable-video{ background:url("../images/disable-video.png") no-repeat; width: 48px; height: 48px; }
+.skype .enable-audio{ background:url("../images/enable-mike.png") no-repeat; width: 48px; height: 48px; }
+.skype .disable-audio{ background:url("../images/disable-mike.png") no-repeat; width: 48px; height: 48px; }
+.skype .call-drop{ background:url("../images/call.png") no-repeat; width: 48px; height: 48px; }
+
+
+.chat-container{ border: solid 1px #4f5f72; background: #eff2f5; padding: 0; }
+.chat-container .send-signal{ background: #9ed3e8; padding: 10px 30px; width: 100%; float: left; }
+.chat-container .send-signal input{ border-radius: 4px; background: #fff; height: 40px; padding: 0 20px; border: none; width: 100%; max-width: 80%; color: #4f5f72; font-size: 14px; float: left; }
+.chat-container .send-signal button{  border-radius: 4px; background: #26a5d5; color: #fff; border: none; height: 40px; padding: 0 20px; width: auto; margin-left: 2%; float: right; }
+.chat-container .send-signal ::-webkit-input-placeholder  { color: #4f5f72; }
+.chat-container .send-signal ::-moz-placeholder { color: #4f5f72; }
+.chat-container .send-signal :-ms-input-placeholder { color: #4f5f72; }
+.layout #subscribersDiv{ left: 0 !important; width: 100% !important; height:100% !important; }
+.layout #subscribersDiv .OT_publisher{ width: 100% !important; height: 100% !important; }
+
+/*=============================== End : Live interview custom Css Rules ======================*/
+
+/*=================================== Custom pagination Css Rules ========================================*/
+.pagination-container{
+    width: 100%;
+    float: left;
+    margin: 20px 0;
+}
+ul.pagination { float: right; margin: 0; }
+ul.pagination li:first-child, ul.pagination li:last-child{
+    display: none;
+}
+.pagination-container ul.pagination li a{
+    font-weight: normal;
+    font-size: 14px;
+    color: #4f5f72;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0 10px;
+}
+.pagination-container ul.pagination .active>a, .pagination-container ul.pagination>.active>a:hover  {
+    color: #0297cd;
+    background: none;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+.pagination-container ul.pagination li:nth-child(2).disabled a{
+    background: url("../images/page-prev.png") no-repeat center;
+    font-size: 0;
+    width: 20px;
+    height: 20px;
+}
+.pagination-container ul.pagination li:nth-child(2) a{
+    background: url("../images/page-next-1.png") no-repeat center;
+    font-size: 0;
+    width: 20px;
+    height: 20px;
+}
+.pagination-container ul.pagination li:nth-last-child(2) a{
+    background: url("../images/page-next.png") no-repeat center;
+    font-size: 0;
+    width: 20px;
+    height: 20px;
+}
+.pagination-container ul.pagination li:nth-last-child(2).disabled a{
+    background: url("../images/page-prev-2.png") no-repeat center;
+    font-size: 0;
+    width: 20px;
+    height: 20px;
+}
+.profile-pic .candidate-pic{
+    background: url("../images/profile-placeholder.png") no-repeat center top;
+    width: 158px;
+    height: 165px;
+}
+.chat-box{
+    padding: 20px;
+    width: 100%;
+    float: left;
+    height: 250px;
+    overflow: auto;
+}
+.chat-box p{
+    width: 100%;
+    float: left;
+    margin-bottom: 10px;
+}
+.chat-box p.candidate-side span{
+    float: left;
+    background: #fff;
+    border-radius: 0 6px 6px 6px;
+}
+.chat-box p.candidate-side span:after{
+    content: '';
+    display: block;
+    border-right: 10px solid #fff;
+    border-bottom: 10px solid transparent;
+    position: absolute;
+    right: initial;
+    z-index: 9;
+    top:0;
+    left: -10px;
+    border-left: none;
+}
+.chat-box p:last-child{
+    margin: 0;
+}
+.chat-box p span{
+    float: right;
+    padding: 5px 20px;
+    background: #9ed3e8;
+    color: #4f5f72;
+    position: relative;
+    border-radius: 6px 0 6px 6px;
+    font-size: 14px;
+}
+.chat-box p span:after{
+    content: '';
+    display: block;
+    border-left: 10px solid #9ed3e8;
+    border-bottom: 10px solid transparent;
+    position: absolute;
+    right: -10px;
+    z-index: 9;
+    top:0;
+}
+/*.emptyField{*/
+    /*border: 2px solid #ff0000 !important;*/
+/*}*/
+.chat-box p span i{
+    font-size: 10px;
+}
+.disableSection{
+    pointer-events: none;
+}
+.watchOnlyDetails li span.unrated-star.rated-star{
+    background: url(../images/rated-star.png) no-repeat center top;
+}
+.watchOnlyDetails li span.unrated-star{
+    width: 16px;
+    height: 15px;
+    background: url(../images/unrated-star.png) no-repeat center top;
+    display: inline-block;
+    margin-left: 2px;
+}
+.interview-details .candidate-desc ul li img.dp{
+    background: url("../images/title-dp.png") no-repeat center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    margin-top: 10px;
+}
+.menu-sec{
+    position: relative;
+}
+.notification{
+    background: #eff2f5;
+    border-radius: 6px;
+    padding: 15px;
+    width: auto;
+    float: left;
+    position: absolute;
+    right: -10px;
+    top: 40px;
+    z-index: 9;
+    border: 2px solid #E9E9E9;
+    display: none;
+}
+.displayDropDown {
+    display: block;
+}
+.notification ul {
+    list-style: none;
+}
+.notification ul li {
+    display: block;
+    color: #7D7D7D;
+    font-size: 13px;
+    border-top: 1px solid #E9E9E9;
+    padding: 10px 0;
+    margin: 0;
+}
+.notification ul li span{
+    color: #0297cf;
+    text-decoration: underline;
+    padding-left: 10px;
+    cursor: pointer;
+}
+.notification ul li:first-child{
+    border-top: none;
+}
+.notification:before{
+    border-bottom: 10px solid #eff2f5;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    content: '';
+    display: block;
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    z-index: 9;
+}
+.notificationOuter{
+    position: relative;
+    float: right;
+}
+.notificationOuter i{
+    position: absolute;
+    font-style: normal;
+    right: -15px;
+    padding: 2px 0 0 0;
+    top: -10px;
+    display: inline;
+    background: #ff0000;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 11px;
+    width: 18px;
+    height: 18px;
+    text-align: center;
+}
+.ngdialog.ngdialog-theme-default .ngdialog-content .addQues{
+    margin-bottom: 10px;
+}
+.ngdialog.ngdialog-theme-default .ngdialog-content .addQues button{
+    background: #fff url(../images/arrow-below.png) no-repeat 97%;
+    border: 1px solid #d8d8d8;
+    border-radius: 3px;
+}
+.ngdialog.ngdialog-theme-default .ngdialog-content .addQues button span{
+    color: #646464;
+    font-weight: normal;
+}
+.ngdialog.ngdialog-theme-default .ngdialog-content .addQues textarea{
+    border: 1px solid #d8d8d8;
+    border-radius: 3px;
+    padding: 10px;
+    width: 100%;
+    margin-top: 20px;
+    height: 100px;
+}
+.faqHead{
+    min-height: 300px;
+}
+/*.questionBank{*/
+    /*width: 100%;*/
+    /*max-width:300px;*/
+    /*position: absolute;*/
+    /*left: 10px;*/
+    /*z-index: 9;*/
+/*}*/
+.questionBank .search-section{
+    min-height: auto;
+    margin: 0;
+}
+.search-section .search-result.questionForInterview ul li{
+    background: none;
+}
+.search-result.questionForInterview{
+    padding: 15px;
+    max-height: 278px;
+    min-height: 278px;
+    overflow: auto;
+}
+.pad{
+    padding: 0;
+}
+.quesNChat{
+    margin: 50px 0 30px;
+}
+.search-section .search-result.questionForInterview ul li{
+    padding-left: 0;
+}
+/*.search-section .search-result.questionForInterview input[type="checkbox"]:checked + .search-result.questionForInterview ul li:before{*/
+    /*background: url("../images/check.png") no-repeat center top;*/
+/*}*/
+
+@media (max-width: 991px){
+    .skype .interview-pic1{ float: none; margin: 0 auto; }
+    .chat-container .send-signal input{ max-width: 70%; }
+}
+@media (max-width: 767px){
+    .chat-container .send-signal input{ width: 100%; }
+    .chat-container .send-signal button{ width: auto; padding: 0 30px; }
+}

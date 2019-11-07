@@ -1,0 +1,285 @@
+
+<style>
+    .whirl:after {  position: fixed;  }
+</style>
+<section ng-class="{'whirl duo' : showloader }" ng-controller="viewProfileController" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 banner" >
+    <div class="container" >
+        <div style="position: relative" class="postNowFontColor main-section col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 col-xs-12 candidate-profile-section clearfix">
+            <!--<h3 class="text-left">Personal Details</h3>-->
+           <div style="position: absolute;right: 20px;top: 20px;">
+               <a style="margin: 0px 2px;border: 1px solid #0297cf;" ng-hide="data.isBlocked" class="btn btn-sm btn-default1" title="Block" ng-click="blockCandidate(data.Id,data.name)"><!--style="background-color:#666666"-->
+                   <i class="fa fa-lock block-icon"></i>
+               </a>
+
+               <a style="margin: 0px 2px;border: 1px solid #0297cf;" ng-show="data.isBlocked" class="btn btn-sm btn-default1" title="UnBlock" ng-click="unblockCandidate(data.Id,data.name)"><!--style="background-color:#666666"-->
+                   <i class="fa fa-unlock-alt unblock-icon"></i>
+               </a>
+           </div>
+
+            <div class="row" style="margin-top: 10px">
+            <div style="padding-top: 25px;" class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+                <img ng-src="{{data.profilePicURL || 'app/img/noimg.png'}}" class="tableImage">
+                <p><b>{{data.name}}</b></p>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <p><b>Gender - </b>{{data.gender}} <span ng-hide="data.gender">NA</span></p>
+                <p><b>Email - </b>{{data.email}} <span ng-hide="data.email">NA</span></p>
+                <p><b>Linkedin ID - </b>{{data.linkedInId}} <span ng-hide="data.linkedInId">NA</span></p>
+                <p><b>Date of Birth - </b>{{data.dob | date: 'longDate'}} <span ng-hide="data.dob">NA</span></p>
+                <p><b>Phone No. - </b>{{data.phoneNo}} <span ng-hide="data.phoneNo">NA</span></p>
+                <p style="text-transform: capitalize"><b>Phone No. Verified - </b><span ng-show="data.phoneVerified"> Yes</span> <span ng-hide="data.phoneVerified"> No</span></p>
+                <p><b>Nationality - </b>{{data.nationality}} <span ng-hide="data.nationality">NA</span></p>
+                <p><b>Last Login - </b>{{data.lastLogin | date: 'medium'}} <span ng-hide="data.lastLogin">NA</span></p>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+
+                <p><b>Designation - </b>{{data.profileTitle}}<span ng-hide="data.profileTitle">NA</span></p>
+                <p><b>Experience - </b>{{data.experience}} Years <span ng-hide="data.experience">NA</span></p>
+                <p><b>Salary - </b> $ {{data.salary}} <span ng-hide="data.salary || data.salary==0 ">NA</span></p>
+                <p><b>Key Skills - </b>{{data.keySkills}} <span ng-hide="data.keySkills">NA</span></p>
+
+                <p><b>Country - </b>{{data.country}} <span ng-hide="data.country">NA</span></p>
+                <p><b>State - </b>{{data.state}} <span ng-hide="data.state">NA</span></p>
+                <p><b>Zip Code - </b>{{data.zipCode}} <span ng-hide="data.state">NA</span></p>
+                <p><b>Desired Job Locations - </b>{{data.desiredJobLocations}} <span ng-hide="data.desiredJobLocations">NA</span></p>
+
+            </div>
+            </div>
+            <h3 class="text-left">Scores </h3>
+            <div class="row" style="margin-top: 10px">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <p><b>Aggregated - </b>{{data.aggregatedScore}}</p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <p><b>Qualitative - </b>{{data.qualitativeScore}} </p>
+                    </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <p><b>Quantitative - </b>{{data.quantitativeScore}}</p>
+                </div>
+            </div>
+            <h3 class="text-left">Resume </h3>
+            <div ng-show="data.resume.length == 0" class="noSearch1"><span>No Resume Detail Found</span></div>
+            <div class="row" style="margin-top: 10px">
+                <div  ng-repeat="resume in data.resume" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <p><b>{{resume.index}} - </b><a href="{{resume.resumeURL}}" download="Resume" title="Resume" ><span ng-show="resume.resumeName">{{resume.resumeName}}</span><span ng-hide="resume.resumeName">Resume</span></a></p>
+
+                </div>
+            </div>
+            <h3 class="text-left">Education
+                <button ng-show="(data.education).length != 0" ng-click="exportEducationData()" class="pull-right btn btn-sm btn-info">Export To CSV</button>
+           </h3>
+            <div class="row" style="margin-top: 10px" ng-switch="(data.education).length">
+                <div ng-switch-when="0" class="noSearch1"><span>No Education Detail Found</span></div>
+                <div class="table-responsive col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-switch-default>
+                    <table class="table profileTable">
+                        <thead>
+                        <tr>
+                            <th>Sr. No.</th>
+                            <th>Qualification</th>
+                            <th>Specialization</th>
+                            <th>Year of Passout</th>
+                            <th>Institute Name</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="edu in data.education">
+                            <td>{{edu.index}}<span ng-hide="edu.index"> - </span></td>
+                            <td >{{edu.qualificationLevel}}<span ng-hide="edu.qualificationLevel"> - </span></td>
+                            <td >{{edu.specialization}}<span ng-hide="edu.specialization"> - </span></td>
+                            <td >{{edu.passoutYear}}<span ng-hide="edu.passoutYear"> - </span></td>
+                            <td style="text-transform: capitalize">{{edu.instituteName}}<span ng-hide="edu.instituteName"> - </span></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+             <h3 class="text-left">Work Experience
+                 <button ng-show="(data.work).length != 0" ng-click="exportExperienceData()" class="pull-right btn btn-sm btn-info">Export To CSV</button>
+             </h3>
+            <div class="row" style="margin-top: 10px" ng-switch="(data.work).length">
+                <div ng-switch-when="0" class="noSearch1"><span>No Work Experience Detail Found</span></div>
+                <div class="table-responsive col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-switch-default>
+                    <table class="table profileTable">
+                        <thead>
+                        <tr>
+                            <th>Sr. No.</th>
+                            <th>Company Name</th>
+                            <th>Designation</th>
+                            <th>Work From</th>
+                            <th>Work To</th>
+                            <th>Annual Salary</th>
+                            <th>Industry</th>
+                            <th>Accomplishments</th>
+                            <th>Current Employ</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="work in data.work">
+                            <td style="text-align: center;">{{work.index}}</td>
+                            <td>{{work.companyName}}<span ng-hide="work.companyName"> - </span></td>
+                            <td>{{work.designation}}<span ng-hide="work.designation"> - </span></td>
+                            <td>{{work.durationFrom}}<span ng-hide="work.durationFrom"> - </span></td>
+                            <td>{{work.durationTo}}<span ng-hide="work.durationTo"> - </span></td>
+                            <td>{{work.annualSalary}}<span ng-hide="work.annualSalary"> - </span></td>
+                            <td>{{work.industry}}<span ng-hide="work.industry"> - </span></td>
+                            <td>{{work.accomplishments}}<span ng-hide="work.accomplishments"> - </span></td>
+                            <td style="text-transform: capitalize">{{work.currentEmployer}}</td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <h3 class="text-left">Certifications
+                <button ng-show="(data.certi).length != 0" ng-click="exportCertificationsData()" class="pull-right btn btn-sm btn-info">Export To CSV</button>
+            </h3>
+            <div class="row" style="margin-top: 10px" ng-switch="(data.certi).length">
+                <div ng-switch-when="0" class="noSearch1"><span>No Certifications Detail Found</span></div>
+                <div class="table-responsive col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-switch-default>
+                    <table class="table profileTable">
+                        <thead>
+                        <tr>
+                            <th>Sr. No.</th>
+                            <th>Name</th>
+                            <th>Issued By</th>
+                            <th>Life Time Validity</th>
+                            <th>Validity</th>
+                            <th>Document</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="certi in data.certi">
+
+                            <td>{{certi.index}}</td>
+                            <td>{{certi.certificationName}}<span ng-hide="certi.certificationName"> - </span></td>
+                            <td>{{certi.issuedBy}}<span ng-hide="certi.issuedBy"> - </span></td>
+                            <td style="text-transform: capitalize">{{certi.lifeTimeValidity}}</td>
+                            <td >{{certi.validity}}<span ng-hide="certi.validity"> - </span></td>
+                            <td >
+                                <a ng-show="certi.doc" style="margin: 0px 2px;border: 1px solid #0297cf;"  class="btn btn-sm btn-default1" href="{{certi.doc}}" download="Certificate" title="Certificate" ><!--style="background-color:#666666"-->
+                                    <i class="fa fa-download unblock-icon"></i>
+                                </a>
+                                <span ng-hide="certi.doc"> - </span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <h3 class="text-left">Awards & Accomplishments
+                <button ng-show="(data.awards).length != 0" ng-click="exportAwardsData()" class="pull-right btn btn-sm btn-info">Export To CSV</button>
+            </h3>
+            <div class="row" style="margin-top: 10px" ng-switch="(data.awards).length">
+                <div ng-switch-when="0" class="noSearch1"><span>No Award Detail Found</span></div>
+                <div class="table-responsive col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-switch-default>
+                    <table class="table profileTable">
+                        <thead>
+                        <tr>
+                            <th>Sr. No.</th>
+                            <th>Name</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="award in data.awards">
+
+                            <td>{{award.index}}</td>
+                            <td>{{award.description}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <h3 class="text-left">Patents & Publications
+                <button ng-show="(data.patents).length != 0" ng-click="exportPatentsData()" class="pull-right btn btn-sm btn-info">Export To CSV</button>
+            </h3>
+            <div class="row" style="margin-top: 10px" ng-switch="(data.patents).length">
+                <div ng-switch-when="0" class="noSearch1"><span>No Patent Detail Found</span></div>
+                <div class="table-responsive col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-switch-default>
+                    <table class="table profileTable">
+                        <thead>
+                        <tr>
+                            <th>Sr. No.</th>
+                            <th>Name</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="patent in data.patents">
+
+                            <td>{{patent.index}}</td>
+                            <td>{{patent.description}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <h3 class="text-left">Desired Job </h3>
+            <div class="row" style="margin-top: 10px">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <p><b>Industry - </b>{{data.desiredJob.industry}} <span ng-hide="data.desiredJob.industry">NA</span></p>
+
+                    <p><b>Functional Area - </b>{{data.desiredJob.functionalArea}}  <span ng-hide="data.desiredJob.functionalArea">NA</span></p>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <p><b>Salary - </b>$ {{data.desiredJob.salary}} <span ng-hide="data.desiredJob.salary || data.desiredJob.salary ==0 ">NA</span></p>
+
+                    <p><b>Job Location - </b>{{data.desiredJob.jobLocation}}  <span ng-hide="data.desiredJob.jobLocation">NA</span></p>
+                </div>
+            </div>
+            <!--<div style="text-align: center">  <button ng-click="myFunction()" class="btn btn-sm btn-info">Print Details</button></div>-->
+        </div>
+    </div>
+
+</section>
+
+<!-- **************************************************************************
+  ******************* Modal to display msg **************************************
+  *******************************************************************************-->
+<script type="text/ng-template" id="display_msg_modalDialog">
+    <div class="ngdialog-message">
+        <h4>{{displaymsg}}</h4>
+        <a type="submit" ng-click="refreshPage()" class="btn btn-primary" style="margin-top:20px;text-align: center;">OK</a>
+        <div style="clear: both;"></div>
+    </div>
+</script>
+<!-- **************************************************************************
+******************* Modal to display unauth msg **************************************
+*******************************************************************************-->
+<script type="text/ng-template" id="unauth_msg_modalDialog">
+    <div class="ngdialog-message">
+        <h4>{{unAuthMsg}}</h4>
+        <a type="submit" ng-click="forceLogin()" class="btn btn-primary" style="margin-top:20px;text-align: center;">OK</a>
+        <div style="clear: both;"></div>
+    </div>
+</script>
+
+<!-- ***************************************************************************
+******************* Modal for block driver ************************************
+********************************************************************************-->
+<script type="text/ng-template" id="block_candidate_modalDialog">
+    <div class="ngdialog-message">
+        <h4>Are you sure you want to block {{candiate_name}}?</h4>
+        <div style="  margin-top: 20px;text-align: center;">
+            <form method="post" validate-form="" novalidate="">
+                <button type="submit" ng-click="confirmBlockCandidate(candidate_id)" class="myButton btn btn-primary" >Submit</button>
+                <button type="button" ng-click="closeThisDialog(0)" class="btn btn-default" style='margin-left:20px;'>Cancel</button>
+            </form>
+        </div>
+    </div>
+</script>
+<!-- ***************************************************************************
+******************* Modal for unblock driver ************************************
+********************************************************************************-->
+<script type="text/ng-template" id="unblock_candidate_modalDialog">
+    <div class="ngdialog-message">
+        <h4 style="text-align: center">Are you sure you want to Unblock {{candiate_name}}?</h4>
+        <div style="  margin-top: 20px;text-align: center;">
+            <form method="post" validate-form="" novalidate="">
+                <button type="submit" ng-click="confirmUnBlockCandidate(candidate_id)" class="myButton btn btn-primary" >Submit</button>
+                <button type="button" ng-click="closeThisDialog(0)" class="btn btn-default" style='margin-left:20px;'>Cancel</button>
+            </form>
+        </div>
+    </div>
+</script>

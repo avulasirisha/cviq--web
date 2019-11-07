@@ -1,0 +1,160 @@
+<section class="commonBackground interview-details">
+    <div class="candidate-desc">
+        <div class="col-lg-12 headingSpan">
+
+        </div>
+        <ul ng-if="candidateScore" class="clearfix">
+            <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" > &nbsp<br>&nbsp<br>&nbsp<br> </div>-->
+            <div class="progress-wrapper text-center aggregatedmaindiv">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center aggregatedDiv1" >
+                    <div class="aggregatedHeading">
+                        Aggregated Score
+
+                    </div>
+                    <div class="aggregatedContent">
+                        <div class="circlecontentposition">
+                            <div class="progress3 ng-cloak" >{{ candidateAggregatedScore }}</div>
+                            <round-progress
+                                    max="totalAggregatedScore"
+                                    current="candidateAggregatedScore"
+                                    color="#02699d"
+                                    bgcolor="#eaeaea"
+                                    radius="75"
+                                    stroke="8"
+                                    semi="false"
+                                    rounded="false"
+                                    clockwise="true"
+                                    responsive="true"
+                                    duration="800"
+                                    animation="easeInOutQuart"
+                                    animation-delay="0"
+                                    on-render="showPreciseCurrent">
+                            </round-progress>
+                        </div>
+                        <p ><br>Aggregated score is the average score of Quant & Qual score</p>
+
+                    </div>
+
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center aggregatedDiv2" >
+                    <div class="aggregatedHeading">
+                        Quantitative Score
+
+                    </div>
+                    <div class="aggregatedContent">
+                        <div class="circlecontentposition">
+                            <div class="progress3 ng-cloak" >{{ candidateQuantitativeScore }}</div>
+                            <round-progress
+                                    max="totalQuantitativeScore"
+                                    current="candidateQuantitativeScore"
+                                    color="#02699d"
+                                    bgcolor="#eaeaea"
+                                    radius="75"
+                                    stroke="8"
+                                    semi="false"
+                                    rounded="false"
+                                    clockwise="true"
+                                    responsive="true"
+                                    duration="800"
+                                    animation="easeInOutQuart"
+                                    animation-delay="0"
+                                    on-render="showPreciseCurrent">
+                            </round-progress>
+                        </div>
+                        <p  ><br>Quantitative score is based on Candidate's uploaded Resume</p>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center aggregatedDiv3" >
+                    <div class="aggregatedHeading">
+                        Qualitative Score
+
+                    </div>
+                    <div class="aggregatedContent">
+                        <div class="circlecontentposition">
+                            <div class="progress3 ng-cloak" >{{ candidateQualitativeScore }}</div>
+                            <round-progress
+                                    max="totalQualitativeScore"
+                                    current="candidateQualitativeScore"
+                                    color="#02699d"
+                                    bgcolor="#eaeaea"
+                                    radius="75"
+                                    stroke="8"
+                                    semi="false"
+                                    rounded="false"
+                                    clockwise="true"
+                                    responsive="true"
+                                    duration="800"
+                                    animation="easeInOutQuart"
+                                    animation-delay="0"
+                                    on-render="showPreciseCurrent">
+                            </round-progress>
+                        </div>
+                        <p ><br>Qualitative score is based on Candidate's Interview</p>
+
+                    </div>
+                </div>
+            </div>
+            <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" > &nbsp<br>&nbsp<br>&nbsp<br> </div>-->
+        </ul>
+        <div ng-if="!candidateScore" style="min-height: 280px;" class="clearfix">
+            <div class="progress-wrapper text-center aggregatedmaindiv" ng-if="candidateQualitativeScore == 0 &&!alreadyAlertSent">
+                <div class="text-center">
+                    <h4><br><br><br><br>Are you interested in {{profile.firstName}} {{profile.lastName}}'s profile? Ask him to get his score.<br><br></h4>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 aggregatedTextRight ">
+                        <button type="submit" class="sbmt-btn text-center alertButton" style="padding: 10px 5px" ng-click="sendAlert()">SEND ALERT FOR SCORES</button>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 aggregatedTextLeft">
+                        <button type="submit"  class="sbmt-btn text-center alertButton" style="padding: 10px 5px"  ng-click="payForCandidate()">PAY FOR <span style="text-transform: uppercase;color: #fff;">{{profile.firstName}}</span> </button>
+                        <p>(this will allow you to pay for {{profile.firstName}} {{profile.lastName}})</p>
+                    </div>
+                </div>
+            </div>
+            <div class="progress-wrapper text-center aggregatedmaindiv" ng-if="!alreadyAlertSent&& candidateQualitativeScore != 0 ">
+                <div class="text-center">
+                    <h4><br><br><br><br>Are you interested in {{profile.firstName}} {{profile.lastName}}'s profile? Ask him to get his score.<br><br></h4>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 aggregatedTextRight ">
+                        <button type="submit" class="sbmt-btn text-center alertButton" style="padding: 10px 5px"  ng-click="sendAlert()">SEND ALERT FOR SCORES</button>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 aggregatedTextLeft">
+                        <button type="submit"  class="sbmt-btn text-center" style="padding: 10px 5px;background-color: rgba(79, 95, 114, 0.62);" disabled>PAY FOR <span style="text-transform: uppercase;color: #fff;">{{profile.firstName}}</span> </button>
+                        <p>(this will allow you to pay for {{profile.firstName}} {{profile.lastName}})</p>
+                    </div>
+                </div>
+            </div>
+            <div class="progress-wrapper text-center aggregatedmaindiv" ng-if="alreadyAlertSent&&candidateQualitativeScore != 0 ">
+                <div class="text-center">
+                    <h4><br><br><br><br>Are you interested in {{profile.firstName}} {{profile.lastName}}'s profile? Ask him to get his score.<br><br></h4>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 aggregatedTextRight ">
+                        <button type="submit" class="sbmt-btn text-center" style="padding: 10px 5px;background-color: rgba(79, 95, 114, 0.62);" disabled>SEND ALERT FOR SCORES</button>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 aggregatedTextLeft">
+                        <button type="submit"  class="sbmt-btn text-center" style="padding: 10px 5px;background-color: rgba(79, 95, 114, 0.62);" disabled>PAY FOR <span style="text-transform: uppercase;color: #fff;">{{profile.firstName}}</span> </button>
+                        <p>(this will allow you to pay for {{profile.firstName}} {{profile.lastName}})</p>
+                    </div>
+                </div>
+            </div>
+            <div class="progress-wrapper text-center aggregatedmaindiv" ng-if="candidateQualitativeScore == 0&&alreadyAlertSent">
+                <div class="text-center">
+                    <h4><br><br><br><br>Are you interested in {{profile.firstName}} {{profile.lastName}}'s profile? Want to pay for {{profile.firstName}} {{profile.lastName}}.<br><br></h4>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 aggregatedTextRight ">
+                        <button type="submit" title="Alert already sent." class="sbmt-btn text-center" style="padding: 10px 5px;background-color: rgba(79, 95, 114, 0.62);" disabled>SEND ALERT FOR SCORES</button>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 aggregatedTextLeft">
+                        <button type="submit"  class="sbmt-btn text-center alertButton" style="padding: 10px 5px"  ng-click="payForCandidate()">PAY FOR <span style="text-transform: uppercase;color: #fff;">{{profile.firstName}}</span> </button>
+                        <p>(this will allow you to pay for {{profile.firstName}} {{profile.lastName}})</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

@@ -1,0 +1,41 @@
+<section ng-controller="LoginController" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 banner">
+    <div class="container">
+        <div class="main-section col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 col-xs-12 clearfix">
+
+            <h4 style="color: #0297cf;" class="text-center pv">CVIQ ADMIN PANEL</h4>
+
+            <div class="row">
+                <div class="search-wrapper">
+
+                    <form class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form" ng-submit="loginForm.$valid && loginAdmin()" name="loginForm" novalidate>
+                        <div class="form-elements ">
+                            <label style="margin-left: -10px">EMAIL</label>
+                            <input id="exampleInputEmail1" type="text" ng-model="account.email" name="email" placeholder="Enter Email" ng-pattern="myregex" required />
+                            <div ng-show="loginForm.$submitted || loginForm.email.$touched">
+                                <div class="error-message" ng-show="loginForm.email.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                <div class="error-message" ng-show="loginForm.email.$error.pattern"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Enter Valid Email.</div>
+                            </div>
+                        </div>
+                        <div class="form-elements">
+                            <label style="margin-left: -10px">PASSWORD</label>
+                            <input id="exampleInputPassword1" name="password" ng-model="account.password" type="password" placeholder="Enter Password" required>
+                            <div ng-show="loginForm.$submitted || loginForm.password.$touched">
+                                <div class="error-message" ng-show="loginForm.password.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                            </div>
+                        </div>
+                        <div ng-show="authMsg" class="alert alert-danger text-center">{{authMsg}}</div>
+                        <div class="checkbox c-checkbox pull-left mt0">
+                            <label>
+                                <input type="checkbox" value="" name="remember" ng-model="stayLoggedIn"/>
+                                <span class="fa fa-check"></span>Remember Me</label>
+                        </div>
+
+                        <button style="width: 50%;    margin-top: 30px;padding: 10px;" type="submit" class="btn btn-primary sbmt-btn">LOGIN</button>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>

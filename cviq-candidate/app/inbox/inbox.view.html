@@ -1,0 +1,37 @@
+<section class="clearfix">
+     <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 inbox-bg">
+          <div class="container text-center main-section-profile question-bank">
+          </div>
+    </section>
+    <section class="search-section col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="container">
+            <div class="row clearfix">
+                <div class="navigation-bar-left">
+                    <h5>My Profile</h5>
+                    <ul>
+                        <li><a ng-click="var1='INBOX ALERTS'" ng-class="{'active': var1 == 'INBOX ALERTS'}" ui-sref="home.inbox.inboxTab.alerts">Inbox</a></li>
+                        <li><a ng-click="var1='MY PROFILE'" ng-class="{'active': var1 == 'MY PROFILE'}" ui-sref="home.inbox.profile">Personal detail</a></li>
+                        <li><a ng-click="var1='WORK EXPERIENCE'" ng-class="{'active': var1 == 'WORK EXPERIENCE'}" ui-sref="home.inbox.workExperience">Work Experience</a></li>
+                        <li><a ng-click="var1='EDUCATION'" ng-class="{'active': var1 == 'EDUCATION'}" ui-sref="home.inbox.education">Education</a></li>
+                        <li><a ng-click="var1='CERTIFICATIONS'" ng-class="{'active': var1 == 'CERTIFICATIONS'}" ui-sref="home.inbox.certifications">Certifications</a></li>
+                        <li><a ng-click="var1='AWARDS'" ng-class="{'active': var1 == 'AWARDS'}" ui-sref="home.inbox.awards">Awards &amp; Accomplishments </a></li>
+                        <li><a ng-click="var1='PATENTS'" ng-class="{'active': var1 == 'PATENTS'}" ui-sref="home.inbox.patents">Patents &amp; Publications</a></li>
+                        <li><a ng-click="var1='RESUME'" ng-class="{'active': var1 == 'RESUME'}" ui-sref="home.inbox.resume">Resume</a></li>
+                        <li><a ng-click="var1='DESIRED JOB'" ng-class="{'active': var1 == 'DESIRED JOB'}" ui-sref="home.inbox.desiredJob">Desired Job</a></li>
+                        <li><a  ui-sref="home.contactus" style="color:blue">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div ng-click="toggleNavigation()" class="left-navigation-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="information-section-middle">
+                    <div ui-view=""></div>
+                </div>
+              
+            </div>
+        </div>
+    </section>
+</section>
+

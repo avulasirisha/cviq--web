@@ -1,0 +1,216 @@
+<h3>
+    All Recruiters
+    <small>Displaying list of All Recruiters in the system</small>
+</h3>
+<div ng-controller="allRecruiterController" class="container-fluid">
+    <!--<div id="driverLocationMap" style="height:400px;width:100%;"></div>-->
+
+    <!-- START DATATABLE 2 -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default" ng-class="{'whirl duo' : showloader }">
+                <div class="panel-heading" >
+                    <button ng-show="hideExport" ng-click="exportData()" class="pull-right btn btn-sm btn-info">Export To CSV</button>
+                </div>
+                <div style="clear:both"></div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-5 col-sm-3 col-md-3 col-lg-3">
+                            <label>Records Per Page</label>
+                            <select class="form-control" ng-model="itemsPerPage" ng-options="pages for pages in searchModel.limitOptions" ng-change="getPagesCount()"></select>
+                        </div>
+                        <div class=" col-xs-5 col-sm-4 col-md-3 col-lg-3 col-xs-offset-2 col-sm-offset-5 col-md-offset-6 col-lg-offset-6">
+                            <div class="input-group" style="padding-top: 10%;">
+                                <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                                <input type="text" class="form-control" placeholder="Search" ng-model="search">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive" ng-switch="(list | filter:search).length">
+                        <div ng-switch-when="0" class="noSearch"><span>No Recruiter found</span></div>
+                        <table id="datatable2" class="table table-hover" ng-switch-default>
+                            <thead>
+                            <tr>
+                                <th style="min-width:70px">
+                                    <div style="text-align:center;" ng-click="sort('index')">
+                                        Sr. No.
+                                        <span style="opacity:0.5" ng-hide="predicate == 'index' && reverse || predicate == 'index' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'index' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'index' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th>Profile Image</th>
+                                <th style="min-width:170px">
+                                    <div style="text-align:center;" ng-click="sort('name')">
+                                        Recruiter Details
+                                        <span style="opacity:0.5" ng-hide="predicate == 'name' && reverse || predicate == 'name' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'name' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'name' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th style="min-width:140px">
+                                    <div style="text-align:center;" ng-click="sort('registrationDate')">
+                                        Registration Date
+                                        <span style="opacity:0.5" ng-hide="predicate == 'registrationDate' && reverse || predicate == 'registrationDate' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'registrationDate' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'registrationDate' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th style="min-width:140px">
+                                    <div style="text-align:center;" ng-click="sort('country')">
+                                       Location
+                                        <span style="opacity:0.5" ng-hide="predicate == 'country' && reverse || predicate == 'country' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'country' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'country' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th style="min-width:140px">
+                                    <div style="text-align:center;" ng-click="sort('companyName')">
+                                        Company Name
+                                        <span style="opacity:0.5" ng-hide="predicate == 'companyName' && reverse || predicate == 'companyName' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'companyName' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'companyName' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th style="min-width:150px">
+                                    <div style="text-align:center;" ng-click="sort('membershipTaken')">
+                                        Membership Taken
+                                        <span style="opacity:0.5" ng-hide="predicate == 'membershipTaken' && reverse || predicate == 'membershipTaken' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'membershipTaken' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'membershipTaken' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+
+                                <th style="min-width: 120px;">Status</th>
+                                <th style="min-width:100px">Actions</th>
+
+                            </tr>
+                            </thead>
+                            <tbody ng-show="tBodyFlag">
+                            <tr style='background-color: {{data.color}} !important'
+                                ng-repeat="data in filtered =  list| filter:search | orderBy:predicate:reverse">
+                                <td>{{data.index + 1}}</td>
+                                <td>
+                                    <img ng-src="{{data.profilePicURL || 'app/img/noimg.png'}}" class="tableImage">
+                                </td>
+                                <td><b>Name</b> - {{data.name}} <br>
+                                    <b>Email</b> - {{data.email}}<br>
+                                    <b>Linked In Id</b> - {{data.linkedInId}}<br>
+                                    <b>Contact</b> - {{data.phoneNumber}}
+                                </td>
+                                <td>{{data.registrationDate  | date:'medium'}}</td>
+                                <td><b>Country</b> - {{data.country}} <br>
+                                    <b>State</b> - {{data.state}}
+                                </td>
+                                <td> {{data.companyName}}</td>
+                                <td>{{data.membershipTaken}}</td>
+                                <td>
+                                    <!--<b>Approved</b> - <span ng-show="data.isVerified">Yes</span><span ng-hide="data.isVerified">No</span> <br>-->
+                                    <b>Blocked</b> - <span ng-show="data.isBlocked">Yes</span><span ng-hide="data.isBlocked">No</span>
+                                </td>
+                                <td>
+                                    <div ng-hide="data.isBlocked" class="flexDisplay">
+                                        <a class="btn btn-sm btn-default1" title="Block" ng-click="blockRecruiter(data.Id,data.name)"><!--style="background-color:#666666"-->
+                                            <i class="fa fa-lock block-icon"></i>
+                                        </a>
+                                    </div>
+                                    <div ng-show="data.isBlocked" class="flexDisplay">
+                                        <a class="btn btn-sm btn-default1" title="UnBlock" ng-click="unblockRecruiter(data.Id,data.name)"><!--style="background-color:#666666"-->
+                                            <i class="fa fa-unlock-alt unblock-icon"></i>
+                                        </a>
+                                    </div>
+                                </td>
+
+                            </tr>
+                            </tbody>
+
+                            <tfoot ng-show="tFootFlag">
+                            <tr>
+                                <th colspan="6" class="noDataClass">No Pending Driver Found.</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-6" style="padding-top: 2%;" ng-show="hideExport">
+                            <span>Showing {{skipValue + 1}} to {{limitValue + 1}} of {{dataLength}} Entries</span>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6 ">
+                            <div class="pull-right" ng-show="sp_pagination"><!--ng-show="sp_pagination" ng-show="watchPagination"-->
+                                <nav ng-show="watchPagination">
+                                    <ul class="pagination">
+                                        <li ng-class="prevPageDisabled()">
+                                            <a class="link" ng-click="prevPage(currentPage)">Previous</a>
+                                        </li>
+                                        <li ng-class="{active: m == currentPage}"  ng-repeat="m in range()" ng-click="setPage(m)">
+                                            <a class="link" ng-click="currentData(m)">{{m+1}}</a>
+                                        </li>
+                                        <li ng-class="nextPageDisabled()">
+                                            <a class="link" ng-click="nextPage(currentPage)">Next</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END DATATABLE 2 -->
+
+    <!-- **************************************************************************
+    ******************* Modal to display msg **************************************
+    *******************************************************************************-->
+    <script type="text/ng-template" id="display_msg_modalDialog">
+        <div class="ngdialog-message">
+            <h4>{{displaymsg}}</h4>
+            <a type="submit" ng-click="refreshPage()" class="btn btn-primary" style="margin-top:20px;text-align: center">OK</a>
+            <div style="clear: both;"></div>
+        </div>
+    </script>
+    <!-- **************************************************************************
+******************* Modal to display unauth msg **************************************
+*******************************************************************************-->
+    <script type="text/ng-template" id="unauth_msg_modalDialog">
+        <div class="ngdialog-message">
+            <h4>{{unAuthMsg}}</h4>
+            <a type="submit" ng-click="forceLogin()" class="btn btn-primary" style="margin-top:20px;ftext-align: center">OK</a>
+            <div style="clear: both;"></div>
+        </div>
+    </script>
+
+    <!-- ***************************************************************************
+******************* Modal for block recruiter ************************************
+********************************************************************************-->
+    <script type="text/ng-template" id="block_recruiter_modalDialog">
+        <div class="ngdialog-message">
+            <h4>Are you sure you want to block {{recruiter_name}}?</h4>
+            <div style="  margin-top: 20px;text-align: center">
+                <form method="post" validate-form="" novalidate="">
+                    <button type="submit" ng-click="confirmBlockRecruiter(recruiter_id)" class="myButton btn btn-primary" >Submit</button>
+                    <button type="button" ng-click="closeThisDialog(0)" class="btn btn-default" style='margin-left:20px;'>Cancel</button>
+                </form>
+            </div>
+        </div>
+    </script>
+    <!-- ***************************************************************************
+******************* Modal for unblock recruiter ************************************
+********************************************************************************-->
+    <script type="text/ng-template" id="unblock_recruiter_modalDialog">
+        <div class="ngdialog-message">
+            <h4>Are you sure you want to Unblock {{recruiter_name}}?</h4>
+            <div style="  margin-top: 20px;text-align: center">
+                <form method="post" validate-form="" novalidate="">
+                    <button type="submit" ng-click="confirmUnBlockRecruiter(recruiter_id)" class="myButton btn btn-primary" >Submit</button>
+                    <button type="button" ng-click="closeThisDialog(0)" class="btn btn-default" style='margin-left:20px;'>Cancel</button>
+                </form>
+            </div>
+        </div>
+    </script>
+
+
+
+</div>

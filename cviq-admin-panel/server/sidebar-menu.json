@@ -1,0 +1,306 @@
+[
+  {
+    "text": "Main Navigation",
+    "heading": "true"
+  },
+  {
+  "text": "Dashboard",
+  "sref": "app.dashboard",
+  "icon": "fa fa-tachometer"
+  },
+  {
+    "text": "Landing Page",
+    "sref": "#",
+    "icon": "fa fa-anchor",
+    "submenu":[
+      {
+        "text": "Home",
+        "sref": "app.landingHome"
+      },
+      {
+        "text": "About",
+        "sref": "app.landingAbout"
+      },
+      {
+        "text": "Features",
+        "sref": "app.landingFeatures"
+      },
+      {
+        "text": "How it works",
+        "sref": "app.landingHowItWorks"
+      },
+      {
+        "text": "Testimonials",
+        "sref": "app.landingTestimonials"
+      },
+      {
+        "text": "Our Team",
+        "sref": "app.landingOurTeam"
+      },
+      {
+        "text": "Contact Us",
+        "sref": "app.landingContactUs"
+      }
+    ]
+  },
+  {
+    "text": "Membership Plans",
+    "sref": "#",
+    "icon": "fa fa-users",
+    "submenu":[
+      {
+        "text": "Add",
+        "sref": "app.addNewPlan"
+      },
+      {
+        "text": "Update",
+        "sref": "app.updatePlan"
+      },
+      {
+        "text": "Candidate Interview Rate",
+        "sref": "app.candidateInterview"
+      },
+      {
+        "text": "Candidate Memberships",
+        "sref": "app.candidateMembership"
+      }
+    ]
+  },
+  {
+    "text": "Interviewer",
+    "sref": "#",
+    "icon": "fa fa-user",
+    "submenu":[
+      {
+        "text": "All",
+        "sref": "app.allInterviewer"
+
+      },
+      {
+        "text": "Approved",
+        "sref": "app.approvedInterviewer"
+
+      },
+      {
+        "text": "Pending",
+        "sref": "app.pendingInterviewer"
+
+      },
+      {
+        "text": "Blocked",
+        "sref": "app.blockedInterviewer"
+      }
+    ]
+  },
+  {
+    "text": "Recruiter",
+    "sref": "#",
+    "icon": "fa fa-user",
+    "submenu":[
+      {
+        "text": "All",
+        "sref": "app.allRecruiters"
+
+      },
+      {
+        "text": "Blocked",
+        "sref": "app.blockedRecruiters"
+      }
+    ]
+  },
+  {
+    "text": "Candidate",
+    "sref": "#",
+    "icon": "fa fa-user",
+    "submenu":[
+      {
+        "text": "All",
+        "sref": "app.allCandidates"
+
+      },
+      {
+        "text": "Blocked",
+        "sref": "app.blockedCandidates"
+      }
+    ]
+  },
+  {
+    "text": "Interviews",
+    "sref": "#",
+    "icon": "fa fa-user",
+    "submenu":[
+      {
+        "text": "Past",
+        "sref": "app.pastInterviews"
+
+      },
+      {
+        "text": "Pending",
+        "sref": "app.pendingInterviews"
+      },
+      {
+        "text": "Upcoming",
+        "sref": "app.upcomingInterviews"
+      },
+       {
+        "text": "Payments",
+        "sref": "app.paymentInterviews"
+      },
+      {
+        "text": "Revaluation",
+        "sref": "app.revaluationInterviews"
+      }
+    ]
+  },
+  {
+    "text": "Jobs",
+    "sref": "app.jobs",
+    "icon": "fa fa-binoculars"
+  },
+  {
+    "text": "Data",
+    "sref": "#",
+    "icon": "fa fa-database",
+    "submenu":[
+      {
+        "text": "Country",
+        "sref": "app.country"
+      },
+      {
+        "text": "State",
+        "sref": "app.state"
+      },
+      {
+        "text": "Zip Code",
+        "sref": "app.zipcode"
+      },
+      {
+        "text": "Graduation",
+        "sref": "app.graduation"
+      },
+      {
+        "text": "Post Graduation",
+        "sref": "app.postGraduation"
+      },
+      {
+        "text": "Doctorate",
+        "sref": "app.doctorate"
+      },
+      {
+        "text": "Industry",
+        "sref": "app.industry"
+      },
+      {
+        "text": "Functional Area",
+        "sref": "app.functional"
+
+      }
+
+    ]
+  },
+  {
+    "text": "Scores",
+    "sref": "#",
+    "icon": "fa fa-file",
+    "submenu":[
+      {
+        "text": "Quantitative",
+        "sref": "app.scores"
+
+      },
+      {
+        "text": "Qualitative",
+        "sref": "app.qualitativeScores"
+      }
+    ]
+  },
+  {
+    "text": "Promo Codes",
+    "sref": "#",
+    "icon": "fa fa-file",
+    "submenu":[
+      {
+        "text": "Recruiter",
+        "sref": "#",
+        "submenu":[
+          {
+            "text": "Add",
+            "sref": "app.recruiter"
+
+          },
+          {
+            "text": "Active",
+            "sref": "app.recruiterActive"
+
+          },
+          {
+            "text": "In Active",
+            "sref": "app.recruiterInActive"
+          }
+        ]
+
+      },
+      {
+        "text": "Candidate",
+        "sref": "#",
+        "submenu":[
+          {
+            "text": "Add",
+            "sref": "app.candidate"
+
+          },
+          {
+            "text": "Active",
+            "sref": "app.candidateActive"
+
+          },
+          {
+            "text": "In Active",
+            "sref": "app.candidateInActive"
+          }
+        ]
+      }
+    ]
+  },
+   {
+    "text": "Payments",
+    "sref": "app.payments",
+    "icon": "fa fa-money"
+  },
+  {
+    "text": "Question Bank",
+    "sref": "#",
+    "icon": "fa fa-bank",
+    "submenu":[
+      {
+        "text": "Technical",
+        "sref": "app.techQuestionBank"
+
+      },
+      {
+        "text": "Non Technical",
+        "sref": "app.NonTechQuestionBank"
+      }
+    ]
+  },
+  {
+    "text": "FAQ",
+    "sref": "#",
+    "icon": "fa fa-question",
+    "submenu":[
+      {
+        "text": "Candidate",
+        "sref": "app.candidateFaq"
+
+      },
+      {
+        "text": "Interviewer",
+        "sref": "app.interviewerFaq"
+      },
+      {
+        "text": "Recruiter",
+        "sref": "app.recruiterFaq"
+      }
+    ]
+  }
+]

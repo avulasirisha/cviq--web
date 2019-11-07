@@ -1,0 +1,346 @@
+
+.banner{
+    background:#EFF2F5 url("../images/main-bg.png") no-repeat center top;
+    background-size: contain;
+    /*background-attachment: fixed;*/
+    /*background-position: center;*/
+}
+.main-section{
+    border-radius: 15px 0 15px 0;
+    background-color: #ffffff;
+    border: solid 5px #f2f2f2;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 30px;
+}
+
+.text-center{
+    text-align: center;
+}
+.text-capitalize{
+    text-transform: capitalize;
+}
+.form-elements input{
+    border-radius: 3px;
+    border: solid 1px #dedede;
+    padding: 25px 10px 10px 10px;
+    font-size: 13px;
+    margin-bottom: 10px;
+    width: 100%;
+    color: #4f5f72;
+    letter-spacing: 1px;
+}
+.form-elements input[type=radio]{
+    border-radius: 3px;
+    border: solid 1px #dedede;
+    padding: 25px 50px 50px 10px;
+    font-size: 13px;
+    width: 3%;
+    margin-bottom: 10px;
+    color: #4f5f72;
+    letter-spacing: 1px;
+}
+
+@media (min-width: 768px) {
+    .form-elements{
+        min-height: 90px;
+    }
+}
+.form-elements{
+    position: relative;
+
+}
+.form-elements label {
+    position: absolute;
+    top: 10px;
+    font-size: 11px;
+    font-weight: normal;
+    left: 25px;
+}
+.form-elements em {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+}
+.form-elements .checkbox {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.form-elements .checkbox input {
+    display: block;
+}
+.form-elements .checkbox span {
+    text-decoration: underline;
+}
+input[type="checkbox"]{
+    width: auto;
+    float: left;
+    display: none;
+}
+label.checkbox-label:before{
+    content: '';
+    display: inline-block;
+    background:url("../images/check-bg.png") no-repeat center top;
+    border-radius: 3px;
+    position: absolute;
+    left: 0;
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+    color: #fff;
+    text-align: center;
+}
+label.pay-check:before{
+    margin-top: 2px;
+}
+.conditions{
+    color: #949494;
+    font-size: 12px;
+    padding-left: 25px;
+    position: relative;
+    cursor: pointer;
+    margin: 15px 0 0 0;
+    font-weight: normal;
+}
+input[type="checkbox"]:checked + label.checkbox-label:before{
+    background: url("../images/check.png") no-repeat center top;
+}
+.pay-check{
+    padding-left: 25px;
+    position: relative;
+    cursor: pointer;
+    font-weight: normal;
+}
+.form p{
+    font-size: 10px;
+    color: #6b6b6b;
+    text-align: center;
+}
+.form a.passcode{
+    font-size: 10px;
+    color: #0297cf;
+    cursor: pointer;
+}
+.form button{
+    border-radius: 3px;
+    background-color: #0297cf;
+    color: #fff;
+    font-family: 'Graphik-Medium';
+    display: inline-block;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 10px;
+    font-size: 15px;
+    border: none;
+}
+.forgot-password{
+    margin: 25px 0 0 0;
+}
+.forgot-password a{
+    color: #949494;
+    font-size: 12px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.error-message{ font-size: 10px; color: #ff0000; margin-bottom: 5px;}
+.error-message1{ font-size: 12px; color: #ff0000; margin-bottom: 5px;}
+
+.my-sbmt-btn{
+    background-color: #0297cf;
+    border-radius: 3px;
+    color: #fff;
+    border: none;
+    font-family: "Source Sans Pro", sans-serif;
+    margin: 15px 0 0 0;
+    padding: 4px;
+    max-width: 120px;
+    position: absolute;
+    left: 15px;
+    top: 25px;
+    margin-top: 0px;
+    font-size: 18px;
+}
+.sbmt-btn{
+    background-color: #0297cf;
+    border-radius: 3px;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    font-family: "Source Sans Pro", sans-serif;
+    margin: 15px 0 0 0;
+}
+.textArea {
+    border-radius: 3px;
+    border: solid 1px #dedede;
+    padding: 25px 10px 10px 10px;
+    font-size: 13px;
+    margin-bottom: 10px;
+    width: 100%;
+    color: #4f5f72;
+    letter-spacing: 1px;
+}
+textarea {
+    resize: vertical;
+}
+.open>.dropdown-menu {
+    display: block;
+}
+
+.ProfileFormElements .main-dropdown .dropdown-menu{ }
+.ProfileFormElements .main-dropdown button{ margin: 0 0 10px; border-radius: 3px; border: solid 1px #dedede; padding: 25px 10px 10px 10px; font-size: 13px; width: 100%; color: #4f5f72; letter-spacing: 1px; background: #fff url("../images/arrow-below.png") no-repeat 97%; }
+.ProfileFormElements .main-dropdown label{ z-index: 9;}
+.ProfileFormElements .main-dropdown button span{ font-weight: normal; color: #4f5f72; font-size: 12px; font-family: 'Graphik-Regular';  opacity: 0.9;   }
+.ProfileFormElements .main-dropdown .bs-searchbox input{ padding: 0 10px;}
+.ProfileFormElements .main-dropdown .dropdown-menu ul li.active{ background: #b7babd; }
+.ProfileFormElements .custom-select-box .btn-group.bootstrap-select .dropdown-menu li.disabled{ background: none; }
+.ProfileFormElements .custom-select-box .btn-group.bootstrap-select .dropdown-menu li.disabled a{ background: none; padding: 0; }
+.ProfileFormElements .custom-select-box .btn-group.bootstrap-select .dropdown-menu li.disabled a span{ color: #000; }
+
+
+.ProfileFormElements .custom-select-box .btn-group.bootstrap-select{ width: 100%!important; }
+.ProfileFormElements .custom-select-box .btn-group.bootstrap-select button .bs-caret{ display: none; }
+.ProfileFormElements .custom-select-box .btn-group.bootstrap-select .dropdown-menu li{ padding: 0 20px; }
+.ProfileFormElements .custom-select-box .btn-group.bootstrap-select .dropdown-menu li.active a{ background: #b7babd url("../images/box.png") no-repeat left center; }
+.ProfileFormElements .custom-select-box .btn-group.bootstrap-select .dropdown-menu li.selected a{ background: url("../images/box.png") no-repeat left center; }
+.ProfileFormElements .custom-select-box .btn-group.bootstrap-select .dropdown-menu li.selected a span.glyphicon:before{ content: ''; }
+.ProfileFormElements .custom-select-box .btn-group.bootstrap-select .dropdown-menu li a{ background: none; font-size: 12px; background: url("../images/box1.png") no-repeat left center; }
+.ProfileFormElements .custom-select-box .btn-group.bootstrap-select .bs-searchbox input{ box-shadow: none; -webkit-box-shadow: none; -o-box-shadow: none; -ms-box-shadow: none; -moz-box-shadow: none; }
+.ProfileFormElements .custom-select-box .btn-group.bootstrap-select span.text{ line-height: 25px;}
+
+.ProfileFormElements .custom-select-box .btn-group.bootstrap-select .dropdown-menu li:first-child a { background: none;}
+.ProfileFormElements .custom-select-box .btn-group.bootstrap-select .dropdown-menu li:hover { background: #d1d1d1;}
+.dropdown label {  position: absolute;  top: 10px;  font-size: 11px;  font-weight: normal;  left: 10px;  }
+
+/*table tbody, table thead*/
+/*{*/
+    /*display: block;*/
+/*}*/
+/*table tbody*/
+/*{*/
+    /*overflow: auto;*/
+    /*height: 360px;*/
+/*}*/
+/*th*/
+/*{*/
+    /*width: 72px;*/
+/*}*/
+
+
+.scoresForm input{
+    width: 40px;
+    margin: 8px 4px;
+}
+.scoresForm button{
+    border-radius: 3px;
+    background-color: #0297cf;
+    color: #fff;
+    display: inline-block;
+    text-align: center;
+     padding: 5px;
+    width: 75px;
+     margin-top: 0px;
+     font-size: 12px;
+    border: none;
+}
+.pad {
+    padding: 0px;
+}
+
+
+.companies{  position: relative;padding: 10px;
+    display: inline-flex;}
+
+.companies .companiesEdit{
+    position: absolute;
+    top:45%;
+    left:25%;
+    cursor:pointer;
+    display: none;
+}
+.companies .companiesDelete{
+    cursor:pointer;
+    position: absolute;
+    top:45%;
+    right: 25%;
+    display: none;
+}
+.companies .companiesImage{
+    cursor:pointer;
+}
+.companies:hover .companiesImage{
+ filter:blur(3px);
+    opacity: 0.75;
+}
+.companies:hover .companiesEdit{
+  display: block;
+}
+.companies:hover .companiesDelete{
+  display: block;
+}
+.profile-pic{ float: none; margin: 10px auto 0px;}
+.profile-pic .change-photo{
+    margin: 0 auto;
+    position: relative;
+
+    background: url("../images/profile-placeholder.png") no-repeat center;
+    width: 135px;
+    height: 135px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.profile-pic .videoUpload{
+    margin: 0 auto;
+    position: relative;
+
+    background: url("../images/upload.png") no-repeat;
+    background-size: contain;
+    width: 135px;
+    height: 135px;
+    overflow: hidden;
+
+}
+.profile-pic .change-photo label{
+
+
+    position: absolute;
+    background-color: transparent;
+    width: 135px;
+    height: 135px;
+    cursor: pointer;
+    border-radius: 50%;
+
+}
+
+.profile-pic .videoUpload label{
+
+    top:0;
+    left:0;
+
+    position: absolute;
+    background-color: transparent;
+    width: 135px;
+    height: 135px;
+    cursor: pointer;
+    border-radius: 50%;
+
+}
+
+.dateTime {
+    top: 10px !important;
+    right: 0px !important;
+    z-index: 1;
+    width: 100%;
+    background: none;
+    border: none;
+    height: inherit;
+    height: 40px;
+}
+.form-elements em {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+}
+.input-group[class*="col-"]{
+    float: left !important;
+}

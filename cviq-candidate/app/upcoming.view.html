@@ -1,0 +1,56 @@
+
+
+<header class="clearfix header auth-header" ng-switch-when="true">
+    <div class="container">
+                 <a href="/" > <img ng-click="var = 'HOME'" class="loggedLogo" ui-sref="home.dashboard.aggregatedScore" src="images/logo.png" alt="" /></a>
+            <div ng-click="toggle()" class="burger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="menu-sec">
+                 <span class="notificationOuter">
+                    <img class="bell" ng-init="imgSRC='images/notify.png'; imgSRC1='images/notify_red.png'" ng-click="imgSRC1='images/notify.png';call_notification()" ng-src="{{notification.length > 0 ? imgSRC1 : imgSRC}}" />
+                     <i class="notificationCounter" ng-if="imgSRC1=='images/notify_red.png' && notification.length > 0">{{notification.length}}</i>
+                </span>
+                <div class="notification" ng-if="notification.length > 0">
+                    <ul>
+                        <li ng-repeat="n in notification track by $index">{{n.message}}<span ng-if="n.notificationType == 3" ng-click="goToUpcomingInterview($index)">Click to view details</span><span ng-if="n.notificationType == 5" ng-click="goToAggregaredScore($index)">Click to view details</span><span ng-if="n.notificationType == 6" ng-click="goToRecruiterMessage($index)">Click to view details</span></li>
+                    </ul>
+                </div>
+                <div class="user-name">{{userData.firstName}}<img onclick="$('.registered-user-menu').toggleClass('displayDropDown');" ng-src="{{userData.profilePicURL.original}}" alt="" />
+                    <ul class="registered-user-menu">
+                        <li><a ui-sref="home.changePassword">Change Password</a></li>
+                        <li><a ui-sref="home.faq">Faq</a></li>
+                        <li><a ng-click="logout()">Logout</a></li>
+                    </ul>
+                </div>
+                <ul class="auth-menu myDirective">
+                    <li ng-click="var = 'HOME'" ng-class="{'selected': var == 'HOME'}"><a ui-sref="home.dashboard.aggregatedScore">HOME</a></li>
+                    <li ng-click="var = 'JOBS'" ng-class="{'selected': var == 'JOBS'}"><a ui-sref="home.search">JOBS</a></li>
+                    <li ng-click="var = 'INBOX'" ng-class="{'selected': var == 'INBOX'}"><a ui-sref="home.inbox.inboxTab.alerts">INBOX</a></li>
+                    <!--<li class="user-name inDropDown">{{userData.firstName}}<img onclick="$('.registered-user-menu').toggleClass('displayDropDown');" src="images/placeholder.png" alt="" />-->
+                        <!--<ul class="registered-user-menu">-->
+                            <!--<li><a ui-sref="home.changePassword">Change Password</a></li>-->
+                            <!--<li><a ui-sref="home.faq">Faq</a></li>-->
+                            <!--<li><a ng-click="logout()">Logout</a></li>-->
+                        <!--</ul>-->
+                    <!--</li>-->
+                    <!--<li><img class="bell" src="images/notify.png" alt="" /></li>-->
+                </ul>
+            </div>
+    </div>
+</header>
+<h1>COMING SOON</h1>
+<div ui-view="">
+    
+</div>
+
+<script type="text/ng-template" id="logout" class="ngDialog-theme-default">
+    <h1>LOGOUT CONFIRMATION</h1>
+    <p>Do you really want to Logout ?</p>
+    <div class="clearfix">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><button ng-click="confirmLogOut()" type="submit">YES</button></div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><button ng-click="denyLogOut()" type="submit">NO</button></div>
+    </div>
+</script>

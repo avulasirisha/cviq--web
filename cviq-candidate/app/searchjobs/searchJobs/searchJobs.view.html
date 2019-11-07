@@ -1,0 +1,54 @@
+<section class="commonBackground interview-details">
+    <div class="candidate-desc">
+        <div class="col-lg-12 headingSpan">
+            <span><strong>{{numberOFJobs}}</strong> Jobs in {{searchParam.industry}} Industry</span>
+           <!--- <div class="filter pull-right">
+                <span>Sort Date:</span>
+                <select ng-model="dwm" ng-options="p for p in period">
+                    <option value="" disabled hidden>Select</option>
+                </select>
+              <!--  <input type="text" placeholder="Search Date" id="datetimepicker" ng-model="dated" ng-change="getDate(dated)"> 
+                <button ng-click="searching()">GO</button>      
+            </div>                                              --->
+        </div>
+        <ul class="clearfix">
+            <li class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-list" ng-repeat="res in searchJobResult">
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                    <img ng-src="" alt="" />
+                    <div class="profile-description">
+                        <h4 ng-click="jobDetails(res._id)">{{res.jobTitle}}</h4>
+                        <p>{{res.companyName}}</p>
+                        <ul>
+                            <li class="place">{{res.city}},{{res.state}}</li>
+                            <li class="experience">{{res.workExperience.min}} Yrs</li>
+                            <li>
+                                 <span ><i style="cursor: pointer" ng-hide="res.favouriteJob" ng-click="markFavourite($index,res._id)" class="fa fa-star-o">&nbsp</i> </span>
+                                 <span > <i style="cursor: pointer;color: #0297cf" ng-show="res.favouriteJob" ng-click="unFavourite($index,res._id,res.firstName)" class="fa fa-star">&nbsp</i></span>
+                             </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pull-right text-right status-rating">
+                    <label>Posted on {{res.postedOn | date: 'MMMM dd, yyyy'}}</label>
+                    <label>Minimum Quantitative Score to apply: <span class="credit">{{res.quantitativeScore.min}}</span></label>
+                    <label ng-if="res.isExpired == true"><span class="credit">Job Expired</span></label>
+                    <button ng-disabled="disLink" class="status-complete apply-job-tag" ng-click="applyForJob(res._id)" ng-if="res.alreadyApplied ==  false && res.isActive == true">Apply</button>
+                    <label ng-if="res.appliedDate != undefined">Applied on {{res.appliedDate | date:'MMM dd, yyyy'}}</label>
+                    <span style="cursor: auto" class="status-complete" ng-if="res.alreadyApplied == true">Applied</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<script type="text/ng-template" id="favourite" class="ngdialog-theme-default">
+
+    <p>Are you sure you want to Remove from your favourite list</p>
+
+    <p style="display: flex">
+        <button ng-click="confirmUnFavourite()" class="confirmation" type="submit">YES</button>
+        <button ng-click="denyUnFavourite()" class="confirmation" type="submit">NO</button>
+    </p>
+
+
+</script>

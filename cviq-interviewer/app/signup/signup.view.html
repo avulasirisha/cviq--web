@@ -1,0 +1,122 @@
+<loading></loading>
+<form name="signupForm" ng-submit="signupForm.$valid&&signup(register)" novalidate>
+<section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 banner">
+    <div class="container">
+        <div class="main-section col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 col-xs-12 clearfix">
+            <h1>SIGN UP</h1>
+            <a ng-click="liAuth()" class="linkedin-btn col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-6 col-sm-offset-3 col-xs-12">SIGN UP WITH LINKEDIN</a>
+            <div class="or"><span>OR</span></div>
+            <div class="row">
+                <div class="search-wrapper">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form">
+                        <div class="form-elements">
+                            <label>FIRST NAME</label>
+                            <input style="text-transform: capitalize" type="text" class="fname" minlength="3" ng-keypress='FirsText($event)' maxlength="20" placeholder="Enter First Name" name="firstName" ng-model="register.firstName" required />
+                        </div>
+                        <div ng-show="signupForm.$submitted || signupForm.firstName.$touched">
+                            <div class="error-message" ng-show="signupForm.firstName.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                            <div class="error-message" ng-show="signupForm.firstName.$invalid&&signupForm.firstName.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> First Name must be at least 3 characters long.</div>
+                        </div>
+                        <div class="form-elements">
+                            <label>LAST NAME</label>
+                            <input style="text-transform: capitalize" class="lname" type="text" minlength="3" ng-keypress='FirsText($event)' maxlength="20" placeholder="Enter Last Name" name="lastName" ng-model="register.lastName" required />
+                        </div>
+                        <div ng-show="signupForm.$submitted || signupForm.lastName.$touched">
+                            <div class="error-message" ng-show="signupForm.lastName.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                            <div class="error-message" ng-show="signupForm.lastName.$invalid&&signupForm.lastName.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Last Name must be at least 3 characters long.</div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="form-elements one-third">
+                                <label>COUNTRY CODE</label>
+                                <div class="ProfileFormElements countryCodes clearfix">
+                                    <div class="dropdown custom-select-box">
+                                        <select name="countryCode" data-size="10" ng-model="register.countryCode" id="countryCode" class="selectpickers" data-live-search="true" ng-options="codes for codes in register.values" required>
+                                            <option value="" disabled hidden>Country Code</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div ng-show="signupForm.$submitted || signupForm.countryCode.$valid && signupForm.countryCode.$invalid">
+                                    <div class="error-message err" ng-show="signupForm.countryCode.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                </div>
+                            </div>
+
+                            <div class="form-elements more-half">
+                                <label>MOBILE NUMBER</label>
+                                <input class="phone" type="text" minlength="10" maxlength="10" ng-keypress='isNumberKey($event)' ng-pattern="/^[1-9]{1}[0-9]{9}$/" name="mobile" placeholder="Enter Mobile Number" ng-model="register.mobileNumber" required>
+                                <div ng-show="signupForm.$submitted || signupForm.mobile.$touched">
+                                    <div class="error-message" ng-show="signupForm.mobile.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                    <div class="error-message" ng-show="signupForm.mobile.$error.pattern"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Phone number must be valid & 10 characters long.</div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="clearfix">
+                            <div class="form-elements fifty-comb pull-left {{codeClass}}">
+                                <label>EMAIL</label>
+                                <input class="mail" type="text" name="email" placeholder="Enter Email" ng-model="register.email" ng-pattern="myregex" required />
+                                <div ng-show="signupForm.$submitted || signupForm.email.$touched">
+                                    <div class="error-message" ng-show="signupForm.email.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please enter a valid email.</div>
+                                    <div class="error-message" ng-show="signupForm.email.$error.pattern"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please enter a valid email.</div>
+                                    <span style="display:none">{{ emailValid = signupForm.email.$error.pattern }}</span>
+                                </div>
+                            </div>
+
+                            <div class="form-elements fifty-comb pull-right" ng-if="!PassField">
+                                <label>PASSWORD</label>
+                                <input class="password" type="password" name="password" placeholder="Enter Password" ng-model="register.password" required>
+                                <div ng-show="signupForm.$submitted || signupForm.password.$touched">
+                                    <div class="error-message" ng-show="signupForm.password.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please enter the password.</div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-elements" ng-if="!PassField">
+                            <div class="pass-outer">
+                                <label>ENTER PASSCODE</label>
+                                <input type="text" ng-keypress='isNumberKey($event)' minlength="6" maxlength="6" name="otp" ng-model="register.otp" placeholder="Enter Passcode" required>
+                                <div ng-show="signupForm.$submitted || signupForm.otp.$touched">
+                                    <div class="error-message" ng-show="signupForm.otp.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                    <div class="error-message" ng-show="signupForm.otp.$invalid&&signupForm.otp.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Passcode must be at least 6 characters long.</div>
+                                </div>
+                                <a class="pass-link" ng-click="openPopup()">Send Passcode</a>
+                            </div>
+                        </div>
+
+                        <!--<input type="checkbox" name="terms" id="terms" required><span class="conditions"> I agree to Terms & Conditions</span>-->
+                        <input type="checkbox" name="terms" id="terms" value="terms" required>
+                        <label for="terms" class="conditions checkbox-label"> I agree to Terms & Conditions</label>
+                        <div class="error-message" data-valmsg-for="Location" data-valmsg-replace="true" ng-if="authErrorCheck"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i>{{authErrorCheck}}</div>
+                        <p ng-if="!PassField">Passcode has been sent to your phone number.<a class="passcode" ng-click="resendPasscode(register)">Resend Passcode</a> in case you haven’t yet received.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="new-user col-lg-12">
+                <div class="row">
+                    <button type="submit" class="pull-right sbmt-btn" ng-disabled="subBtn">SUBMIT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</form>
+<script type="text/ng-template" id="templateId" class="ngDialog-theme-default">
+    <h1>SEND PASSCODE</h1>
+    <p>Where you want to receive Passcode?</p>
+    <div style="margin: 0 auto; width: 180px;">
+        <div class="check">
+            <input ng-init="otpPhone = false" ng-click="otpPhone = true; otpEmail = false" type="checkbox" ng-change="validCheck()" ng-model="otpPhone" id="onPhoneNumder" value="onPhoneNumder" required>
+            <label for="onPhoneNumder" class="pay-check checkbox-label"> <span>On Phone Number</span></label>
+        </div>
+        <div class="check">
+            <input ng-init="otpEmail = false" ng-click="otpPhone = false; otpEmail = true" type="checkbox" ng-change="validCheck()" ng-model="otpEmail" id="onEmail" value="onEmail" required>
+            <label for="onEmail" class="pay-check checkbox-label"> <span>On Email Address</span></label>
+        </div>
+    </div>
+    <div class="error-message text-center" data-valmsg-for="Otp" data-valmsg-replace="true" ng-if="valCheck"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> {{valCheck}}</div>
+    <button ng-click="genPasscode(register)" type="submit">DONE</button>
+</script>
+
+<script type="text/ng-template" id="passcodeId" class="ngDialog-theme-default">
+    <h1>FIELDS REQUIRED</h1>
+    <p>Please enter required fields to generate Passcode(Email, Country Code, Mobile Number)</p>
+</script>

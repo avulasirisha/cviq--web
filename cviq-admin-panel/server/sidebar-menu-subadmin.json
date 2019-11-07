@@ -1,0 +1,228 @@
+[
+  {
+    "text": "Main Navigation",
+    "heading": "true"
+  },
+  {
+    "text": "Dashboard",
+    "sref": "app.dashboard",
+    "icon": "fa fa-bank"
+  },
+  {
+    "text": "Drivers",
+    "sref": "#",
+    "icon": "icon-users",
+    "submenu":[
+      {
+        "text": "Approved Drivers",
+        "sref": "app.listview"
+
+      },
+      {
+        "text": "Pending Drivers",
+        "sref": "app.pendingdrivers"
+      }
+    ]
+  },
+  {
+    "text": "Passengers",
+    "sref": "app.mypassengers",
+    "icon": "icon-user"
+  },
+  {
+    "text": "Rides",
+    "sref": "#",
+    "icon": "fa fa-car",
+    "submenu":[
+      {
+        "text": " All Rides",
+        "sref": "app.myrides"
+
+      },
+      {
+        "text": "Ongoing Rides",
+        "sref": "app.ongoingrides"
+      },
+      {
+        "text": "Scheduled Rides",
+        "sref": "app.scheduledrides"
+      },
+      {
+        "text": "Missed Rides",
+        "sref": "app.missedrides"
+      }
+    ]
+  },
+  {
+    "text": "Add New Booking",
+    "sref": "app.addbooking",
+    "icon": "icon-map"
+  },
+  {
+    "text": "GeoFencing",
+    "sref": "#",
+    "icon": "fa fa-location-arrow",
+    "submenu": [
+      {
+        "text": " Add Area",
+        "sref": "app.geofencing"
+      },
+      {
+        "text": "View Area",
+        "sref": "app.viewarea"
+      }
+    ]
+  },
+  {
+    "text": "Fares",
+    "sref": "#",
+    "icon": "fa fa-gbp",
+    "submenu":[
+      {
+        "text": " Base Fare",
+        "sref": "app.fare"
+
+      },
+      {
+        "text": "Surge Fare",
+        "sref": "app.surge_pricing"
+      }
+    ]
+  },
+  {
+    "text": "Promo Codes",
+    "sref": "app.form",
+    "icon": "icon-note"
+  },
+  {
+    "text": "Payments",
+    "sref": "app.payments",
+    "icon": "fa fa-gbp"
+  },
+  {
+    "text": "Reports",
+    "sref": "app.reports",
+    "icon": "icon-graph"
+  },
+  {
+    "text": "Corporate Account",
+    "sref": "app.corporate",
+    "icon": "icon-user"
+  },
+  {
+    "text": "Email Template",
+    "sref": "app.email_template",
+    "icon": "icon-envelope-open"
+  },
+  {
+    "text": "Help & FAQ",
+    "sref": "app.help_faq",
+    "icon": "icon-docs"
+  }
+]
+
+//  {
+//    "text": "Fleet Management",
+//    "sref": "app.fleet",
+//    "icon": "fa fa-car"
+//  },
+//  {
+//    "text": "Rides",
+//    "sref": "#",
+//    "icon": "fa fa-car",
+//    "submenu":[
+//      {
+//        "text": " All Rides",
+//        "sref": "app.myrides"
+//
+//      },
+//      {
+//        "text": "Ongoing Rides",
+//        "sref": "app.ongoingrides"
+//      },
+//      {
+//        "text": "Scheduled Rides",
+//        "sref": "app.scheduledrides"
+//      },
+//      {
+//        "text": "Missed Rides",
+//        "sref": "app.missedrides"
+//      }
+//    ]
+//  },
+//  {
+//    "text": "Add New Booking",
+//    "sref": "app.addbooking",
+//    "icon": "icon-map"
+//  },
+//  {
+//  "text": "GeoFencing",
+//  "sref": "#",
+//  "icon": "fa fa-location-arrow",
+//  "submenu": [
+//    {
+//      "text": " Add Area",
+//      "sref": "app.geofencing"
+//    },
+//    {
+//      "text": "View Area",
+//      "sref": "app.viewarea"
+//    }
+//  ]
+//},
+//  {
+//    "text": "Fares",
+//    "sref": "#",
+//    "icon": "fa fa-gbp",
+//    "submenu":[
+//      {
+//        "text": " Base Fare",
+//        "sref": "app.fare"
+//
+//      },
+//      {
+//        "text": "Surge Fare",
+//        "sref": "app.surge_pricing"
+//      }
+//    ]
+//  },
+//  {
+//    "text": "Promo Codes",
+//    "sref": "app.form",
+//    "icon": "icon-note"
+//  },
+//  {
+//    "text": "Vouchers",
+//    "sref": "app.voucher",
+//    "icon": "icon-present"
+//  },
+//  {
+//    "text": "Payments",
+//    "sref": "app.payments",
+//    "icon": "fa fa-gbp"
+//  },
+//  {
+//    "text": "Reports",
+//    "sref": "app.reports",
+//    "icon": "icon-graph"
+//  },
+//  {
+//    "text": "Corporate Account",
+//    "sref": "app.corporate",
+//    "icon": "icon-user"
+//  },
+//  {
+//    "text": "Add Admin",
+//    "sref": "app.addadmin",
+//    "icon": "icon-user-follow"
+//  },
+//  {
+//    "text": "Email Template",
+//    "sref": "app.email_template",
+//    "icon": "icon-envelope-open"
+//  },
+//  {
+//    "text": "Help & FAQ",
+//    "sref": "app.help_faq",
+//    "icon": "icon-docs"
+//  }

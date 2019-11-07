@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Cviq">
+<head>
+    <title>CVIQ</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="icon" href="images/favicon-new.png">
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script src="js/modernizr-custom.js"></script>
+
+    <!--=========================== ALL CSS FILES HERE =========================== -->
+    <link rel="stylesheet" href="bower_components/ion.rangeslider/css/normalize.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+    <link rel="stylesheet" href="bower_components/angular-dialog/ngDialog.css">
+    <link rel="stylesheet" href="bower_components/angular-dialog/ngDialog-theme-default.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:500,400' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap-select/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/landingPage.css">
+    <link rel="stylesheet" href="css/innerPage.css">
+
+    <!--=========================== ALL JS FILES HERE =========================== -->
+    <script src="https://static.opentok.com/v2/js/opentok.js"></script>
+
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-material/angular-aria.min.js"></script>
+    <script src="bower_components/angular-material/angular-material.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-dialog/ngDialog.js"></script>
+        <script src="bower_components/angular-pdf-master/pdfmake.js"></script>
+    <script src="bower_components/angular-pdf-master/vfs_fonts.js"></script>
+
+    <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>
+    <!--<script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.1.js"></script>-->
+    <!--<script src="https://swx.cdn.skype.com/shared/v/1.2.15/SkypeBootstrap.min.js"></script>-->
+    
+    <script type="text/javascript" src="https://platform.linkedin.com/in.js">
+        api_key: 77t8dsm7xpnm33
+        authorize: true
+    </script>
+    <script type="text/javascript" src="bower_components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script type="text/javascript" src="js/bootbox.min.js"></script>
+    <script type="text/javascript" src="js/lodash.js"></script>
+    <script type="text/javascript" src="js/moment.min.js"></script>
+    <script type="text/javascript" src="js/gm.datepickerMultiSelect.min.js"></script>
+    <script type="text/javascript" src="js/socket.io.js"></script>
+    <!--<script src="bower_components/open-tok/opentok-layout.js" type="text/javascript"></script>-->
+
+    <!--<script src="bower_components/open-tok/opentok-angular.min.js" type="text/javascript"></script>-->
+    <!--<script charset="utf-8">-->
+        <!--var apiKey = '45643282';-->
+        <!--var sessionId = '2_MX40NTY0MzI4Mn5-MTQ3MjEwMzU4ODYxN35EaStlVW14WjZwNmZwb3k5MlUyUTRpSTd-fg';-->
+        <!--var token = 'T1==cGFydG5lcl9pZD00NTY0MzI4MiZzaWc9NjFmMjJkOTU1N2JmOGZiZjcyZTViZGZhZjcyMTlmMzdiNTljNTgzZTpzZXNzaW9uX2lkPTJfTVg0ME5UWTBNekk0TW41LU1UUTNNakV3TXpVNE9EWXhOMzVFYVN0bFZXMTRXalp3Tm1ad2IzazVNbFV5VVRScFNUZC1mZyZjcmVhdGVfdGltZT0xNDcyMTAzNjE3Jm5vbmNlPTAuMzg2ODM4ODA3MDI1OTI0MyZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNDcyMTI1Nzcy';-->
+        <!--var publisher = TB.initPublisher(apiKey, 'myPublisherDiv');-->
+        <!--var session = OT.initSession(apiKey, sessionId)-->
+                <!--.on('streamCreated', function(event) {-->
+                    <!--session.subscribe(event.stream);-->
+                <!--})-->
+                <!--.connect(token, function(error) {-->
+                    <!--var publisher = OT.initPublisher();-->
+                    <!--session.publish(publisher);-->
+                <!--});-->
+    <!--</script>-->
+
+
+</head>
+<body>
+<div ui-view=""></div>
+<!--=========================== ALL CONTROLLER FILES HERE =========================== -->
+<script src="app/app.js"></script>
+<script src="app/config.js"></script>
+<script src="app/home.ctrl.js"></script>
+<script src="app/signup/signup.ctrl.js"></script>
+<script src="app/login/login.ctrl.js"></script>
+<script src="app/dashboard/dashboard.ctrl.js"></script>
+<script src="app/payment/payment.ctrl.js"></script>
+<script src="app/description/description.ctrl.js"></script>
+<script src="app/interview/interview.ctrl.js"></script>
+<script src="app/interview/past/past.ctrl.js"></script>
+<script src="app/interview/new/new.ctrl.js"></script>
+<script src="app/interview/upcoming/upcoming.ctrl.js"></script>
+<script src="app/availability/availability.ctrl.js"></script>
+<script src="app/questions/questions.ctrl.js"></script>
+<script src="app/inbox/inbox.ctrl.js"></script>
+<script src="app/inbox/inbox_messages/inboxMessages.ctrl.js"></script>
+<script src="app/skypeInterview/skypeInterview.ctrl.js"></script>
+<script src="app/rating/rating.ctrl.js"></script>
+<script src="app/forgotPassword/forgotPassword.ctrl.js"></script>
+<script src="app/changePassword/changePassword.ctrl.js"></script>
+<script src="app/faq/faq.ctrl.js"></script>
+<script src="app/status/status.ctrl.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,476 @@
+
+.packages1 hr {
+    height: 1px;background-color: #dcdcdc;
+}
+.packages1 h4{
+
+    font-size: 26px;
+    font-weight: 500;
+    color: #4f5f72
+
+}
+.packages1 ul li{
+    width: 50%;
+    margin-left: 25%;
+    margin-bottom: 20px;
+    float: left;
+    cursor: pointer;
+    transition: margin 0.5s;
+    -webkit-transition: margin 0.5s;
+    -moz-transition: margin 0.5s;
+    -o-transition: margin 0.5s;
+    -ms-transition: margin 0.5s;
+}
+.packages1 ul li .packagediv1 {
+    background-color: #6786aa;
+}
+.packages1 ul li .packagediv2{
+    background-color: #4f5f72;
+    padding: 10px;
+    text-align: center;
+
+}
+.packages1 ul li .packageCircle{
+    border: solid 8px #7694B6;
+    border-radius: 50%;
+    background-color: #ffffff;
+    width: 145px;
+    height: 145px;
+    display: table;
+    text-align: center;
+    margin: 0 auto
+}
+.packages1 ul li button{
+    border-radius: 3px;
+    background-color: #0297cf;
+    color: #fff;
+    font-family: 'Graphik-Medium';
+    display: inline-block;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 10px;
+    font-size: 15px;
+    border: none;
+}
+
+.packages1 ul li:hover{
+    box-shadow: 6px -1px 5px #888888;
+    -webkit-box-shadow: 6px -1px 5px #888888;
+    -moz-box-shadow: 6px -1px 5px #888888;
+    -ms-box-shadow: 6px -1px 5px #888888;
+    -o-box-shadow: 6px -1px 5px #888888;
+    transition: margin 0.5s;
+    -webkit-transition: margin 0.5s;
+    -moz-transition: margin 0.5s;
+    -o-transition: margin 0.5s;
+    -ms-transition: margin 0.5s;
+    margin-top: -15px;
+    margin-bottom: 35px;
+}
+
+@media only screen and (max-width: 1100px) and (min-width: 800px) {
+    .packages1 ul li{
+        width: 60% ;
+        margin-left: 20%;
+        margin-bottom: 20px;
+        float: left;
+        cursor: pointer;
+        transition: margin 0.5s;
+        -webkit-transition: margin 0.5s;
+        -moz-transition: margin 0.5s;
+        -o-transition: margin 0.5s;
+        -ms-transition: margin 0.5s;
+    }
+}
+@media only screen and (max-width: 800px){
+    .packages1 ul li{
+        margin-left: 0% ;
+        width: 96% !important;
+        margin-bottom: 20px;
+        float: left;
+        cursor: pointer;
+        transition: margin 0.5s;
+        -webkit-transition: margin 0.5s;
+        -moz-transition: margin 0.5s;
+        -o-transition: margin 0.5s;
+        -ms-transition: margin 0.5s;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.packages2 hr {
+    height: 1px;background-color: #dcdcdc;
+}
+.packages2 h4{
+
+    font-size: 26px;
+    font-weight: 500;
+    color: #4f5f72
+
+}
+.packages2 ul li{
+    width: 48%;
+    margin-bottom: 20px;
+    float: left;
+    cursor: pointer;
+    transition: margin 0.5s;
+    -webkit-transition: margin 0.5s;
+    -moz-transition: margin 0.5s;
+    -o-transition: margin 0.5s;
+    -ms-transition: margin 0.5s;
+    position: relative;
+}
+.packages2 ul li:nth-child(2n+2) .packagediv1 {
+    background-color: #6786aa;
+}
+.packages2 ul li:nth-child(2n+2) .packagediv2{
+    background-color: #4f5f72;
+    padding: 10px;
+    text-align: center;
+
+}
+.packages2 ul li:nth-child(2n+2) .packageCircle{
+    border: solid 8px #7694B6;
+    border-radius: 50%;
+    background-color: #ffffff;
+    width: 145px;
+    height: 145px;
+    display: table;
+    text-align: center;
+    margin: 0 auto
+}
+
+.packages2 ul li:nth-child(2n+1) .packagediv1{
+    background-color: #0297cf;
+}
+.packages2 ul li:nth-child(2n+1) .packagediv2{
+    background-color: #085b7b;
+    padding: 10px;
+    text-align: center;
+
+}
+.packages2 ul li:nth-child(2n+1) .packageCircle{
+    border: solid 8px #57B2D5;
+    border-radius: 50%;
+    background-color: #ffffff;
+    width: 145px;
+    height: 145px;
+    display: table;
+    text-align: center;
+    margin: 0 auto
+}
+
+.packages2 ul li button{
+    border-radius: 3px;
+    background-color: #0297cf;
+    color: #fff;
+    font-family: 'Graphik-Medium';
+    display: inline-block;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 10px;
+    font-size: 15px;
+    border: none;
+}
+
+
+.packages2 ul li:hover{
+    box-shadow: 6px -1px 5px #888888;
+    -webkit-box-shadow: 6px -1px 5px #888888;
+    -moz-box-shadow: 6px -1px 5px #888888;
+    -ms-box-shadow: 6px -1px 5px #888888;
+    -o-box-shadow: 6px -1px 5px #888888;
+    transition: margin 0.5s;
+    -webkit-transition: margin 0.5s;
+    -moz-transition: margin 0.5s;
+    -o-transition: margin 0.5s;
+    -ms-transition: margin 0.5s;
+    margin-top: -15px;
+    margin-bottom: 35px;
+}
+.packages2 ul li:nth-child(2n+2){
+
+    margin-left: 2%;
+}
+
+
+@media only screen and (max-width: 1100px) and (min-width: 800px) {
+    .packages2 ul li:nth-child(2n+1){
+
+        margin-left: 0% ;
+    }
+    .packages2 ul li:nth-child(2n+2){
+
+        margin-left: 2% ;
+    }
+    .packages2 ul li{
+        width: 48% !important;
+        margin-bottom: 20px;
+        float: left;
+        cursor: pointer;
+        transition: margin 0.5s;
+        -webkit-transition: margin 0.5s;
+        -moz-transition: margin 0.5s;
+        -o-transition: margin 0.5s;
+        -ms-transition: margin 0.5s;
+    }
+}
+@media only screen and (max-width: 800px){
+    .packages2 ul li{
+
+        margin-left: 0% !important;
+    }
+    .packages2 ul li{
+        width: 96% !important;
+        margin-bottom: 20px;
+        float: left;
+        cursor: pointer;
+        transition: margin 0.5s;
+        -webkit-transition: margin 0.5s;
+        -moz-transition: margin 0.5s;
+        -o-transition: margin 0.5s;
+        -ms-transition: margin 0.5s;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.packages3 hr {
+    height: 1px;background-color: #dcdcdc;
+}
+.packages3 h4{
+
+    font-size: 26px;
+    font-weight: 500;
+    color: #4f5f72
+
+}
+.packages3 ul li{
+    width: 32%;
+    margin-bottom: 20px;
+    float: left;
+    cursor: pointer;
+    transition: margin 0.5s;
+    -webkit-transition: margin 0.5s;
+    -moz-transition: margin 0.5s;
+    -o-transition: margin 0.5s;
+    -ms-transition: margin 0.5s;
+}
+.packages3 ul li:nth-child(3n+2) .packagediv1 {
+    background-color: #6786aa;
+}
+.packages3 ul li:nth-child(3n+2) .packagediv2{
+    background-color: #4f5f72;
+    padding: 10px;
+    text-align: center;
+
+}
+.packages3 ul li:nth-child(3n+2) .packageCircle{
+    border: solid 8px #7694B6;
+    border-radius: 50%;
+    background-color: #ffffff;
+    width: 145px;
+    height: 145px;
+    display: table;
+    text-align: center;
+    margin: 0 auto
+}
+
+.packages3 ul li:nth-child(3n+1) .packagediv1{
+    background-color: #0297cf;
+}
+.packages3 ul li:nth-child(3n+1) .packagediv2{
+    background-color: #085b7b;
+    padding: 10px;
+    text-align: center;
+
+}
+.packages3 ul li:nth-child(3n+1) .packageCircle{
+    border: solid 8px #57B2D5;
+    border-radius: 50%;
+    background-color: #ffffff;
+    width: 145px;
+    height: 145px;
+    display: table;
+    text-align: center;
+    margin: 0 auto
+}
+.packages3 ul li:nth-child(3n+3) .packagediv1{
+    background-color: #2a3b50;
+}
+.packages3 ul li:nth-child(3n+3) .packagediv2{
+    background-color: #1b2735;
+    padding: 10px;
+    text-align: center;
+
+}
+.packages3 ul li:nth-child(3n+3) .packageCircle{
+    border: solid 8px #415771;
+    border-radius: 50%;
+    background-color: #ffffff;
+    width: 145px;
+    height: 145px;
+    display: table;
+    text-align: center;
+    margin: 0 auto
+}
+.packages3 ul li button{
+    border-radius: 3px;
+    background-color: #0297cf;
+    color: #fff;
+    font-family: 'Graphik-Medium';
+    display: inline-block;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 10px;
+    font-size: 15px;
+    border: none;
+}
+
+
+.packages3 ul li:hover{
+    box-shadow: 6px -1px 5px #888888;
+    -webkit-box-shadow: 6px -1px 5px #888888;
+    -moz-box-shadow: 6px -1px 5px #888888;
+    -ms-box-shadow: 6px -1px 5px #888888;
+    -o-box-shadow: 6px -1px 5px #888888;
+    transition: margin 0.5s;
+    -webkit-transition: margin 0.5s;
+    -moz-transition: margin 0.5s;
+    -o-transition: margin 0.5s;
+    -ms-transition: margin 0.5s;
+    margin-top: -15px;
+    margin-bottom: 35px;
+}
+.packages3 ul li:nth-child(3n+2){
+
+    margin-left: 2%;
+}
+.packages3 ul li:nth-child(3n+3){
+
+    margin-left: 2%;
+}
+
+.ribbon-wrapper-green {
+    width: 85px;
+    height: 88px;
+    overflow: hidden;
+    position: absolute;
+    top: -3px;
+    right: -3px;
+}
+
+.ribbon-green {
+    font: bold 15px Sans-Serif;
+    color: #333;
+    text-align: center;
+    text-shadow: rgba(255,255,255,0.5) 0px 1px 0px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform:    rotate(45deg);
+    -ms-transform:     rotate(45deg);
+    -o-transform:      rotate(45deg);
+    position: relative;
+    padding: 7px 0;
+    left: -5px;
+    top: 15px;
+    width: 120px;
+    background-color: #BFDC7A;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#BFDC7A), to(#8EBF45));
+    background-image: -webkit-linear-gradient(top, #BFDC7A, #8EBF45);
+    background-image:    -moz-linear-gradient(top, #BFDC7A, #8EBF45);
+    background-image:     -ms-linear-gradient(top, #BFDC7A, #8EBF45);
+    background-image:      -o-linear-gradient(top, #BFDC7A, #8EBF45);
+    color: #6a6340;
+    -webkit-box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+    -moz-box-shadow:    0px 0px 3px rgba(0,0,0,0.3);
+    box-shadow:         0px 0px 3px rgba(0,0,0,0.3);
+}
+
+.ribbon-green:before, .ribbon-green:after {
+    content: "";
+    border-top:   3px solid #6e8900;
+    border-left:  3px solid transparent;
+    border-right: 3px solid transparent;
+    position:absolute;
+    bottom: -3px;
+}
+
+.ribbon-green:before {
+    left: 0;
+}
+.ribbon-green:after {
+    right: 0;
+}​
+
+@media only screen and (max-width: 1200px) and (min-width: 800px) {
+    .packages3 ul li:nth-child(2n+1){
+
+        margin-left: 0% ;
+    }
+    .packages3 ul li:nth-child(2n+2){
+
+        margin-left: 2% ;
+    }
+    .packages3 ul li{
+        width: 48% ;
+        margin-bottom: 20px;
+        float: left;
+        cursor: pointer;
+        transition: margin 0.5s;
+        -webkit-transition: margin 0.5s;
+        -moz-transition: margin 0.5s;
+        -o-transition: margin 0.5s;
+        -ms-transition: margin 0.5s;
+    }
+}
+@media only screen and (max-width: 800px){
+    .packages3 ul li{
+
+        margin-left: 2% ;
+    }
+
+    .packages3 ul li{
+        width: 96% !important;
+        margin-bottom: 20px;
+        float: left;
+        cursor: pointer;
+        transition: margin 0.5s;
+        -webkit-transition: margin 0.5s;
+        -moz-transition: margin 0.5s;
+        -o-transition: margin 0.5s;
+        -ms-transition: margin 0.5s;
+    }
+}

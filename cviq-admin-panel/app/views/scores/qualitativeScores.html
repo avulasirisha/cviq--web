@@ -1,0 +1,124 @@
+<h3>
+    SCORES
+    <!--<small>Displaying list of all the drivers in the system.</small>-->
+</h3>
+<style>
+    .whirl:after {  position: fixed;  }
+    .scores input{text-align: center}
+    h2{color: #0297cf;  }
+    h3{color: #0297cf;  }
+</style>
+<div ng-controller="QualitativeScoresController" class="container-fluid" >
+    <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " ng-class="{'whirl duo' : showloader }">
+        <div class="  candidate-profile-section clearfix">
+            <div class="row" style="margin-top: 20px">
+                <div class="search-wrapper">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form">
+                        <div class="clearfix col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <form name="NewScore" novalidate>
+                                <div class="col-lg-3 col-lg-offset-2 col-md-4 col-md-offset-2 col-sm-6 col-xs-6 text-center">
+                                    <h2 style="margin-top: 13px;">QUALITATIVE</h2>
+                                </div>
+                                <div class="col-lg-3  col-md-4 col-sm-6 col-xs-6 form-elements ">
+                                    <label>Maximum Total</label>
+                                    <input type="number" min="0" limit-to="4" ng-change="checkTotal()" ng-keypress='isNumberKey($event)' placeholder="Enter Maximum Value" name="totalQualitativeScore" ng-model="qualitative.totalQualitativeScore" required />
+                                    <div ng-show="NewScore.$invalid">
+                                        <div class="error-message1" ng-show="NewScore.$invalid"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter Maximum Total Value.</div>
+                                        <!--<div class="error-message1" ng-show="NewPlan.planRate.$invalid && NewPlan.planRate.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i>Job Title must be at least 3 characters long.</div>-->
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad scores"  style="margin-top: 20px">
+                                <form name="Scores" novalidate>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 pad" style="margin-bottom: 20px;min-height: 80px">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " style="margin-bottom: 14px;">
+                                            <div class="col-lg-6 col-md-7 col-sm-8 col-xs-8 pad">
+                                                <h3 style="margin-top: 4px">BACKGROUND </h3>
+                                            </div>
+                                            <div class="col-lg-6 col-md-5 col-sm-4 col-xs-4  ">
+                                                <input style="width: 50px;"  limit-to="4" type="number" min="0" ng-change="checkTotal()" ng-keypress='isNumberKey($event)'  name="backgroundPoints" ng-model="qualitative.backgroundPoints" required />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-7 col-lg-offset-5 col-md-9 col-md-offset-3 col-sm-7 col-sm-offset-5 col-xs-9 col-xs-offset-3 " ng-show="Scores.$invalid" >
+                                            <div class="error-message1" ng-show="Scores.backgroundPoints.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter Background Points.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 pad" style="margin-bottom: 20px;min-height: 80px;">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " style="margin-bottom: 14px;">
+                                            <div class="col-lg-6 col-md-7 col-sm-8 col-xs-8 pad">
+                                                <h3 style="margin-top: 4px">COMMUNICATION </h3>
+                                            </div>
+                                            <div class="col-lg-6 col-md-5 col-sm-4 col-xs-4 ">
+                                                <input style="width: 50px;" limit-to="4" type="number" min="0" ng-change="checkTotal()" ng-keypress='isNumberKey($event)'  name="communicationPoints" ng-model="qualitative.communicationPoints" required />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-7 col-lg-offset-5 col-md-9 col-md-offset-3 col-sm-7 col-sm-offset-5 col-xs-9 col-xs-offset-3 " ng-show="Scores.$invalid" >
+                                            <div class="error-message1" ng-show="Scores.communicationPoints.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter Communication Points.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 pad" style="margin-bottom: 20px;min-height: 80px;">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " style="margin-bottom: 14px;">
+                                            <div class="col-lg-6 col-md-7 col-sm-8 col-xs-8 pad">
+                                                <h3 style="margin-top: 4px">SOCIAL SKILLS </h3>
+                                            </div>
+                                            <div class="col-lg-6 col-md-5 col-sm-4 col-xs-4 ">
+                                                <input style="width: 50px;" limit-to="4" type="number" min="0" ng-change="checkTotal()" ng-keypress='isNumberKey($event)'  name="socialSkillPoints" ng-model="qualitative.socialSkillPoints" required />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-7 col-lg-offset-5 col-md-9 col-md-offset-3 col-sm-7 col-sm-offset-5 col-xs-9 col-xs-offset-3 " ng-show="Scores.$invalid" >
+                                            <div class="error-message1" ng-show="Scores.socialSkillPoints.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter Social Skill Points.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 pad" style="margin-bottom: 20px;min-height: 80px;">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " style="margin-bottom: 14px;">
+                                            <div class="col-lg-6 col-md-7 col-sm-8 col-xs-8 pad">
+                                                <h3 style="margin-top: 4px">LEADERSHIP </h3>
+                                            </div>
+                                            <div class="col-lg-6 col-md-5 col-sm-4 col-xs-4 ">
+                                                <input style="width: 50px;" limit-to="4" type="number" min="0" ng-change="checkTotal()" ng-keypress='isNumberKey($event)'  name="leadershipPoints" ng-model="qualitative.leadershipPoints" required />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-7 col-lg-offset-5 col-md-9 col-md-offset-3 col-sm-7 col-sm-offset-5 col-xs-9 col-xs-offset-3 " ng-show="Scores.$invalid" >
+                                            <div class="error-message1" ng-show="Scores.leadershipPoints.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter Leadership Points.</div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div ng-show="sumError" class="col-lg-12  col-md-12  col-sm-12  col-xs-12 pad text-center scoresForm">
+                                <div class="error-message1"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Sum of All Points must be equal to Total Qualitative Score</div>
+                            </div>
+                            <div class="col-lg-12  col-md-12  col-sm-12  col-xs-12 pad text-center scoresForm">
+                                <button ng-hide="sumError || flag1 || flag2" style="width: 150px;padding: 10px;margin-top: 25px;" type="submit"  ng-click="Scores.$valid && NewScore.$valid && save()">SAVE</button>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</div>
+
+<!-- **************************************************************************
+    ******************* Modal to display msg **************************************
+    *******************************************************************************-->
+<script type="text/ng-template" id="display_msg_modalDialog">
+    <div class="ngdialog-message">
+        <h4>{{displaymsg}}</h4>
+        <a type="submit" ng-click="refreshPage()" class="btn btn-primary" style="margin-top:20px;text-align: center">OK</a>
+        <div style="clear: both;"></div>
+    </div>
+</script>
+<!-- **************************************************************************
+******************* Modal to display unauth msg **************************************
+*******************************************************************************-->
+<script type="text/ng-template" id="unauth_msg_modalDialog">
+    <div class="ngdialog-message">
+        <h4>{{unAuthMsg}}</h4>
+        <a type="submit" ng-click="forceLogin()" class="btn btn-primary" style="margin-top:20px;text-align: center">OK</a>
+        <div style="clear: both;"></div>
+    </div>
+</script>

@@ -1,0 +1,127 @@
+<section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 banner">
+    <div class="container">
+        <div class="pad postNowFontColor main-section col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12 candidate-profile-section clearfix">
+            <h1 class="text-left">JOB DETAILS</h1>
+
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="row" style="margin-top: 20px">
+                <div >
+                    <h4 >Job Details<span style="float:right">{{jobData.date}}</span></h4>
+                </div>
+                <br>
+                <div >
+                    <h5 >Job Title</h5>
+                    <p>{{jobData.jobTitle}}</p>
+                </div>
+                <br>
+                <div >
+                    <h5 >Job Description</h5>
+                    <p>{{jobData.jobDescription}}</p>
+                </div>
+                <br>
+                <div >
+                    <h5 >Job Type</h5>
+                    <p>{{jobData.jobType}}</p>
+                </div>
+                <br>
+                <div ng-if="jobData.activeFrom" >
+                    <h5 >Active From</h5>
+                    <p>{{jobData.activeFrom | date: 'yyyy MMMM dd, HH:mm'}}</p>
+                </div>
+                <br>
+                <div ng-if="jobData.activeTo" >
+                    <h5 >Active To</h5>
+                    <p>{{jobData.activeTo | date: 'MMMM dd, yyyy, HH:mm'}}</p>
+                </div>
+                <br>
+                <div >
+                    <h5 >No of Candidates Applied</h5>
+                    <p>{{jobData.numOfCandidatesApplied}}</p>
+                </div>
+                <br>
+                <div>
+                    <h5>Work Location</h5>
+                    <p>{{jobData.state}}</p>
+                </div>
+                <br>
+                <div >
+                    <h5>Experience Required</h5>
+                    <p>{{workEx}}</p>
+                </div>
+                <br>
+                <div >
+                    <h5>Annual Salary (in USD)</h5>
+                    <p>{{salary}}</p>
+                </div>
+                <!-- </br>
+                 <div >
+                     <h5>Skills Required</h5>
+                     <p>{{jobData.jobDescription}}</p>
+                 </div>-->
+                <br>
+                <div >
+                    <h5>Education Required</h5>
+                    <p>{{education}}</p>
+                </div>
+                <br>
+                <div >
+                    <h5>Industry</h5>
+                    <p>{{jobData.industry}}</p>
+                </div>
+                <br>
+                <div >
+                    <h5>Functional Area</h5>
+                    <p>{{jobData.functionalArea}}</p>
+                </div>
+                <br>
+                <div >
+                    <h5>Aggregated Score</h5>
+                    <p>{{jobData.aggregatedScore.min}}</p>
+                </div>
+                <br>
+                <div >
+                    <h5>Quantative Score</h5>
+                    <p>{{jobData.quantitativeScore.min}}</p>
+                </div>
+                <br>
+                <div >
+                    <h5>Qualitative Score</h5>
+                    <p>{{jobData.qualitativeScore.min}}</p>
+                </div>
+                <br>
+                <div ng-if="certificates.length != 0">
+                    <h5>Certificates</h5>
+                    <p ng-repeat="certi in certificates">{{$index + 1}} : {{certi}}</p>
+                    <br>
+                </div>
+
+                <div ng-if="jobData.technicalQuestions.length != 0">
+                    <h5>Technical Questions</h5>
+                    <p ng-repeat="tech in jobData.technicalQuestions">{{$index + 1}} : {{tech}}</p>
+                    <br>
+                </div>
+
+                <div ng-if="jobData.nonTechnicalQuestions.length != 0">
+                    <h5>Non Technical Questions</h5>
+                    <p ng-repeat="ntech in jobData.nonTechnicalQuestions">{{$index + 1}} : {{ntech}}</p>
+                    <br>
+                </div>
+
+                <div >
+                    <h4>Recruiter Details</h4><br>
+                    <span><b>Company Name :</b></span><span> {{jobData.companyName}} </span><br>
+                    <span><b>Contact Person :</b></span><span> {{jobData.contactPerson}} </span><br>
+                    <span><b>Email :</b></span><span> {{jobData.contactEmail}}  </span><br>
+                    <span><b>Telephone :</b></span><span>  {{jobData.contactNumber}}   </span><br>
+                </div>
+
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad ">
+                <div class="col-lg-6 col-md-6 col-sm-12 co-xs-12 col-lg-offset-3 col-md-offset-3  " >
+                    <!--<button type="submit" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sbmt-btn" ng-click="post()">go BAck</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

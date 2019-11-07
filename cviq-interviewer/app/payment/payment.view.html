@@ -1,0 +1,131 @@
+<loading></loading>
+<form ng-submit="paymentForm.$valid&&submitPayment(pay)" name="paymentForm" novalidate>
+<section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 banner" style="padding-bottom: 50px;">
+    <div class="container">
+        <div class="row">
+            <div class="main-section2 payment-form col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix">
+                <h1>PAYMENT SETUP</h1>
+                    <div class="cash-forms cash-forms-left">
+                        <div class="text-center">
+                            <input type="checkbox" name="terms" id="cheque-checkbox" value="cheque-checkbox">
+                            <label for="cheque-checkbox" class="pay-check checkbox-label"> GET PAID VIA CHEQUE</label>
+                        </div>
+                        <!--<div class="text-center"><input id="cheque-checkbox" type="checkbox" value="check"> GET PAID VIA CHEQUE</div>-->
+                        <p class="home-address">Enter Home Address</p>
+                        <div class="row">
+                            <div id="cheque-Payment" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form cheque-form">
+                                <div class="form-elements fifty-comb">
+                                    <label>FIRST NAME</label>
+                                    <input minlength="3" maxlength="20" class="cap" ng-keypress='FirsText($event)' ng-model="pay.name" type="text" name="name" placeholder="Enter First Name" ng-required="reqs" />
+                                    <div ng-show="paymentForm.$submitted || paymentForm.name.$touched">
+                                        <div class="error-message" ng-show="paymentForm.name.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        <div class="error-message" ng-show="paymentForm.name.$invalid&&paymentForm.name.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Name must be at least 3 characters long.</div>
+                                    </div>
+                                </div>
+                                <div class="form-elements">
+                                    <label>ADDRESS 1</label>
+                                    <input ng-model="pay.address1" type="text" name="address1" placeholder="Enter Address 1" ng-required="reqs" />
+                                    <div ng-show="paymentForm.$submitted || paymentForm.address1.$touched">
+                                        <div class="error-message" ng-show="paymentForm.address1.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                    </div>
+                                </div>
+                                <div class="form-elements">
+                                    <label>ADDRESS 2</label>
+                                    <input ng-model="pay.address2" type="text" name="address2" placeholder="Enter Address 2" ng-required="reqs" />
+                                    <div ng-show="paymentForm.$submitted || paymentForm.address2.$touched">
+                                        <div class="error-message" ng-show="paymentForm.address2.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                    </div>
+                                </div>
+                                <div class="clearfix">
+                                    <div class="form-elements fifty-comb pull-left">
+                                        <label>STATE</label>
+                                        <input ng-model="pay.state" maxlength="20" ng-keypress='FirsText($event)' type="text" name="state" placeholder="Enter State" ng-required="reqs" />
+                                        <div ng-show="paymentForm.$submitted || paymentForm.state.$touched">
+                                            <div class="error-message" ng-show="paymentForm.state.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-elements fifty-comb pull-right">
+                                        <label>COUNTRY</label>
+                                        <input ng-model="pay.country" maxlength="20" ng-keypress='FirsText($event)' type="text" name="country" placeholder="Enter Country" ng-required="reqs" />
+                                        <div ng-show="paymentForm.$submitted || paymentForm.country.$touched">
+                                            <div class="error-message" ng-show="paymentForm.country.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix">
+                                <div class="form-elements one-third">
+                                    <label>COUNTRY CODE</label>
+                                    <input ng-model="pay.code" maxlength="4" minlength="2" type="text" ng-keypress='isCodeKey($event)' ng-pattern="/^\+[0-9]{1,}/" name="code" placeholder="Enter Area Code" ng-required="reqs" />
+                                    <div ng-show="paymentForm.$submitted || paymentForm.code.$touched">
+                                        <div class="error-message" ng-show="paymentForm.code.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        <!--<div class="error-message" ng-show="paymentForm.code.$invalid&&paymentForm.code.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Country code must be at least 2 characters long.</div>-->
+                                        <div class="error-message" ng-show="paymentForm.code.$error.pattern"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Country code must be valid.</div>
+                                    </div>
+                                </div>
+                                <div class="form-elements more-half">
+                                    <label>MOBILE NUMBER</label>
+                                    <input ng-model="pay.phone" minlength="10" maxlength="10" type="text" ng-keypress='isNumberKey($event)' ng-pattern="/^[1-9]{1}[0-9]{9}$/" name="phone" placeholder="Enter Mobile Number" ng-required="reqs" />
+                                    <div ng-show="paymentForm.$submitted || paymentForm.phone.$touched">
+                                        <div class="error-message" ng-show="paymentForm.phone.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please enter a phone number.</div>
+                                        <div class="error-message" ng-show="paymentForm.phone.$error.pattern"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Phone number must be valid & 10 characters long.</div>
+                                    </div>
+                                </div>
+                                    </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="cash-forms pull-right">
+                    <div class="text-center">
+                        <input type="checkbox" name="terms" id="direct-checkbox" value="direct-checkbox">
+                        <label for="direct-checkbox" class="pay-check checkbox-label"> GET PAID VIA DIRECT DEPOSIT</label>
+                    </div>
+                    <!--<div class="text-center"><input id="direct-checkbox" type="checkbox" value="check"> GET PAID VIA DIRECT DEPOSIT</div>-->
+                    <div class="row pay-form-right">
+                        <div id="direct-Payment" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form">
+                            <div class="form-elements fifty-comb">
+                                <label>CUSTOMER NAME</label>
+                                <input minlength="3" maxlength="20" class="cap" ng-keypress='FirsText($event)' ng-model="pay.customerName" type="text" name="customerName" placeholder="Enter Customer Name"  ng-required="req" />
+                                <div ng-show="paymentForm.$submitted || paymentForm.customerName.$touched">
+                                    <div class="error-message" ng-show="paymentForm.customerName.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                    <div class="error-message" ng-show="paymentForm.customerName.$invalid&&paymentForm.customerName.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Name must be at least 3 characters long.</div>
+                                </div>
+                            </div>
+                            <div class="form-elements">
+                                <label>A/C NUMBER</label>
+                                <input ng-keypress='isNumberKey($event)' name="accountNo" ng-model="pay.customerAccount" type="text" placeholder="Enter Account number" maxlength="20" ng-required="req" />
+                                <div ng-show="paymentForm.$submitted || paymentForm.accountNo.$touched">
+                                    <div class="error-message" ng-show="paymentForm.accountNo.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                </div>
+                            </div>
+                            <div class="form-elements">
+                                <label>BANK NAME</label>
+                                <input ng-model="pay.customerBankName" name="bankName" type="text" placeholder="Enter Bank Name" class="cap" ng-required="req" />
+                                <div ng-show="paymentForm.$submitted || paymentForm.bankName.$touched">
+                                    <div class="error-message" ng-show="paymentForm.bankName.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                </div>
+                            </div>
+                            <div class="form-elements">
+                                <label>ADDRESS</label>
+                                <input ng-model="pay.customerAddress" name="customerAddress" type="text" placeholder="Enter Address" ng-required="req" />
+                                <div ng-show="paymentForm.$submitted || paymentForm.customerAddress.$touched">
+                                    <div class="error-message" ng-show="paymentForm.customerAddress.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 pull-left other">
+                <div class="row">
+                    <button id="save-payment" type="submit" style="margin-top: 20px;" class="sbmt-btn" ng-disabled="saveBtn">SAVE</button>
+                </div>
+            </div>
+            <div class="col-lg-12 pull-left other">
+                <div class="row">
+                    <button id="change-payment" style="margin-top: 20px;" type="submit" class="sbmt-btn" ng-disabled="saveBtn">CHANGE PAYMENT METHOD</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</form>

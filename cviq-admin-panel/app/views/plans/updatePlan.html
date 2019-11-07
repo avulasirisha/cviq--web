@@ -1,0 +1,287 @@
+<h3>
+    UPDATE PLAN
+    <!--<small>Displaying list of all the drivers in the system.</small>-->
+</h3>
+<div ng-controller="UpdatePlanController" class="container-fluid">
+
+    <!-- START DATATABLE 2 -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default" ng-class="{'whirl duo' : showloader }">
+                <div class="panel-heading">
+                    <!--<a id="ridescsv" ng-click="exportData()" ng-show="showcsvbtn" class="pull-right btn btn-sm btn-info">Export To CSV</a>-->
+                    <button  ng-click="exportData()" class="pull-right btn btn-sm btn-info">Export To CSV</button>
+                </div>
+                <div style="clear:both"></div>
+                <div class="panel-body">
+                    <!--<div class="row">-->
+                        <!--<div class="col-xs-4 col-sm-4 col-md-3 col-lg-2 col-xs-offset-8 col-sm-offset-8 col-md-offset-9 col-lg-offset-10">-->
+                            <!--<div class="input-group" style="padding-top: 10%;">-->
+                                <!--<div class="input-group-addon"><i class="fa fa-search"></i></div>-->
+                                <!--<input type="text" class="form-control" placeholder="Search" ng-model="search">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <div class="table-responsive" ng-switch="(list | filter:search).length">
+                        <div ng-switch-when="0" class="noSearch"><span>No Plan found</span></div>
+                        <table id="datatable2" class="table  table-hover" ng-switch-default>
+                            <thead>
+                            <tr>
+                                <th style="min-width:80px;">
+                                    <div style="text-align:center;" ng-click="sort('$index')">
+                                        Sr. No.
+                                        <span style="opacity:0.5" ng-hide="predicate == '$index' && reverse || predicate == '$index' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == '$index' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == '$index' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th  style="min-width:60px;">
+                                    <div style="text-align:center;" ng-click="sort('planType')">
+                                        Type
+                                        <span style="opacity:0.5" ng-hide="predicate == 'planType' && reverse || predicate == 'planType' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'planType' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'planType' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th  style="min-width:400px;">
+                                    <div style="text-align:center;" ng-click="sort('planDescription')">
+                                        Description
+                                        <span style="opacity:0.5" ng-hide="predicate == 'planDescription' && reverse || predicate == 'planDescription' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'planDescription' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'planDescription' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th  style="min-width:100px;">
+                                    <div style="text-align:center;" ng-click="sort('planRate')">
+                                        Rate <br>(in USD)
+                                        <span style="opacity:0.5" ng-hide="predicate == 'planRate' && reverse || predicate == 'planRate' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'planRate' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'planRate' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th  style="min-width:100px;">
+                                    <div style="text-align:center;" ng-click="sort('planDuration')">
+                                        Duration <br>(in Months)
+                                        <span style="opacity:0.5" ng-hide="predicate == 'planDuration' && reverse || predicate == 'planDuration' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'planDuration' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'planDuration' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th style="min-width:110px;" >
+                                    <div style="text-align:center;" ng-click="sort('jobsPostPerMonth')">
+                                        Jobs Post<br>(per month)
+                                        <span style="opacity:0.5" ng-hide="predicate == 'jobsPostPerMonth' && reverse || predicate == 'jobsPostPerMonth' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'jobsPostPerMonth' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'jobsPostPerMonth' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th  style="min-width:120px;">
+                                    <div style="text-align:center;" ng-click="sort('jobActiveDays')">
+                                        Job Activeness<br>(in Days)
+                                        <span style="opacity:0.5" ng-hide="predicate == 'jobActiveDays' && reverse || predicate == 'jobActiveDays' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'jobActiveDays' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'jobActiveDays' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th  style="min-width:160px;">
+                                    <div style="text-align:center;" ng-click="sort('searchCandidateInHrs')">
+                                        Search Candidates For<br>(in Hours)
+                                        <span style="opacity:0.5" ng-hide="predicate == 'searchCandidateInHrs' && reverse || predicate == 'searchCandidateInHrs' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'searchCandidateInHrs' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'searchCandidateInHrs' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th  style="min-width:120px;">
+                                    <div style="text-align:center;" ng-click="sort('sessionBreakInHrs')">
+                                        Break Between <br>Two Session<br>(in Hours)
+                                        <span style="opacity:0.5" ng-hide="predicate == 'sessionBreakInHrs' && reverse || predicate == 'sessionBreakInHrs' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'sessionBreakInHrs' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'sessionBreakInHrs' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <!--<th  style="min-width:100px;">-->
+                                    <!--<div style="text-align:center;" ng-click="sort('discount')">-->
+                                        <!--Discount<br> (in %)-->
+                                        <!--<span style="opacity:0.5" ng-hide="predicate == 'discount' && reverse || predicate == 'discount' && !reverse" class="fa fa-sort"></span>-->
+                                        <!--<span ng-show="predicate == 'discount' && !reverse" class="fa fa-caret-down"></span>-->
+                                        <!--<span ng-show="predicate == 'discount' && reverse" class="fa fa-caret-up"></span>-->
+                                    <!--</div>-->
+                                <!--</th>-->
+                                <th  style="min-width:100px;">
+                                    <div style="text-align:center;" ng-click="sort('isDeleted')">
+                                        Active
+                                        <span style="opacity:0.5" ng-hide="predicate == 'isDeleted' && reverse || predicate == 'isDeleted' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'isDeleted' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'isDeleted' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th style="min-width:150px;" >
+                                    <div style="text-align:center;" ng-click="sort('createdAt')">
+                                        Created on
+                                        <span style="opacity:0.5" ng-hide="predicate == 'createdAt' && reverse || predicate == 'createdAt' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'createdAt' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'createdAt' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th  style="min-width:150px;">
+                                    <div style="text-align:center;" ng-click="sort('updatedAt')">
+                                        Updated on
+                                        <span style="opacity:0.5" ng-hide="predicate == 'updatedAt' && reverse || predicate == 'updatedAt' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'updatedAt' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'updatedAt' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th style="min-width:100px;text-align: center;">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody >
+                            <tr ng-repeat="data in filtered =  list| filter:search | orderBy:predicate:reverse">
+                                <td>{{$index + 1}}</td>
+                                <td>{{data.planType}}</td>
+                                <td>{{data.planDescription}}</td>
+                                <td>{{data.planRate}}</td>
+                                <td>{{data.planDuration}}</td>
+                                <td>{{data.jobsPostPerMonth}}</td>
+                                <td>{{data.jobActiveDays}}</td>
+                                <td> <span ng-show="data.searchCandidateInHrs != 0">{{data.searchCandidateInHrs}}</span><span ng-show="data.searchCandidateInHrs == 0">No Limit</span> </td>
+                                <td> <span ng-show="data.sessionBreakInHrs != 0">{{data.sessionBreakInHrs}}</span><span ng-show="data.sessionBreakInHrs == 0">No Limit</span> </td>
+                                <!--<td>{{data.discount}}</td>-->
+                                <td>
+                                    <p ng-hide="data.isDeleted">Yes</p>
+                                    <p ng-show="data.isDeleted">No</p>
+                                </td>
+                                <td>{{data.createdAt | date: 'dd MMM, yyyy HH:mm'}}</td>
+                                <td>{{data.updatedAt | date: 'dd MMM, yyyy HH:mm'}}</td>
+                                <td>
+                                    <div>
+                                        <a ng-disabled="data.isDeleted" class="btn btn-sm btn-default1" ng-click="deletePlan(data._id,data.planType)"
+                                           title="Delete" style="margin-top:5px">
+                                            <i style="color: #0297cf" class="fa fa-trash-o block-icon"></i>
+                                        </a>
+                                        <a ng-disabled="data.isDeleted" class="btn btn-sm btn-default1" ng-click="updatePlan(data)"
+                                           title="Update" style="margin-top:5px">
+                                            <i style="color: #0297cf" class="fa fa-pencil-square-o block-icon"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    <!-- END DATATABLE 2 -->
+
+    <script type="text/ng-template" id="deleteplan">
+        <div class="ngdialog-message">
+            <p style="text-align: center">Are you sure you want to delete {{deletePlanType}} </p>
+
+            <p style="text-align: center">
+                <button ng-click="confirmDelete()"  class="  btn btn-primary btn-default" type="submit">YES</button>
+                <button ng-click="denyDelete()"  class="  btn btn-primary btn-default" type="submit">NO</button>
+            </p>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="updateplan">
+        <div class="ngdialog-message">
+            <form  name="updatePlan" novalidate>
+                <section>
+                    <div class="  candidate-profile-section clearfix">
+                        <div class="row" style="margin-top: 20px">
+                            <div class="search-wrapper">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form">
+                                    <div class="clearfix">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Plan Rate</label>
+                                            <input type="number"  placeholder="Enter Plan Rate" name="planRate" ng-model="newdata.planRate" required />
+                                            <div ng-show="updatePlan.$submitted || updatePlan.planRate.$touched">
+                                                <div class="error-message" ng-show="updatePlan.planRate.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <!--<div class="error-message" ng-show="NewPlan.planRate.$invalid && NewPlan.planRate.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i>Job Title must be at least 3 characters long.</div>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Plan Duration</label>
+                                            <input type="number"   placeholder="Enter Plan Duration" name="planDuration" ng-model="newdata.planDuration" required />
+                                            <div ng-show="updatePlan.$submitted || updatePlan.planDuration.$touched">
+                                                <div class="error-message" ng-show="updatePlan.planDuration.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <!--<div class="error-message" ng-show="NewPlan.planDuration.$invalid && NewPlan.planDuration.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i>Job Title must be at least 3 characters long.</div>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Jobs Post Per Month</label>
+                                            <input type="number"   placeholder="Enter Jobs Post Per Month" name="jobsPostPerMonth" ng-model="newdata.jobsPostPerMonth" required />
+                                            <div ng-show="updatePlan.$submitted || updatePlan.jobsPostPerMonth.$touched">
+                                                <div class="error-message" ng-show="updatePlan.jobsPostPerMonth.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <!--<div class="error-message" ng-show="NewPlan.jobsPostPerMonth.$invalid && NewPlan.jobsPostPerMonth.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i>Job Title must be at least 3 characters long.</div>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Job Active Days</label>
+                                            <input type="number"  placeholder="Enter Job Active Days" name="jobActiveDays" ng-model="newdata.jobActiveDays" required />
+                                            <div ng-show="updatePlan.$submitted || updatePlan.jobActiveDays.$touched">
+                                                <div class="error-message" ng-show="updatePlan.jobActiveDays.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <!--<div class="error-message" ng-show="NewPlan.jobActiveDays.$invalid && NewPlan.jobActiveDays.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i>Job Title must be at least 3 characters long.</div>-->
+                                            </div>
+                                        </div>
+                                        <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-elements ">-->
+                                            <!--<label>Discount</label>-->
+                                            <!--<input type="number"   placeholder="Enter Discount" name="Discount" ng-model="newdata.discount" required />-->
+                                            <!--<div ng-show="updatePlan.$submitted || updatePlan.Discount.$touched">-->
+                                                <!--<div class="error-message" ng-show="updatePlan.Discount.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>-->
+                                                <!--&lt;!&ndash;<div class="error-message" ng-show="NewPlan.Discount.$invalid && NewPlan.Discount.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i>Job Title must be at least 3 characters long.</div>&ndash;&gt;-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+
+                                            <span style="font-size: 12px">Enter 0(Zero) for No Limit</span>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Search Candidate Session Time Limit(in Hours)</label>
+                                            <input type="text" ng-keypress='isNumberKey($event)' maxlength="3"  min="0" max="100" placeholder="Enter Session Limit" name="searchCandidateInHrs" ng-model="newdata.searchCandidateInHrs" required />
+                                            <div ng-show="updatePlan.$submitted || updatePlan.searchCandidateInHrs.$touched">
+                                                <div class="error-message" ng-show="updatePlan.searchCandidateInHrs.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <div class="error-message" ng-show="updatePlan.searchCandidateInHrs.$invalid && NewPlan.searchCandidateInHrs.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i>Discount must be between 0 to 100%</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Break Between two Session(in Hours)</label>
+                                            <input type="text" ng-keypress='isNumberKey($event)' maxlength="3"  min="0" max="100" placeholder="Enter Break Time" name="sessionBreakInHrs" ng-model="newdata.sessionBreakInHrs" required />
+                                            <div ng-show="updatePlan.$submitted || updatePlan.sessionBreakInHrs.$touched">
+                                                <div class="error-message" ng-show="updatePlan.sessionBreakInHrs.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <div class="error-message" ng-show="updatePlan.sessionBreakInHrs.$invalid && NewPlan.sessionBreakInHrs.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i>Discount must be between 0 to 100%</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-elements ">
+                                            <label>PLAN DESCRIPTION</label>
+                                            <textarea style="min-height: 150px" class="textArea" type="text" minlength="3" placeholder="Enter Plan Description" name="planDescription" ng-model="newdata.planDescription" required ></textarea>
+                                            <div ng-show="updatePlan.$submitted || updatePlan.planDescription.$touched">
+                                                <div class="error-message" ng-show="updatePlan.planDescription.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <!--<div class="error-message" ng-show="NewPlan.planDescription.$invalid && NewPlan.planDescription.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Job Description must be at least 3 characters long.</div>-->
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad ">
+                            <div class="col-lg-6 col-md-6 col-sm-12 co-xs-12  " >
+                                <button type="submit" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sbmt-btn" ng-click="updatePlan.$valid && updateConfirm()">UPDATE PLAN</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </section>
+
+            </form>
+        </div>
+    </script>
+</div>

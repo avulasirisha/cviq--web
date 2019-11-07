@@ -1,0 +1,38 @@
+<loading></loading>
+<section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 banner dashboard">
+    <div class="container">
+        <div class="row">
+            <div class="main-section2 main-section-profile col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix">
+                <div class="main-section-profile interview-details clearfix">
+                    <div class="candidate-desc">
+                        <div class="row">
+                            <p class="text-center" style="font-size: 15px; color: #000" ng-if="rateLaterData.length == 0">No Data Found.</p>
+                            <ul>
+                                <li class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-list" ng-repeat="r in rateLaterData">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <img class="dp" ng-src="{{r.candidateID.profilePicURL.thumbnail}}" alt="" />
+                                        <div class="profile-description">
+                                            <h4>{{r.candidateID.firstName+' '+r.candidateID.lastName}} -  {{r.candidateID.profileTitle}}</h4>
+                                            <ul>
+                                                <li class="place">{{r.candidateID.currentCountry}}</li>
+                                                <li class="experience">{{r.candidateID.totalExperience}} {{r.candidateID.totalExperience > 1 ? 'Yrs' : 'Yr'}}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 pull-right text-right status-rating">
+                                        <label><span class="status-complete rate" ng-click="candidateDetails(r.candidateID._id, r._id, true)">Provide Rating</span><br><br>
+                                            <span class="date">Conducted on: {{r.interviewDate | date:"dd MMM, y"}}{{" - "+r.interviewStartTime}}</span></label>
+                                    </div>
+                                </li>
+                               
+                                <!--</li>-->
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</section>

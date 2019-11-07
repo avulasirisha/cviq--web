@@ -1,0 +1,221 @@
+<style>
+    .whirl:after {  position: fixed;  }
+    .scores input{text-align: center}
+    h2{color: #0297cf;  }
+    h3{color: #0297cf;margin-top: 5px  }
+    h1,h2,h3,h4{
+        font-weight: normal;
+    }
+
+</style>
+<h3>
+    Home
+    <!--<small>Displaying list of all the drivers in the system.</small>-->
+</h3>
+<div ng-controller="LandingHomeController" class="container-fluid">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"    ng-class="{'whirl duo' : showloader }">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " style="padding: 25px 0px">
+                    <form ng-show="edit" name="NewPlan" novalidate>
+                        <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                            <div class="  candidate-profile-section clearfix">
+                                <div class="row" style="margin-top: 20px">
+
+                                    <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12 form">
+                                        <h3 style="padding: 0 15px;">
+                                            Update Description
+                                        </h3>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-elements ">
+                                            <label>DESCRIPTION</label>
+                                            <textarea style="min-height: 110px" class="textArea" type="text" maxlength="200" placeholder="Enter Description" name="Landingdescription" ng-model="Landingdescription" required ></textarea>
+                                            <div ng-show="NewPlan.$submitted || NewPlan.Landingdescription.$touched">
+                                                <div class="error-message" ng-show="NewPlan.Landingdescription.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <div class="error-message" ng-show="NewPlan.Landingdescription.$invalid && NewPlan.Landingdescription.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i>Max length allowed is 200 characters.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12 pad ">
+                                    <div class="col-lg-4 col-md-4 col-sm-8 co-xs-12  col-lg-offset-4 col-md-offset-4 col-sm-offset-2" style="display: flex;text-align: center;" >
+                                        <button style="margin: 20px auto 0;" id="addButton" type="submit" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sbmt-btn" ng-click="NewPlan.$valid && update()">UPDATE</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </form>
+                    <div ng-show="!edit" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <h3>Description</h3>
+                            <h4>{{Landingdescription}}</h4>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad ">
+                                <div class="col-lg-4 col-md-4 col-sm-8 co-xs-12  col-lg-offset-4 col-md-offset-4 col-sm-offset-2" style="display: flex;text-align: center;" >
+                                    <button type="submit" style="max-width: 100px;margin: 20px auto 0;" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sbmt-btn" ng-click="edit = true">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin: 15px 0px">
+                    <h3>Companies on CVIQ</h3>
+
+                    <ul style="list-style: none">
+                        <li class="companies" ng-repeat="data in companyArray">
+                            <img style="width: 150px;height: 150px"  class="companiesImage" style="position: relative"   ng-src="{{data.logoURL}}">
+                            <img style="width: 30px" class="companiesEdit" ng-click="editImage(data)" src="app/images/edit-icon.png">
+                            <img style="width: 30px" class="companiesDelete" ng-click="deleteImage(data)" src="app/images/delete-icon.png">
+                        </li>
+                    <div class="col-lg-12 col-md-12" >
+                        <button style="max-width: 100px" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sbmt-btn" ng-click="addNewImage()" >Add New</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<script type="text/ng-template" id="success">
+    <div class="ngdialog-message">
+        <h4 style="text-align: center">Updated successfully</h4>
+        <!-- POP UP -->
+
+    </div>
+</script>
+<script type="text/ng-template" id="error">
+    <div class="ngdialog-message">
+        <h4 style="text-align: center">{{error}}</h4>
+
+    </div>
+</script>
+
+<!-- ***************************************************************************
+******************* Modal for add new image ************************************
+********************************************************************************-->
+
+
+<script type="text/ng-template" id="add_new_image">
+    <div class="ngdialog-message" >
+        <h4>ADD IMAGE</h4>
+        <form  name="driverForm" ng-submit="editCat.edit_image != undefined && driverForm.$valid && addImage(data)" novalidate>
+            <section>
+                <div class=" driver-form clearfix">
+                    <div class="row" style="margin-top: 20px">
+                        <div class="search-wrapper">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form">
+                                <div class="clearfix">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 profile-pic" style="margin-bottom: 10px">
+                                        <div class="change-photo fileUpload">
+                                            <label for="myimage"> </label>
+                                            <input style="display: none" id="myimage" filestyle="" type="file" accept="image/*" image="image"
+                                                   onchange="angular.element(this).scope().add_file_to_upload(this.files,0)"
+                                                   data-button-text="Single" data-class-button="btn btn-default"
+                                                   data-classinput="form-control inline" nv-file-select=""
+                                                   uploader="uploader" class="form-control upload" name="profilePic" required/>
+                                            <img  style="width:135px;height: 135px;" ng-src="{{editCat.edit_image}}" id="edit_image">
+
+                                        </div>
+                                        <div ng-show="driverForm.$submitted">
+                                            <div style="text-align: center" class="error-message" ng-show="editCat.edit_image == undefined"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Upload Image.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-elements col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                        <label> Name</label>
+                                        <input type="text" minlength="2" maxlength="15" ng-keypress='FirsText($event)' ng-model="data.Name" name="Name" placeholder="Enter Name"  required />
+                                        <div ng-show="driverForm.$submitted || driverForm.Name.$touched">
+                                            <div class="error-message" ng-show="driverForm.Name.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter First Name.</div>
+                                            <div class="error-message" ng-show="!driverForm.Name.$error.required && driverForm.Name.$invalid"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Min 2 Characters Required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " >
+                                        <button style="width: 50%;margin: 0px auto;" type="submit" class="btn btn-primary sbmt-btn myButton" >SAVE </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </form>
+    </div>
+</script>
+
+<!-- ***************************************************************************
+******************* Modal for update image ************************************
+********************************************************************************-->
+
+
+<script type="text/ng-template" id="update_image">
+    <div class="ngdialog-message">
+        <h4>UPDATE IMAGE DETAILS</h4>
+        <form  name="updriverForm" ng-submit="updateeditCat.edit_image != undefined && updriverForm.$valid && updateImage(updatedata)" novalidate>
+            <section>
+                <div class=" driver-form clearfix">
+                    <div class="row" style="margin-top: 20px">
+                        <div class="search-wrapper">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form">
+                                <div class="clearfix">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 profile-pic">
+                                        <div class="change-photo fileUpload">
+                                            <label for="myupdateimage"> </label>
+                                            <input style="display: none" id="myupdateimage" filestyle="" type="file" accept="image/*" image="image"
+                                                   onchange="angular.element(this).scope().file_to_upload(this.files,0)"
+                                                   data-button-text="Single" data-class-button="btn btn-default"
+                                                   data-classinput="form-control inline" nv-file-select=""
+                                                   uploader="uploader" class="form-control upload" name="profilePic" required/>
+                                            <img  style="width:135px;height: 135px;" ng-src="{{updateeditCat.edit_image}}" id="update_edit_image">
+                                        </div>
+                                        <div ng-show="updriverForm.$submitted">
+                                            <div style="text-align: center" class="error-message" ng-show="updateeditCat.edit_image == undefined"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Upload Image.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-elements col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <label>Name</label>
+                                        <input type="text" minlength="2" maxlength="15" ng-keypress='FirsText($event)' ng-model="updatedata.companyName" name="name" placeholder="Enter Name"  required />
+                                        <div ng-show="updriverForm.$submitted || updriverForm.name.$touched">
+                                            <div class="error-message" ng-show="updriverForm.name.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter First Name.</div>
+                                            <div class="error-message" ng-show="!updriverForm.name.$error.required && updriverForm.name.$invalid"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Min 2 Characters Required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " >
+                                        <button style="width: 50%;margin: 0px auto;" type="submit" class="btn btn-primary sbmt-btn myButton" >SAVE </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </form>
+    </div>
+</script>
+
+
+<!-- ***************************************************************************
+******************* Modal for delete company ************************************
+********************************************************************************-->
+<script type="text/ng-template" id="delete_company_modalDialog">
+    <div class="ngdialog-message">
+        <h4>Are you sure you want to delete {{company_name}}?</h4>
+        <div style="  margin-top: 20px;text-align: center;">
+            <button style="margin-right: 5px;" type="submit" ng-click="confirmDeleteImage(company_id)" class="myButton " >Yes</button>
+            <button  style="margin-left: 5px;" type="submit" ng-click="closeThisDialog(0)" class="myButton " >No</button>
+        </div>
+    </div>
+</script>
+
+
+
+

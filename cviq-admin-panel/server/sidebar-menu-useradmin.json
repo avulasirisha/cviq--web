@@ -1,0 +1,41 @@
+[
+  {
+    "text": "Main Navigation",
+    "heading": "true"
+  },
+  {
+    "text": "Dashboard",
+    "sref": "app.dashboard",
+    "icon": "fa fa-bank"
+  },
+  {
+    "text": "Rides",
+    "sref": "#",
+    "icon": "fa fa-car",
+    "submenu":[
+      {
+        "text": " All Rides",
+        "sref": "app.myrides"
+
+      },
+      {
+        "text": "Ongoing Rides",
+        "sref": "app.ongoingrides"
+      },
+      {
+        "text": "Scheduled Rides",
+        "sref": "app.scheduledrides"
+      },
+      {
+        "text": "Missed Rides",
+        "sref": "app.missedrides"
+      }
+    ]
+  },
+  {
+    "text": "Add New Booking",
+    "sref": "app.addbooking",
+    "icon": "icon-map"
+  }
+
+]

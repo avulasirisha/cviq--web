@@ -1,0 +1,31 @@
+<section class="commonBackground interview-details" ng-init="pageFunction(1)">
+    <div class="candidate-desc">
+        <div class="col-lg-12 headingSpan">
+            <span>Recently Viewed</span>
+        </div>
+        <ul class="clearfix">
+            <h6 style="margin: 10px 0; font-size: 15px;" class="text-center col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="filteredData.length == 0">No Data Found.</h6>
+            <li class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-list" ng-class="{'notViewed':res.isCandidateViewed == false}" ng-repeat="res in filteredData">
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                    <img ng-src="{{res.profilePicURL.thumbnail}}" alt="" />
+                    <div class="profile-description">
+                        <h4 style="text-transform: capitalize; margin-bottom: 5px" ng-click="recruiterDetails(res)">{{res.firstName}}</h4>
+                        <ul>
+                            <li class="place">{{res.country}}</li>
+                            <li class="experience">{{res.companyName}}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pull-right text-right status-rating visitedDate">
+                    <label>Viewed on {{res.visitedDate | date: 'MMMM dd, yyyy'}}</label>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>
+<pagination ng-if="numberOFJobs > 10"
+            ng-model="currentPage"
+            total-items="numberOFJobs"
+            max-size="maxSize"
+            boundary-links="true" ng-click="pageFunction(currentPage)">
+</pagination>

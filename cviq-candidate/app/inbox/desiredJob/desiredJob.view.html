@@ -1,0 +1,38 @@
+<loading></loading>
+<form name="desiredForm" ng-submit="desiredForm.$valid&&editDesiredDetails(desiredJobData)" novalidate>
+    <section class="commonBackground interview-details clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 name-desc clearfix">
+            <div style="width: auto; float: left">
+                <h2>{{userData.firstName}} {{userData.lastName}}</h2>
+                <p>{{userData.profileTitle}}</p>
+            </div>
+            <button type="button" class="sbmt-btn col-lg-2 col-md-2 col-sm-2 col-xs-2 pull-right" style="margin: 10px 0 0 0; padding: 5px; font-size: 12px;" ng-click="editDesiredJobData()">Edit</button>
+        </div>
+        <div class="candidate-desc candidate-edit-profile candidate-edit-profile-signup clearfix col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <p>
+                <label class="row col-lg-4 col-md-4 col-sm-4 col-xs-12">Industry</label>
+                <input ng-model="desiredJobData.industry" ng-keypress='FirsText($event)' name="industry" class="col-lg-5 col-md-5 col-sm-5 col-xs-12 inp cap" type="text" ng-readonly="read" required>
+            </p>
+            <div ng-show="desiredForm.$submitted || desiredForm.industry.$touched" class="text-center">
+                <div class="error-message" ng-show="desiredForm.industry.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Industry is Required.</div>
+            </div>
+
+            <p>
+                <label class="row col-lg-4 col-md-4 col-sm-4 col-xs-12">Functional Area</label>
+                <input ng-model="desiredJobData.functionalArea" ng-keypress='FirsText($event)' name="fArea" class="col-lg-5 col-md-5 col-sm-5 col-xs-12 inp cap" type="text" ng-readonly="read" required>
+            </p>
+            <p>
+                <label class="row col-lg-4 col-md-4 col-sm-4 col-xs-12">Location</label>
+                <input ng-model="desiredJobData.jobLocation" ng-keypress='FirsText($event)' name="location" class="col-lg-5 col-md-5 col-sm-5 col-xs-12 inp cap" type="text" ng-readonly="read" required>
+            </p>
+            <p>
+                <label class="row col-lg-4 col-md-4 col-sm-4 col-xs-12">Annual Salary</label>
+                <input name="salary" ng-model="desiredJobData.salary" ng-keypress='isNumberKey($event)' maxlength="10" class="col-lg-5 col-md-5 col-sm-5 col-xs-12 inp" type="text" ng-readonly="read" required>
+            </p>
+            <p style="padding-top: 20px; padding-bottom: 10px; border-top: solid 1px #d9d9d9;">
+                <button type="button" ng-click="cancelDetails()" class="sbmt-btn col-lg-2 col-md-2 col-sm-2 col-xs-4 pull-left" style="margin: 0; padding: 5px"  ng-hide="read" >Cancel</button>
+                <button type="submit" class="sbmt-btn col-lg-2 col-md-2 col-sm-2 col-xs-4 pull-right" style="margin: 0; padding: 5px" ng-disabled="saveBtn" ng-hide="read" >Save</button>
+            </p>
+        </div>
+    </section>
+</form>

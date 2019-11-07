@@ -1,0 +1,130 @@
+<form name="profileForm" ng-submit="profileForm.$valid&&editPersonalDetails(profile)" novalidate>
+    <section class="commonBackground interview-details clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 name-desc clearfix">
+            <div style="width: auto; float: left">
+                <h2>{{userData.firstName}} {{userData.lastName}}</h2>
+                <p>{{userData.profileTitle}}</p>
+            </div>
+            <button type="button" class="sbmt-btn col-lg-2 col-md-2 col-sm-2 col-xs-2 pull-right editBtn" style="margin: 10px 0 0 0; padding: 5px; font-size: 12px;" ng-click="addEducationalDetails()">Add</button>
+        </div>
+        <div class="candidate-desc candidate-edit-profile candidate-edit-profile-signup clearfix col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h6 style="margin: 10px 0; font-size: 15px;" class="text-center" ng-if="userData.education.length == 0">No Data Found.</h6>
+            <div class="workDetails" ng-repeat="profile in userData.education">
+                <ul class="editBtn">
+                    <li><a ng-click="editEducationData(profile._id)">Edit</a></li>
+                    <li><a ng-click="deleteEducation(profile._id)">Delete</a></li>
+                </ul>
+                <p>
+                    <label class="row col-lg-4 col-md-4 col-sm-4 col-xs-6">Qualifications</label>
+                    <span class="asinput">{{profile.qualificationLevel}}</span>
+                </p>
+                <p>
+                    <label class="row col-lg-4 col-md-4 col-sm-4 col-xs-6">Specialization</label>
+                    <span class="asinput">{{profile.specialization}}</span>
+                </p>
+                <p>
+                    <label class="row col-lg-4 col-md-4 col-sm-4 col-xs-6">Year of passout</label>
+                    <span class="asinput">{{profile.passoutYear}}</span>
+                </p>
+                <p>
+                    <label class="row col-lg-4 col-md-4 col-sm-4 col-xs-6">Institute Name</label>
+                    <span class="asinput">{{profile.instituteName}}</span>
+                </p>
+            </div>
+        </div>
+    </section>
+</form>
+
+<script type="text/ng-template" id="deleteEducation" class="ngDialog-theme-default">
+    <h1>Delete Details</h1>
+    <p>Do you really want to delete education details</p>
+    <div class="clearfix text-center">
+        <button ng-click="deleteEducationDetails()">YES</button>
+        <button ng-click="closeDialogBox()">NO</button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="addEducation" class="ngDialog-theme-default">
+    <form name="educationalForm" ng-submit="educationalForm.$valid&&addNewEducation(education)" novalidate>
+        <h1>Add Educational Details</h1>
+        <p>Fill up the form below to add details.</p>
+        <p>
+            <label>Qualification</label>
+            <select name="qualifications" ng-model="education.qualification"  ng-change="selectedQualification(education.qualification)" class="selectpicker inp" data-live-search="true" ng-options="qual for qual in qualificationList" required>
+                <option value="" disabled hidden>Select Qualification</option>
+            </select>
+        </p>
+        <div ng-show="educationalForm.$submitted" class="text-center">
+            <div class="error-message" ng-show="educationalForm.qualifications.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+        </div>
+        <p>
+            <label>Specialization</label>
+            <select name="spe" ng-model="education.specialization" class="selectpicker inp" data-live-search="true" ng-options="spe for spe in qualSpecialization" required>
+                <option value="" disabled hidden>Select Specialization</option>
+            </select>
+        </p>
+        <div ng-show="educationalForm.$submitted" class="text-center">
+            <div class="error-message" ng-show="educationalForm.spe.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+        </div>
+        <p>
+            <label>Year of passing</label>
+            <select name="year" ng-model="education.year" class="selectpicker inp" ng-options="y for y in years" required>
+                <option value="" disabled hidden>Select Year</option>
+            </select>
+        </p>
+        <div ng-show="educationalForm.$submitted" class="text-center">
+            <div class="error-message" ng-show="educationalForm.year.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+        </div>
+        <p>
+            <label>Institute</label>
+            <input ng-keypress='isSpecialKey($event)' ng-model="education.institute" name="workFrom" class="col-lg-5 col-md-5 col-sm-5 col-xs-12 inp cap" id="datetimepickerfromwork" type="text" required>
+        </p>
+        <div ng-show="educationalForm.$submitted" class="text-center">
+            <div class="error-message" ng-show="educationalForm.workFrom.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+        </div>
+        <div class="text-center"><button type="submit" ng-disabled="addBtn">ADD</button></div>
+    </form>
+</script>
+
+
+<script type="text/ng-template" id="editEducations" class="ngDialog-theme-default">
+    <form name="editEducationalForm" ng-submit="editEducationalForm.$valid&&editExistedEducation(editEducation)" novalidate>
+        <h1>Edit Educational Details</h1>
+        <p>Fill up the form below to edit details.</p>
+        <p>
+            <label>Qualification</label>
+            <select name="qualifications" ng-model="editEducation.qualificationLevel" ng-change="editSelectedQualification(editEducation.qualificationLevel)" class="selectpicker inp" data-live-search="true" ng-options="qual for qual in qualificationList track by qual" required>
+                <option value="" disabled hidden>Select Qualification</option>
+                <!--<option ng-repeat="qual in qualificationList">{{qual}}</option>-->
+            </select>
+        </p>
+        <div ng-show="editEducationalForm.$submitted" class="text-center">
+            <div class="error-message" ng-show="editEducationalForm.qualifications.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+        </div>
+        <p>
+            <label>Specialization</label>
+            <select name="qualification" ng-model="editEducation.specialization" class="selectpicker inp" data-live-search="true" ng-options="spe for spe in qualSpecializationArray track by spe">
+                <option value="" disabled hidden>Select Specialization</option>
+                <!--<option ng-repeat="spe in qualSpecializationArray">{{spe}}</option>-->
+            </select>
+        </p>
+        <p>
+            <label>Year of passing</label>
+            <select name="year" ng-model="editEducation.passoutYear" class="selectpicker inp" data-live-search="true" ng-options="y for y in years track by y" required>
+                <option value="" disabled hidden>Select Year</option>
+                <!--<option ng-repeat="y in years">{{y}}</option>-->
+            </select>
+        </p>
+        <div ng-show="editEducationalForm.$submitted" class="text-center">
+            <div class="error-message" ng-show="editEducationalForm.year.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+        </div>
+        <p>
+            <label>Institute</label>
+            <input ng-keypress='isSpecialKey($event)' ng-model="editEducation.instituteName" name="workFrom" class="col-lg-5 col-md-5 col-sm-5 col-xs-12 inp cap" type="text" required>
+        </p>
+        <div ng-show="editEducationalForm.$submitted" class="text-center">
+            <div class="error-message" ng-show="editEducationalForm.workFrom.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+        </div>
+        <div class="text-center"><button type="submit">SAVE</button></div>
+    </form>
+</script>

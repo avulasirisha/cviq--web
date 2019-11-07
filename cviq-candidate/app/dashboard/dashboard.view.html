@@ -1,0 +1,148 @@
+<loading></loading>
+<form name="dashboardForm">
+    <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 candidate-dashboard">
+        <div class="container">
+            <div class="profile-pic text-center">
+                <div class="change-photo">
+                    <img class="dp" ng-src="{{userData.profilePicURL.original}}" alt="" />
+                    <input style="display: none" type="file" ng-model="myfile" id="dp" class="file2" name="profilePicture" onchange="angular.element(this).scope().profilePic(this.files)"data-button-text="Single" uploader="uploader" accept="image/*" />
+
+                    <!--<a ng-if="userData.profilePicURL.original != ''" class="upload-file2">Change Photo</a>-->
+                    <!--<a ng-if="userData.profilePicURL.original == ''" class="upload-file2">Upload Photo</a>-->
+
+                    <a ng-click="croppedImagePopup()" ng-if="userData.profilePicURL.original != ''" class="upload-file2" data-toggle="modal" data-target="#myModal" data-backdrop="static" data-keyboard="false">Change Photo</a>
+                    <a ng-click="croppedImagePopup()" ng-if="userData.profilePicURL.original == '' || userData.profilePicURL.original == null" class="upload-file2" data-toggle="modal" data-target="#myModal" data-backdrop="static" data-keyboard="false">Upload Photo</a>
+
+                </div>
+                <h5>{{userData.firstName}} {{userData.lastName}}</h5>
+                <p>{{userData.profileTitle}}</p>
+            </div>
+            <div class="score-chart col-lg-3 col-md-3 col-sm-12 col-xs-12" ng-if="emittedData.graphCoordinates.length > 0">
+                <div class="score-progress">
+                    <round-progress
+                            max="emittedData.totalAggScore"
+                            current="emittedData.candidateAggScore"
+                            color="#02a5db"
+                            bgcolor="#e4e4e4"
+                            radius="75"
+                            stroke="8"
+                            semi="false"
+                            rounded="false"
+                            clockwise="true"
+                            responsive="false"
+                            duration="800"
+                            animation="easeInOutQuart"
+                            on-render=""
+                            animation-delay="0">
+                    </round-progress>
+                    <strong><span>Aggregated Score</span><span class="strong-text">{{emittedData.candidateAggScore}}</span></strong>
+                </div>
+            </div>
+            <div class="score-chart-main col-lg-7 col-md-6 col-sm-12 col-xs-12 pull-right" style="min-height: 250px;" ng-if="emittedData.graphCoordinates.length > 0">
+                <canvas id="line" class="chart chart-line" chart-data="data"
+                        chart-labels="labels" chart-series="series" chart-options="options"
+                        chart-dataset-override="datasetOverride" chart-click="onClick">
+                </canvas>
+            </div>
+            <!--<div class="memberShip afterInterview">-->
+                <!--<section class="commonBackground interview-details">-->
+                    <!--<div class="candidate-desc clearfix">-->
+                        <!--<h5>Description</h5>-->
+                        <!--<div class="candidate-edit-profile clearfix">-->
+                            <!--<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>-->
+                            <!--<div class="social-bar">-->
+                                <!--<label>Maximum 250 words</label>-->
+                                <!--<p><strong style="color: #000">Skills</strong><br /><span ng-repeat="s in userData.keySkills track by $index">{{s}}{{$last ? '' : ($index==userData.keySkills.length-1) ? ', and ' : ',&nbsp;'}}</span></p>-->
+                                <!--<ul class="text-right">-->
+                                    <!--<li><a ui-sref="home.inbox.profile">Edit Profile</a></li>-->
+                                    <!--<li><a href="">Add Linked in Profile</a></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</section>-->
+            <!--</div>-->
+            <div class="memberShip" ng-class="{'afterInterview': emittedData.graphCoordinates.length > 0}">
+                <div class="text-right"><button class="sbmt-btn" ui-sref="home.membership" ng-if="userData.membershipTaken == false">BUY MEMBERSHIP</button>
+                <button class="sbmt-btn" ng-click="Gotomembership()" ng-if="userData.membershipTaken == true && userData.interviewshiptaken == false && userData.access == true">BUY INTERVIEW FEES</button>
+                </div>
+                <section class="commonBackground interview-details">
+                    <div class="candidate-desc clearfix">
+                        <div class="descriptionHead">
+                            <span>Description</span>
+                            <select ng-model="profileStatus" ng-change="changeProfileStatus(profileStatus)" class="pull-right" ng-options="s.val as (s.desc) for s in pstatus">
+                            </select>
+                            <span class="stat">Status :</span>
+                        </div>
+                        <div class="candidate-edit-profile candidate-edit-profile2 clearfix">
+                            <!--<p>Email: {{userData.email}}, Phone No.: {{userData.phoneNo}}</p>-->
+                            <div class="social-bar">
+                                <!--<label>Maximum 250 words</label>-->
+                                <p ng-if="userData.keySkills.length > 0"><strong style="color: #000">Skills</strong><span ng-repeat="s in userData.keySkills track by $index">{{s}}{{$last ? '' : ($index==userData.keySkills.length-1) ? ', and ' : ',&nbsp;'}}</span></p>
+                                <p><strong style="color: #000">Email</strong><span>{{userData.email}}</span></p>
+                                <p><strong style="color: #000">Phone No.</strong><span>{{userData.countryCode+' '+userData.phoneNo}}</span></p>
+                                <ul class="text-right">
+                                    <li><a ui-sref="home.inbox.profile">Edit Profile</a></li>
+                                    <li><a ng-if="userData.linkedInProfileLink != null" target="_blank" href="{{userData.linkedInProfileLink}}"><img src="images/linkedin-profile.png" alt="" /></a><a ng-click="openLinkedProfilePopup()">{{userData.linkedInProfileLink==null ? 'Add' : 'Edit'}} Linked in Profile</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="scores-obtained">
+                <h3>CVIQ SCORES</h3>
+                <div class="borderAsLine"></div>
+                <div class="borderAsLine"></div>
+            </div>
+            <section class="inboxMenu" style="width: 100%; float: left">
+                <ul class="inboxMenu-inner">
+                    <li ng-click="variable='AGGREGATE'" ng-class="{'act': variable == 'AGGREGATE'}"><a ui-sref="home.dashboard.aggregatedScore">Aggregated Score</a></li>
+                    <li ng-click="variable='QUANTITATIVE'" ng-class="{'act': variable == 'QUANTITATIVE'}"><a ui-sref="home.dashboard.quantitativeScore">Quantitative Score</a></li>
+                    <li ng-click="variable='QUALITATIVE'" ng-class="{'act': variable == 'QUALITATIVE'}"><a ui-sref="home.dashboard.qualitativeScore.pastInterview">Qualitative Score</a></li>
+                </ul>
+                <div ui-view=""></div>
+            </section>
+        </div>
+    </section>
+</form>
+<div class="modal fade cropModal" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1>Crop Image</h1>
+                <p class="text-center">Please upload an image to crop.</p>
+            </div>
+            <div class="modal-body clearfix">
+                <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label style="line-height: 40px;" class="pull-left">Upload Image:</label>
+                    <input type="file" id="fileInput" class="resume-file pull-left" style="margin-left: 20px; border: solid 1px #d9d9d9; color: #626262; padding: 10px;" accept="image/*" valid-file ng-model="resume" name="res">
+                </div>
+                <div class="cropArea col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+                </div>
+                <div class="croppedImageSection" ng-if="file">
+                    <label>Cropped Image:</label>
+                    <div class="text-center"><img ng-src="{{myCroppedImage}}" /></div>
+                    <button class="sbmt-btn" ng-click="uploadCroppedImage()" style="padding:5px 20px;">Upload</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script type="text/ng-template" id="addLinkedInProfile" class="ngDialog-theme-default">
+    <form name="linkedinProfileForm" ng-submit="linkedinProfileForm.$valid&&addLinkedIn(linkedin)" novalidate>
+        <h1>{{userData.linkedInProfileLink==null ? 'Add' : 'Edit'}} LinkedIn Profile Details</h1>
+        <p>
+            <label class="fullWidth">LinkedIn Profile url</label>
+            <label class="fullWidth" ng-if="userData.linkedInProfileLink!=null">{{userData.linkedInProfileLink}}</label>
+            <input class="fullWidth" name="linked" ng-model="linkedin.url" type="text" required>
+        </p>
+        <div ng-show="linkedinProfileForm.$submitted" class="text-center">
+            <div class="error-message" ng-show="linkedinProfileForm.linked.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+        </div>
+        <div class="text-center"><button type="submit">SAVE</button></div>
+    </form>
+</script>

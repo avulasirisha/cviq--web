@@ -1,0 +1,76 @@
+<section class="score-container">
+        <div class="score-container-inner" ng-show="candidateScoresObtained.candidateAggregatedScore == 0">
+            <h4>Aggregated score is average score of Qualitative & Quantitative score<br/>To get aggregated score you need to have Quant & Qual score</h4>
+            <button style="float: none;" ng-click="goToQualitativeScore()" class="col-lg-3 sbmt-btn">GET YOUR SCORE</button>
+        </div>
+    <div class="score-record" ng-show="candidateScoresObtained.candidateAggregatedScore > 0">
+        <ul>
+            <li>
+                <h5>Aggregated Score</h5>
+                <div class="score-progress">
+                    <round-progress
+                            max="candidateScoresObtained.totalAggregatedScore"
+                            current="candidateScoresObtained.candidateAggregatedScore"
+                            color="#02699d"
+                            bgcolor="#e4e4e4"
+                            radius="56"
+                            stroke="8"
+                            semi="false"
+                            rounded="false"
+                            clockwise="true"
+                            responsive="false"
+                            duration="800"
+                            animation="easeInOutQuart"
+                            on-render=""
+                            animation-delay="0"></round-progress>
+                    <strong>{{candidateScoresObtained.candidateAggregatedScore}}</strong>
+                </div>
+                <p>Aggregated score is the combined score<br />of Quant & Qual score.</p>
+            </li>
+            <li>
+                <h5>Quantitative Score</h5>
+                <div class="score-progress">
+                    <round-progress
+                            max="candidateScoresObtained.totalQuantitativeScore"
+                            current="candidateScoresObtained.candidateQuantitativeScore"
+                            color="#02699d"
+                            bgcolor="#e4e4e4"
+                            radius="56"
+                            stroke="8"
+                            semi="false"
+                            rounded="false"
+                            clockwise="true"
+                            responsive="false"
+                            duration="800"
+                            animation="easeInOutQuart"
+                            on-render=""
+                            animation-delay="0"></round-progress>
+                    <strong>{{candidateScoresObtained.candidateQuantitativeScore}}</strong>
+                </div>
+                <p>Quantitative score is based on your<br />uploaded Resume.</p>
+            </li>
+            <li>
+                <h5>Qualitative Score</h5>
+                <div class="score-progress">
+                    <round-progress
+                            max="candidateScoresObtained.totalQualitativeScore"
+                            current="candidateScoresObtained.candidateQualitativeScore"
+                            color="#02699d"
+                            bgcolor="#e4e4e4"
+                            radius="56"
+                            stroke="8"
+                            semi="false"
+                            rounded="false"
+                            clockwise="true"
+                            responsive="false"
+                            duration="800"
+                            animation="easeInOutQuart"
+                            on-render=""
+                            animation-delay="0"></round-progress>
+                    <strong>{{candidateScoresObtained.candidateQualitativeScore}}</strong>
+                </div>
+                <p>Quantitative score is based on your<br /> Interview.</p>
+            </li>
+        </ul>
+    </div>
+</section>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myAppName">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="app/images/cviq-icon.png"/>
+    <meta name="description" content="{{app.description}}">
+   <title data-ng-bind="pageTitle()">CVIQ</title>
+
+   <link rel="stylesheet" href="app/css/app.css">
+   <link rel="stylesheet" href="app/css/custom-style.css">
+   <link rel="stylesheet" href="app/css/cviq.css">
+   <link rel="stylesheet" href="app/css/bootstrap-select.min.css">
+
+   <!--<link rel="stylesheet" href="vendor/bootstrap-daterangepicker-master/daterangepicker-bs3.css">-->
+    <!--<link rel="stylesheet" href="vendor/bootstrap-dateTimePicker/bootstrap-datetimepicker.min.css">-->
+    <link rel="stylesheet" href="vendor/ng-onboarding/ng-onboarding.css">
+   <link rel="stylesheet" href="app/css/bootstrap-datepicker.min.css">
+   <link rel="stylesheet" href="app/css/bootstrap-date-time-picker.css">
+
+
+</head>
+
+<body  data-ng-class="{ 'layout-fixed' : app.layout.isFixed, 'aside-collapsed' : app.layout.isCollapsed, 'layout-boxed' : app.layout.isBoxed, 'layout-fs': app.useFullLayout, 'hidden-footer': app.hiddenFooter, 'layout-h': app.layout.horizontal, 'aside-float': app.layout.isFloat}">
+   <div data-ui-view="" data-autoscroll="false" class=" wrapper"></div>
+   <script src="vendor/jquery/jquery.js"></script>
+   <script src="app/js/base.js"></script>
+   <script src="vendor/angular-elastic/elastic.js"></script>   <!--elastic js for textarea autogrow -->
+   <script src="vendor/angular-google-maps/angular-google-maps.min.js"></script>
+   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3ALcj4jlFjOXYgytn_VZHNUI0X1fonxk&v=3.exp&libraries=drawing,places"></script>
+   <!--<script src='http://maps.googleapis.com/maps/api/js?v=3&sensor=false&amp;libraries=places'></script>-->
+   <script src="vendor/marker/markerwithlabel.js"></script>
+   <script src="vendor/angular-google-maps/lodash.min.js"></script>
+   <script src ="vendor/angular-img-crop/angular-img-crop.js"></script>
+   <script src="vendor/ui-bootstrap-tpls-0.14.0.js"></script>
+   <script src ="vendor/canvas-to-blob.js"></script>
+   
+    <script src="bower_components/angular/angular.js"></script>
+    
+    <script src="bower_components/angular-pdf-master/pdfmake.js"></script>
+    <script src="bower_components/angular-pdf-master/vfs_fonts.js"></script>
+
+
+   <script src="app/js/app.js"></script>
+   <script src="app/js/myApp.js"></script>
+   <script src="app/js/config.js"></script>
+   <script src="app/js/commonmethods.js"></script>
+   <script src="app/js/bootstrap-select.min.js"></script>
+   <script src="app/js/bootbox.min.js"></script>
+   <script src="app/services/promo_service.js"></script>
+   <script src="app/js/controllers/navbar-ctrl.js"></script>
+   <script src="app/js/controllers/login-ctrl.js"></script>
+   <script src="app/js/controllers/register-ctrl.js"></script>
+   <script src="app/js/controllers/dashboard-ctrl.js"></script>
+   <script src="app/js/controllers/landing/landingHome.js"></script>
+   <script src="app/js/controllers/landing/landingAbout.js"></script>
+   <script src="app/js/controllers/landing/landingHowItWorks.js"></script>
+   <script src="app/js/controllers/landing/landingFeatures.js"></script>
+   <script src="app/js/controllers/landing/landingTestimonials.js"></script>
+   <script src="app/js/controllers/landing/landingOurTeam.js"></script>
+   <script src="app/js/controllers/landing/landingContactUs.js"></script>
+   <script src="app/js/controllers/plans/addPlanCtrl.js"></script>
+   <script src="app/js/controllers/plans/updatePlanCtrl.js"></script>
+   <script src="app/js/controllers/plans/candidateInterview.js"></script>
+      <script src="app/js/controllers/plans/candidateMembership.js"></script>
+   <script src="app/js/controllers/interviewer/allInterviewerCtrl.js"></script>
+   <script src="app/js/controllers/interviewer/approvedInterviewerCtrl.js"></script>
+   <script src="app/js/controllers/interviewer/pendingInterviewerCtrl.js"></script>
+   <script src="app/js/controllers/interviewer/blockedInterviewerCtrl.js"></script>
+   <script src="app/js/controllers/interviewer/PaymentInterviewer.js"></script>
+   <script src="app/js/controllers/recruiter/allRecruiterCtrl.js"></script>
+   <script src="app/js/controllers/recruiter/blockedRecruiterCtrl.js"></script>
+   <script src="app/js/controllers/candidates/allCandidateCtrl.js"></script>
+   <script src="app/js/controllers/candidates/blockedCandidateCtrl.js"></script>
+   <script src="app/js/controllers/candidates/viewProfile.js"></script>
+   <script src="app/js/controllers/interviews/pastInterviews.js"></script>
+   <script src="app/js/controllers/interviews/pendingInterviews.js"></script>
+   <script src="app/js/controllers/interviews/upcomingInterviews.js"></script>
+      <script src="app/js/controllers/interviews/paymentInterviews.js"></script>
+      <script src="app/js/controllers/interviews/revaluationInterviews.js"></script>      
+      
+   <script src="app/js/controllers/jobs/jobs.js"></script>
+      <script src="app/js/controllers/payments/payments.js"></script>
+   <script src="app/js/controllers/data/countryCtrl.js"></script>
+   <script src="app/js/controllers/data/stateCtrl.js"></script>
+   <script src="app/js/controllers/data/zipcodeCtrl.js"></script>
+   <script src="app/js/controllers/data/graduationCtrl.js"></script>
+   <script src="app/js/controllers/data/postGraduationCtrl.js"></script>
+   <script src="app/js/controllers/data/doctorateCtrl.js"></script>
+   <script src="app/js/controllers/data/industryCtrl.js"></script>
+   <script src="app/js/controllers/data/functionalCtrl.js"></script>
+   <script src="app/js/controllers/scores/scoresCtrl.js"></script>
+   <script src="app/js/controllers/scores/qualitativeScores.js"></script>
+   <script src="app/js/controllers/PromoCodes/recruiter/recruiter.js"></script>
+   <script src="app/js/controllers/PromoCodes/recruiter/recruiterActive.js"></script>
+   <script src="app/js/controllers/PromoCodes/recruiter/recruiterInActive.js"></script>
+   <script src="app/js/controllers/PromoCodes/candidate/candidate.js"></script>
+   <script src="app/js/controllers/PromoCodes/candidate/candidateActive.js"></script>
+   <script src="app/js/controllers/PromoCodes/candidate/candidateInActive.js"></script>
+   <script src="app/js/controllers/questionBank/techQuestionBank.js"></script>
+   <script src="app/js/controllers/questionBank/NonTechQuestionBank.js"></script>
+   <script src="app/js/controllers/faq/candidateFaq.js"></script>
+   <script src="app/js/controllers/faq/recruiterFaq.js"></script>
+   <script src="app/js/controllers/faq/interviewerFaq.js"></script>
+
+
+   <script src="app/js/controllers/reset-password-ctrl.js"></script>
+   <script src="app/js/controllers/change-password-ctrl.js"></script>
+
+
+
+
+
+
+   <script src="vendor/bootstrap-3.3.4-dist/js/bootstrap.js"></script>
+   <script src="vendor/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+
+
+   <script src="vendor/bootstrap-daterangepicker-master/moment.js"></script>
+   <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>-->
+
+
+   <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>-->
+
+
+   <!--<script src="vendor/bootstrap-daterangepicker-master/daterangepicker.js"></script>-->
+   <!--<script src="vendor/angular-daterange-picker/angular-daterangepicker.min.js"></script>-->
+   <!--<script src="vendor/bootstrap-dateTimePicker/bootstrap-datetimepicker.min.js"></script>-->
+   <script src="vendor/jquery.cookie.js"></script>
+   <script src="vendor/alasql.min.js"></script>
+   <script src ="vendor/markerclusterer/markerclusterer.js"></script>
+   <script src ="vendor/ng-onboarding/ng-onboarding.min.js"></script>
+   <script src="vendor/underscore/underscore-min.js"></script>
+   <script src="vendor/underscore/underscore-min.js"></script>
+   <script src="app/js/bootstrap-datepicker.min.js"></script>
+   <script src="app/js/bootstrap-datepicker.js"></script>
+
+   <script>
+      moment().format();
+   </script>
+</body>
+</html>

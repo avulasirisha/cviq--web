@@ -1,0 +1,118 @@
+<form name="profileForm" ng-submit="profileForm.$valid&&editPersonalDetails(profile)" novalidate>
+    <section class="commonBackground interview-details clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 name-desc clearfix">
+            <div style="width: auto; float: left">
+                <h2>{{userData.firstName}} {{userData.lastName}}</h2>
+                <p>{{userData.profileTitle}}</p>
+            </div>
+            <button type="button" class="sbmt-btn col-lg-2 col-md-2 col-sm-2 col-xs-2 pull-right" style="margin: 10px 0 0 0; padding: 5px; font-size: 12px;" ng-click="addNewCertification()">Add</button>
+        </div>
+        <div class="candidate-desc candidate-edit-profile candidate-edit-profile-signup clearfix col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h6 style="margin: 10px 0; font-size: 15px;" class="text-center" ng-if="userData.certification.length == 0">No Data Found.</h6>
+            <div class="workDetails" ng-repeat="profile in userData.certification">
+                <ul class="editBtn">
+                    <li><a ng-click="editCertification(profile._id)">Edit</a></li>
+                    <li><a ng-click="deleteCertification(profile._id)">Delete</a></li>
+                </ul>
+                <p>
+                    <label class="row col-lg-4 col-md-4 col-sm-4 col-xs-6">Certification Name</label>
+                    <span class="asinput">{{profile.certificationName}}</span>
+                </p>
+                <p>
+                    <label class="row col-lg-4 col-md-4 col-sm-4 col-xs-6">Certificate Issued By</label>
+                    <span class="asinput">{{profile.issuedBy}}</span>
+                </p>
+                <p ng-if="profile.lifeTimeValidity != true">
+                    <label class="row col-lg-4 col-md-4 col-sm-4 col-xs-6">Validity</label>
+                    <span class="asinput">{{profile.validity}}</span>
+                </p>
+                <p ng-if="profile.lifeTimeValidity == true">
+                    <label class="row col-lg-4 col-md-4 col-sm-4 col-xs-6">Life Time Validity</label>
+                    <span class="asinput">Yes</span>
+                </p>
+                <p ng-if="profile.doc != ''">
+                    <label class="row col-lg-4 col-md-4 col-sm-4 col-xs-6">Certificate</label>
+                    <span class="asinput"><a style="text-transform: none" href="{{profile.doc}}" download>{{profile.docName}}</a></span>
+                </p>
+            </div>
+        </div>
+    </section>
+</form>
+
+<script type="text/ng-template" id="addCertificate" class="ngDialog-theme-default">
+    <form name="certificateForm" ng-submit="certificateForm.$valid&&addNewCertificate(certificate)" novalidate>
+        <h1>Add Certification Details</h1>
+        <p>Fill up the form below to add details.</p>
+        <p>
+            <label>Certification Name</label>
+            <input name="certificate" ng-model="certificate.certificateName" ng-keypress='isAlphaKey($event)' type="text" required>
+        </p>
+        <div ng-show="certificateForm.$submitted" class="text-center">
+            <div class="error-message" ng-show="certificateForm.certificate.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+        </div>
+        <p>
+            <label>Issued By</label>
+            <input name="issuedby" ng-model="certificate.issuedBy" ng-keypress='isAlphaKey($event)' type="text" required>
+        </p>
+        <div ng-show="certificateForm.$submitted" class="text-center">
+            <div class="error-message" ng-show="certificateForm.issuedby.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+        </div>
+        <p>
+            <label>Validity</label>
+            <input name="validity" class="calender-bg" onkeydown="return false" ng-model="certificate.validity" id="datetimepickervalid" type="text" ng-disabled="certificate.lifeTimeValidity" ng-required="!certificate.lifeTimeValidity">
+        </p>
+        <div ng-show="certificateForm.$submitted" class="text-center">
+            <div class="error-message" ng-show="certificateForm.validity.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+        </div>
+        <p>
+            <input ng-init="certificate.lifeTimeValidity = false" id="lifetimeValid" type="checkbox" class="currentEmp" name="currentEmp" ng-change="certificate.validity = certificate.lifeTimeValidity ? '' : certificate.validity" ng-checked="certificate.lifeTimeValidity" ng-model="certificate.lifeTimeValidity">
+            <label for="lifetimeValid" class="row col-lg-4 col-md-4 col-sm-4 col-xs-12 conditions checkbox-label">Lifetime Validity</label>
+            <input type="file" valid-file onchange="$(this).css('color', '#333');" id="certificates-upload" ng-model="certificate.doc" class="additionalCertificate" accept=".doc, .docx, .pdf">
+        </p>
+        <div class="text-center"><button type="submit" ng-disabled="addBtn">ADD</button></div>
+    </form>
+</script>
+
+<script type="text/ng-template" id="deleteCertificate" class="ngDialog-theme-default">
+    <h1>Delete Certificate</h1>
+    <p>Do you really want to delete certification details</p>
+    <div class="clearfix text-center">
+        <button ng-click="confirmDeleteCertificate()">YES</button>
+        <button ng-click="closeDialogBox()">NO</button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="editCertificate" class="ngDialog-theme-default">
+    <form name="editCertificateForm" ng-submit="editCertificateForm.$valid&&editExistingCertificate(editCertificate)" novalidate>
+        <h1>Edit Certification Details</h1>
+        <p>Fill up the form below to edit details.</p>
+        <p>
+            <label>Certification Name</label>
+            <input name="certificate" ng-keypress='FirsText($event)' ng-model="editCertificate.certificationName" type="text" required>
+        </p>
+        <div ng-show="editCertificateForm.$submitted" class="text-center">
+            <div class="error-message" ng-show="editCertificateForm.certificate.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+        </div>
+        <p>
+            <label>Issued By</label>
+            <input name="issuedby" ng-keypress='FirsText($event)' ng-model="editCertificate.issuedBy" type="text" required>
+        </p>
+        <div ng-show="editCertificateForm.$submitted" class="text-center">
+            <div class="error-message" ng-show="editCertificateForm.issuedby.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+        </div>
+        <p>
+            <label>Validity</label>
+            <input name="validity" class="calender-bg" onkeydown="return false" ng-model="editCertificate.validity" id="datetimepickervalid1" type="text" ng-disabled="editCertificate.lifeTimeValidity" ng-required="!editCertificate.lifeTimeValidity">
+        </p>
+        <div ng-show="editCertificateForm.$submitted" class="text-center">
+            <div class="error-message" ng-show="editCertificateForm.validity.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+        </div>
+        <p>
+            <input type="checkbox" id="lifetimeValid1" class="currentEmp" name="currentEmp" ng-change="editCertificate.validity = editCertificate.lifeTimeValidity ? '' : editCertificate.validity" ng-checked="editCertificate.lifeTimeValidity" ng-model="editCertificate.lifeTimeValidity">
+            <label for="lifetimeValid1" class="row col-lg-4 col-md-4 col-sm-4 col-xs-12 conditions checkbox-label">Lifetime Validity</label>
+            <input ng-if="certDel || editCertificate.doc == ''" type="file" valid-file onchange="$(this).css('color', '#333');" id="certificates-upload1" ng-model="certificate.doc" class="additionalCertificate" accept=".doc, .docx, .pdf">
+            <span ng-if="!certDel && editCertificate.doc != ''" class="doc"><a href="{{editCertificate.doc}}" download>{{editCertificate.docName}}</a><span ng-click="deleteDocuments(editCertificate._id)">x</span></span>
+        </p>
+        <div class="text-center"><button type="submit">SAVE</button></div>
+    </form>
+</script>

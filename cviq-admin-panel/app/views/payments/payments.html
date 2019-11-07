@@ -1,0 +1,128 @@
+<h3>
+    All Jobs
+    <small>Displaying list of All Payments in the system</small>
+</h3>
+
+<style>
+    .ngdialog.ngdialog-theme-default .ngdialog-content{
+        width: 700px;
+    }
+</style>
+<div ng-controller="paymentController" class="container-fluid">
+    <!--<div id="driverLocationMap" style="height:400px;width:100%;"></div>-->
+
+    <!-- START DATATABLE 2 -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default" ng-class="{'whirl duo' : showloader }">
+                <div class="panel-heading" >
+                    <button ng-show="hideExport" ng-click="exportData()" class="pull-right btn btn-sm btn-info">Export To CSV</button>
+                </div>
+                <div style="clear:both"></div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-5 col-sm-3 col-md-3 col-lg-3">
+                            <label>Records Per Page</label>
+                            <select class="form-control" ng-model="itemsPerPage" ng-options="pages for pages in searchModel.limitOptions" ng-change="getPagesCount()"></select>
+                        </div>
+                        <div class=" col-xs-5 col-sm-4 col-md-3 col-lg-3 col-xs-offset-2 col-sm-offset-5 col-md-offset-6 col-lg-offset-6">
+                            <div class="input-group" style="padding-top: 10%;">
+                                <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                                <input type="text" class="form-control" placeholder="Search" ng-model="search">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive" ng-switch="(list | filter:search).length">
+                        <div ng-switch-when="0" class="noSearch"><span>No Job found</span></div>
+                        <table id="datatable2" class="table table-hover" ng-switch-default>
+                            <thead>
+                            <tr>
+
+
+                                <th style="min-width:70px">
+                                    <div style="text-align:center;" ng-click="sort('index')">
+                                        Sr. No.
+                                        <span style="opacity:0.5" ng-hide="predicate == 'index' && reverse || predicate == 'index' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'index' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'index' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th style="min-width:100px">Type</th>
+                                 <th style="min-width:250px">
+                                    <div style="text-align:center;" ng-click="sort('username')">
+                                        Username
+                                        <span style="opacity:0.5" ng-hide="predicate == 'username' && reverse || predicate == 'username' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'username' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'username' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th style="min-width:100px">Payment id</th>
+                                <th style="min-width:100px">Amount</th>
+                                <th style="min-width:100px">Datetime</th>
+                            </tr>
+                            </thead>
+                            <tbody ng-show="tBodyFlag">
+                            <tr style='background-color: {{data.color}} !important'
+                                ng-repeat="data in filtered =  list| filter:search | orderBy:predicate:reverse">
+                                <td class="text-center">{{data.index + 1}}</td>
+                                <td class="text-center">{{data.userType}}</td>
+                                <td class="text-center">{{data.username}}</td>
+                                <td class="text-center" style="word-break: break-all;">{{data.paymentId}}</td>
+                                <td class="text-center">{{data.amount}}</td>
+                                <td class="text-center">{{data.createdAt}}</td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-6" style="padding-top: 2%;" ng-show="hideExport">
+                            <span>Showing {{skipValue + 1}} to {{limitValue + 1}} of {{dataLength}} Entries</span>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6 ">
+                            <div class="pull-right" ng-show="sp_pagination"><!--ng-show="sp_pagination" ng-show="watchPagination"-->
+                                <nav ng-show="watchPagination">
+                                    <ul class="pagination">
+                                        <li ng-class="prevPageDisabled()">
+                                            <a class="link" ng-click="prevPage(currentPage)">Previous</a>
+                                        </li>
+                                        <li ng-class="{active: m == currentPage}"  ng-repeat="m in range()" ng-click="setPage(m)">
+                                            <a class="link" ng-click="currentData(m)">{{m+1}}</a>
+                                        </li>
+                                        <li ng-class="nextPageDisabled()">
+                                            <a class="link" ng-click="nextPage(currentPage)">Next</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END DATATABLE 2 -->
+
+    <!-- **************************************************************************
+    ******************* Modal to display msg **************************************
+    *******************************************************************************-->
+    <script type="text/ng-template" id="display_msg_modalDialog">
+        <div class="ngdialog-message">
+            <h4>{{displaymsg}}</h4>
+            <a type="submit" ng-click="refreshPage()" class="btn btn-primary" style="margin-top:20px;text-align: center;">OK</a>
+            <div style="clear: both;"></div>
+        </div>
+    </script>
+    <!-- **************************************************************************
+******************* Modal to display unauth msg **************************************
+*******************************************************************************-->
+    <script type="text/ng-template" id="unauth_msg_modalDialog">
+        <div class="ngdialog-message">
+            <h4>{{unAuthMsg}}</h4>
+            <a type="submit" ng-click="forceLogin()" class="btn btn-primary" style="margin-top:20px;text-align: center;">OK</a>
+            <div style="clear: both;"></div>
+        </div>
+    </script>
+
+</div>

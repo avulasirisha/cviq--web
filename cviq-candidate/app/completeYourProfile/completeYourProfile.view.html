@@ -1,0 +1,478 @@
+<loading></loading>
+<form name="profileForm" ng-submit="profileForm.$valid&&candidateProfile(profile)" novalidate>
+    <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 banner">
+        <div class="container">
+            <div class="main-section col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 col-xs-12 candidate-profile-section clearfix">
+
+                <!--<input type="file" title="hii" id="certificates-upload" class="certificates-upload" style="display: block" accept=".doc, .docx, .pdf, image/*">-->
+                <h1 class="text-left">COMPLETE YOUR PROFILE</h1>
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="complete-profile-pic text-center">
+                    <img class="ppic" src="images/profile-pic-placeholder.png" alt="" />
+                    <p><a id="upload-profile-pic">Upload Profile Image</a></p>
+                    <input id="profile" type="file" style="display: none;" onchange="angular.element(this).scope().profilePic(this.files)"data-button-text="Single" uploader="uploader" accept="image/*">
+                </div>
+
+                <div class="row complete-candidate-profile">
+                    <div class="search-wrapper">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form">
+                            <h6>Upload Resume</h6>
+                            <div>
+                                <div class="ProfileFormElements resumeInProfile clearfix form-elements col-lg-6 col-md-6 col-sm-12 col-xs-12 row">
+                                   <input type="file" class="resume-file" accept=".doc, .docx, .pdf">
+                                    <p class="text-left" style="margin:10px 0;">Supported only .doc, .docx and pdf formats.</p>
+                                </div>
+                                <div class="col-lg-1 col-md-1 col-xs-12 col-sm-12" style="display: inline; float: left; text-align: center; line-height: 54px; padding: 0 20px">OR</div>
+                                <button ui-sref="home.createResume" type="button" style="margin: 0" class="sbmt-btn resume-btn col-lg-5 col-md-5 col-sm-12 col-xs-12 pull-right">CREATE RESUME</button>
+                            </div>
+
+                            <div class="clearfix">
+                                <div class="ProfileFormElements form-elements fullWidth pull-left">
+                                    <label>PROFILE TITLE</label>
+                                    <input type="text"  maxlength="20" placeholder="Enter Profile Title" name="profileName" ng-model="profile.pTitle" required>
+                                    <div ng-show="profileForm.$submitted || profileForm.profileName.$touched">
+                                        <div class="error-message" ng-show="profileForm.profileName.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                    </div>
+                                </div>
+
+                                <div class="ProfileFormElements clearfix form-elements fullWidth pull-left">
+                                    <div class="dropdown custom-select-box main-dropdown">
+                                        <label>NATIONALITY</label>
+                                        <select name="nation" ng-model="profile.nationality" class="selectpicker" ng-change="selNationality(profile.nationality)" data-live-search="true" ng-options="con.countryName for con in countryLists track by con.countryName" required>
+                                            <option value="" disabled hidden>Select Nationality</option>
+                                        </select>
+                                        <div ng-show="profileForm.$submitted">
+                                            <div class="error-message" ng-show="profileForm.nation.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ProfileFormElements clearfix form-elements">
+                                <div class="dropdown custom-select-box main-dropdown">
+                                    <label>GENDER</label>
+                                    <select name="gender" ng-model="profile.gender" class="selectpicker" required>
+                                        <option value="" disabled hidden>Select Gender</option>
+                                        <option value="MALE">MALE</option>
+                                        <option value="FEMALE">FEMALE</option>
+                                    </select>
+                                    <div ng-show="profileForm.$submitted">
+                                        <div class="error-message" ng-show="profileForm.gender.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ProfileFormElements form-elements fullWidth pull-left">
+                                <label>ANNUAL SALARY</label>
+                                <input type="text" ng-keypress='isNumberKey($event)' maxlength="10" placeholder="Enter Annual Salary" ng-model="profile.candSalary">
+                            </div>
+                            <h6>Date of Birth</h6>
+
+                            <div>
+                                <div class="ProfileFormElements clearfix form-elements one-third">
+                                    <div class="dropdown custom-select-box main-dropdown">
+                                        <label>DD</label>
+                                        <select name="dated" ng-model="profile.dated" class="selectpicker" data-live-search="true" ng-options="d for d in dateInMonths" required>
+                                            <option value="" disabled hidden>Select Date</option>
+                                        </select>
+                                        <div ng-show="profileForm.$submitted">
+                                            <div class="error-message" ng-show="profileForm.dated.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="ProfileFormElements clearfix form-elements more-half">
+                                    <div class="dropdown custom-select-box main-dropdown col-lg-5 col-md-5" style="padding: 0">
+                                        <label>MM</label>
+                                        <select name="mon" ng-model="profile.months" class="selectpicker" data-live-search="true" ng-options="m for m in monthsInYear" required>
+                                            <option value="" disabled hidden>Select Month</option>
+                                        </select>
+                                        <div ng-show="profileForm.$submitted">
+                                            <div class="error-message" ng-show="profileForm.mon.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="dropdown custom-select-box main-dropdown yearDropDown pull-right" style="padding: 0;  width: 55%">
+                                        <label>YYYY</label>
+                                        <select name="years" ng-model="profile.year" class="selectpicker" data-live-search="true" ng-options="y for y in years" required>
+                                            <option value="" disabled hidden>Select Year</option>
+                                        </select>
+                                        <div ng-show="profileForm.$submitted">
+                                            <div class="error-message" ng-show="profileForm.years.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                                <div class="ProfileFormElements clearfix form-elements fullWidth pull-left">
+                                    <div class="dropdown custom-select-box main-dropdown">
+                                        <label>JOB TYPE</label>
+                                        <select name="location" ng-model="profile.jobType" class="selectpicker" data-live-search="true">
+                                            <option value="" disabled hidden>Select Job Type</option>
+                                            <option value="Permanent Full Time">Permanent Full Time</option>
+                                            <option value="Contractual Part Time">Contractual Part Time</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            <!--<h6>Preferred Job Location</h6>-->
+                            <!--<div class="clearfix">-->
+                                <!--<div class="ProfileFormElements clearfix form-elements fifty-comb pull-left">-->
+                                        <!--<div class="dropdown custom-select-box main-dropdown">-->
+                                            <!--<label>LOCATION 1</label>-->
+                                            <!--<select name="location" ng-model="profile.location1" class="selectpicker" ng-options="s.stateName for s in stateRefinedList track by s.stateName" >-->
+                                                <!--<option value="" disabled hidden>Select Job Location 1</option>-->
+                                            <!--</select>-->
+                                        <!--</div>-->
+                                <!--</div>-->
+
+                                <!--<div class="ProfileFormElements clearfix form-elements fifty-comb pull-right">-->
+                                    <!--<div class="dropdown custom-select-box main-dropdown">-->
+                                        <!--<label>LOCATION 2</label>-->
+                                        <!--<select name="location" ng-model="profile.location2" class="selectpicker" ng-options="s.stateName for s in stateRefinedList track by s.stateName" >-->
+                                            <!--<option value="" disabled hidden>Select Job Location 2</option>-->
+                                        <!--</select>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <!--<div class="clearfix">-->
+                                <!--<div class="ProfileFormElements clearfix form-elements fifty-comb pull-left">-->
+                                    <!--<div class="dropdown custom-select-box main-dropdown">-->
+                                        <!--<label>LOCATION 3</label>-->
+                                        <!--<select name="location" ng-model="profile.location3" class="selectpicker" ng-options="s.stateName for s in stateRefinedList track by s.stateName">-->
+                                            <!--<option value="" disabled hidden>Select Job Location 3</option>-->
+                                        <!--</select>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                                <!--<div class="ProfileFormElements clearfix form-elements fifty-comb pull-right">-->
+                                    <!--<div class="dropdown custom-select-box main-dropdown">-->
+                                        <!--<label>LOCATION 4</label>-->
+                                        <!--<select name="location" ng-model="profile.location4" class="selectpicker" ng-options="s.stateName for s in stateRefinedList track by s.stateName" >-->
+                                            <!--<option value="" disabled hidden>Select Job Location 4</option>-->
+                                        <!--</select>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <h6>Employment Details</h6>
+                            <div class="employer-details" ng-repeat="em in employer" style="margin-bottom: 20px;">
+                            <div class="clearfix">
+                                <div class="form-elements fifty-comb pull-left">
+                                    <label>JOB TITLE</label>
+                                    <input class="mail" ng-keypress='FirsText($event)' name="des-{{$index}}" type="text" placeholder="Enter Job Title" ng-model="em.profile.designation" ng-required="em.profile.company">
+                                    <div ng-if="em.profile.company">
+                                        <div class="error-message" ng-show="profileForm['des-'+$index].$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-elements fifty-comb pull-right">
+                                    <label>COMPANY NAME</label>
+                                    <input id="com" type="text" name="companyName-{{$index}}" ng-keypress='isAlphaKey($event)' placeholder="Enter Company Name" ng-model="em.profile.company" ng-required="em.profile.designation">
+                                    <div ng-if="em.profile.designation">
+                                        <div class="error-message" ng-show="profileForm['companyName-'+$index].$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                    </div>
+                                </div>
+                            </div>
+                                <div class="clearfix">
+                                    <!--<div class="form-elements fifty-comb pull-left">-->
+                                        <!--<label>ACCOMPLISHMENTS</label>-->
+                                        <!--<img class="acc" src="images/acc.png" alt="" onclick="$('#acc-msg').toggle()" ng-if="em.id == 1" />-->
+                                        <!--<div class="acc-msg" id="acc-msg">-->
+                                            <!--<p>An accomplishment is something notable that you've done in your company.</p>-->
+                                            <!--<h5>Examples:</h5>-->
+                                            <!--<ul>-->
+                                                <!--<li>Increased Sales</li>-->
+                                                <!--<li>Won Awards</li>-->
+                                                <!--<li>Turned Around Morale</li>-->
+                                            <!--</ul>-->
+                                        <!--</div>-->
+                                        <!--<input type="text" ng-keypress='FirsText($event)' placeholder="Enter Accomplishments" ng-model="em.profile.accomplish">-->
+
+                                    <!--</div>-->
+                                    <div class="ProfileFormElements clearfix form-elements fullWidth pull-right">
+                                        <div class="dropdown custom-select-box main-dropdown">
+                                            <label>INDUSTRY</label>
+                                            <select name="industry-{{$index}}" ng-model="em.profile.indust" class="selectpicker" ng-options="i.industryName for i in industriesList track by i.industryName" ng-required="em.profile.designation">
+                                                <option value="" disabled hidden>Select Industry</option>
+                                            </select>
+                                            <div ng-if="em.profile.designation">
+                                                <div class="error-message" ng-show="profileForm['industry-'+$index].$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <div>
+                                <div class="ProfileFormElements clearfix form-elements one-third">
+                                        <label>FROM</label>
+                                        <input type="text" onkeydown="return false" id="datetimepickerfrom-{{$index}}" class="calender-bg datetimepickerfrom" name="from-{{$index}}" ng-keypress='isNumberKey($event)' placeholder="Enter From" ng-model="em.profile.from" ng-required="em.profile.designation">
+
+                                </div>
+
+                                <!--<div class="error-message" ng-show="!em.profile.from && em.profile.to ||em.profile.from && !em.profile.to"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Hiii.</div>-->
+
+
+                                <div class="ProfileFormElements clearfix form-elements more-half">
+                                    <div class="dropdown custom-select-box main-dropdown col-lg-5 col-md-5" style="padding: 0">
+                                        <label>TO</label>
+                                        <input type="text" onkeydown="return false" id="datetimepickerto-{{$index}}" class="calender-bg datetimepickerto" name="to-{{$index}}" ng-keypress='isNumberKey($event)' placeholder="Enter To" ng-model="em.profile.to" ng-disabled="em.profile.cEmp">
+                                    </div>
+
+                                    <div class="dropdown custom-select-box main-dropdown yearDropDown pull-right" style="padding: 0;  width: 55%">
+                                        <label>ANNUAL SALARY</label>
+                                        <input class="mail dollar1 padd1" type="text" maxlength="10" name="sal-{{$index}}" ng-keypress='isNumberKey($event)' placeholder="Enter Annual Salary" ng-model="em.profile.salary">
+                                    </div>
+                                </div>
+
+                                <div style="width: 100%; float: left" ng-if="em.profile.designation || (em.from.y > em.too.y) || (em.from.y == em.too.y && em.from.m > em.too.m)">
+                                    <div class="error-message" ng-show="profileForm['from-'+$index].$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                    <div class="error-message"  ng-show="(em.from.y > em.too.y) || (em.from.y == em.too.y && em.from.m > em.too.m)"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> From date should not be greater then To date.</div>
+                                </div>
+                                <!--<div style="width: 100%; float: left" ng-if="em.profile.designation">-->
+                                    <!--<div class="error-message" ng-show="profileForm['from-'+$index].$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>-->
+                                <!--</div>-->
+                            </div>
+                            <input ng-init="em.profile.cEmp = false" type="checkbox" ng-change="em.profile.to = em.profile.cEmp ? '' : em.profile.to" ng-checked="cEmp" ng-model="em.profile.cEmp" ng-click="updateSelection($index, employer)" class="currentEmp" name="emp" id="'employer-'{{$index}}">
+                            <label for="'employer-'{{$index}}" class="conditions checkbox-label"> Current Employer</label>
+
+                            </div>
+
+                            <div class="text-right col-lg-12 col-md-12 col-sm-12 col-xs-12 add-more"><a ng-click="addMoreEmployer()">+ Add More</a></div>
+
+
+
+                            <h6>Education Details</h6>
+                            <div class="educational-details" ng-repeat="e in education | limitTo:qualify.length" style="margin-bottom: 15px;">
+                                <div class="clearfix">
+                                    <div class="ProfileFormElements clearfix form-elements fifty-comb pull-left">
+                                        <div class="dropdown custom-select-box main-dropdown">
+                                            <label>HIGHEST QUALIFICATION</label>
+                                            <select name="qualif-{{$index}}" ng-model="e.profile.highQual" ng-change="selectedQualification(e.profile.highQual,$index)" class="selectpicker" ng-options="q for q in qualify" ng-required="e.profile.special || e.profile.passingYear || e.profile.institute">
+                                                <option value="" disabled hidden>Select Qualification</option>
+                                            </select>
+                                        </div>
+                                        <div ng-if="e.profile.special || e.profile.passingYear || e.profile.institute">
+                                            <div class="error-message" ng-show="profileForm['qualif-'+$index].$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="ProfileFormElements clearfix form-elements fifty-comb pull-right">
+                                        <div class="dropdown custom-select-box main-dropdown">
+                                            <label>SPECIALIZATION</label>
+                                            <select name="specializations-{{$index}}" ng-model="e.profile.special" class="selectpicker" ng-options="spe for spe in graduation[$index].spec" ng-required="e.profile.highQual">
+                                                <option value="" disabled hidden>Enter Specialization</option>
+                                            </select>
+                                        </div>
+                                        <div ng-if="e.profile.highQual">
+                                            <div class="error-message" ng-show="profileForm['specializations-'+$index].$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="clearfix">
+                                    <div class="ProfileFormElements clearfix form-elements fifty-comb pull-left">
+                                        <div class="dropdown custom-select-box main-dropdown">
+                                            <label>YEAR OF PASSING</label>
+                                            <select name="passYear-{{$index}}" ng-model="e.profile.passingYear" class="selectpicker" ng-options="y for y in years" ng-required="e.profile.highQual">
+                                                <option value="" disabled hidden>Select Year</option>
+                                            </select>
+                                        </div>
+                                        <div ng-if="e.profile.highQual">
+                                            <div class="error-message" ng-show="profileForm['passYear-'+$index].$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="ProfileFormElements clearfix form-elements fifty-comb pull-right">
+                                        <div class="dropdown custom-select-box main-dropdown">
+                                            <label>INSTITUTE</label>
+                                            <input name="institute-{{$index}}" type="text" placeholder="Enter Institute" ng-keypress='FirsText($event)' ng-model="e.profile.institute" ng-required="e.profile.highQual">
+                                            <div ng-if="e.profile.highQual">
+                                                <div class="error-message" ng-show="profileForm['institute-'+$index].$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                           <!--- <div ng-if="!(education.length+1 > qualify.length)" class="text-right col-lg-12 add-more"><a ng-click="addMoreEdu()">+ Add More</a></div>
+
+                              --->
+
+                            <h6>Awards and Accomplishments</h6>
+                            <div class="ProfileFormElements form-elements fullWidth pull-left" ng-repeat="a in awards">
+                                <label>AWARDS AND ACCOMPLISHMENTS</label>
+                                <img class="acc" src="images/acc.png" alt="" onclick="$('#acc-msg').toggle()" ng-if="a.id == 1" />
+                                <div class="acc-msg" id="acc-msg">
+                                    <p>An accomplishment is something notable that you've done in your company.</p>
+                                    <h5>Examples:</h5>
+                                    <ul>
+                                        <li>Increased Sales</li>
+                                        <li>Won Awards</li>
+                                        <li>Turned Around Morale</li>
+                                    </ul>
+                                </div>
+                                <input type="text" ng-keypress='FirsText($event)' placeholder="Enter Awards/Accomplishments" ng-model="a.profile.award">
+                            </div>
+                            <div class="text-right col-lg-12 col-md-12 col-sm-12 col-xs-12 add-more"><a ng-click="addMoreAwards()">+ Add More</a></div>
+
+                            <h6>Patents and Publications</h6>
+                            <div class="ProfileFormElements form-elements fullWidth pull-left" ng-repeat="p in patents | limitTo:patentLimit">
+                                <label>PATENTS AND PUBLICATIONS</label>
+                                <input type="text" ng-keypress='isAlphaKey($event)' placeholder="Enter Patents/Publications" ng-model="p.profile.patent">
+                            </div>
+                            <div ng-if="!(patents.length+1 > patentLimit)" class="text-right col-lg-12 col-md-12 col-sm-12 col-xs-12 add-more"><a ng-click="addMorePatents()">+ Add More</a></div>
+
+
+                            <h6>Certifications</h6>
+
+                            <div style="margin-bottom: 15px; float: left;">
+                                <div class="ProfileFormElements clearfix form-elements one-third">
+                                    <div class="dropdown custom-select-box main-dropdown">
+                                        <label>CERTIFICATION NAME</label>
+                                        <input type="text" name="certificate-{{$index}}" placeholder="Certification" ng-keypress='isAlphaKey($event)' ng-model="profile.certificate" ng-required="profile.issuedBy">
+                                        <div ng-if="profile.issuedBy">
+                                            <div class="error-message" ng-show="profileForm['certificate-'+$index].$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="ProfileFormElements clearfix form-elements more-half">
+                                    <div class="dropdown custom-select-box main-dropdown col-lg-5 col-md-5" style="padding: 0">
+                                        <label>ISSUED BY</label>
+                                        <input type="text" placeholder="Issued By" name="issueBy-{{$index}}" ng-keypress='isAlphaKey($event)' ng-model="profile.issuedBy" ng-required="profile.certificate">
+                                        <div ng-if="profile.certificate">
+                                            <div class="error-message" ng-show="profileForm['issueBy-'+$index].$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="dropdown custom-select-box main-dropdown yearDropDown pull-right" style="padding: 0;  width: 55%">
+                                        <label>VALIDITY</label>
+                                        <!--<input type="text"  ng-click="open1()" ng-blur="close1()" on-open-focus="false" is-open="popup1" placeholder="Validity" ng-model="cer.profile.validity" class="calender-bg" uib-datepicker-popup>-->
+                                        <input type="text" onkeydown="return false" placeholder="Validity" ng-model="profile.validity" class="calender-bg datetimepickervalidity" name="validity" ng-disabled="profile.lvalid">
+                                    </div>
+                                </div>
+                                <!--<input type="file" id="certificates-upload" class="certificates-upload" accept=".doc, .docx, .pdf, image/*">-->
+                                <!--<input ng-init="cer.profile.lvalid = false" type="checkbox" ng-checked="lvalid" ng-model="cer.profile.lvalid" id="'cer-'{{$index}}" value="certificate">-->
+                                <div class="text-right col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0">
+                                    <input ng-init="profile.lvalid = false" type="checkbox" ng-change="profile.validity = profile.lvalid ? '' : profile.validity" ng-checked="lvalid" ng-model="profile.lvalid" id="'cer-'{{$index}}" value="certificate">
+                                    <label for="'cer-'{{$index}}" class="conditions checkbox-label pull-left"> Lifetime Validity</label>
+                                    <!--<input type="file" valid-file onchange="$(this).css('color', '#333');" id="certificates-upload" ng-model="cer.profile.doc" class="certificates-upload" accept=".doc, .docx, .pdf">-->
+                                    <input type="file" valid-file onchange="$(this).css('color', '#333');" data-button-text="Single" uploader="uploader" id="certificates-upload" ng-model="profile.doc" class="certificates-upload" accept=".doc, .docx, .pdf">
+                                </div>
+
+                            </div>
+
+                            <h6>Desired Job</h6>
+
+                            <div class="educational-details" style="margin-bottom: 15px;">
+                                <div class="clearfix">
+                                    <div class="ProfileFormElements clearfix form-elements fifty-comb pull-left">
+                                        <div class="dropdown custom-select-box main-dropdown">
+                                            <label>INDUSTRY</label>
+                                            <input type="text" name="desIndustry" placeholder="Enter Industry" ng-keypress='FirsText($event)' ng-model="profile.desIndustry" ng-required="profile.desFunArea || profile.desLocation">
+                                            <div ng-if="profile.desFunArea || profile.desLocation">
+                                                <div class="error-message" ng-show="profileForm.desIndustry.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="ProfileFormElements clearfix form-elements fifty-comb pull-right">
+                                        <div class="dropdown custom-select-box main-dropdown">
+                                            <label>FUNCTIONAL AREA</label>
+                                            <input type="text" placeholder="Enter Functional Area" ng-keypress='FirsText($event)' ng-model="profile.desFunArea">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="clearfix">
+                                    <div class="ProfileFormElements clearfix form-elements fifty-comb pull-left">
+                                        <div class="dropdown custom-select-box main-dropdown">
+                                            <label>LOCATION</label>
+                                            <input type="text" placeholder="Enter Location" ng-keypress='FirsText($event)' ng-model="profile.desLocation">
+                                        </div>
+                                    </div>
+
+                                    <div class="ProfileFormElements clearfix form-elements fifty-comb pull-right">
+                                        <div class="dropdown custom-select-box main-dropdown">
+                                            <label>ANNUAL SALARY</label>
+                                            <input type="text" placeholder="Enter Annual Salary" maxlength="10" class="dollar1 padd1" ng-keypress='isNumberKey($event)' ng-model="profile.desSalary">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!--<div ng-repeat="cer in certificate | limitTo:5" style="margin-bottom: 15px; float: left;">-->
+                                <!--<p>{{cer}}</p>-->
+                                <!--<div class="ProfileFormElements clearfix form-elements one-third">-->
+                                    <!--<div class="dropdown custom-select-box main-dropdown">-->
+                                        <!--<label>CERTIFICATION NAME</label>-->
+                                        <!--<input type="text" name="certificate-{{$index}}" placeholder="Certification" ng-keypress='FirsText($event)' ng-model="cer.profile.certificate" ng-required="cer.profile.issuedBy">-->
+                                        <!--<div ng-if="cer.profile.issuedBy">-->
+                                            <!--<div class="error-message" ng-show="profileForm['certificate-'+$index].$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                                <!--<div class="ProfileFormElements clearfix form-elements more-half">-->
+                                    <!--<div class="dropdown custom-select-box main-dropdown col-lg-5 col-md-5" style="padding: 0">-->
+                                        <!--<label>ISSUED BY</label>-->
+                                        <!--<input type="text" placeholder="Issued By" name="issueBy-{{$index}}" ng-keypress='FirsText($event)' ng-model="cer.profile.issuedBy" ng-required="cer.profile.certificate">-->
+                                        <!--<div ng-if="cer.profile.certificate">-->
+                                            <!--<div class="error-message" ng-show="profileForm['issueBy-'+$index].$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>-->
+                                        <!--</div>-->
+
+                                    <!--</div>-->
+
+                                    <!--<div class="dropdown custom-select-box main-dropdown yearDropDown pull-right" style="padding: 0;  width: 55%">-->
+                                        <!--<label>VALIDITY</label>-->
+                                        <!--&lt;!&ndash;<input type="text"  ng-click="open1()" ng-blur="close1()" on-open-focus="false" is-open="popup1" placeholder="Validity" ng-model="cer.profile.validity" class="calender-bg" uib-datepicker-popup>&ndash;&gt;-->
+                                        <!--<input type="text" placeholder="Validity" ng-model="cer.profile.validity" class="calender-bg datetimepickervalidity" name="validity" ng-disabled="cer.profile.lvalid">-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash;<input type="file" id="certificates-upload" class="certificates-upload" accept=".doc, .docx, .pdf, image/*">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input ng-init="cer.profile.lvalid = false" type="checkbox" ng-checked="lvalid" ng-model="cer.profile.lvalid" id="'cer-'{{$index}}" value="certificate">&ndash;&gt;-->
+                                <!--<div class="text-right col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0">-->
+                                    <!--<input ng-init="cer.profile.lvalid = false" type="checkbox" ng-change="cer.profile.validity = cer.profile.lvalid ? '' : cer.profile.validity" ng-checked="lvalid" ng-model="cer.profile.lvalid" id="'cer-'{{$index}}" value="certificate">-->
+                                    <!--<label for="'cer-'{{$index}}" class="conditions checkbox-label pull-left"> Lifetime Validity</label>-->
+                                    <!--&lt;!&ndash;<input type="file" valid-file onchange="$(this).css('color', '#333');" id="certificates-upload" ng-model="cer.profile.doc" class="certificates-upload" accept=".doc, .docx, .pdf">&ndash;&gt;-->
+                                    <!--<input type="file" valid-file onchange="$(this).css('color', '#333'); angular.element(this).scope().profilePic1(this.files)" data-button-text="Single" uploader="uploader" id="certificates-upload" ng-model="cer.profile.doc" class="certificates-upload" accept=".doc, .docx, .pdf">-->
+                                <!--</div>-->
+
+                            <!--</div>-->
+                            <!--<div class="text-right col-lg-12 col-md-12 col-sm-12 col-xs-12 add-more"><a ng-click="addMoreCertificate()">+ Add More</a></div>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="new-user col-lg-12">
+                    <div class="row">
+                        <button type="submit" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sbmt-btn">SUBMIT</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+<script type="text/ng-template" id="templateId" class="ngDialog-theme-default">
+    <h1>SEND PASSCODE</h1>
+    <p>Where you want to receive Passcode?</p>
+    <div class="text-center check">
+        <input name="verify" type="checkbox" ng-change="validCheck()" ng-model="otpPhone" id="onPhoneNumder" value="verification" required>
+        <label for="onPhoneNumder" class="pay-check checkbox-label"> <span>On Phone Number</span></label>
+    </div>
+    <div class="text-center check">
+        <input name="verify" type="checkbox" ng-change="validCheck()" ng-model="otpEmail" id="onEmail" value="verification" required>
+        <label for="onEmail" class="pay-check checkbox-label"> <span>On Email Address</span></label>
+    </div>
+    <div class="error-message text-center" data-valmsg-for="Otp" data-valmsg-replace="true" ng-if="valCheck"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> {{valCheck}}</div>
+    <button ng-click="genPasscode(register)" type="submit">DONE</button>
+</script>
+
+<script type="text/ng-template" id="passcodeId" class="ngDialog-theme-default">
+    <h1>FIELDS REQUIRED</h1>
+    <p>Please enter required fields to generate Passcode(Email, Country Code, Mobile Number)</p>
+</script>

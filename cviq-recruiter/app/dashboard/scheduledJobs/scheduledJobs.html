@@ -1,0 +1,105 @@
+<section class="commonBackground interview-details">
+    <div class="candidate-desc">
+        <div class="col-lg-12 headingSpan">
+            <!--<span><strong>{{numberOFJobs}}</strong> Jobs in {{searchParam.industry}} Industry</span>-->
+            <!--<div class="filter pull-right">-->
+            <!--&lt;!&ndash;<span>Sort:</span>&ndash;&gt;-->
+            <!--<select ng-model="dwm" ng-options="p for p in period">-->
+            <!--<option value="" disabled hidden>Select</option>-->
+            <!--</select>-->
+            <!--<input type="text" placeholder="Search Date" id="datetimepicker" ng-model="dated" ng-change="getDate(dated)">-->
+            <!--<button ng-click="searching()">GO</button>-->
+            <!--</div>-->
+        </div>
+        <ul class="clearfix">
+            <h1 class="text-center noCandidate" ng-show="noScheduledJob" >No Scheduled Job Found</h1>
+            <div class="fixHeight" ng-hide="fixHeight"></div>
+            <li class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-list" ng-repeat="jobData in scheduled">
+
+                <div class="col-lg-1 col-md-1 col-sm-2 col-xs-12 pad " style="padding-left: 5px">
+                    <img class=" candidateImage" ng-src="{{}}" alt="" />
+                </div>
+                <div class="col-lg-7 col-md-6 col-sm-4 col-xs-12 pad">
+                    <div class="profile-description">
+                        <a style="text-decoration: none;" ui-sref="home.jobDetails({id:'+{{jobData._id}}+'})" class="scheduleJobViewDetails showdetails" target="_blank" ><h4>{{jobData.jobTitle}}</h4></a>
+                        <p>{{jobData.jobDescription}}</p>
+                        <ul>
+                            <li class="place">{{jobData.country}}</li>
+                            <li class="experience">{{jobData.workExperience.min}} Yrs</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12 pull-right text-right status-rating">
+                    <!--<p>Status : <span class="status">open</span></p>-->
+                    <p>Active From : <span>{{jobData.activeFrom | date: 'dd MMM, yyyy, h:mm'}}</span></p>
+
+                    <!--<p ><a ng-click="jobid(jobData._id)" target="_blank" >View Details</a></p>-->
+                    <p ><a ui-sref="home.jobDetails({id:'+{{jobData._id}}+'})" class="scheduleJobViewDetails showdetails" target="_blank" >View Details</a></p>
+
+
+                    <!--<p ><span id="{{ 'showJobDetailsbtn2-' + $index }}" class="scheduleJobViewDetails showdetails"  ng-click="showDetails($index)">View Details</span></p>-->
+                    <!--<p ><span id="{{ 'hideJobDetailsbtn2-' + $index }}" class="scheduleJobViewDetails hidedetails" ng-click="hideDetails($index)">Hide Details</span></p>-->
+
+
+                </div>
+
+
+
+               <!-- <div class="hidedetails" id="{{ 'showJobDetails-' + $index }}">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="showJobDetails col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <p><span>Active From : </span>{{jobData.activeFrom | date: 'MMMM dd, yyyy, h:mm Z'}}</p>
+
+                            <p><span>Experience Required : </span>{{jobData.workExperience.min}}</p>
+
+                            &lt;!&ndash;<p>Skills Required {{jobData.jobDescription}}</p>&ndash;&gt;
+
+                            <p><span>Industry :</span> {{jobData.industry}}</p>
+
+                            <p><span>Annual CTC :</span> $ {{jobData.annualCompensation.min}} - $ {{jobData.annualCompensation.max}}</p>
+
+                            <p> <span>Quantative Score :</span>  {{jobData.quantitativeScore.min}}</p>
+
+                            &lt;!&ndash;<br>&ndash;&gt;
+                            &lt;!&ndash;<div >&ndash;&gt;
+                            &lt;!&ndash;<h4>Recruiter Details</h4><br>&ndash;&gt;
+                            &lt;!&ndash;<span><b>Company Name :</b></span><span> {{jobData.companyName}} </span><br>&ndash;&gt;
+                            &lt;!&ndash;<span><b>Contact Person :</b></span><span> {{jobData.contactPerson}} </span><br>&ndash;&gt;
+                            &lt;!&ndash;<span><b>Email :</b></span><span> {{jobData.contactEmail}}  </span><br>&ndash;&gt;
+                            &lt;!&ndash;<span><b>Telephone :</b></span><span>  {{jobData.contactNumber}}   </span><br>&ndash;&gt;
+                            &lt;!&ndash;</div>&ndash;&gt;
+
+                        </div>
+                        <div class="showJobDetails col-lg-6 col-md-6 col-sm-6 col-xs-6">
+
+                            <p><span>Active To : </span>{{jobData.activeTo | date: 'MMMM dd, yyyy, h:mm Z'}}</p>
+
+                            <p><span>Education Required :</span> {{jobData.underGraduate}} <span ng-if="jobData.postGraduate">, </span> {{jobData.postGraduate}}</p>
+
+                            <p><span>Functional Area :</span> {{jobData.functionalArea}}</p>
+
+                            <p><span>Aggregated Score :</span> {{jobData.aggregatedScore.min}}</p>
+
+                            <p><span>Qualitative Score :</span> {{jobData.qualitativeScore.min}}</p>
+
+                            &lt;!&ndash;<br>&ndash;&gt;
+                            &lt;!&ndash;<div >&ndash;&gt;
+                            &lt;!&ndash;<h4>Recruiter Details</h4><br>&ndash;&gt;
+                            &lt;!&ndash;<span><b>Company Name :</b></span><span> {{jobData.companyName}} </span><br>&ndash;&gt;
+                            &lt;!&ndash;<span><b>Contact Person :</b></span><span> {{jobData.contactPerson}} </span><br>&ndash;&gt;
+                            &lt;!&ndash;<span><b>Email :</b></span><span> {{jobData.contactEmail}}  </span><br>&ndash;&gt;
+                            &lt;!&ndash;<span><b>Telephone :</b></span><span>  {{jobData.contactNumber}}   </span><br>&ndash;&gt;
+                            &lt;!&ndash;</div>&ndash;&gt;
+
+                        </div>
+
+                    </div>
+
+                </div>-->
+
+
+
+            </li>
+        </ul>
+    </div>
+</section>

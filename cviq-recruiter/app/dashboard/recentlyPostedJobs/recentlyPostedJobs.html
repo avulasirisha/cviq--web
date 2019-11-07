@@ -1,0 +1,75 @@
+<section class="commonBackground interview-details">
+    <div class="candidate-desc">
+        <div class="col-lg-12 headingSpan">
+   
+        </div>
+        <ul class="clearfix">
+            <h1 class="text-center noCandidate" ng-show="noRecentJob" >No Recent Job Found</h1>
+            <div class="fixHeight" ng-hide="fixHeight"></div>
+            <li class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-list" ng-repeat="jobData in searchJobResult">
+                <div class="col-lg-1 col-md-1 col-sm-2 col-xs-12 pad " style="padding-left: 5px">
+                    <img class=" candidateImage" src="" alt="" />
+                    </div>
+                <div class="col-lg-7 col-md-6 col-sm-4 col-xs-12 pad">
+                    <div class="profile-description">
+                        <a style="text-decoration: none" ui-sref="home.jobDetails({id:'+{{jobData._id}}+'})"  target="_blank" class="scheduleJobViewDetails showdetails"><h4>{{jobData.jobTitle}}</h4></a>
+                        <p>{{jobData.jobDescription}}</p>
+                        <ul>
+                            <li class="place">{{jobData.city}},{{jobData.state}} </li>
+                            <li class="experience">{{jobData.workExperience.min}} Yrs</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12 pull-right text-right status-rating">
+                    <p>
+                        Status :
+                        <span ng-if="!jobData.isExpired" class="statusOpen" ng-click="markStatusClose(jobData._id,jobData.jobTitle,$index)">open</span>
+                        <span ng-if="jobData.isExpired" class="statusClose" ng-click="markStatusOpen(jobData._id,jobData.jobTitle,$index)">close</span>
+                    </p>
+                    <p class="PostedOnLarge">Posted on : <span>{{jobData.postedOn | date: 'dd MMM, yyyy'}} &nbsp &nbsp</span> No of Responses : 
+                    <span ng-show="jobData.numOfCandidatesApplied>0"> 
+                        <a  ui-sref="home.appliedCandidates({id:'+{{jobData._id}}+'})"  target="_blank">  {{jobData.numOfCandidatesApplied}}</a>
+                    </span>
+                    <span ng-show="jobData.numOfCandidatesApplied <= 0">
+                    {{jobData.numOfCandidatesApplied}}
+                    </span>
+                    </p>
+                    <p class="PostedOnSmall">Posted on : <span>{{jobData.postedOn | date: 'dd MMM, yyyy'}}</span></p>
+                    <p class="PostedOnSmall">No of Responses : <span>{{jobData.numOfCandidatesApplied}}</span> </a></p>
+
+                    <p ><a ui-sref="home.jobDetails({id:'+{{jobData._id}}+'})"  target="_blank" class="scheduleJobViewDetails showdetails">View Details</a></p>
+
+                    <!--<p ><span id="{{ 'showJobDetailsbtn-' + $index }}" class="scheduleJobViewDetails showdetails" ng-click="showDetails($index)">View Details</span></p>-->
+                    <!--<p ><span id="{{ 'hideJobDetailsbtn-' + $index }}" class="scheduleJobViewDetails hidedetails" ng-click="hideDetails($index)">Hide Details</span></p>-->
+
+
+
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<script type="text/ng-template" id="statusClose"  class="ngdialog-theme-default">
+
+    <p>Are you sure you want to change status of {{closeJobName}} form open to close</p>
+
+    <p style="display: flex">
+        <button ng-click="confirmStatusClose()" class="confirmation" type="submit">YES</button>
+        <button ng-click="denystatus()" class="confirmation" type="submit">NO</button>
+    </p>
+
+</script>
+
+
+<script type="text/ng-template" id="statusOpen"  class="ngdialog-theme-default">
+
+    <p>Are you sure you want to change status of {{openJobName}} form close to open</p>
+
+    <p style="display: flex">
+        <button ng-click="confirmStatusOpen()" class="confirmation" type="submit">YES</button>
+        <button ng-click="denystatus()" class="confirmation" type="submit">NO</button>
+    </p>
+
+</script>
+

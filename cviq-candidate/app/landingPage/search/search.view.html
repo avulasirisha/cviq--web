@@ -1,0 +1,29 @@
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix row" style="margin-top: 30px; min-height: 400px;" ng-if="result">
+    <div class="container">
+        <section class="commonBackground interview-details">
+            <div class="candidate-desc">
+                <h5><strong>{{numberOFJobs}}</strong> Jobs in {{searchParam.industry}} Industry</h5>
+                <ul class="clearfix">
+                    <li class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-list" ng-repeat="res in searchJobResult">
+                        <div class="col-lg-9 col-md-6 col-sm-8 col-xs-12">
+                            <img src="images/candidate.png" alt="" />
+                            <div class="profile-description">
+                                <h4 ng-click="jobDetails(res._id)">{{res.jobTitle}}</h4>
+                                <p>{{res.jobDescription}}</p>
+                                <ul>
+                                    <li class="place">{{res.country}}</li>
+                                    <li class="experience">{{res.workExperience.min}} Yrs</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-3 col-xs-12 pull-right text-right status-rating">
+                            <label>Posted on {{res.postedOn | date: 'MMMM dd, yyyy'}}</label>
+                            <label>Minimum Score to apply this job is <span class="credit">{{res.aggregatedScore.min}}</span></label>
+                            <span class="status-complete" ng-click="applyForJob()">Apply</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+</div>

@@ -1,0 +1,182 @@
+<h3>
+    STATE LIST
+    <!--<small>Displaying list of all the drivers in the system.</small>-->
+</h3>
+<div ng-controller="StateController" class="container-fluid">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-lg-offset-3 col-md-offset-3 ProfileFormElements form-elements ">
+        <div class="dropdown custom-select-box main-dropdown">
+            <label>Country</label>
+            <select name="planType" ng-model="country" ng-change="getCountryID(country)" class="selectpicker" data-live-search="false" ng-options="country.countryName for country in countriesList" required>
+                <option value="" disabled hidden>Select Country</option>
+            </select>
+        </div>
+    </div>
+    <!-- START DATATABLE 2 -->
+    <div  ng-show="list" class="row" style="display:inline-block">
+        <div class="col-lg-12">
+            <div class="panel panel-default" ng-class="{'whirl duo' : showloader }">
+                <div class="panel-heading">
+                    <div class="col-xs-5 col-sm-4 col-md-3 col-lg-3">
+                        <button ng-click="addState()" style="margin: 0px;background-color: #0297cf;color: #fff;" class=" btn-block btn btn-default" type="submit">ADD NEW</button>
+                    </div>
+                    <div class="col-xs-5 col-sm-4 col-md-3 col-lg-3 col-lg-offset-6 col-md-offset-6 col-sm-offset-4 col-xs-offset-2">
+                        <button  ng-click="exportData()" class="btn-block btn btn-sm btn-info">Export To CSV</button>
+                    </div>
+                </div>
+                <div style="clear:both"></div>
+                <div class="panel-body">
+                    <div class="row" style="padding-right: 15px">
+                        <div style="margin-top: 10px" class=" col-xs-12 col-sm-6 col-md-3 col-lg-3 col-sm-offset-6 col-md-offset-9 col-lg-offset-9">
+                            <div class="input-group" >
+                                <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                                <input type="text" class="form-control" placeholder="Search" ng-model="search">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive" ng-switch="(list | filter:search).length">
+                        <div ng-switch-when="0" class="noSearch"><span>No Data found</span></div>
+                        <table id="datatable2" class="table  table-hover" ng-switch-default>
+                            <thead>
+                            <tr>
+                                <th style="min-width:60px">
+                                    <div style="text-align:center;" ng-click="sort('index')">
+                                        Sr. No.
+                                        <span style="opacity:0.5" ng-hide="predicate == 'index' && reverse || predicate == 'index' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'index' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'index' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th  style="min-width:60px;">
+                                    <div style="text-align:center;" ng-click="sort('stateName')">
+                                        Name
+                                        <span style="opacity:0.5" ng-hide="predicate == 'stateName' && reverse || predicate == 'stateName' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'stateName' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'stateName' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th style="min-width:100px;text-align: center;">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody >
+                            <tr ng-repeat="data in filtered =  list| filter:search | orderBy:predicate:reverse">
+                                <td style="text-align:center;">{{data.index}}</td>
+                                <td style="text-align:center;">{{data.stateName}}</td>
+                                <td>
+                                    <div style="text-align:center;">
+                                        <!--<a class="btn btn-sm btn-default1" ng-click="deleteCountry(data._id,data.countryName)"-->
+                                           <!--title="Delete" style="margin-top:5px">-->
+                                            <!--<i style="color: #0297cf" class="fa fa-trash-o block-icon"></i>-->
+                                        <!--</a>-->
+                                        <a class="btn btn-sm btn-default1" ng-click="updateState(data)"
+                                           title="Update" style="margin-top:5px">
+                                            <i style="color: #0297cf" class="fa fa-pencil-square-o block-icon"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END DATATABLE 2 -->
+
+
+    <script type="text/ng-template" id="updateplan">
+        <div class="ngdialog-message">
+            <form  name="updatePlan" novalidate>
+                <section>
+                    <div class="  candidate-profile-section clearfix">
+                        <div class="row" style="margin-top: 20px">
+                            <div class="search-wrapper">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form">
+                                    <div class="clearfix">
+                                        <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-elements ">-->
+                                            <!--<label>Country Id</label>-->
+                                            <!--<input type="text"  placeholder="Enter Plan Rate" name="planRate" ng-model="newdata.Id" disabled required />-->
+                                            <!--<div ng-show="updatePlan.$submitted || updatePlan.countryID.$touched">-->
+                                                <!--<div class="error-message" ng-show="updatePlan.countryID.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>-->
+                                                <!--&lt;!&ndash;<div class="error-message" ng-show="NewPlan.planRate.$invalid && NewPlan.planRate.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i>Job Title must be at least 3 characters long.</div>&ndash;&gt;-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-elements ">
+                                            <label>State Name</label>
+                                            <input ng-keypress='isCharacterFunction($event)' type="text" style="text-transform: capitalize" minlength="2"  placeholder="Enter State Name" name="stateName" ng-model="newdata.stateName" required />
+                                            <div ng-show="updatePlan.$submitted || updatePlan.stateName.$touched">
+                                                <div class="error-message" ng-show="updatePlan.stateName.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <div class="error-message" ng-show="updatePlan.stateName.$invalid && updatePlan.stateName.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i>State name must be at least 2 characters long.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad text-center">
+
+                                <button style="width: 50%;" type="submit" class="btn btn-primary sbmt-btn" ng-click="updatePlan.$valid && updateConfirm()">UPDATE STATE</button>
+
+                        </div>
+                    </div>
+
+                </section>
+
+            </form>
+        </div>
+    </script>
+    <script type="text/ng-template" id="addnew">
+        <div class="ngdialog-message">
+            <form  name="addnew" novalidate>
+                <section>
+                    <div class="  candidate-profile-section clearfix">
+                        <div class="row" style="margin-top: 20px">
+                            <div class="search-wrapper">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form">
+                                    <div class="clearfix">
+                                        <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-elements ">-->
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-elements ">
+                                            <label>State Name</label>
+                                            <input type="text" ng-keypress='isCharacterFunction($event)' style="text-transform: capitalize"  minlength="2"  placeholder="Enter State Name" name="stateName" ng-model="addnewData.stateName" required />
+                                            <div ng-show="addnew.$submitted || addnew.countryName.$touched">
+                                                <div class="error-message" ng-show="addnew.stateName.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <div class="error-message" ng-show="addnew.stateName.$invalid && addnew.stateName.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i>State name must be at least 2 characters long.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad text-center">
+
+                                <button style="width: 50%;" type="submit" class="btn btn-primary sbmt-btn" ng-click="addnew.$valid && addConfirm()">ADD STATE</button>
+
+
+                        </div>
+                    </div>
+
+                </section>
+
+            </form>
+        </div>
+    </script>
+</div> <!-- **************************************************************************
+    ******************* Modal to display msg **************************************
+    *******************************************************************************-->
+<script type="text/ng-template" id="display_msg_modalDialog">
+    <div class="ngdialog-message">
+        <h4>{{displaymsg}}</h4>
+        <a type="submit" ng-click="updatePage()" class="btn btn-primary" style="margin-top:20px;">OK</a>
+        <div style="clear: both;"></div>
+    </div>
+</script>
+<!-- **************************************************************************
+******************* Modal to display unauth msg **************************************
+*******************************************************************************-->
+<script type="text/ng-template" id="unauth_msg_modalDialog">
+    <div class="ngdialog-message">
+        <h4>{{unAuthMsg}}</h4>
+        <a type="submit" ng-click="forceLogin()" class="btn btn-primary" style="margin-top:20px;">OK</a>
+        <div style="clear: both;"></div>
+    </div>
+</script>

@@ -1,0 +1,117 @@
+
+<form name="gateway" ng-submit="gateway.$valid && gatewayfunc(payment)" novalidate>
+    <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 banner" style="min-height: 522px;">
+
+        <div class="container" style="margin-top: 20px">
+            <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 col-xs-12 pad">
+
+                <span class="paymentDetails">PAYMENT DETAILS</span><br>
+                <span class="packageCost">Your package cost is $ {{packageSelected}}</span>
+            </div>
+
+            <div class="main-section col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 col-xs-12 candidate-profile-section clearfix">
+                <div class="row">
+                    <div class="search-wrapper">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form">
+
+                            <div class="clearfix">
+                            </div>
+
+                            <div  class="col-xs-12 col-sm-12 col-md-12 co-lg-12" style="margin: 20px 0" >
+
+
+                                    <span class="gatewayText">Enter Card Details</span>
+
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 co-lg-12" style="padding: 5px 0 0 0" >
+                                <div class="col-xs-12 col-sm-10 col-md-10 co-lg-10">
+                                    <div class="form-elements ">
+                                        <label>CARD NO</label>
+                                        <input id="myCardType" limit-to="18" type="text" ng-keypress='isNumberKey($event)' name="cardNo" placeholder="Enter Card No" ng-model="payment.cardNo" required>
+                                        <div ng-show="gateway.$submitted || gateway.cardNo.$touched">
+                                        <div class="error-message" ng-show="gateway.cardNo.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter Card NO.</div>
+                                        <!--<div class="error-message" ng-show="gateway.cardNo.$invalid&&gateway.cardNo.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Phone Number must be at least 10 characters long.</div>-->
+                                        </div>
+                                        <p class="log"></p>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-2 col-md-2 co-lg-2 pad cardimages">
+                                   <img id="amex" src="images/single/amex.svg" style="display: none;">
+                                   <img id="mastercard" src="images/single/mastercard.svg" style="display: none; ">
+                                   <img id="visa" src="images/single/visa.svg" style="display: none;  ">
+                                   <img id="discover" src="images/single/discover.svg" style="width: 60px;display: none;     margin-top: 15px;">
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 co-lg-12">
+                                    <div class=" col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding-left: 0;padding-right: 6px">
+                                        <div class="ProfileFormElements clearfix  form-elements col-xs-12 col-sm-12 col-md-12 co-lg-12 pad">
+                                            <div class="dropdown custom-select-box main-dropdown">
+                                                <label >EXPIRY MONTH</label>
+                                                <select  name="month" ng-model="payment.month" class="selectpicker" required ng-options="obj for obj in month">
+                                                    <option value="" disabled hidden>Select Month</option>
+                                                </select>
+                                                <div ng-show="gateway.$submitted ">
+                                                    <div class="error-message" ng-show="gateway.month.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter Expiry Month.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class=" col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding-left: 0;padding-right: 6px">
+                                        <div class="ProfileFormElements clearfix  form-elements col-xs-12 col-sm-12 col-md-12 co-lg-12 pad">
+                                            <div class="dropdown custom-select-box main-dropdown">
+                                                <label >EXPIRY YEAR</label>
+                                                <select  name="year" ng-model="payment.year" class="selectpicker" required ng-options="set for set in year">
+                                                    <option value="" disabled hidden>Select Year</option>
+                                                </select>
+                                                <div ng-show="gateway.$submitted ">
+                                                    <div class="error-message" ng-show="gateway.year.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter Expiry Year .</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=" col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding-left: 6px;padding-right: 0">
+                                        <div class=" form-elements col-xs-12 col-sm-12 col-md-12 co-lg-12 pad">
+                                            <label>CVV</label>
+                                            <input  minlength="3" maxlength="3" ng-keypress='isNumberKey($event)' name="cvv" placeholder="Enter CVV" ng-model="payment.cvc" required>
+                                            <div ng-show="gateway.$submitted || gateway.cvv.$touched">
+                                                <div class="error-message" ng-show="gateway.cvv.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter CVV.</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 co-lg-12 pad">
+                                        <div class="form-elements ">
+                                            <label>NAME ON CARD </label>
+                                            <input type="text" ng-keypress='FirsText($event)' name="name" placeholder="Enter Name" ng-model="payment.name" required>
+                                            <div ng-show="gateway.$submitted || gateway.name.$touched">
+                                                <div class="error-message" ng-show="gateway.name.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter Name.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="new-user container-fluid">
+                                        <div class="row">
+                                            <button type="submit" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sbmt-btn">PAY NOW</button>
+                                        </div>
+                                    </div>
+                                    <div style="margin-top: 20px">
+                                        you can also <a ng-click="payPalPayment()" style="cursor: pointer">pay with  <img src="images/single/paypal.svg" style="width: 65px"></a>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</form>
+<script>
+    $('.selectpicker').selectpicker({});
+</script>
+
+

@@ -1,0 +1,75 @@
+<div class="past-interview-container" ng-init="pastInterview(1)">
+    <div class="noData fullWidth" ng-if="numberOFInterviews == 0">
+        <h5>No Data Found.</h5>
+    </div>
+    <div class="past-inter" ng-repeat="i in interviewLIsts">
+    <ul>
+        <li class="clearfix">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse-{{$index}}">
+                <img ng-src="{{i.interviewerID.profilePicURL.thumbnail}}" class="pull-left interviewer-pic" alt="" />s
+                <div class="col-lg-11 col-md-11 col-sm-10 col-xs-10">
+                    <h4>{{i.interviewerID.firstName + ' '+ i.interviewerID.lastName}} {{'('+i.interviewerID.totalExperience}} {{i.interviewerID.totalExperience > 1 ? 'Yrs' : 'Yr'}})</h4>
+                    <p>{{i.interviewStartDate | date: 'MMM d, y'}}, {{i.interviewStartTime}}  <span ng-if="i.revaluation == true" ><b>( revaluated )</b></span> </span>  </p>
+                    <p ng-if="i.status==5">  <p>
+                </div>
+            </a>
+        </li>
+    </ul>
+   
+    <div id="collapse-{{$index}}" class="panel-collapse collapse collapseDetails">
+        <div class="panel-body">
+            <!--<h3>Profile Details</h3>-->
+            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 row">
+                    <span>STATUS :</span>
+                    <p ng-if="i.status == 6">Expired</p>
+                    <p ng-if="i.status == 7">Rejected</p>
+                    <p ng-if="i.status == 8">Cancelled</p>
+                    <p ng-if="i.status == 5">Completed</p>
+
+                <ul ng-if="i.status == 5">
+                    <li>
+                        <a target="_blank" href="{{i.video_url}}"><img src="images/view-video.png" alt="" /></a><br />
+                        <a href="{{i.video_url}}" download>Download Video</a>
+                    </li>
+                    <li>
+                        <a ng-click="viewChat(i, 0)"><img src="images/view-chat.png" alt="" /></a><br />
+                        <a ng-click="viewChat(i, 1)">Download Chat</a>
+                    </li>
+                    <li ng-if="i.status==5">
+                      leadershipScore: {{ i.leadershipScore }},
+                      socialSkillScore: {{ i.socialSkillScore }},
+                      communicationScore: {{ i.communicationScore }},
+                      backgroundScore : {{ i.backgroundScore }}
+                    </li>
+                </ul>
+                <div ng-if="i.status==7 && i.interviewerFeedback">
+                <span>REASON :</span> {{ i.interviewerFeedback }}
+                </div>
+            </div>
+            <div class="score-data col-lg-2 col-sm-3 col-md-2 col-xs-12 pull-right" ng-if="i.status == 5">
+                <h4>SCORE<br /><span>{{i.totalQualitativeGiven}}</span></h4>
+            </div>
+            
+             <div ng-if="!i.ratingByCandidate && i.status == 5">
+            <textarea  ng-model="i.description"></textarea>
+            <div class="rate-candidate-interview text-center">
+                <span ng-repeat="rating in ratings">Rate Interviewer
+                    <div star-rating rating-value="rating.current" max="rating.max" on-rating-selected="getSelectedRating(rating,i)"></div>
+                </span>
+            </div>
+            <input type="submit"  ng-click="submit_reviews(i)">
+    </div>
+        </div>
+    </div>
+    </div>
+    
+    <div class="pagination-container clearfix">
+        <pagination ng-if="numberOFInterviews > 10"
+                ng-model="currentPage"
+                total-items="numberOFInterviews"
+                max-size="maxSize"
+                boundary-links="true" ng-click="pastInterview(currentPage)">
+        </pagination>
+    </div>
+
+</div>

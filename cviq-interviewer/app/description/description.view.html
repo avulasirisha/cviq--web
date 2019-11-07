@@ -1,0 +1,175 @@
+<section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 banner dashboard">
+    <div class="container">
+        <form name="scoringForm" ng-submit="scoringForm.$valid&&submitScore(score)" novalidate>
+        <div class="row">
+            <div class="main-section2 main-section-profile col-lg-12 col-md-12 col-sm-12 col-xs-12 description-with-back clearfix">
+                <img class="bkBtn" back-button src="images/backButton.png" alt="" />
+                <div class="candidate-desc">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="col-lg-2 pic-outer">
+                                <div class="row">
+                                    <div class="profile-pic text-center">
+                                        <img class="candidate-pic" ng-src="{{candidateDetails.profilePicURL.original}}" alt="" />
+                                        <h5>{{candidateDetails.firstName+' '+candidateDetails.lastName}}<img src="images/badge.png" alt="" /></h5>
+                                        <p style="color: #fff">{{candidateDetails.profileTitle}}</p>
+                                    </div>
+                                    <div class="candidate-details">
+                                        <h4>My Work Experience</h4>
+                                        <p class="add-desc"><span>Total Exp:</span> {{candidateDetails.totalExperience}} {{candidateDetails.totalExperience > 1 ?' Yrs':' Yr'}}</p>
+                                        <p class="add-desc" ng-if="candidateDetails.profileTitle"><span>Designation:</span> {{candidateDetails.profileTitle}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-10 additional">
+                                <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad">
+                                    <h4 class="main-heading">Description</h4>
+                                    <p class="main-desc"><span class="head">Industry:</span> {{candidateDetails.industry}}</p>
+                                    <p class="main-desc"><span class="head">Functional Area:</span> {{candidateDetails.functionalArea}}</p>
+                                </section>
+                                <div class="or"></div>
+                                <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad">
+                                    <h4>Skills</h4>
+                                    <p><span ng-repeat="s in candidateDetails.keySkills track by $index">{{s}}{{$last ? '' : ($index==userData.keySkills.length-1) ? ', and ' : ',&nbsp;'}}</span></p>
+                                </section>
+                                <div class="or"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--ng-hide="candidateDetails.interviewFinished == false && candidateDetails.rateLater == false && candidateDetails.candidateQualitativeScore == 0"-->
+                <div class="marks" ng-hide="candidateDetails.interviewFinished == false && candidateDetails.rateLater == false && candidateDetails.candidateQualitativeScore == 0" ng-class="{'disableSection':candidateDetails.candidateQualitativeScore > 1}">
+
+                    <div class="rate-candidate-interview text-center" ng-if="candidateDetails.candidateQualitativeScore == 0">
+                        <span ng-repeat="rating in ratings">Rate Candidate
+                            <div star-rating rating-value="rating.current" max="rating.max" on-rating-selected="getSelectedRating(rating)"></div>
+                        </span>
+                    </div>
+                    <ul class="rating watchOnlyDetails fullWidth" ng-if="candidateDetails.candidateQualitativeScore > 1">Rate Candidate<br />
+                        <li ng-repeat="i in getNumber(number) track by $index">
+                            <span class="unrated-star" ng-class="{'rated-star':$index < candidateDetails.rating}"></span>
+                        </li>
+                    </ul>
+
+                    <ul class="score-contain col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <li>
+                            <h5>SME & Background</h5>
+                            <span>{{candidateDetails.totalBackgroundPoints}}</span>
+                            <input type="number" name="backGround" ng-model="score.backgroundPoints"  ng-max="{{candidateDetails.totalBackgroundPoints}}" ng-keypress='checKeys($event)'  required>
+                            <div ng-show="scoringForm.$submitted || scoringForm.backGround.$touched">
+                                <div class="error-message err" ng-show="scoringForm.backGround.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please enter background points.</div>
+                                <div class="error-message err" ng-show="scoringForm.backGround.$invalid&&scoringForm.backGround.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Points should not be greater than {{candidateDetails.totalBackgroundPoints}} .</div>
+                            </div>
+                        </li>
+                        <li>
+                            <h5>Communication</h5>
+                            <span>{{candidateDetails.totalCommunicationPoints}}</span>
+                            <input type="number" name="communication" ng-model="score.communicationPoints" ng-keypress='checKeys($event)' ng-max="{{candidateDetails.totalCommunicationPoints}}" required>
+                            <div ng-show="scoringForm.$submitted || scoringForm.communication.$touched">
+                                <div class="error-message err" ng-show="scoringForm.communication.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please enter communication points.</div>
+                                <div class="error-message err" ng-show="scoringForm.communication.$invalid&&scoringForm.communication.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Points should not be greater than {{candidateDetails.totalCommunicationPoints}} .</div>
+                            </div>
+                        </li>
+                        <li>
+                            <h5>Social Skills & Situational Empathy</h5>
+                            <span>{{candidateDetails.totalSocialSkillPoints}}</span>
+                            <input type="number" name="social" ng-model="score.socialPoints" ng-keypress='checKeys($event)' ng-max="{{candidateDetails.totalSocialSkillPoints}}" required>
+                            <div ng-show="scoringForm.$submitted || scoringForm.social.$touched">
+                                <div class="error-message err" ng-show="scoringForm.social.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please enter social skill points.</div>
+                                <div class="error-message err" ng-show="scoringForm.social.$invalid&&scoringForm.social.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Points should not be greater than {{candidateDetails.totalSocialSkillPoints}} .</div>
+                            </div>
+                        </li>
+                        <li>
+                            <h5>Leadership & Management</h5>
+                            <span>{{candidateDetails.totalLeadershipPoints}}</span>
+                            <input type="number" name="leadership" ng-model="score.leadershipPoints" ng-keypress='checKeys($event)' ng-max="{{candidateDetails.totalLeadershipPoints}}" required>
+                            <div ng-show="scoringForm.$submitted || scoringForm.leadership.$touched">
+                                <div class="error-message err" ng-show="scoringForm.leadership.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please enter social skill points.</div>
+                                <div class="error-message err" ng-show="scoringForm.leadership.$invalid&&scoringForm.leadership.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Points should not be greater than {{candidateDetails.totalLeadershipPoints}} .</div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <textarea placeholder="Enter Feedback" ng-model="score.feedback" class="col-lg-6 col-md-6 col-sm-6 col-xs-12"></textarea>
+
+                </div>
+                <!-- add by gopi !-->
+                
+                
+        <div class="past-interview-container" ng-init="pastInterview(1)">
+    <div class="noData fullWidth" ng-if="numberOFInterviews == 0">
+        <h5>No Data Found.</h5>
+    </div>
+    <div class="past-inter" ng-repeat="i in interviewLIsts">
+    <ul>
+        <li class="clearfix">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse-{{$index}}">
+                <img ng-src="{{i.interviewerID.profilePicURL.thumbnail}}" class="pull-left interviewer-pic" alt="" />
+                <div class="col-lg-11 col-md-11 col-sm-10 col-xs-10">
+                    <h4>Interviewer : {{i.interviewerID.firstName + ' '+ i.interviewerID.lastName}} {{'('+i.interviewerID.totalExperience}} {{i.interviewerID.totalExperience > 1 ? 'Yrs' : 'Yr'}})</h4>
+                    <p>{{i.interviewStartDate | date: 'MMM d, y'}}, {{i.interviewStartTime}}</p>
+                </div>
+            </a>
+        </li>
+    </ul>
+    <div id="collapse-{{$index}}" class="panel-collapse collapse collapseDetails">
+        <div class="panel-body">
+
+            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 row">
+                   <span>STATUS :</span>
+                    <p ng-if="i.status == 6">Expired</p>
+                    <p ng-if="i.status == 7">Rejected</p>
+                    <p ng-if="i.status == 8">Cancelled</p>
+                    <p ng-if="i.status == 5">Completed</p>
+
+                <ul ng-if="i.status == 5">
+                    <li>
+                        <a target="_blank" href="{{i.video_url}}"><img src="images/view-video.png" alt="" /></a><br />
+                        <a href="{{i.video_url}}" download>Download Video</a>
+                    </li>
+                    <li>
+                        <a ng-click="viewChat(i, 0)"><img src="images/view-chat.png" alt="View Chat" /></a><br />
+                        <a ng-click="viewChat(i, 1)">Download Chat</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="score-data col-lg-2 col-sm-3 col-md-2 col-xs-12 pull-right" ng-if="i.status == 5">
+                <h4>SCORE<br /><span>{{i.totalQualitativeGiven}}</span></h4>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="pagination-container clearfix">
+        <pagination ng-if="numberOFInterviews > 10"
+                ng-model="currentPage"
+                total-items="numberOFInterviews"
+                max-size="maxSize"
+                boundary-links="true" ng-click="pastInterview(currentPage)">
+        </pagination>
+    </div>
+
+</div>
+
+<!--   add by gopi exit --->
+                
+                
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="candidateDetails.interviewFinished == false && candidateDetails.rateLater == false && candidateDetails.candidateQualitativeScore == 0 || candidateDetails.candidateQualitativeScore > 1">
+                <div class="row">
+                    <div class="text-center btn-sets">
+                        <button type="submit" class="sbmt-btn">SUBMIT</button>
+                        <button type="button" ng-click="resetData()" class="sbmt-btn">RESET</button>
+                        <button type="button" ng-click="rateLaterPopup()" class="sbmt-btn">RATE LATER</button>
+                        <!--ng-if="candidateDetails.rateLater == false"-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+</section>
+<script type="text/ng-template" id="rateLater" class="ngDialog-theme-default">
+    <p class="rate-message">You will have to Rate David John within<br />24 hours.</p>
+    <button type="button" ng-click="rateLaterForRating(score)">OK</button>
+</script>

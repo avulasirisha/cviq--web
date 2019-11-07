@@ -1,0 +1,330 @@
+<h3>
+   SCORES
+    <!--<small>Displaying list of all the drivers in the system.</small>-->
+</h3>
+<style>
+    .whirl:after {  position: fixed;  }
+    .scores input{text-align: center}
+    h2{color: #0297cf;  }
+    h3{color: #0297cf;  }
+</style>
+<div ng-controller="ScoresController" class="container-fluid" >
+    <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " ng-class="{'whirl duo' : showloader }">
+            <div class="  candidate-profile-section clearfix">
+                <div class="row" style="margin-top: 20px">
+                    <div class="search-wrapper">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form">
+                            <div class="clearfix col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <form name="NewScore" novalidate>
+                                    <div class="col-lg-3 col-lg-offset-2 col-md-4 col-md-offset-2 col-sm-6 col-xs-6 text-center">
+                                        <h2 style="margin-top: 13px;">QUANTITATIVE</h2>
+                                    </div>
+                                    <div class="col-lg-3  col-md-4 col-sm-6 col-xs-6 form-elements ">
+                                        <label>Maximum Total</label>
+                                        <input type="number" min="0" limit-to="4" ng-change="checkTotal()" ng-keypress='isNumberKey($event)'  placeholder="Enter Maximum Value" name="totalQuantitativeScore" ng-model="quantitative.totalQuantitativeScore" required />
+                                        <div ng-show="NewScore.$invalid">
+                                            <div class="error-message1" ng-show="NewScore.$invalid"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter Maximum Total Value.</div>
+                                            <!--<div class="error-message1" ng-show="NewPlan.planRate.$invalid && NewPlan.planRate.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i>Job Title must be at least 3 characters long.</div>-->
+                                        </div>
+                                    </div>
+                                </form>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad scores" >
+                                        <form name="Education" novalidate>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 pad" style="margin-bottom: 40px">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " style="margin-bottom: 14px;">
+                                                    <div class="col-lg-10 col-lg-offset-2 col-md-12 col-sm-12 col-xs-12 pad">
+                                                        <h3 style="margin-top: 4px">EDUCATION</h3>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " style="margin-bottom: 15px">
+                                                    <div class="col-lg-4 col-lg-offset-2 col-md-6 col-sm-6 col-xs-6 ">
+                                                        <h4><b>Total Points</b></h4>
+                                                    </div>
+
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                                        <input style="width: 50px;" type="number" min="0" limit-to="4" ng-change="checkTotal()" ng-keypress='isNumberKey($event)'  name="educationTotalPoints" ng-model="quantitative.educationTotalPoints" required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                                    <div class="col-lg-4 col-lg-offset-2 col-md-6 col-sm-6 col-xs-6 ">
+                                                        <h5>Doctorate Degree</h5>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                                        <input style="width: 50px;" type="number" min="0" limit-to="4" ng-max="quantitative.educationTotalPoints" ng-keypress='isNumberKey($event)'  name="Doctorate" ng-model="quantitative.Doctorate" required />
+                                                        <!--<span >points</span>-->
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                                    <div class="col-lg-4 col-lg-offset-2 col-md-6 col-sm-6 col-xs-6 ">
+                                                        <h5>Masters Degree</h5>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                                        <input style="width: 50px;" type="number" min="0" limit-to="4"  ng-max="quantitative.educationTotalPoints" ng-keypress='isNumberKey($event)'  name="PostGraduation" ng-model="quantitative.PostGraduation" required />
+                                                        <!--<span >points</span>-->
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                                    <div class="col-lg-4 col-lg-offset-2 col-md-6 col-sm-6 col-xs-6 ">
+                                                        <h5>Bachelor's Degree</h5>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                                        <input style="width: 50px;" type="number" min="0" limit-to="4"  ng-max="quantitative.educationTotalPoints" ng-keypress='isNumberKey($event)'  name="Graduation" ng-model="quantitative.Graduation" required />
+                                                        <!--<span >points</span>-->
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                                    <div class="col-lg-4 col-lg-offset-2 col-md-6 col-sm-6 col-xs-6 ">
+                                                        <h5>Associate Degree</h5>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                                        <input style="width: 50px;" type="number" min="0" limit-to="4"  ng-max="quantitative.educationTotalPoints" ng-keypress='isNumberKey($event)'  name="AssociateDegree" ng-model="quantitative.AssociateDegree" required />
+                                                        <!--<span >points</span>-->
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                                    <div class="col-lg-4 col-lg-offset-2 col-md-6 col-sm-6 col-xs-6 ">
+                                                        <h5>High School</h5>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                                        <input style="width: 50px;" type="number" min="0" limit-to="4"  ng-max="quantitative.educationTotalPoints" ng-keypress='isNumberKey($event)'  name="HighSchool" ng-model="quantitative.HighSchool" required />
+                                                        <!--<span >points</span>-->
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-7 col-lg-offset-5 col-md-9 col-md-offset-3 col-sm-7 col-sm-offset-5 col-xs-9 col-xs-offset-3 " ng-show="Education.$invalid" >
+                                                    <div class="error-message1" ng-show="Education.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter all Education Fields.</div>
+                                                    <div class="error-message1" ng-show="!Education.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> All values should be between 0 & {{quantitative.educationTotalPoints}}</div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <form name="Certifications" novalidate>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 pad">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad" style="margin-bottom: 14px;">
+                                                    <div class="col-lg-10 col-lg-offset-2 col-md-12 col-sm-12 col-xs-12 pad">
+                                                        <h3 style="margin-top: 4px">CERTIFICATIONS</h3>
+                                                    </div>
+                                                </div>
+                                                <div style="margin-bottom: 8px" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                                    <div class="col-lg-4 col-lg-offset-2 col-md-6 col-sm-6 col-xs-6 pad">
+                                                        <h4><b>Total Points</b></h4>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                                        <input style="width: 50px;" type="number" min="0" limit-to="4" ng-change="checkTotal()" ng-keypress='isNumberKey($event)'  name="certificationTotalPoints" ng-model="quantitative.certificationTotalPoints" required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                                    <div class="col-lg-4 col-lg-offset-2 col-md-6 col-sm-6 col-xs-6 pad">
+                                                        <h5>Max no of Certifications</h5>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                                        <input style="width: 50px;" type="number" min="0" limit-to="4" ng-keypress='isNumberKey($event)'  name="maxCertificateLimit" ng-model="quantitative.maxCertificateLimit" required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-7 col-lg-offset-5 col-md-9 col-md-offset-3 col-sm-7 col-sm-offset-5 col-xs-9 col-xs-offset-3" ng-show="Certifications.$invalid">
+                                                    <div class="error-message1" ng-show="Certifications.$invalid"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter all Certifications Fields.</div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <form name="Patents" novalidate>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 pad" style="margin-top: 20px">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad" style="margin-bottom: 14px;">
+                                                    <div class="col-lg-10 col-lg-offset-2 col-md-12 col-sm-12 col-xs-12 pad">
+                                                        <h3 style="margin-top: 4px">PUBLICATIONS & PATENTS</h3>
+                                                    </div>
+                                                </div>
+                                                <div style="margin-bottom: 8px" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                                    <div class="col-lg-4 col-lg-offset-2 col-md-6 col-sm-6 col-xs-6 pad">
+                                                        <h4 ><b>Total Points</b></h4>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                                        <input style="width: 50px;" type="number" min="0" limit-to="4" ng-change="checkTotal()" ng-keypress='isNumberKey($event)'  name="patentTotalPoints" ng-model="quantitative.patentTotalPoints" required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                                    <div class="col-lg-4 col-lg-offset-2 col-md-6 col-sm-6 col-xs-6 pad">
+                                                        <h5>Max no of Patents</h5>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                                        <input style="width: 50px;" type="number" min="0" limit-to="4" ng-keypress='isNumberKey($event)'  name="maxPatentLimit" ng-model="quantitative.maxPatentLimit" required />
+                                                    </div>
+                                                </div>
+                                                <div ng-show="NewScore.$submitted">
+                                                    <div class="error-message1" ng-show="NewScore.patentTotalPoints.$error.required || NewScore.maxPatentLimit.$error.required "><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Total Patent Points and Patent limit is Required.</div>
+                                                </div>
+                                                <div class="col-lg-7 col-lg-offset-5 col-md-9 col-md-offset-3 col-sm-7 col-sm-offset-5 col-xs-9 col-xs-offset-3" ng-show="Patents.$invalid">
+                                                    <div class="error-message1" ng-show="Patents.$invalid"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter all Publications & Patents Fields.</div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                <form name="NewExp" novalidate>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 pad scores">
+                                        <div class=" col-lg-10 col-lg-offset-2 col-md-12 col-sm-12 col-xs-12 pad">
+                                            <h3 style="padding: 14px">EXPERIENCE</h3>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                            <div class="col-lg-4 col-lg-offset-2 col-md-6 col-sm-6 col-xs-6 ">
+                                                <h4><b>Total Points</b></h4>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                                <input style="width: 50px;" type="number" min="0" limit-to="4" ng-change="checkTotal();checkExpTotal()"  ng-keypress='isNumberKey($event)'  name="experienceTotalPoints" ng-model="quantitative.experienceTotalPoints" required />
+                                            </div>
+                                        </div>
+                                        <div class="table-responsive col-lg-10 col-lg-offset-2 col-md-12 col-sm-12 col-xs-12 pad">
+                                            <table  class="table" style="width: 100%;" >
+                                                <tbody >
+                                                <div ng-repeat="exp in experiencePointsDetail" class="col-lg-12  col-md-12 col-sm-12 col-xs-12 pad scoresForm">
+                                                    <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12 pad scoresForm">
+                                                        <input type="number" min="0" limit-to="2" max="50" ng-keypress='isNumberKey($event)'   ng-model="exp.minYearRange" required />
+                                                        <span style="margin: 2px 10px;">-</span>
+                                                        <input ng-disabled="$index == experiencePointsDetail.length-1 " type="number" min="0" limit-to="2" max="50" ng-keypress='isNumberKey($event)'   ng-model="exp.maxYearRange"  required/>
+                                                        <span style="margin: 2px 10px;">years</span>
+                                                        <span style="margin: 2px 10px;">-</span>
+                                                        <input type="number" min="0" ng-change="checkExpTotal()" limit-to="4" ng-keypress='isNumberKey($event)'   ng-model="exp.points"  required/>
+                                                        <span style="margin: 2px 10px;">points </span>
+                                                    <span style="margin: 2px 10px;">
+                                                         <a ng-hide="experiencePointsDetail.length == 2 || $index == experiencePointsDetail.length-1 " class="btn btn-sm btn-default1" ng-click="deleteExp($index)" title="Delete" style="margin-top:5px;background-color: #f5f7fa;">
+                                                             <i style="color: #0297cf" class="fa fa-trash-o block-icon"></i></a>
+                                                    </span>
+                                                    </div>
+                                                    <!--<div ng-show="exp.maxYearRange == 50" class="col-lg-12  col-md-12 col-sm-12 col-xs-12 pad scoresForm">-->
+                                                        <!--<span style="margin: 2px 10px;"> &nbsp &nbsp &nbsp &nbsp &nbsp </span>-->
+                                                        <!--<span style="margin: 2px 10px;"> > </span>-->
+                                                        <!--<input type="number" min="0" ng-keypress='isNumberKey($event)'   ng-model="exp.minYearRange" required />-->
+                                                        <!--<span style="margin: 2px 10px;">years</span>-->
+                                                        <!--<span style="margin: 2px 10px;">-</span>-->
+                                                        <!--<input type="number" min="0" ng-change="checkExpTotal()" ng-keypress='isNumberKey($event)'  ng-model="exp.points" required />-->
+                                                        <!--<span style="margin: 2px 10px;">points </span>-->
+                                                    <!--</div>-->
+                                                </div>
+                                                </tbody>
+                                            </table>
+                                            <div class="col-lg-9 col-lg-offset-3 col-md-9 col-md-offset-3 col-sm-9 col-sm-offset-3 col-xs-9 col-xs-offset-3 pad scoresForm ">
+                                                <button id="addButton1"   ng-click="addExp()">ADD</button>
+                                            </div>
+                                        </div>
+                                        <div style="margin-top: 15px;" class="col-lg-9 col-lg-offset-3 col-md-9 col-md-offset-3 col-sm-7 col-sm-offset-5 col-xs-9 col-xs-offset-3 " ng-show="NewExp.$invalid" >
+                                            <div class="error-message1" ng-show="NewExp.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter all Education Fields.</div>
+                                            <div class="error-message1" ng-show="NewExp.$invalid && !NewExp.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Experience year value cannot be more than 50.</div>
+                                        </div>
+                                        <div style="margin-top: 15px;" class="col-lg-9 col-lg-offset-3 col-md-11 col-md-offset-1 col-sm-10 col-sm-offset-2 col-xs-10 col-xs-offset-2 pad" ng-show="!NewExp.$invalid && flag1">
+                                            <div class="error-message1" ng-show="flag1"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Individual Points cannot be more than Total Points.</div>
+                                        </div>
+
+                                    </div>
+
+                                </form>
+                                <form name="NewAward" novalidate>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 pad scores">
+                                        <div class="col-lg-10 col-lg-offset-2 col-md-12 col-sm-12 col-xs-12 pad">
+                                            <h3 style="padding: 14px">AWARDS & ACCOMPLISHMENTS</h3>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                            <div class="col-lg-4 col-lg-offset-2 col-md-6 col-sm-6 col-xs-6 ">
+                                                <h4><b>Total Points</b></h4>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                                <input style="width: 50px;" limit-to="4" type="number" min="0" ng-change="checkTotal();checkAwardsTotal()" ng-keypress='isNumberKey($event)'  name="awardTotalPoints" ng-model="quantitative.awardTotalPoints" required />
+                                            </div>
+                                        </div>
+                                        <div class="table-responsive col-lg-10 col-lg-offset-2 col-md-12 col-sm-12 col-xs-12 pad">
+                                            <table  class="table" style="width: 60%;" >
+                                                <tbody >
+
+                                                <div ng-repeat="awards in awardPointsDetail" class="col-lg-12  col-md-12 col-sm-12 col-xs-12 pad scoresForm">
+                                                    <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12 pad scoresForm">
+                                                        <input type="number" min="0" limit-to="2" max="50" ng-keypress='isNumberKey($event)'  name="addAwardsMin" ng-model="awards.minRange" required />
+                                                        <span style="margin: 2px 10px;">-</span>
+                                                        <input ng-disabled="$index == awardPointsDetail.length-1 " type="number" min="0"  limit-to="2" max="50" ng-keypress='isNumberKey($event)'  name="addAwardsMax" ng-model="awards.maxRange" required />
+                                                        <span style="margin: 2px 10px;">years</span>
+                                                        <span style="margin: 2px 10px;">-</span>
+                                                        <input type="number" min="0" ng-change="checkAwardsTotal()" ng-keypress='isNumberKey($event)' limit-to="4"  name="addAwardsPoints" ng-model="awards.points" required />
+                                                        <span style="margin: 2px 10px;">points </span>
+                                                    <span style="margin: 2px 10px;">
+                                                         <a ng-hide="awardPointsDetail.length == 2 || $index == awardPointsDetail.length-1 " class="btn btn-sm btn-default1" ng-click="deleteAwards($index)" title="Delete" style="margin-top:5px;background-color: #f5f7fa;">
+                                                             <i style="color: #0297cf" class="fa fa-trash-o block-icon"></i></a>
+                                                    </span>
+                                                    </div>
+                                                    <!--<div ng-show="awards.maxRange == 50" class="col-lg-12  col-md-12 col-sm-12 col-xs-12 pad scoresForm">-->
+                                                        <!--<span style="margin: 2px 10px;"> &nbsp &nbsp &nbsp &nbsp &nbsp </span>-->
+                                                        <!--<span style="margin: 2px 10px;"> > </span>-->
+                                                        <!--<input type="number" min="0" ng-keypress='isNumberKey($event)'  name="addAwardsMin" ng-model="awards.minRange" required />-->
+
+                                                        <!--<span style="margin: 2px 10px;">years</span>-->
+                                                        <!--<span style="margin: 2px 10px;">-</span>-->
+                                                        <!--<input type="number" min="0" ng-change="checkAwardsTotal()" ng-keypress='isNumberKey($event)'  name="addAwardsPoints" ng-model="awards.points"  required/>-->
+                                                        <!--<span style="margin: 2px 10px;">points </span>-->
+                                                    <!--</div>-->
+
+                                                </div>
+                                                </tbody>
+                                            </table>
+                                            <div class="col-lg-9 col-lg-offset-3 col-md-9 col-md-offset-3 col-sm-9 col-sm-offset-3 col-xs-9 col-xs-offset-3 pad scoresForm">
+                                                <button id="addButton2" type="submit"  ng-click="addAwards()">ADD</button>
+                                            </div>
+                                        </div>
+
+                                        <div style="margin-top: 15px;" class="col-lg-9 col-lg-offset-3 col-md-11 col-md-offset-1 col-sm-10 col-sm-offset-2 col-xs-10 col-xs-offset-2 pad" ng-show="NewAward.$invalid">
+                                            <div class="error-message1" ng-show="NewAward.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter all Awards & Accomplishments Fields.</div>
+                                            <div class="error-message1" ng-show="NewAward.$invalid && !NewAward.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Awards count cannot be more than 50.</div>
+                                        </div>
+                                        <div style="margin-top: 15px;" class="col-lg-9 col-lg-offset-3 col-md-11 col-md-offset-1 col-sm-10 col-sm-offset-2 col-xs-10 col-xs-offset-2 pad" ng-show="!NewAward.$invalid && flag2">
+                                            <div class="error-message1" ng-show="flag2"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Individual Points cannot be more than Total Points.</div>
+                                        </div>
+
+
+                                    </div>
+
+                                </form>
+
+                                <div ng-show="sumError" class="col-lg-12  col-md-12  col-sm-12  col-xs-12 pad text-center scoresForm">
+                                    <div class="error-message1"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Sum of All Total Points must be equal to Total Quantitative Score</div>
+                                </div>
+                                <div class="col-lg-12  col-md-12  col-sm-12  col-xs-12 pad text-center scoresForm">
+                                    <button ng-hide="sumError || flag1 || flag2" style="width: 150px;padding: 10px;margin-top: 25px;" type="submit"  ng-click="NewAward.$valid && NewExp.$valid && NewScore.$valid && Education.$valid && Certifications.$valid && Patents.$valid && save()">SAVE</button>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+</div>
+
+<script type="text/ng-template" id="success">
+    <div class="ngdialog-message">
+        <h4 style="text-align: center">Plan added successfully</h4>
+        <!-- POP UP -->
+
+    </div>
+</script>
+<script type="text/ng-template" id="error">
+    <div class="ngdialog-message">
+        <h4 style="text-align: center">{{error}}</h4>
+
+    </div>
+</script>
+
+<!-- **************************************************************************
+    ******************* Modal to display msg **************************************
+    *******************************************************************************-->
+<script type="text/ng-template" id="display_msg_modalDialog">
+    <div class="ngdialog-message">
+        <h4>{{displaymsg}}</h4>
+        <a type="submit" ng-click="refreshPage()" class="btn btn-primary" style="margin-top:20px;text-align: center">OK</a>
+        <div style="clear: both;"></div>
+    </div>
+</script>
+<!-- **************************************************************************
+******************* Modal to display unauth msg **************************************
+*******************************************************************************-->
+<script type="text/ng-template" id="unauth_msg_modalDialog">
+    <div class="ngdialog-message">
+        <h4>{{unAuthMsg}}</h4>
+        <a type="submit" ng-click="forceLogin()" class="btn btn-primary" style="margin-top:20px;text-align: center">OK</a>
+        <div style="clear: both;"></div>
+    </div>
+</script>

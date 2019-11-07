@@ -1,0 +1,305 @@
+<form name="resumeForm" ng-submit="resumeForm.$valid&&saveResume(register)" novalidate>
+    <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 candidate-dashboard">
+        <div class="container">
+            <div class="row col-lg-7 col-md-7 col-sm-12 col-xs-12 candidate-dashboard-inner clearfix">
+                <h1 class="text-left">CREATE RESUME</h1>
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form resume-temp">
+                            <div class="clearfix">
+                                <div class="form-elements fifty-comb pull-left">
+                                    <label>NAME</label>
+                                    <input type="text" class="fname cap" ng-keypress='FirsText($event)' minlength="3" maxlength="60" placeholder="Enter Name" name="firstName" ng-model="register.Name" required>
+                                    <div ng-show="resumeForm.$submitted || resumeForm.firstName.$touched">
+                                        <div class="error-message" ng-show="resumeForm.firstName.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please enter your name.</div>
+                                        <div class="error-message" ng-show="resumeForm.firstName.$invalid&&resumeForm.firstName.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Name must be at least 3 characters long.</div>
+                                    </div>
+                                </div>
+                                <div class="form-elements fifty-comb pull-right">
+                                    <label>PHONE NUMBER</label>
+                                    <input class="phone" type="text" minlength="10" ng-keypress='isNumberKey($event)' maxlength="10" name="mobile" ng-pattern="/^[1-9]{1}[0-9]{9}$/" placeholder="Enter Phone Number" ng-model="register.mobileNumber" required>
+                                    <div ng-show="resumeForm.$submitted || resumeForm.mobile.$touched">
+                                        <div class="error-message" ng-show="resumeForm.mobile.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please enter phone number.</div>
+                                        <div class="error-message" ng-show="resumeForm.mobile.$error.pattern"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Phone number must be valid & 10 characters long.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="clearfix">
+                                <div class="form-elements">
+                                    <label>EMAIL ADDRESS</label>
+                                    <input class="mail" type="text" name="email" placeholder="Enter Email" ng-model="register.email" ng-pattern="myregex" style="text-transform: none" required>
+                                    <div ng-show="resumeForm.$submitted || resumeForm.email.$touched">
+                                        <div class="error-message" ng-show="resumeForm.email.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please enter a valid email.</div>
+                                        <div class="error-message" ng-show="resumeForm.email.$error.pattern"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please enter a valid email.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="clearfix">
+                                <div class="form-elements">
+                                    <label>OVERVIEW</label>
+                                    <textarea ng-model="register.overview" my-enter></textarea>
+                                </div>
+                            </div>
+                            <h4>Experience</h4>
+
+                            <div class="experience-section" ng-repeat="item in items | limitTo:5" style="margin-bottom: 20px;">
+                                <div class="clearfix">
+                                    <div class="form-elements">
+                                        <label>COMPANY NAME</label>
+                                        <input type="text" class="fname" maxlength="50" name="company-{{$index}}" ng-keypress='isAlphaKey($event)' placeholder="Enter Company Name" ng-model="item.register.companyName" ng-required="item.register.from || item.register.description">
+                                        <div ng-if="item.register.description">
+                                            <div class="error-message" ng-show="resumeForm['company-'+$index].$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix">
+                                    <div class="form-elements fifty-comb pull-left">
+                                        <label>FROM</label>
+                                        <input type="text" id="datetimepickerfrom-{{$index}}" onkeydown="return false" class="calender-bg datetimepickerfrom" name="from-{{$index}}" ng-keypress='FirsText($event)' placeholder="Enter From" ng-model="item.register.from" ng-required="item.register.companyName">
+                                        <!--<div ng-if="item.register.time || item.register.description">-->
+                                            <!--<div class="error-message" ng-show="resumeForm['from-'+$index].$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>-->
+                                        <!--</div>-->
+                                        <div ng-if="item.register.companyName || (item.from.y > items.too.y) || (item.from.y == item.too.y && item.from.m > item.too.m)">
+                                            <div class="error-message" ng-show="resumeForm['from-'+$index].$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please enter From Date.</div>
+                                            <div class="error-message"  ng-show="(item.from.y > item.too.y) || (item.from.y == item.too.y && item.from.m > item.too.m)"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> From date should not be greater then To date.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-elements fifty-comb pull-right">
+                                        <div class="pass-outer">
+                                            <label>TO</label>
+                                            <input type="text" id="datetimepickerto-{{$index}}" onkeydown="return false" class="calender-bg datetimepickerto" name="to-{{$index}}" placeholder="Enter To" ng-model="item.register.to" ng-disabled="item.register.cEmp" ng-required="item.register.companyName&&!item.register.cEmp">
+                                            <div ng-if="item.register.companyName">
+                                                <div class="error-message" ng-show="resumeForm['to-'+$index].$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please enter To Date.</div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix">
+                                    <div class="form-elements">
+                                        <label>DESCRIPTION</label>
+                                        <textarea ng-model="item.register.description" name="descriptions-{{$index}}" ng-required="item.register.companyName"></textarea>
+                                        <div ng-if="item.register.companyName">
+                                            <div class="error-message" ng-show="resumeForm['descriptions-'+$index].$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <input ng-init="item.register.cEmp = false" type="checkbox" ng-change="item.register.to = item.register.cEmp ? '' : item.register.to" ng-checked="cEmp" ng-model="item.register.cEmp" ng-click="updateSelection($index, items)" class="currentEmp" name="emp" id="'employer-'{{$index}}">
+                                <label for="'employer-'{{$index}}" class="conditions checkbox-label"> Current Employer</label>
+
+                            </div>
+
+
+                            <!--<div class="experience-section" ng-repeat="item in items | limitTo:5" style="margin-bottom: 20px;">-->
+                                <!--<div class="clearfix">-->
+                                    <!--<div class="form-elements fifty-comb pull-left">-->
+                                        <!--<label>COMPANY</label>-->
+                                        <!--<input type="text" class="fname" name="company-{{$index}}" ng-keypress='FirsText($event)' placeholder="Enter Company Name" ng-model="item.register.companyName" ng-required="item.register.time || item.register.description">-->
+                                        <!--<div ng-if="item.register.time || item.register.description">-->
+                                            <!--<div class="error-message" ng-show="resumeForm['company-'+$index].$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="form-elements fifty-comb pull-right">-->
+                                        <!--<div class="pass-outer">-->
+                                            <!--<label>TIME PERIOD</label>-->
+                                            <!--<input type="text" name="timePeriod-{{$index}}" placeholder="Eg. 2 Years 3 Months" ng-model="item.register.time" ng-required="item.register.companyName">-->
+                                            <!--<div ng-if="item.register.companyName">-->
+                                                <!--<div class="error-message" ng-show="resumeForm['timePeriod-'+$index].$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>-->
+                                            <!--</div>-->
+
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="clearfix">-->
+                                    <!--<div class="form-elements">-->
+                                        <!--<label>DESCRIPTION</label>-->
+                                        <!--<textarea ng-model="item.register.description" name="descriptions-{{$index}}" ng-required="item.register.companyName"></textarea>-->
+                                        <!--<div ng-if="item.register.companyName">-->
+                                            <!--<div class="error-message" ng-show="resumeForm['descriptions-'+$index].$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <div class="text-right add-more"><a ng-click="addMore(register)">+ Add More</a></div>
+
+                            <div class="form-elements keySkills">
+                                <div class="pass-outer">
+                                    <label>SKILLS</label>
+                                    <input type="text" class="cap" ng-focus="instruct()" maxlength="50" id="keySkills" ng-keypress='FirsText($event)' name="keySkills" ng-model="register.skills" placeholder="Enter Key Skills">
+                                    <div class="instructions" ng-if="tips">
+                                        <ul>
+                                            <li>List your work related skills / competency area to provide a quick overview of your abilities.</li>
+                                            <li>Enter skills seperated by comma (,).</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h4>Education</h4>
+                            <div class="education" ng-repeat="edu in educations | limitTo:5" style="margin-bottom: 20px;">
+                                <div class="clearfix">
+                                    <div class="form-elements fifty-comb pull-left">
+                                        <div class="ProfileFormElements clearfix form-elements">
+                                            <div class="dropdown custom-select-box main-dropdown">
+                                                <label>HIGHEST QUALIFICATION</label>
+                                                <input type="text" ng-keypress='FirsText($event)' name="highQual-{{$index}}" maxlength="20" placeholder="Enter Qualification" ng-model="edu.register.qualification" ng-required="edu.register.specialization || edu.register.institute || edu.register.yearPassing">
+                                                <div ng-if="edu.register.specialization || edu.register.institute || edu.register.yearPassing">
+                                                    <div class="error-message" ng-show="resumeForm['highQual-'+$index].$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-elements fifty-comb pull-right">
+                                        <label>SPECIALIZATION</label>
+                                        <input type="text" class="fname" name="special-{{$index}}" maxlength="20" ng-keypress='FirsText($event)' placeholder="Select Specialization" ng-model="edu.register.specialization" ng-required="edu.register.qualification">
+                                        <div ng-if="edu.register.qualification">
+                                            <div class="error-message" ng-show="resumeForm['special-'+$index].$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix">
+                                    <div class="form-elements fifty-comb pull-left">
+                                        <div class="ProfileFormElements clearfix form-elements">
+                                            <div class="dropdown custom-select-box main-dropdown">
+                                                <label>YEAR OF PASSING</label>
+                                                <input type="text" ng-keypress='isNumberKey($event)' minlength="4" ng-pattern="/^[1-9]{1}[0-9]{3}$/" name="yearpass-{{$index}}" maxlength="4" placeholder="Enter Year of Passing" ng-model="edu.register.yearPassing" ng-required="edu.register.qualification">
+                                                <div ng-if="edu.register.qualification">
+                                                    <div class="error-message" ng-show="resumeForm['yearpass-'+$index].$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                    <div class="error-message" ng-show="resumeForm['yearpass-'+$index].$error.pattern"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Year must be valid & 4 characters long.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-elements fifty-comb pull-right">
+                                        <div class="ProfileFormElements clearfix form-elements">
+                                            <div class="dropdown custom-select-box main-dropdown">
+                                                <label>INSTITUTE</label>
+                                                <input type="text" ng-keypress='isAlphaKey($event)' name="institute-{{$index}}" maxlength="20" placeholder="Enter Institute" ng-model="edu.register.institute" ng-required="edu.register.qualification">
+                                                <div ng-if="edu.register.qualification">
+                                                    <div class="error-message" ng-show="resumeForm['institute-'+$index].$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                </div>
+            </div>
+                <div class="row col-lg-5 col-md-5 col-sm-12 col-xs-12 resume pull-right">
+                        <div id="resume">
+                            <p class="cap" ng-bind="register.Name"></p>
+                            <p ng-bind="register.mobileNumber"></p>
+                            <p ng-bind="register.email"></p>
+                            <label ng-if="register.overview">Overview</label>
+                            <div class="divAsTextArea" ng-bind="register.overview"></div>
+                            <div ng-repeat="item in items" style="margin-bottom: 20px;">
+                                <h4 ng-if="item.id == 1&&item.register.companyName.length>0">Experience</h4>
+                                <label ng-if="item.register.companyName">Company:</label>
+                                <p ng-bind="item.register.companyName"></p>
+
+                                <label ng-if="item.register.from">From:</label>
+                                <p ng-bind="item.register.from"></p>
+
+                                <label ng-if="item.register.to">To:</label>
+                                <p ng-bind="item.register.to"></p>
+
+                                <label ng-if="item.register.cEmp">To:</label>
+                                <p ng-if="item.register.cEmp">PRESENT</p>
+
+                                <label ng-if="item.register.description">Description: </label>
+                                <div class="divAsTextArea" ng-bind="item.register.description"></div>
+                            </div>
+
+
+                            <label ng-if="register.skills">Skills:</label>
+                            <p class="cap" ng-bind="register.skills"></p>
+                            <div class="col-lg-12" ng-repeat="edu in educations" style="margin-bottom: 20px; padding: 0">
+                                <h4 ng-if="edu.id ==1&&edu.register.qualification.length>0">Education</h4>
+                                <div class="col-lg-12" style="padding: 0">
+                                    <div class="col-lg-6" style="padding: 0">
+                                        <label ng-if="edu.register.qualification">Highest Qualification:</label>
+                                        <p ng-bind="edu.register.qualification"></p>
+                                        <label ng-if="edu.register.yearPassing">Year of Passing:</label>
+                                        <p ng-bind="edu.register.yearPassing"></p>
+                                    </div>
+                                    <div class="col-lg-6" style="padding: 0">
+                                        <label ng-if="edu.register.specialization">Specialization:</label>
+                                        <p ng-bind="edu.register.specialization"></p>
+                                        <label ng-if="edu.register.institute">Institute:</label>
+                                        <p ng-bind="edu.register.institute"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <p ng-show="resumeForm.$valid" style="color: #474747; text-transform: none">I hereby certify that all the information above is true and accurate.</p>
+                        </div>
+                    <div ng-show="resumeForm.$valid">
+                        <button type="button" ng-click="previewResume()" class="col-lg-5 col-md-5 col-sm-5 col-xs-12 sbmt-btn">PREVIEW</button>
+                        <div id="editor"></div>
+                        <button id="create_pdf" type="submit" class="col-lg-5 col-md-5 col-sm-5 col-xs-12 pull-right sbmt-btn">UPLOAD</button>
+                    </div>
+                </div>
+
+        </div>
+    </section>
+</form>
+<script type="text/ng-template" id="preview" class="previewResume">
+    <div class="resume clearfix">
+        <p class="cap" ng-bind="register.Name"></p>
+        <p ng-bind="register.mobileNumber"></p>
+        <p ng-bind="register.email"></p>
+        <label ng-if="register.overview">Overview</label>
+        <div class="divAsTextArea" ng-bind="register.overview"></div>
+        <div ng-repeat="item in items" style="margin-bottom: 20px;">
+            <h4 ng-if="item.id == 1&&item.register.companyName.length>0">Experience</h4>
+            <label ng-if="item.register.companyName">Company:</label>
+            <p ng-bind="item.register.companyName"></p>
+
+            <label ng-if="item.register.from">From:</label>
+            <p ng-bind="item.register.from"></p>
+
+            <label ng-if="item.register.to">To:</label>
+            <p ng-bind="item.register.to"></p>
+
+            <label ng-if="item.register.cEmp">To:</label>
+            <p ng-if="item.register.cEmp">PRESENT</p>
+
+            <label ng-if="item.register.description">Description: </label>
+            <div class="divAsTextArea" ng-bind="item.register.description"></div>
+        </div>
+
+
+        <label ng-if="register.skills">Skills:</label>
+        <p class="cap" ng-bind="register.skills"></p>
+        <div class="col-lg-12" ng-repeat="edu in educations" style="margin-bottom: 20px; padding: 0">
+            <h4 ng-if="edu.id ==1&&edu.register.qualification.length>0">Education</h4>
+            <div class="col-lg-12" style="padding: 0">
+                <div class="col-lg-6" style="padding: 0">
+                    <label ng-if="edu.register.qualification">Highest Qualification:</label>
+                    <p ng-bind="edu.register.qualification"></p>
+                    <label ng-if="edu.register.yearPassing">Year of Passing:</label>
+                    <p ng-bind="edu.register.yearPassing"></p>
+                </div>
+                <div class="col-lg-6">
+                    <label ng-if="edu.register.specialization">Specialization:</label>
+                    <p ng-bind="edu.register.specialization"></p>
+                    <label ng-if="edu.register.institute">Institute:</label>
+                    <p ng-bind="edu.register.institute"></p>
+                </div>
+            </div>
+        </div>
+        <p style="color: #474747; text-transform: none">I hereby certify that all the information above is true and accurate.</p>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 pull-right"><button class="sbmt-btn" ng-click="ok()">OK</button></div>
+    </div>
+</script>
+<script type="text/javascript">
+    $('textarea').keyup(function() {
+        $(this).val($(this).val().substr(0, 1).toUpperCase() + $(this).val().substr(1).toLowerCase());
+    });
+</script>

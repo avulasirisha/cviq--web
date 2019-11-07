@@ -1,0 +1,13 @@
+
+
+<section class="alertsMails commonBackground">
+    <h6 style="margin: 10px 0; font-size: 15px;" class="text-center" ng-if="allRecruiterMessages.length == 0">No Data Found.</h6>
+    <ul class="listAlerts">
+        <li class="clearfix" ng-repeat="mess in allRecruiterMessages" ng-click="getConversation(mess._id )">
+            <div class="col-lg-3 company-name" ng-if="mess.recruiterID">Recruiter Name : {{mess.recruiterName}}</div>
+            <div class="col-lg-3 company-name" ng-if="mess.interviewerID">Interviewer Name : {{mess.interviewerName}}</div>
+            <div class="col-lg-6 messTitle"><strong>Sub: {{mess.messageTitle}}</strong><br />{{mess.messageDetail[0].message}}</div>
+            <div class="col-lg-3 text-right dated">{{mess.messageDetail[0].addedAt | date: 'MMMM dd, yyyy'}}</div>
+        </li>
+    </ul>
+</section>

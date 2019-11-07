@@ -1,0 +1,274 @@
+<h3>
+    Approved Interviewers
+    <small>Displaying list of Approved Interviewers in the system</small>
+</h3>
+<div ng-controller="approvedInterviewerController" class="container-fluid">
+    <!--<div id="driverLocationMap" style="height:400px;width:100%;"></div>-->
+
+    <!-- START DATATABLE 2 -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default" ng-class="{'whirl duo' : showloader }">
+                <div class="panel-heading" >
+                    <button ng-show="hideExport" ng-click="exportData()" class="pull-right btn btn-sm btn-info">Export To CSV</button>
+                </div>
+                <div style="clear:both"></div>
+                <div class="panel-body">
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col-xs-5 col-sm-3 col-md-3 col-lg-3">
+                            <label>Records Per Page</label>
+                            <select class="form-control" ng-model="itemsPerPage" ng-options="pages for pages in searchModel.limitOptions" ng-change="getPagesCount()"></select>
+                        </div>
+                        <div class=" col-xs-5 col-sm-4 col-md-3 col-lg-3 col-xs-offset-2 col-sm-offset-5 col-md-offset-6 col-lg-offset-6">
+                            <div class="input-group" style="padding-top: 10%;">
+                                <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                                <input type="text" class="form-control" placeholder="Search" ng-model="search">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive" ng-switch="(list | filter:search).length">
+                        <div ng-switch-when="0" class="noSearch"><span>No Approved Interviewer found</span></div>
+                        <table id="datatable2" class="table table-hover" ng-switch-default>
+                            <thead>
+                            <tr>
+                                <th style="min-width:70px">
+                                    <div style="text-align:center;" ng-click="sort('index')">
+                                        Sr. No.
+                                        <span style="opacity:0.5" ng-hide="predicate == 'index' && reverse || predicate == 'index' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'index' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'index' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th style="text-align: center">Profile Image</th>
+                                <th style="min-width:100px">
+                                    <div style="text-align:center;" ng-click="sort('name')">
+                                        Interviewer Details
+                                        <span style="opacity:0.5" ng-hide="predicate == 'name' && reverse || predicate == 'name' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'name' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'name' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th style="min-width:170px">
+                                    <div style="text-align:center;" ng-click="sort('registrationDate')">
+                                        Registration Date
+                                        <span style="opacity:0.5" ng-hide="predicate == 'registrationDate' && reverse || predicate == 'registrationDate' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'registrationDate' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'registrationDate' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th style="min-width:140px">
+                                    <div style="text-align:center;" ng-click="sort('industry')">
+                                        Industry/Functional Area
+                                        <span style="opacity:0.5" ng-hide="predicate == 'industry' && reverse || predicate == 'industry' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'industry' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'industry' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th style="min-width:140px">
+                                    <div style="text-align:center;" ng-click="sort('underGraduate')">
+                                        Education
+                                        <span style="opacity:0.5" ng-hide="predicate == 'underGraduate' && reverse || predicate == 'underGraduate' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'underGraduate' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'underGraduate' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th style="min-width:140px">
+                                    <div style="text-align:center;" ng-click="sort('percentage')">
+                                        Interview Charge
+                                        <span style="opacity:0.5" ng-hide="predicate == 'percentage' && reverse || predicate == 'percentage' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'percentage' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'percentage' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th style="min-width:100px;text-align: center">Skills</th>
+                                <th style="min-width:100px;text-align: center">Interviews</th>
+                                <th style="min-width:100px;text-align: center">Payments</th>
+                                <th style="min-width:100px;text-align: center">Payment types</th>
+                                <th style="min-width:100px;text-align: center">Documents</th>
+                                <th style="min-width:100px;text-align: center">Actions</th>
+
+                            </tr>
+                            </thead>
+                            <tbody ng-show="tBodyFlag">
+                            <tr style='background-color: {{data.color}} !important'
+                                ng-repeat="data in filtered =  list| filter:search | orderBy:predicate:reverse">
+                                <td style="text-align: center">{{data.index+1}}</td>
+                                <td>
+                                    <img ng-src="{{data.profilePicURL || 'app/img/noimg.png'}}" class="tableImage">
+                                </td>
+                                <td><b>Name</b> - {{data.name}} <br>
+                                    <b>Email</b> - {{data.email}}<br>
+                                    <b>Linked In Id</b> - {{data.linkedInId}}<br>
+                                    <b>Contact</b> - {{data.phoneNumber}}
+                                </td>
+                                <td>{{data.registrationDate  | date:'medium'}}</td>
+                                <td><b>Industry</b> - {{data.industry}} <br>
+                                    <b>Functional Area</b> - {{data.functionalArea}}
+                                </td>
+                                <td><b>UG</b> - {{data.underGraduate}} <br>
+                                    <b>PG</b> - {{data.postGraduate}}
+                                </td>
+                                <td style="text-align: center">
+                                    {{data.interviewCharge}}
+                                </td>
+                                <td><b>Soft</b> - {{data.softSkills}} <br>
+                                    <b>Technical</b> - {{data.technicalSkills}}
+                                </td>
+                                 <td> {{data.totalInterviewes }}</td> 
+                                <td><b>Paid </b> - {{data.totalpaidInterviewes }} <br>
+                                    <b>Payment pending</b> - {{data.totalpaymentpending}}
+                                </td>
+                                <td><b>Account :-</b><br>
+                                Ac No: {{data.paymentSetup.accountDetail.accountNumber }},<br>  
+                                Bank Name: {{data.paymentSetup.accountDetail.bankName }} <br>
+                                Address : {{data.paymentSetup.accountDetail.address }} <br>
+                                Name : {{data.paymentSetup.accountDetail.customerName }}  <br>
+                                 <br>
+                                    <b>Cheque :</b> <br> Mobile: {{data.paymentSetup.chequeDetail.mobileNumber }} 
+                                          Area No: {{data.paymentSetup.chequeDetail.areaCode }} <br>
+                                          Country: {{data.paymentSetup.chequeDetail.country }}  <br>
+                                          State: {{data.paymentSetup.chequeDetail.state }}  <br>
+                                          Address1 : {{data.paymentSetup.chequeDetail.addressTwo }} <br>
+                                          Address2 : {{data.paymentSetup.chequeDetail.addressOne }} <br>
+                                          Name: {{data.paymentSetup.chequeDetail.name }}  <br>
+                                </td>
+
+                                <td>
+                                    <div class="flexDisplay">
+                                        <a ng-show="data.resumeURL" style="margin: 0px 2px;" class="btn btn-sm btn-default1" target="_self" href="{{data.resumeURL}}" download="resume" title="Resume" ><!--style="background-color:#666666"-->
+                                            <i class="fa fa-download unblock-icon"></i>
+                                        </a>
+                                        <a ng-show="data.certificationURL" style="margin: 0px 2px;" class="btn btn-sm btn-default1" target="_self" href="{{data.certificationURL}}" download="Certification" title="Certification" ><!--style="background-color:#666666"-->
+                                            <i class="fa fa-download unblock-icon"></i>
+                                        </a>
+                                        <!--<a  class = "btn btn-sm btn-default1" title="Bank Details" ng-disabled="data.bankDetails.length == 0" ng-click="getBankDetails(data.driverId)">-->
+                                            <!--<i class="fa fa-university block-icon "></i>-->
+                                        <!--</a>-->
+                                    </div>
+                                    <div class="">
+                                        <!--<a class="btn btn-sm btn-default1" title="Location Details" ng-click="viewLocation(data.driverId)" ng-disabled="data.currentLocation.length == 0">&lt;!&ndash;style="background-color:#666666"&ndash;&gt;-->
+                                            <!--<i class="fa fa-location-arrow unblock-icon"></i>-->
+                                        <!--</a>-->
+                                        <!--<a class="btn btn-sm btn-default1" title="Device Details" ng-click="viewDevice(data.driverId)">&lt;!&ndash;style="background-color:#666666"&ndash;&gt;-->
+                                            <!--<i class="fa fa-mobile fa-lg unblock-icon"></i>-->
+                                        <!--</a>-->
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class=" text-center">
+                                        <a class="btn btn-sm btn-default1" title="Block" ng-click="blockInterviewer(data.Id,data.name)"><!--style="background-color:#666666"-->
+                                            <i class="fa fa-lock block-icon"></i>
+                                        </a>
+                                        <a class="btn btn-sm btn-default1" title="Share" ng-click="updatePercentage(data)"><!--style="background-color:#666666"-->
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tfoot ng-show="tFootFlag">
+                            <tr>
+                                <th colspan="6" class="noDataClass">No Pending Driver Found.</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-6" style="padding-top: 2%;" ng-show="hideExport">
+                            <span>Showing {{skipValue + 1}} to {{limitValue + 1}} of {{dataLength}} Entries</span>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6 ">
+                            <div class="pull-right" ng-show="sp_pagination"><!--ng-show="sp_pagination" ng-show="watchPagination"-->
+                                <nav ng-show="watchPagination">
+                                    <ul class="pagination">
+                                        <li ng-class="prevPageDisabled()">
+                                            <a class="link" ng-click="prevPage(currentPage)">Previous</a>
+                                        </li>
+                                        <li ng-class="{active: m == currentPage}"  ng-repeat="m in range()" ng-click="setPage(m)">
+                                            <a class="link" ng-click="currentData(m)">{{m+1}}</a>
+                                        </li>
+                                        <li ng-class="nextPageDisabled()">
+                                            <a class="link" ng-click="nextPage(currentPage)">Next</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END DATATABLE 2 -->
+
+    <!-- **************************************************************************
+    ******************* Modal to display msg **************************************
+    *******************************************************************************-->
+    <script type="text/ng-template" id="display_msg_modalDialog">
+        <div class="ngdialog-message">
+            <h4>{{displaymsg}}</h4>
+            <a type="submit" ng-click="refreshPage()" class="btn btn-primary" style="margin-top:20px;text-align: center">OK</a>
+            <div style="clear: both;"></div>
+        </div>
+    </script>
+    <!-- **************************************************************************
+******************* Modal to display unauth msg **************************************
+*******************************************************************************-->
+    <script type="text/ng-template" id="unauth_msg_modalDialog">
+        <div class="ngdialog-message">
+            <h4>{{unAuthMsg}}</h4>
+            <a type="submit" ng-click="forceLogin()" class="btn btn-primary" style="margin-top:20px;text-align: center">OK</a>
+            <div style="clear: both;"></div>
+        </div>
+    </script>
+
+    <!-- ***************************************************************************
+******************* Modal for block driver ************************************
+********************************************************************************-->
+    <script type="text/ng-template" id="block_interviewer_modalDialog">
+        <div class="ngdialog-message">
+            <h4>Are you sure you want to block {{interviewer_name}}?</h4>
+            <div style="  margin-top: 20px;text-align: center">
+                <form method="post" validate-form="" novalidate="">
+                    <button type="submit" ng-click="confirmBlockInterviewer(interviewer_id)" class="myButton btn btn-primary" >Submit</button>
+                    <button type="button" ng-click="closeThisDialog(0)" class="btn btn-default" style='margin-left:20px;'>Cancel</button>
+                </form>
+            </div>
+        </div>
+    </script>
+    <script type="text/ng-template" id="updateplan">
+        <div class="ngdialog-message">
+            <form  name="updatePlan" novalidate>
+                <section>
+                    <div class="  candidate-profile-section clearfix">
+                        <div class="row" style="margin-top: 20px">
+                            <div class="search-wrapper">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form">
+                                    <div class="clearfix">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Interviewer Charges</label>
+                                            <input type="number" limit-to="2" min="1" max="99"    placeholder="Enter Interviewer Charge" name="interviewCharge" ng-model="newdata.interviewCharge" required />
+                                            <div ng-show="updatePlan.$submitted || updatePlan.interviewCharge.$touched">
+                                                <div class="error-message" ng-show="updatePlan.interviewCharge.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <div class="error-message" ng-show="updatePlan.interviewCharge.$invalid && updatePlan.interviewCharge.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i>Invalid Interviewer Percentage</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad " style="text-align: center">
+                            <button style="width: 50%;" type="submit" class="btn btn-primary sbmt-btn" ng-click="updatePlan.$valid && updateConfirm(newdata)">UPDATE</button>
+                        </div>
+                    </div>
+
+                </section>
+
+            </form>
+        </div>
+    </script>
+
+
+</div>

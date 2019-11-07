@@ -1,0 +1,113 @@
+<style>
+    .whirl:after {  position: fixed;  }
+    .scores input{text-align: center}
+    h2{color: #0297cf;  }
+    h3{color: #0297cf;margin-top: 5px  }
+    h1,h2,h3,h4{
+        font-weight: normal;
+    }
+
+</style>
+
+<h3>
+    About CVIQ
+    <!--<small>Displaying list of all the drivers in the system.</small>-->
+</h3>
+<div ng-controller="LandingAboutController" class="container-fluid">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " style="padding: 25px 0px">
+                    <form ng-show="edit" name="aboutForm" novalidate>
+                        <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                            <div class="  candidate-profile-section clearfix">
+                                <div class="row" style="margin-top: 20px">
+
+                                    <div class="col-lg-6 col-md-8 col-sm-12 col-xs-122 form">
+                                        <h3 style="padding: 0 15px;">
+                                            Update About CVIQ
+                                        </h3>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-elements ">
+                                            <label>About CVIQ</label>
+                                            <textarea style="min-height: 110px" class="textArea" type="text" minlength="100" maxlength="400" placeholder="Enter About CVIQ" name="aboutCviq" ng-model="about.aboutCviq" required ></textarea>
+                                            <div ng-show="aboutForm.$submitted || aboutForm.aboutCviq.$touched">
+                                                <div class="error-message" ng-show="aboutForm.aboutCviq.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <div class="error-message" ng-show="aboutForm.aboutCviq.$invalid && aboutForm.aboutCviq.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter atleast 100 characters.</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Text 1</label>
+                                            <input  type="text" maxlength="30" placeholder="Enter Text 1" name="text1" ng-model="about.text1" required/>
+                                            <div ng-show="aboutForm.$submitted || aboutForm.text1.$touched">
+                                                <div class="error-message" ng-show="aboutForm.text1.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <div class="error-message" ng-show="aboutForm.text1.$invalid && aboutForm.text1.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i>Max length allowed is 30 characters.</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Text 2</label>
+                                            <input  type="text" maxlength="30" placeholder="Enter Text 2" name="text2" ng-model="about.text2" required/>
+                                            <div ng-show="aboutForm.$submitted || aboutForm.text2.$touched">
+                                                <div class="error-message" ng-show="aboutForm.text2.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <div class="error-message" ng-show="aboutForm.text2.$invalid && aboutForm.text2.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i>Max length allowed is 30 characters.</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Text 3</label>
+                                            <input  type="text" maxlength="30" placeholder="Enter Text 3" name="text3" ng-model="about.text3" required/>
+                                            <div ng-show="aboutForm.$submitted || aboutForm.text3.$touched">
+                                                <div class="error-message" ng-show="aboutForm.text3.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <div class="error-message" ng-show="aboutForm.text3.$invalid && aboutForm.text3.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i>Max length allowed is 30 characters.</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12 pad ">
+                                    <div class="col-lg-4 col-md-4 col-sm-8 co-xs-12  col-lg-offset-4 col-md-offset-4 col-sm-offset-2" style="display: flex;text-align: center;" >
+                                        <button style="margin: 20px auto 0;" id="addButton" type="submit" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sbmt-btn" ng-click="aboutForm.$valid && updateAbout()">UPDATE</button>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </section>
+
+                    </form>
+                    <div ng-show="!edit" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <h3>About CVIQ</h3>
+                            <h4>{{about.aboutCviq}}</h4>
+                            <br/>
+                            <h4 style="color: #0297cf;">Text 1.</h4>
+                            <p>{{about.text1}}</p>
+                            <h4 style="color: #0297cf;">Text 2.</h4>
+                            <p>{{about.text2}}</p>
+                            <h4 style="color: #0297cf;">Text 3.</h4>
+                            <p>{{about.text3}}</p>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad ">
+                                <div class="col-lg-4 col-md-4 col-sm-8 co-xs-12  col-lg-offset-4 col-md-offset-4 col-sm-offset-2" style="text-align: center;display: flex" >
+                                    <button type="submit" style="max-width: 100px;margin: 20px auto 0" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sbmt-btn" ng-click="edit = true">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/ng-template" id="success">
+    <div class="ngdialog-message">
+        <h4 style="text-align: center">Updated successfully</h4>
+        <!-- POP UP -->
+
+    </div>
+</script>
+<script type="text/ng-template" id="error">
+    <div class="ngdialog-message">
+        <h4 style="text-align: center">{{error}}</h4>
+
+    </div>
+</script>

@@ -1,0 +1,133 @@
+<!--<script type="text/javascript">-->
+    <!--var config = {-->
+        <!--apiKey: 'a42fcebd-5b43-4b89-a065-74450fb91255', // SDK-->
+        <!--apiKeyCC: '9c967f6b-a846-4df2-b43d-5167e47d81e1' // SDK+UI-->
+    <!--};-->
+    <!--var Application-->
+
+    <!--Skype.initialize({ apiKey: config.apiKey }, function (api) {-->
+        <!--window.skypeWebAppCtor = api.application;-->
+        <!--window.skypeWebApp = new api.application();-->
+        <!--//Make sign in table appear-->
+        <!--$(".menu #sign-in").click();-->
+        <!--// whenever client.state changes, display its value-->
+        <!--window.skypeWebApp.signInManager.state.changed(function (state) {-->
+            <!--$('#client_state').text(state);-->
+        <!--});-->
+    <!--}, function (err) {-->
+        <!--console.log(err);-->
+        <!--alert('Cannot load the SDK.');-->
+    <!--});-->
+<!--</script>-->
+<script src="bower_components/tokboxLayout.js" type="text/javascript"></script>
+<section class="skype clearfix">
+    <div class="container">
+        <div class="interview-pic1">
+            <h3 class="text-center">Candidate</h3>
+            <div class="profile-pic text-center">
+                <div class="change-photo">
+                    <img class="dp" ng-src="{{interviewData.candidateID.profilePicURL.original}}" alt="" />
+                </div>
+                <h5>{{interviewData.candidateID.firstName + ' '+interviewData.candidateID.lastName  }}<img src="images/badge.png" alt="" /></h5>
+                <p style="text-transform: capitalize">{{interviewData.candidateID.profileTitle}}</p>
+                <!--<input type="text" class="designation" placeholder="Enter Designation" ng-model="designation">-->
+            </div>
+            <p class="show-time">Start Time<span>{{interviewData.interviewStartTime}}</span></p>
+        </div>
+        <div class="col-lg-9 col-md-9 col-xs-12 col-sm-12 pull-right video-panel">
+            <!--<div id="videos">-->
+                <!--<div id="subscriber"></div>-->
+                <!--<div id="publisher"></div>-->
+            <!--</div>-->
+            <div id="layout" class="layout">
+                <div id="publisherDiv">
+
+                </div>
+                <div id="subscribersDiv">
+
+                </div>
+
+            </div>
+            <div>
+                <div class="controlBtn">
+                    <div class="full-width" style="position: relative;">
+                        <!--<div class="full-width gb" ng-show="preloader" style="top:-230px;position: absolute;">-->
+                            <!--<img src="assets/images/350.gif" alt="preloader" style="opacity:0.45;">-->
+                        <!--</div>-->
+                    </div>
+           
+
+                    <ul class="video-controls">
+                        <li ng-hide="showVid"><a href="javascript:void (0);" class="btn enable-video" ng-click="disableVid()" id="DisableVideo"></a></li>
+                        <li ng-show="showVid"><a href="javascript:void (0);" class="btn disable-video" ng-click="enableVid()"></a></li>
+                        <li ng-hide="showAud"><a href="javascript:void (0);" class="btn enable-audio" ng-click="disableAud()"></a></li>
+                        <li ng-show="showAud"><a href="javascript:void (0);" class="btn disable-audio" ng-click="enableAud()"></a></li>
+                        <li><a href="javascript:void (0);" class="btn call-drop" ng-click="disconnect(1)"></a></li>
+                    </ul>
+
+
+                    <!--<h4 class="text-center"><md-button href="#" ng-click="JobCompletion()"  class="btn btn-color" style="padding:5px 20px;color: #fff;"><span ng-hide="completing">Job Complete</span><span ng-show="completing">Completing your job</span></md-button></h4>-->
+                    <!--<input type="button" value="Leave" id ="disconnectBtn" ng-Click="disconnected()" />-->
+                </div>
+            </div>
+        </div>
+
+        <form name="chatForm" ng-submit='chatForm.$valid&&sendMessage()' novalidate>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad quesNChat">
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 pull-left" style="padding-left: 0">
+                    <div class="questionBank">
+                        <section class="search-section" ng-if="RecruiterQuestions.length > 0">
+                            <div class="quesHead"><span>Recruiter Questions</span>
+                                <select class="pull-right" ng-init="interviewQues = 'All'" ng-model="interviewQues" ng-change="filterQuestions( 'rec',interviewQues)">
+                                    <option value="All" selected>All</option>
+                                    <option value="Technical">Technical</option>
+                                    <option value="Non-Technical">Non-Technical</option>
+                                </select>
+                            </div>
+                            <div class="search-result questionForInterview">
+                                <p ng-if="searchedQuestions.length == 0 && searchedQuestions.length == 0">No Questions Found.</p>
+                                <ul>
+                                    <li ng-repeat="q in RecruiterQuestions track by q"><input type="checkbox" style="display: block; margin-right: 10px; cursor: pointer"  ng-click="sendquestion(q, $event)">{{q}}</li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="search-section" ng-if="InterviewerQuestions.length > 0">
+                            <div class="quesHead"><span>Interviewer Questions</span>
+                                <select class="pull-right" ng-init="interviewQues = 'All'" ng-model="interviewQues" ng-change="filterQuestions( 'inter', interviewQues)">
+                                    <option value="All" selected>All</option>
+                                    <option value="Technical">Technical</option>
+                                    <option value="Non-Technical">Non-Technical</option>
+                                </select>
+                            </div>
+                            <div class="search-result questionForInterview">
+                                <p ng-if="searchedQuestions.length == 0 && searchedQuestions.length == 0">No Questions Found.</p>
+                                <ul>
+                                    <li ng-repeat="q in InterviewerQuestions track by q"><input type="checkbox" style="display: block; margin-right: 10px; cursor: pointer" ng-click="sendquestion(q, $event)">{{q}}</li>
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <div class="chat-container col-lg-7 col-md-7 col-sm-7 col-xs-12 pull-right">
+                    <div class="chat-box">
+                        <p ng-repeat='message in messages' ng-class="{'candidate-side': message.messageTo == 'INTERVIEWER'}"><span ng-class="{'fLeft': message.messageTo == 'INTERVIEWER'}">{{message.text}}<br /><i>{{message.createdAt | date:"dd-MMM-yy, HH:mm a"}}</i></span></p>
+                        <!--<p class="candidate-side" ng-repeat='cmessage in candidateMessage'><span>{{cmessage.text}}<br /><i>{{cmessage.createdAt | date:"dd-MMM-yy, HH:mm a"}}</i></span></p>-->
+                    </div>
+                    <div class="send-signal clearfix">
+                        <input type="text" placeholder="Write here…." name="textMessage" ng-class="{'emptyField': chatForm.textMessage.$error.required == true && chatForm.$submitted}" ng-model='message' required>
+                        <button type="submit">Send</button>
+                    </div>
+                </div>
+            </div>
+        </form>      
+        
+        
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="row">
+                <div class="text-right">
+                    <button ng-click="disconnect(); candidateDetails(interviewData.candidateID._id, interviewData._id, true)" class="sbmt-btn">FINISH INTERVIEW</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

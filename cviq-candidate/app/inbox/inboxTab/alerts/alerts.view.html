@@ -1,0 +1,36 @@
+<section class="alertsMails commonBackground" ng-init="alerts(1)">
+    <div class="noData fullWidth" ng-if="numberOFAlerts == 0">
+        <h6 style="margin: 10px 0; font-size: 15px;" class="text-center">No Data Found.</h6>
+    </div>
+    <ul class="listAlerts">
+        <li style="cursor: auto" class="clearfix" ng-repeat="a in alertLists">
+        <div class="col-lg-9">{{a.notificationMsg}}</div>
+        <div class="col-lg-3 dated">{{a.createdAt | date: 'MMM dd,yyyy  hh:mm a'}}</div>
+        </li>
+
+        <!--<li class="clearfix">-->
+        <!--<div class="col-lg-3 company-name">Company</div>-->
+        <!--<div class="col-lg-7">Lorem Ipsum is simply dummy text of the printing</div>-->
+        <!--<div class="col-lg-2 dated">April 25,2016</div>-->
+        <!--</li>-->
+
+        <!--<li class="clearfix">-->
+        <!--<div class="col-lg-3 company-name">Company</div>-->
+        <!--<div class="col-lg-7">Lorem Ipsum is simply dummy text of the printing</div>-->
+        <!--<div class="col-lg-2 dated">April 25,2016</div>-->
+        <!--</li>-->
+
+        <!--<li class="clearfix">-->
+        <!--<div class="col-lg-3 company-name">Company</div>-->
+        <!--<div class="col-lg-7">Lorem Ipsum is simply dummy text of the printing</div>-->
+        <!--<div class="col-lg-2 dated">April 25,2016</div>-->
+        <!--</li>-->
+    </ul>
+</section>
+<div class="pagination-container clearfix">
+    <pagination ng-model="currentPage" ng-if="numberOFAlerts > 10"
+                total-items="numberOFAlerts"
+                max-size="maxSize"
+                boundary-links="true" ng-click="alerts(currentPage)">
+    </pagination>
+</div>

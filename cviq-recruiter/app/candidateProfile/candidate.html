@@ -1,0 +1,279 @@
+
+
+<section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 candidate-dashboard">
+    <div class="container">
+        <div class="row padonsmallscreen">
+            <div ng-if="candidateData" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 candidateProfileTop pad"  style="position: relative">
+
+                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 pad "  >
+
+                    <div class="profile-pic-candidate" >
+                        <div class="change-photo img-responsive">
+                            <img class="dp" style="width:160px;height: 160px" ng-src="{{profile.profilePicURL.original}}" alt="" />
+                        </div>
+                        <h5 style="text-transform: capitalize">{{profile.firstName}} {{profile.lastName}}</h5>
+                        <h5 style="margin: 5px auto;">{{profile.profileTitle}}</h5>
+                    </div>
+
+
+                </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 text-center pad candidate-main-score" >
+
+                        <div class="progress-wrapper text-center">
+                            <div style="position: relative; height: 170px;width: 170px;border: 1px solid #dcdcdc;padding: 9px;border-radius: 50%;margin: 0 auto;">
+                                <div class="progress1 ng-cloak" ng-style="getStyle()"><p> Aggregated<br />Score</p><p style="font-weight: 900;font-size: larger;">{{ candidateAggregatedScore }}</p></div>
+                                <round-progress
+                                        max="totalAggregatedScore"
+                                        current="candidateAggregatedScore"
+                                        color="#02a5db"
+                                        bgcolor="#eaeaea"
+                                        radius="75"
+                                        stroke="8"
+                                        semi="false"
+                                        rounded="false"
+                                        clockwise="true"
+                                        responsive="false"
+                                        duration="800"
+                                        animation="easeInOutQuart"
+                                        animation-delay="0"
+                                        on-render="showPreciseCurrent">
+                                </round-progress>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                        <div class="col-lg-7 col-md-7  col-sm 12 col-xs-12  candidateChart">
+                            <canvas id="line" class="chart chart-line" chart-data="data"
+                                    chart-labels="labels" chart-series="series" chart-options="options"
+                                    chart-dataset-override="datasetOverride" chart-click="onClick">
+                            </canvas>
+
+                        </div>
+
+
+
+            </div>
+            <div ng-if="!candidateData" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 candidateProfileTop "  style="position: relative">
+
+                <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12 pad "  >
+
+                    <div class="profile-pic-candidate" >
+                        <div class="change-photo img-responsive">
+                            <img class="dp" ng-src="{{profile.profilePicURL.original}}" alt="" />
+                        </div>
+                        <h5 style="text-transform: capitalize">{{profile.firstName}} {{profile.lastName}}</h5>
+                        <h5 style="margin: 5px auto;">{{profile.profileTitle}}</h5>
+                    </div>
+
+
+                </div>
+                <div class="col-lg-10 col-md-9 col-sm-12 col-xs-12 " style="padding-right: 0px" >
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 candidateDescription commonBackground pad" style="margin-top: 26px;">
+
+                            <h4 >
+                                Description
+                                <span ng-show="profile.isFavourite"  ng-click="unFavourite(profile._id,profile.firstName)" class="star" style="float: right;"></span>
+                                <span ng-show="!profile.isFavourite" ng-click="markFavourite(profile._id,profile.firstName)" class="unstar" style="float: right;"></span>
+                                <span ng-click="messageCandidate()" style="float: right;" class="envelop"></span>
+                            </h4>
+
+
+                        <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad ">-->
+                            <!--<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.-->
+                                <!--Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>-->
+
+                        <!--</div>-->
+                        <div>
+                            <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6 text-center pad circledivshadows2" style="word-break: break-all;">
+                                <div class="circledivborders">
+                                    <span style="color: #4f5f72;font-weight: 600">Email </span>
+                                    <p style="color: #4f5f72;">{{profile.email}}</p>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6 text-center pad circledivshadows2" style="word-break: break-all;" >
+                                <div class="circledivborders circledivborders3" >
+                                    <span style="color: #4f5f72;font-weight: 600">Phone Number </span>
+                                    <p style="color: #4f5f72;">{{profile.countryCode}} - {{profile.phoneNo}}</p>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-center pad circledivshadows3" >
+                                <div class="circledivborders">
+                                    <span style="color: #4f5f72;font-weight: 600">Experience</span>
+                                    <p style="color: #4f5f72;">{{profile.totalExperience}}</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-center pad circledivshadows4" >
+                                <div class="circledivborders circledivborders3 ">
+                                    <span style="color: #4f5f72;font-weight: 600">Loation</span>
+                                    <p style="color: #4f5f72;">{{profile.currentCountry}}</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-center pad circledivshadows5" >
+                                <div class="circledivborders2 circledivborders3 ">
+                                    <span style="color: #4f5f72;font-weight: 600">Status</span>
+                                    <p style="color: #4f5f72;">{{ CANDIDATE_STATUS[profile.status] }}</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-center pad circledivshadows5" >
+                                <div class="circledivborders2 circledivborders3 ">
+                                    <span style="color: #4f5f72;font-weight: 600">keyskills</span>
+                                    <p style="color: #4f5f72;">>{{ profile.keySkills.toString() }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="candidateData" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 commonBackground pad" style="position: relative;">
+                    <div class="candidateDescription">
+                        <h4 >Description
+
+                            <span ng-show="profile.isFavourite"  ng-click="unFavourite(profile._id,profile.firstName)" class="star" style="float: right;"></span>
+                            <span ng-show="!profile.isFavourite" ng-click="markFavourite(profile._id)" class="unstar" style="float: right;"></span>
+                            <span ng-click="messageCandidate()" style="float: right;" class="envelop"></span>
+
+                        </h4>
+                        <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad ">-->
+                            <!--<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.-->
+                                <!--Lorem Ipsum has been the industry's standard dummy text ever since the 1500s-->
+                            <!--</p>-->
+                        <!--</div>-->
+                        <div >
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center pad circledivshadows2" style="word-break: break-all;" >
+                                <div class="circledivborders">
+                                    <span style="color: #4f5f72;font-weight: 600">Email </span>
+                                    <p style="color: #4f5f72;">{{profile.email}}</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center pad circledivshadows2" style="word-break: break-all;" >
+                                <div class="circledivborders circledivborders3" >
+                                    <span style="color: #4f5f72;font-weight: 600">Phone Number </span>
+                                    <p style="color: #4f5f72;">{{profile.countryCode}} - {{profile.phoneNo}}</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-center pad circledivshadows3" >
+                                <div class="circledivborders">
+                                    <span style="color: #4f5f72;font-weight: 600">Experience</span>
+                                    <p style="color: #4f5f72;">{{profile.totalExperience}}</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-1 col-md-2 col-sm-6 col-xs-6 text-center pad circledivshadows4" >
+                                <div class="circledivborders circledivborders3 ">
+                                    <span style="color: #4f5f72;font-weight: 600">Loation</span>
+                                    <p style="color: #4f5f72;">{{profile.currentCountry}}</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-1 col-md-2 col-sm-6 col-xs-6 text-center pad circledivshadows5" >
+                                <div class="circledivborders circledivborders3 ">
+                                    <span style="color: #4f5f72;font-weight: 600">Status</span>
+                                    <p style="color: #4f5f72;">{{ CANDIDATE_STATUS[profile.status] }}</p>
+                                </div>
+                            </div>
+                             <div class="col-lg-1 col-md-2 col-sm-6 col-xs-6 text-center pad circledivshadows5" >
+                                <div class="circledivborders circledivborders3 ">
+                                    <span style="color: #4f5f72;font-weight: 600">Keyskils</span>
+                                    <p style="color: #4f5f72;">{{ profile.keySkills.toString() }}</p>
+                                </div>
+                            </div>
+                             <div class="col-lg-1 col-md-2 col-sm-6 col-xs-6 text-center pad circledivshadows5" ng-if="profile.linkedInProfileLink" >
+                                <div class="circledivborders2 circledivborders3 ">
+                                    <span style="color: #4f5f72;font-weight: 600">Linkedin</span>
+                                    <p style="color: #4f5f72;"><a ng-href="{{ profile.linkedInProfileLink}}" target="_blank" >Click here </a></p>
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 div2 text-center">
+                            <button class=" text-center searchjob-btn linkedin-btn " ng-click="resumefunc()" ><span class="viewresume"></span>Download Resume</button>
+                        </div>
+                    </div>
+
+
+
+            </div>
+        </div>
+        <div class="row padonsmallscreen">
+            <div class="scores-obtained">
+                <h3>CVIQ SCORES</h3>
+                <div class="borderAsLine" style="background-color: #dcdcdc"></div>
+                <div class="borderAsLine" style="background-color: #dcdcdc"></div>
+            </div>
+            <section class="inboxMenu" style="position: relative">
+
+                <ul class="inboxMenu-inner">
+                    <li ng-click="variable='AGGREGATED'" ng-class="{'act': variable == 'AGGREGATED'}"><a ui-sref="home.candidate.aggregated({id:'+{{data.candidateID}}'})" >Aggregated</a></li>
+                    <li ng-click="variable='QUANTITATIVE'" ng-class="{'act': variable == 'QUANTITATIVE'}"><a ui-sref="home.candidate.quantitative({id:'+{{data.candidateID}}'})">Quantitative</a></li>
+                    <li ng-click="variable='QUALITATIVE'" ng-class="{'act': variable == 'QUALITATIVE'}"><a ui-sref="home.candidate.qualitative({id:'+{{data.candidateID}}'})">Qualitative </a></li>
+                </ul>
+                <div ui-view=""></div>
+            </section>
+        </div>
+    </div>
+</section>
+
+
+
+<!--<script type="text/ng-template" id="message" class="ngdialog-theme-default">-->
+
+    <!--<h3 class="text-center">Send Message</h3>-->
+    <!--<div class="messageTitle">-->
+        <!--<label for="title">TITLE</label>-->
+        <!--<input  type="text" id="title" name="title" ng-model="message.messageTitle" placeholder="Enter Title">-->
+    <!--</div>-->
+    <!--<div class="error-message err" ng-show="messageModalTitleError"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter Title </div>-->
+    <!--<div class="messageDescription">-->
+        <!--<label >DESCRIPTION</label>-->
+        <!--<textarea  type="text" name="Description" ng-model="message.message" placeholder="Enter Description"></textarea>-->
+    <!--</div>-->
+    <!--<div class="error-message err" ng-show="messageModalError"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please write a message or Attach a file. </div>-->
+    <!--<label for="messagefile" class="attachlabel" ><span class="attach"></span>Attach a File</label>-->
+    <!--<input id="messagefile" style="display: none;"  type="file">-->
+        <!--<button class="messageButton" type="submit" ng-click="sendMessage()">Send</button>-->
+
+<!--</script>-->
+
+<div class="modal fade" id="message" role="dialog">
+    <div class="modal-dialog" style="    padding: 160px 0px;width: 450px;">
+        <div class="modal-content" style="background-color: #fff;border-radius: 15px 0 15px 0;padding: 30px;" >
+            <h3 class="text-center">Send Message</h3>
+            <i class="fa fa-times fa-lg" style=" cursor: pointer;position: absolute;top: 5px;right: 5px;background: #eee;padding: 5px;color: #444;" data-dismiss="modal" aria-hidden="true"></i>
+            <div class="messageTitle">
+                <label for="title">TITLE</label>
+                <input  type="text" id="title" name="title" ng-model="message.messageTitle" placeholder="Enter Title">
+            </div>
+            <div class="error-message err" ng-show="messageModalTitleError"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter Title </div>
+            <div class="messageDescription">
+                <label >DESCRIPTION</label>
+                <textarea  type="text" name="Description" ng-model="message.message" placeholder="Enter Description"></textarea>
+            </div>
+            <div class="error-message err" ng-show="messageModalError"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please write a message or Attach a file. </div>
+            <label for="messagefile" class="attachlabel" >{{attachmentName}} <span class="attach"></span>Attach a File</label>
+            <input id="messagefile" style="display: none;"  type="file">
+            <button class="messageButton" style="    border-radius: 3px; background-color: #0297cf;color: #fff;font-family: 'Graphik-Medium';
+    display: inline-block;text-align: center;padding: 15px 0;margin-top: 30px;font-size: 15px;border: none;width: 100%;" type="submit" ng-click="sendMessage()">Send</button>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="favourite" class="ngdialog-theme-default">
+
+    <p>Are you sure you want to Remove {{unfavname}} from your favourite list</p>
+
+    <p style="display: flex">
+        <button ng-click="confirmUnFavourite()" class="confirmation" type="submit">YES</button>
+        <button ng-click="denyUnFavourite()" class="confirmation" type="submit">NO</button>
+    </p>
+
+
+</script>
+
+<script type="text/ng-template" id="noresume" class="ngdialog-theme-default">
+
+    <p>No resume found {{unfavname}}</p>
+
+</script>

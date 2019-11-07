@@ -1,0 +1,516 @@
+<h3>
+    Pending Interviewers
+    <small>Displaying list of Pending Interviewers in the system</small>
+</h3>
+<div ng-controller="pendingInterviewerController" class="container-fluid">
+    <!--<div id="driverLocationMap" style="height:400px;width:100%;"></div>-->
+
+    <!-- START DATATABLE 2 -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default" ng-class="{'whirl duo' : showloader }">
+                <div class="panel-heading" >
+                    <button ng-show="hideExport" ng-click="exportData()" class="pull-right btn btn-sm btn-info">Export To CSV</button>
+                </div>
+                <div style="clear:both"></div>
+                <div class="panel-body">
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col-xs-5 col-sm-3 col-md-3 col-lg-3">
+                            <label>Records Per Page</label>
+                            <select class="form-control" ng-model="itemsPerPage" ng-options="pages for pages in searchModel.limitOptions" ng-change="getPagesCount()"></select>
+                        </div>
+                        <div class=" col-xs-5 col-sm-4 col-md-3 col-lg-3 col-xs-offset-2 col-sm-offset-5 col-md-offset-6 col-lg-offset-6">
+                            <div class="input-group" style="padding-top: 10%;">
+                                <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                                <input type="text" class="form-control" placeholder="Search" ng-model="search">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive" ng-switch="(list | filter:search).length">
+                        <div ng-switch-when="0" class="noSearch"><span>No Pending Interviewer found</span></div>
+                        <table id="datatable2" class="table table-hover" ng-switch-default>
+                            <thead>
+                            <tr>
+                                <th style="min-width:70px">
+                                    <div style="text-align:center;" ng-click="sort('index')">
+                                        Sr. No.
+                                        <span style="opacity:0.5" ng-hide="predicate == 'index' && reverse || predicate == 'index' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'index' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'index' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th>Profile Image</th>
+                                <th style="min-width:100px">
+                                    <div style="text-align:center;" ng-click="sort('name')">
+                                        Interviewer Details
+                                        <span style="opacity:0.5" ng-hide="predicate == 'name' && reverse || predicate == 'name' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'name' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'name' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th style="min-width:170px">
+                                    <div style="text-align:center;" ng-click="sort('registrationDate')">
+                                        Registration Date
+                                        <span style="opacity:0.5" ng-hide="predicate == 'registrationDate' && reverse || predicate == 'registrationDate' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'registrationDate' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'registrationDate' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th style="min-width:140px">
+                                    <div style="text-align:center;" ng-click="sort('industry')">
+                                        Industry/Functional Area
+                                        <span style="opacity:0.5" ng-hide="predicate == 'industry' && reverse || predicate == 'industry' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'industry' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'industry' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th style="min-width:140px">
+                                    <div style="text-align:center;" ng-click="sort('underGraduate')">
+                                        Education
+                                        <span style="opacity:0.5" ng-hide="predicate == 'underGraduate' && reverse || predicate == 'underGraduate' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'underGraduate' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'underGraduate' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th style="min-width:100px;text-align: center">Skills</th>
+                                <th style="min-width:100px;text-align: center">Documents</th>
+                                <th style="min-width:100px;text-align: center">Actions</th>
+
+                            </tr>
+                            </thead>
+                            <tbody ng-show="tBodyFlag">
+                            <tr style='background-color: {{data.color}} !important'
+                                ng-repeat="data in filtered =  list| filter:search | orderBy:predicate:reverse">
+                                <td style="text-align: center">{{data.index+1}}</td>
+                                <td>
+                                    <img ng-src="{{data.profilePicURL || 'app/img/noimg.png'}}" class="tableImage">
+                                </td>
+                                <td><b>Name</b> - {{data.name}} <br>
+                                    <b>Email</b> - {{data.email}}<br>
+                                    <b>Linked In Id</b> - {{data.linkedInId}}<br>
+                                    <b>Contact</b> - {{data.phoneNumber}}
+                                </td>
+                                <td>{{data.registrationDate  | date:'medium'}}</td>
+                                <td><b>Industry</b> - {{data.industry}} <br>
+                                    <b>Functional Area</b> - {{data.functionalArea}}
+                                </td>
+                                <td><b>UG</b> - {{data.underGraduate}} <br>
+                                    <b>PG</b> - {{data.postGraduate}}
+                                </td>
+                                <td><b>Soft</b> - {{data.softSkills}} <br>
+                                    <b>Technical</b> - {{data.technicalSkills}}
+                                </td>
+                                <td>
+                                    <div class="flexDisplay">
+                                        <a ng-show="data.resumeURL" style="margin: 0px 2px;" class="btn btn-sm btn-default1" target="_self" href="{{data.resumeURL}}" download="resume" title="Resume" ><!--style="background-color:#666666"-->
+                                            <i class="fa fa-download unblock-icon"></i>
+                                        </a>
+                                        <a ng-show="data.certificationURL" style="margin: 0px 2px;" class="btn btn-sm btn-default1" target="_self" href="{{data.certificationURL}}" download="Certification" title="Certification" ><!--style="background-color:#666666"-->
+                                            <i class="fa fa-download unblock-icon"></i>
+                                        </a>
+                                        <!--<a  class = "btn btn-sm btn-default1" title="Bank Details" ng-disabled="data.bankDetails.length == 0" ng-click="getBankDetails(data.driverId)">-->
+                                            <!--<i class="fa fa-university block-icon "></i>-->
+                                        <!--</a>-->
+                                    </div>
+                                    <div class="">
+                                        <!--<a class="btn btn-sm btn-default1" title="Location Details" ng-click="viewLocation(data.driverId)" ng-disabled="data.currentLocation.length == 0">&lt;!&ndash;style="background-color:#666666"&ndash;&gt;-->
+                                            <!--<i class="fa fa-location-arrow unblock-icon"></i>-->
+                                        <!--</a>-->
+                                        <!--<a class="btn btn-sm btn-default1" title="Device Details" ng-click="viewDevice(data.driverId)">&lt;!&ndash;style="background-color:#666666"&ndash;&gt;-->
+                                            <!--<i class="fa fa-mobile fa-lg unblock-icon"></i>-->
+                                        <!--</a>-->
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="text-center">
+                                        <a class="btn btn-sm btn-default1" title="Approve" ng-click="approveInterviewer(data.Id,data.name)"><!--style="background-color:#666666"-->
+                                            <i class="fa fa-check unblock-icon"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tfoot ng-show="tFootFlag">
+                            <tr>
+                                <th colspan="6" class="noDataClass">No Pending Driver Found.</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-6" style="padding-top: 2%;" ng-show="hideExport">
+                            <span>Showing {{skipValue + 1}} to {{limitValue + 1}} of {{dataLength}} Entries</span>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6 ">
+                            <div class="pull-right" ng-show="sp_pagination"><!--ng-show="sp_pagination" ng-show="watchPagination"-->
+                                <nav ng-show="watchPagination">
+                                    <ul class="pagination">
+                                        <li ng-class="prevPageDisabled()">
+                                            <a class="link" ng-click="prevPage(currentPage)">Previous</a>
+                                        </li>
+                                        <li ng-class="{active: m == currentPage}"  ng-repeat="m in range()" ng-click="setPage(m)">
+                                            <a class="link" ng-click="currentData(m)">{{m+1}}</a>
+                                        </li>
+                                        <li ng-class="nextPageDisabled()">
+                                            <a class="link" ng-click="nextPage(currentPage)">Next</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END DATATABLE 2 -->
+
+    <!-- **************************************************************************
+    ******************* Modal to get vehicle driver ***********************************
+    *******************************************************************************-->
+    <script type="text/ng-template" id="vehicleDriverDialog">
+        <div class="ngdialog-message">
+            <h3>Vehicle Details</h3>
+
+            <div class="row" ng-repeat="vehicles in vehicle">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <!--<vr></vr>-->
+                            <div class="row">
+                                <div class="col-sm-2 col-md-2 col-lg-2">
+                                    <div class="vehicleDetails">
+                                        <i class="fa fa-car fa-2x"></i>
+                                    </div>
+                                </div>
+                                <div class="col-sm-10 col-md-10 col-lg-10">
+                                    <div>
+                                        <label>
+                                            Vehicle Details :
+                                        </label>
+                                        <br>
+                                        <div class="flexDisplay">
+                                            <span>
+                                            <b>Type</b> -{{vehicles.vehicleType}} <br>
+                                            <b>Model</b> - {{vehicles.vehicleModel}}<br>
+                                            <b>Maker</b> - {{vehicles.vehicleMake}}<br>
+                                            <b>Colour</b> - {{vehicles.vehicleColor}}<br>
+                                            <b>Number</b> - {{vehicles.vehicleNumber}}<br>
+                                            </span>
+                                            <span>
+                                                <a target="_self" href="{{vehicles.vehiclePic}}" download="vehiclePic.png" title="vehicle Pic">
+                                                    <img ng-src="{{vehicles.vehiclePic}}" class="tableImage">
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-2 col-md-2 col-lg-2">
+                                    <div class="vehicleDetails">
+                                        <img src="app/img/license-icon.png" style="height:45px;width:45px;">
+                                    </div>
+                                </div>
+                                <div class="col-sm-10 col-md-10 col-lg-10">
+                                    <div>
+                                        <span>
+                                            <b>Licence Number</b> -{{vehicles.vehicleLicenseNumber}} <br>
+                                           <div ng-hide="pdf_check2">
+                                                 <a target="_self" href="{{vehicles.vehicleLicensePic}}" download="LicensePic.png" title="License">
+                                                     <img class="tableImage" ng-src="{{vehicles.vehicleLicensePic}}" />
+                                                 </a>
+                                            </div>
+                                            <div ng-show="pdf_check2">
+                                                 <a target="_self" href="{{vehicles.vehicleLicensePic}}" download="LicensePic.pdf" title="License">
+                                                     <object class="tableImage" data="{{vehicles.vehicleLicensePic}}"></object>
+                                                 </a>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-2 col-md-2 col-lg-2">
+                                    <div class="vehicleDetails">
+                                        <i class="fa fa-file fa-2x"></i>
+                                    </div>
+                                </div>
+                                <div class="col-sm-10 col-md-10 col-lg-10">
+                                    <div class="flexDisplay">
+                                        <span>
+                                            <b>Ownership Proof</b><br>
+                                            <div ng-hide="pdf_check3">
+                                                 <a target="_self" href="{{vehicles.vehicleOwnershipProof}}" download="OwnershipProof.png" title="Ownership Proof">
+                                                     <img class="tableImage" ng-src="{{vehicles.vehicleOwnershipProof}}" />
+                                                 </a>
+                                            </div>
+                                            <div ng-show="pdf_check3">
+                                                 <a target="_self" href="{{vehicles.vehicleOwnershipProof}}" download="OwnershipProof.pdf" title="Ownership Proof">
+                                                     <object class="tableImage" data="{{vehicles.vehicleOwnershipProof}}"></object>
+                                                 </a>
+                                            </div>
+                                            <!--<a target="_self" href="{{vehicles.vehicleOwnershipProof}}" download="OwnershipProof.png" title="Ownership Proof">-->
+                                            <!--<img ng-src="{{vehicles.vehicleOwnershipProof}}" class="tableImage">-->
+                                            <!--</a>-->
+                                        </span>
+                                        <span style="padding-left:20%;">
+                                            <b>Custom Paper</b><br>
+                                              <div ng-hide="pdf_check4">
+                                                 <a target="_self" href="{{vehicles.customPaper}}" download="customPaper.png" title="Custom Paper">
+                                                     <img class="tableImage" ng-src="{{vehicles.customPaper}}" />
+                                                 </a>
+                                            </div>
+                                            <div ng-show="pdf_check4">
+                                                 <a target="_self" href="{{vehicles.customPaper}}" download="customPaper.pdf" title="Custom Paper">
+                                                     <object class="tableImage" data="{{vehicles.customPaper}}"></object>
+                                                 </a>
+                                            </div>
+                                            <!--<a target="_self" href="{{vehicles.customPaper}}" download="customPaper.png" title="Custom Paper">-->
+                                            <!--<img ng-src="{{vehicles.customPaper}}" class="tableImage">-->
+                                            <!--</a>-->
+                                        </span>
+                                    </div>
+                                    <br>
+                                    <div class="flexDisplay">
+                                        <span>
+                                            <b>TWP</b><br>
+                                            <div ng-hide="pdf_check5">
+                                                 <a target="_self" href="{{vehicles.TWP}}" download="TWP.png" title="TWP">
+                                                     <img class="tableImage" ng-src="{{vehicles.TWP}}" />
+                                                 </a>
+                                            </div>
+                                            <div ng-show="pdf_check5">
+                                                 <a target="_self" href="{{vehicles.TWP}}" download="TWP.pdf" title="TWP">
+                                                     <object class="tableImage" data="{{vehicles.TWP}}"></object>
+                                                 </a>
+                                            </div>
+                                            <!--<a target="_self" href="{{vehicles.TWP}}" download="TWP.png" title="TWP">-->
+                                            <!--<img ng-src="{{vehicles.TWP}}" class="tableImage">-->
+                                            <!--</a>-->
+                                        </span>
+                                        <span style="padding-left:20%;">
+                                            <b>CORW</b><br>
+                                              <div ng-hide="pdf_check6">
+                                                 <a target="_self" href="{{vehicles.CORW}}" download="CORW.png" title="CORW">
+                                                     <img class="tableImage" ng-src="{{vehicles.CORW}}" />
+                                                 </a>
+                                            </div>
+                                            <div ng-show="pdf_check6">
+                                                 <a target="_self" href="{{vehicles.CORW}}" download="CORW.pdf" title="CORW">
+                                                     <object class="tableImage" data="{{vehicles.CORW}}"></object>
+                                                 </a>
+                                            </div>
+                                            <!--<a target="_self" href="{{vehicles.CORW}}" download="CORW.png" title="CORW">-->
+                                            <!--<img ng-src="{{vehicles.CORW}}" class="tableImage">-->
+                                            <!--</a>-->
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                    <p style="font-size:18px;text-align: center;"><b>Status</b></p>
+                                    <label class="text-capitalize">Deleted : {{vehicles.Deleted}}</label>
+                                    <br>
+                                    <label class="text-capitalize">Default : {{vehicles.Default}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+    <!-- **************************************************************************
+    ******************* Modal to get bank driver ***********************************
+    *******************************************************************************-->
+    <script type="text/ng-template" id="bankDriverDialog">
+        <div class="ngdialog-message">
+            <h3>Bank Details</h3>
+
+            <div class="row" ng-repeat="banks in bank">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <!--<vr></vr>-->
+                            <div class="row">
+                                <div class="col-sm-2 col-md-2 col-lg-2">
+                                    <div class="vehicleDetails">
+                                        <i class="fa fa-university fa-2x"></i>
+                                    </div>
+                                </div>
+                                <div class="col-sm-10 col-md-10 col-lg-10">
+                                    <div>
+                                        <label>
+                                            Bank Details :
+                                        </label>
+                                        <br>
+                                        <div class="flexDisplay">
+                                            <span>
+                                            <b>Name</b> -{{banks.bankName}} <br>
+                                            <b>IFCS Code</b> - {{banks.IFCS}}<br>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-2 col-md-2 col-lg-2">
+                                    <div class="vehicleDetails">
+                                        <i class="fa fa-credit-card fa-2x"></i>
+                                    </div>
+                                </div>
+                                <div class="col-sm-10 col-md-10 col-lg-10">
+                                    <div>
+                                        <label>
+                                            Account Details :
+                                        </label>
+                                        <br>
+                                        <div class="flexDisplay">
+                                            <span>
+                                            <b>Holder Name</b> -{{banks.accountHolderName}} <br>
+                                            <b>Account Number</b> - {{banks.accountNumber}}<br>
+                                            <b>Account Type</b> - {{banks.accountType}}<br>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                    <p style="font-size:18px;text-align: center;"><b>Status</b></p>
+                                    <label class="text-capitalize">Deleted : {{banks.Deleted}}</label>
+                                    <br>
+                                    <label class="text-capitalize">Default : {{banks.Default}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+    <!-- **************************************************************************
+  ******************* Modal to get location of driver ***********************************
+  *******************************************************************************-->
+    <script type="text/ng-template" id="locationDriverDialog">
+        <div class="ngdialog-message">
+            <h3>Driver Location</h3>
+
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <!--<vr></vr>-->
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                    <div id="driverLocationMap" style="height:400px;width:100%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+    <!-- **************************************************************************
+ ******************* Modal to get driver device ***********************************
+ *******************************************************************************-->
+    <script type="text/ng-template" id="deviceDriverDialog">
+        <div class="ngdialog-message">
+            <h3>Driver Device</h3>
+
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <!--<vr></vr>-->
+                            <div class="row">
+                                <div class="col-sm-2 col-md-2 col-lg-2">
+                                    <div class="vehicleDetails">
+                                        <i class="fa fa-mobile fa-2x"></i>
+                                    </div>
+                                </div>
+                                <div class="col-sm-10 col-md-10 col-lg-10" style="word-break: break-all;">
+                                    <div>
+                                        <label>
+                                            Device Details :
+                                        </label>
+                                        <br>
+                                        <div class="flexDisplay">
+                                            <span>
+                                            <b>Device Type</b> - {{deviceType || 'Null'}} <br>
+                                            <b>Device Token</b> - {{deviceToken || 'Null'}}<br>
+                                            <b>Device Password</b> - {{password || 'Null'}}<br>
+                                            <b>App Version</b> - {{appVersion || 'Null'}}<br>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+    <!-- **************************************************************************
+    ******************* Modal to display msg **************************************
+    *******************************************************************************-->
+    <script type="text/ng-template" id="display_msg_modalDialog">
+        <div class="ngdialog-message">
+            <h4>{{displaymsg}}</h4>
+            <a type="submit" ng-click="refreshPage()" class="btn btn-primary" style="margin: 10px auto 0px">OK</a>
+            <div style="clear: both;"></div>
+        </div>
+    </script>
+    <!-- **************************************************************************
+******************* Modal to display unauth msg **************************************
+*******************************************************************************-->
+    <script type="text/ng-template" id="unauth_msg_modalDialog">
+        <div class="ngdialog-message">
+            <h4>{{unAuthMsg}}</h4>
+            <a type="submit" ng-click="forceLogin()" class="btn btn-primary" style="margin: 10px auto 0px">OK</a>
+            <div style="clear: both;"></div>
+        </div>
+    </script>
+
+    <!-- ***************************************************************************
+    ******************* Modal for delete driver ************************************
+    ********************************************************************************-->
+    <script type="text/ng-template" id="delete_driver_modalDialog">
+        <div class="ngdialog-message">
+            <h4>Are you sure you want to delete driver?</h4>
+            <div style="  margin-top: 20px;text-align: center">
+                <form method="post" validate-form="" novalidate="">
+                    <button type="submit" ng-click="delete_driver(delete_driver_id)" class="myButton btn btn-primary" >Submit</button>
+                    <button type="button" ng-click="closeThisDialog(0)" class="btn btn-default" style='margin-left:20px;'>Cancel</button>
+                </form>
+            </div>
+        </div>
+    </script>
+    <!-- ***************************************************************************
+******************* Modal for approve driver ************************************
+********************************************************************************-->
+    <script type="text/ng-template" id="approve_interviewer_modalDialog">
+        <div class="ngdialog-message">
+            <h4>Are you sure you want to approve {{interviewer_name}}?</h4>
+            <div style="  margin-top: 20px;text-align: center">
+                <form method="post" validate-form="" novalidate="">
+                    <button type="submit" ng-click="confirmApproveInterviewer(interviewer_id)" class="myButton btn btn-primary" >Submit</button>
+                    <button type="button" ng-click="closeThisDialog(0)" class="btn btn-default" style='margin-left:20px;'>Cancel</button>
+                </form>
+            </div>
+        </div>
+    </script>
+
+
+</div>

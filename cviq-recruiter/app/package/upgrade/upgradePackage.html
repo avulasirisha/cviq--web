@@ -1,0 +1,171 @@
+
+<section style="min-height: 986px;box-shadow: inset 0 16px 20px -20px rgba(0,0,0,0.8);">
+
+    <div ng-class="{packages1: myClass == 'packages1',packages2: myClass == 'packages2',packages3: myClass == 'packages3'}" class=" container col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1" style="margin-bottom: 40px">
+        <div style="text-align: center;margin-top: 30px">
+            <h4 >UPGRADE YOUR PACKAGE</h4>
+            <hr style="margin: 10px 0 0 0 ">
+            <hr style="margin:  0 0 40px 0">
+        </div>
+        <ul >
+            <li ng-repeat="plan in plans">
+                <div>
+                    <div ng-show="userPackage == plan.planType " class="ribbon-wrapper-green"><div class="ribbon-green">ACTIVE</div></div>
+                    <div class="packagediv1">
+
+                        <div style="padding-top: 15%;padding-bottom: 10%" >
+                            <div class="packageCircle"  >
+                                <span class="packageContent">${{plan.planRate}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix packagediv2">
+                    <span class="packageContent2">
+                        {{plan.planType}}</span>
+                        </span>
+                    </div>
+                    <div class=" packagetextbackground" >
+                        <div class=" packagetextbackground1" >
+                            <span class="packageText">
+                        Plan Duration {{plan.planDuration}} months
+                      </span>
+                            <br/>
+                            <br/>
+                        <span class="packageText">
+                        Post {{plan.jobsPostPerMonth}} jobs a month
+                        </span>
+                            <br/>
+                            <br/>
+
+                        <span class="packageText" ng-show="plan.searchCandidateInHrs != 0">
+                        Search candidate database for {{plan.searchCandidateInHrs}} hours<br>(with break of {{plan.sessionBreakInHrs}} hours before next session begins)
+                        </span>
+                        <span class="packageText" ng-show="plan.searchCandidateInHrs == 0">
+                        Search candidate database with no limit
+                        </span>
+                            <br/>
+                            <br/>
+                        <span class="packageText">
+                        Jobs will be active for {{plan.jobActiveDays}} days
+                        </span>
+                            <br/>
+                            <br/>
+                        <span class="packageText">
+                        {{plan.planDescription}}
+                        </span>
+                            <br/>
+                            <br/>
+
+                        </div>
+
+                        <div class="container-fluid">
+                            <button  ng-hide="userPackage == plan.planType " type="submit" class="btn-block" ng-click="package(plan)">SELECT</button>
+                            <button style="background-color:rgba(79, 95, 114, 0.62);cursor: not-allowed" ng-show="userPackage == plan.planType " type="submit" class="btn-block" disabled>SELECT</button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <!-- <ul>
+             <li>
+                 <div class="packageDivs">
+
+                     <div style="background-color: #0297cf">
+                         <div style="padding: 5%" >
+                             <div class="packageCircle" id="packageCircle1" >
+                                 <span class="packageContent">$450</span>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="clearfix packageno1div2">
+                         <span class="packageContent2">
+                             PACKAGE 1<br>
+                             <span>
+                                 &nbsp
+                             </span>
+                         </span>
+                     </div>
+                     <div class=" packagetextbackground" >
+                 <span class="packageText">
+                   Post 2 jobs a month
+                  </span>
+                         <br/>
+                         <br/>
+
+                  <span class="packageText">
+                    Search candidate database for 2 hours
+                  </span>
+                         <br/>
+                         <br/>
+                  <span class="packageText">
+                   Jobs will be active for 30 days
+                   </span>
+                         <br/>
+                         <br/>
+                <span class="packageText">
+                    Free mobile app
+                 </span>
+                         <br/>
+                         <br/>
+                <span class="packageText">
+                    No contract required
+                 </span>
+                         <br/>
+                         <br/>
+                         <div class="container-fluid">
+                             <button type="submit" class="btn btn-primary btn-block" ng-click="package(1)">SUBMIT</button>
+                         </div>
+                     </div>
+                 </div>
+             </li>
+             <li>
+                 <div class="packageDivs" style="padding: 0;" >
+                     <div style="background-color: #6786aa">
+                         <div style="padding: 5%" >
+                             <div class="packageCircle" id="packageCircle2" >
+                                 <span class="packageContent">$4320</span>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="clearfix packageno2div2">
+                         <span class="packageContent2">PACKAGE 2<br><span>(20% corporate discount)</span></span>
+                     </div>
+                     <div class= "packagetextbackground">
+                  <span class="packageText">
+                   Post 10 jobs a month
+                 </span>
+                         <br/>
+                         <br/>
+
+                 <span class="packageText">
+                   Search candidates database with no time limit
+                 </span>
+                         <br/>
+                         <br/>
+                 <span class="packageText">
+                   Jobs will be active for 45 days.
+                 </span>
+                         <br/>
+                         <br/>
+                 <span class="packageText">
+                   Free Mobile app
+                 </span>
+                         <br/>
+                         <br/>
+                 <span class="packageText">
+                   Receive matching candidates to the job postings to your corporate email
+                 </span>
+                         <br/>
+                         <br/>
+                         <div class="container-fluid">
+                             <button type="submit" class="btn btn-primary btn-block" ng-click="package(2)">SUBMIT</button>
+                         </div>
+                     </div>
+                 </div>
+             </li>
+         </ul>-->
+
+
+    </div>
+
+</section>

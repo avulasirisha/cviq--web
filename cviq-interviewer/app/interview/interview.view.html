@@ -1,0 +1,27 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.interview-modes ul li a').click(function () {
+            $('.interview-modes ul li a').removeClass('active');
+            $(this).addClass('active');
+        });
+    });
+</script>
+<section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 banner dashboard">
+    <div class="container">
+        <div class="row">
+            <div class="interview-modes">
+                <ul>
+                    <li><a ng-click="var1 = 'PAST'" ng-class="{'active': var1 == 'PAST'}" ui-sref="home.interview.past">Past</a></li>
+                    <li><a ng-click="var1 = 'NEW'" ng-class="{'active': var1 == 'NEW'}" ui-sref="home.interview.new">New</a></li>
+                    <li><a ng-click="var1 = 'UPCOMING'" ng-class="{'active': var1 == 'UPCOMING'}" ui-sref="home.interview.upcoming">Upcoming</a></li>
+                </ul>
+                <a class="pull-right available" ui-sref="home.availability">Set Availability</a>
+            </div>
+            <div ui-view=""></div>
+        </div>
+    </div>
+</section>
+<script type="text/ng-template" id="templateId" class="ngDialog-theme-default">
+    <p class="rate-message">You will have to Rate David John within<br />24 hours.</p>
+    <button type="submit">OK</button>
+</script>

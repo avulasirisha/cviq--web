@@ -1,0 +1,553 @@
+
+App.controller('paymentInterviewsController', function ($scope, $http, $cookies,$state, $cookieStore, MY_CONSTANT, $timeout,ngDialog,responseCode, filterFilter) {
+
+
+    console.log("Past interviewer ctrl");
+
+    'use strict';
+    if($cookieStore.get("obj") == undefined){
+        $cookieStore.remove('obj');
+        $cookieStore.remove('zoom');
+        $cookieStore.remove('type');
+        $cookieStore.remove('email');
+        $.removeCookie('geoseen');
+        $state.go('page.login');
+    }
+    $scope.showloader=true;
+    $scope.currentPage = 0;
+    $scope.sp_pagination = false;
+    $scope.tBodyFlag = true;
+    $scope.tFootFlag = false;
+    $scope.hideExport = false;
+    $scope.maxSize = 5;
+    $scope.pdf_check1 = true;
+
+    $scope.delete_driver_id = '';
+    $scope.approve_driver_id = '';
+
+
+    $scope.searchModel = {
+        limit: 10,
+        limitOptions: [10, 25, 50, 100]
+    };
+    $scope.itemsPerPage = $scope.searchModel.limitOptions[0];
+    $scope.getPagesCount = function(){
+        console.log("items per page",$scope.itemsPerPage);
+        $scope.list = [];
+        $scope.getInterviewers(0, $scope.itemsPerPage);
+
+        $scope.setPage(0);
+
+    };
+    // $scope.resetSearchForm = function () {
+    //     $scope.searchModel = {
+    //         limit: 10,
+    //         limitOptions: [10, 25, 50, 100]
+    //     };
+    // };
+    $scope.dateCorrect = function(data){
+        var date = data;
+        var targetTime = new Date(date);
+        var tzDifference = targetTime.getTimezoneOffset();
+        var offsetTime = new Date(targetTime.getTime() + tzDifference * 60 * 1000);
+        return(new Date(offsetTime));
+    };
+    //==========================================================================================================================
+//============================================================ api for get Interviewer ====================================
+//==========================================================================================================================
+    $scope.getInterviewers = function(skip,limit){
+        console.log(skip,limit);
+        $scope.showloader = true;
+        $http({
+            method: 'GET',
+            url: MY_CONSTANT.url_cviq + '/api/admin/getPaymentInterviews',
+            headers:{
+                'authorization':$cookieStore.get("obj").accessToken,
+                'Content-type': 'application/x-www-form-urlencoded'
+            },
+            params: {
+                start: skip,
+                limit: limit
+            }
+        })
+            .success(function(response){
+                console.log(response);
+                $scope.showloader = false;
+                $scope.dataLength = response.data.totalCount;
+
+                if(response.data.totalCount == 0){
+                    $scope.sp_pagination = false;
+                    $scope.tBodyFlag = false;
+                    $scope.tFootFlag = true;
+                    $scope.hideExport = false;
+                }
+                else{
+                    $scope.sp_pagination = true;
+                    $scope.tBodyFlag = true;
+                    $scope.tFootFlag = false;
+                    $scope.hideExport = true;
+                }
+
+                var dataArray = [];
+                var pendingList = response.data.interviewList;
+
+                pendingList.forEach(function (column) {
+                    // console.log(Object.keys(column).length);   //to find key length in object
+                    var d = {};
+
+
+                    d.id = column._id;
+
+                    d.candidateProfilePicURL = column.candidateID.profilePicURL.original;
+                    d.candidateId = column.candidateID._id;
+                    d.candidateEmail = column.candidateID.email;
+                    d.candidateName = column.candidateID.firstName + ' ' + column.candidateID.lastName;
+                    d.candidatePhoneNo = column.candidateID.countryCode + '-' + column.candidateID.phoneNo;
+
+
+                    d.interviewerProfilePicURL = column.interviewerID.profilePicURL.original;
+                    d.interviewerEmail = column.interviewerID.email;
+                    d.interviewerId = column.interviewerID._id;
+                    d.interviewerName = column.interviewerID.firstName + ' ' + column.interviewerID.lastName;
+                    d.interviewerPhoneNo = column.interviewerID.countryCode + '-' + column.interviewerID.phoneNo;
+
+                    d.video_duration = column.video_duration;
+                    d.payment_id = column.payment_id;
+                    d.video_url = column.video_url
+
+                    d.interviewStartDate = moment(column.interviewStartDate).format('MMM Do YYYY');//date
+                    d.interviewStartTime = column.interviewStartTime;
+
+                    d.interviewEndDate = moment(column.interviewEndDate).format('MMM Do YYYY');//date
+                    d.actualInterviewEndTime =moment(column.actualInterviewEndTime).format('h:mm a');//date
+                  //  d.interviewEndTime = column.interviewEndTime;
+
+
+
+
+
+                    d.candidateRating = column.candidateRating;
+                    d.interviewerRating = column.interviewerRating;
+                    d.ratingByCandidate = column.ratingByCandidate;
+                    d.ratingByInterviewer = column.ratingByInterviewer;
+
+                    d.backgroundScore = column.backgroundScore;
+                    d.communicationScore = column.communicationScore;
+                    d.leadershipScore = column.leadershipScore;
+                    d.socialSkillScore = column.socialSkillScore;
+                    d.totalQualitativeGiven = column.totalQualitativeGiven;
+                    d.totalQualitativeScore = column.totalQualitativeScore;
+
+
+
+                    var statusArray = ['','PENDING','ONGOING','','CONFIRMED','COMPLETED','EXPIRED','REJECTED','CANCELLED'];
+                    d.status = statusArray[column.status];
+                    d.timeOffset = column.timeOffset;
+
+
+                    d.createdAt = moment(column.createdAt).format('MMM Do YYYY, h:mm a');//date
+                    d.updatedAt = moment(column.updatedAt).format('MMM Do YYYY, h:mm a');//date
+
+                    dataArray.push(d);
+                });
+                $scope.list = dataArray;
+
+                console.log($scope.list);
+                for (var i = 0; i < $scope.list.length; i++) {
+                    $scope.list[i].index = (skip + i )
+                }
+                console.log($scope.itemsPerPage);
+
+                if ($scope.dataLength <= $scope.itemsPerPage) {
+                    $scope.sp_pagination = false;
+                }
+                else {
+                    $scope.sp_pagination = true;
+                    $scope.pageCount(response.data.totalCount);
+                }
+                $scope.skipValue = $scope.list[0].index;
+                $scope.limitValue = $scope.list[$scope.list.length-1].index;
+
+                $scope.$watch('search', function (newVal, oldVal) {
+                    $scope.filtered = filterFilter($scope.list, newVal);
+                    $scope.totalItems = $scope.filtered.length;
+                    console.log(newVal);
+                    console.log(oldVal);
+                    console.log($scope.filtered);
+                    if($scope.filtered.length == 0){
+                        $scope.watchPagination = false;
+                    }
+                    else $scope.watchPagination = true;
+                }, true);
+            })
+            .error(function(response){
+
+                console.log(response);
+                if(response.statusCode == 401){
+                    $cookieStore.remove('obj');
+                    $cookieStore.remove('zoom');
+                    $cookieStore.remove('type');
+                    $cookieStore.remove('email');
+                    $.removeCookie('geoseen');
+                    $state.go('page.login');
+                }
+            });
+    };
+    $scope.forceLogin = function(){
+        ngDialog.close();
+        $state.go('page.login');
+        $cookieStore.remove('obj');
+    };
+    //==========================================================================================================================
+//============================================================ pagination ====================================
+//==========================================================================================================================
+    $scope.range = function () {
+
+        // console.log("dfdswfew",Math.ceil($scope.dataLength / $scope.itemsPerPage));
+
+        if(Math.ceil($scope.dataLength / $scope.itemsPerPage)<5){
+            var rangeSize = Math.ceil($scope.dataLength / $scope.itemsPerPage);
+        }
+        else{
+            var rangeSize = 5;
+        }
+        var ret = [];
+        var start;
+
+        start = $scope.currentPage;
+        if (start > $scope.totalPages - rangeSize) {
+            start = $scope.totalPages - rangeSize + 1;
+        }
+
+        for (var i = start; i < start + rangeSize; i++) {
+            ret.push(i);
+        }
+        return ret;
+    };
+
+    $scope.prevPage = function (b) {
+        console.log(b);
+        if ($scope.currentPage > 0) {
+            $scope.currentPage--;
+            $scope.getInterviewers((b-1)*$scope.itemsPerPage,$scope.itemsPerPage);//(b)*
+        }
+    };
+
+    $scope.prevPageDisabled = function () {
+        return $scope.currentPage === 0 ? "disabled" : "";
+    };
+
+    $scope.pageCount = function (dataLength) {
+        $scope.totalPages = Math.ceil(dataLength / $scope.itemsPerPage) - 1;
+        return ($scope.totalPages);
+    };
+
+    $scope.nextPage = function (a) {
+        console.log(a);
+        if ($scope.currentPage < $scope.totalPages) {
+            $scope.currentPage++;
+            $scope.getInterviewers((a+1)*$scope.itemsPerPage,$scope.itemsPerPage);//(a+2)*
+        }
+    };
+
+    $scope.nextPageDisabled = function () {
+        return $scope.currentPage === $scope.totalPages ? "disabled" : "";
+    };
+
+    $scope.setPage = function (m) {
+        $scope.currentPage = m;
+    };
+//    }
+    $scope.currentData = function(m){
+        console.log(m);
+        $scope.getInterviewers((m)*$scope.itemsPerPage,$scope.itemsPerPage);//(m+1)*
+    };
+
+    $scope.init = function () {
+        // $scope.resetSearchForm();
+        $scope.list = [];
+        $scope.getInterviewers(0, $scope.searchModel.limit);
+    };
+    $scope.init();
+
+    $scope.predicate = 'index';
+    $scope.reverse = false;
+    $scope.sort = function(type){
+        console.log("hjh");
+        $scope.predicate = type;
+        $scope.reverse = !$scope.reverse;
+    };
+    //==========================================================================================================================
+//============================================================ pagination ends ====================================
+//==========================================================================================================================
+
+    //==========================================================================================================================
+//====================================================export api for get interviewer ====================================
+//==========================================================================================================================
+    $scope.exportData = function(){
+        $http({
+            method: 'GET',
+            url: MY_CONSTANT.url_cviq + '/api/admin/getPastInterviews',
+            headers:{
+                'authorization':$cookieStore.get("obj").accessToken,
+                'Content-type': 'application/x-www-form-urlencoded'
+            },
+            params: {
+                start: 0,
+                limit: 1000000,
+            }
+        })
+            .success(function(response){
+                console.log(response);
+                var dataArray1 = [];
+                var index1 = 0;
+
+                var pendingList1 = response.data.interviewList;
+                pendingList1.forEach(function (column) {
+                    var e = {};
+
+
+                    // e.id = column._id;
+
+                    // e.candidateId = column.candidateID._id;
+                    e.candidateEmail = column.candidateID.email;
+                    e.candidateName = column.candidateID.firstName + ' ' + column.candidateID.lastName;
+                    e.candidatePhoneNo = column.candidateID.countryCode + '-' + column.candidateID.phoneNo;
+                    e.candidateProfilePicURL = column.candidateID.profilePicURL.original;
+
+
+                    e.interviewerProfilePicURL = column.interviewerID.profilePicURL.original;
+
+                    e.interviewerEmail = column.interviewerID._id;
+                    // e.interviewerId = column.interviewerID.email;
+                    e.interviewerName = column.interviewerID.firstName + ' ' + column.interviewerID.lastName;
+                    e.interviewerPhoneNo = column.interviewerID.countryCode + '-' + column.interviewerID.phoneNo;
+
+                    e.video_duration = column.video_duration;
+                    e.payment_id = column.payment_id;
+
+
+                    e.interviewStartDate = moment(column.interviewStartDate).format('MMM Do YYYY');//date
+                    e.interviewStartTime = column.interviewStartTime;
+
+                    e.interviewEndDate = moment(column.interviewEndDate).format('MMM Do YYYY');//date
+                    e.actualInterviewEndTime =moment(column.actualInterviewEndTime).format('h:mm a');//date
+                    //  e.interviewEndTime = column.interviewEndTime;
+
+
+
+
+
+                    e.candidateRating = column.candidateRating;
+                    e.interviewerRating = column.interviewerRating;
+                    // e.ratingByCandidate = column.ratingByCandidate;
+                    // e.ratingByInterviewer = column.ratingByInterviewer;
+
+                    e.backgroundScore = column.backgroundScore;
+                    e.communicationScore = column.communicationScore;
+                    e.leadershipScore = column.leadershipScore;
+                    e.socialSkillScore = column.socialSkillScore;
+                    e.totalQualitativeGiven = column.totalQualitativeGiven;
+                    e.totalQualitativeScore = column.totalQualitativeScore;
+                    
+                    var statusArray = ['','PENDING','ONGOING','','CONFIRMED','COMPLETED','EXPIRED','REJECTED','CANCELLED'];
+                    e.status = statusArray[column.status];
+                    // e.timeOffset = column.timeOffset;
+
+
+
+                    dataArray1.push(e);
+                });
+                $scope.exportList = dataArray1;
+                console.log($scope.exportList);
+                alasql('SELECT * INTO CSV("PastInterviewsList.csv",{headers:true}) FROM ?',[$scope.exportList]);
+            })
+            .error(function(response,error){
+                console.log(response);
+                console.log(error);
+                if(response.statusCode == 401){
+                    $cookieStore.remove('obj');
+                    $cookieStore.remove('zoom');
+                    $cookieStore.remove('type');
+                    $cookieStore.remove('email');
+                    $.removeCookie('geoseen');
+                    $state.go('page.login');
+                }
+            });
+    };
+
+
+    $('#certi1').click(function () {
+        console.log("hello");
+        $('#certi1').attr('download','myname');
+    });
+
+
+    /*--------------------------------------------------------------------------
+     * --------- funtion to refresh page ---------------------------------------
+     --------------------------------------------------------------------------*/
+    $scope.refreshPage = function () {
+        $state.reload();
+        ngDialog.close({
+            template: 'display_msg_modalDialog',
+            className: 'ngdialog-theme-default',
+            scope: $scope
+        });
+    };
+    
+   /*----------------------------------------------------------
+   ------------- udpate payment -------------------------------------
+   -------------------------------------------------------------------*/
+   
+     $scope.updatePaymentdata = function (data) {
+        $scope.newdata = angular.copy(data);
+        console.log(" $scope.newdata",$scope.newdata);
+
+        ngDialog.open({
+            template: 'updatePayment',
+            scope: $scope,
+            closeByEscape:false,
+            closeByDocument:false
+        });
+    };
+    
+    $scope.updateConfirm = function (data) {
+        ngDialog.close();
+        console.log("interviewId",data.percentage);
+        console.log("paymentId",typeof (data.paymentId));
+
+        var percentageForm = new FormData();
+        percentageForm.append("payment", true );
+        percentageForm.append("interviewId",data.id);
+        percentageForm.append("paymentId",data.paymentId);
+        $http({
+            method:'POST',
+            url: MY_CONSTANT.url_cviq +'/api/admin/PaymentUpdate',
+            transformRequest: angular.identity,
+            headers:{
+                'authorization':$cookieStore.get("obj").accessToken,
+                'Content-type': undefined
+            },
+            data: percentageForm
+        })
+            .success(function(response){
+                $scope.addnewData = {};
+                console.log(response);
+                $scope.displaymsg = response.message;
+                // $scope.$apply();
+                ngDialog.open({
+                    template: 'display_msg_modalDialog',
+                    className: 'ngdialog-theme-default',
+                    showClose: false,
+                    scope: $scope
+                });
+            })
+            .error(function(response,error){
+                $scope.addnewData = {};
+                console.log(response);
+                console.log(error);
+                if(response.statusCode == 401){
+                    $scope.unAuthMsg = 'Someone other get LoggedIn';
+                    //   $scope.$apply();
+                    ngDialog.open({
+                        template: 'unauth_msg_modalDialog',
+                        className: 'ngdialog-theme-default',
+                        showClose: false,
+                        scope: $scope
+                    });
+                }
+                else{
+                    $scope.displaymsg = response.message;
+                    //  $scope.$apply();
+                    ngDialog.open({
+                        template: 'display_msg_modalDialog',
+                        className: 'ngdialog-theme-default',
+                        showClose: false,
+                        scope: $scope
+                    });
+                }
+            });
+    };
+    
+     $scope.viewChat = function (interview, status) {
+        console.log( "interview id :"+ interview.id );
+        $http({
+            method: 'GET',
+            url: MY_CONSTANT.url_cviq + '/api/common/getAllChatMessages',
+            params:{
+                interviewID: interview.id
+            }
+        })
+            .success(function(response){
+                console.log('Chat Messages Success', response);
+                var allChatMesssages = response.data;
+
+                var docDefinition, textData1, textData2;
+                var contentArray = [];
+
+                if(allChatMesssages.length > 0){
+                    
+                    angular.forEach(allChatMesssages, function (value) {
+
+                        if(value.messageTo == 'INTERVIEWER'){
+                            textData1 = {text: 'Candidate', style: 'title'};
+                            textData2 = {text: value.message, style: 'myStyle'};
+                            contentArray.push(textData1, textData2);
+                        } else {
+                            textData1 = {text: 'Interviewer', style: ['title', 'anotherStyle']};
+                            textData2 = {text: value.message, style: ['myStyle', 'anotherStyle']};
+                            contentArray.push(textData1, textData2);
+                        }
+                    })
+
+                    docDefinition = {
+
+                        header: {
+                            text: 'CVIQ',
+                            style: 'mainHead'
+                        },
+
+                        content: contentArray,
+
+                        styles: {
+                            title: {
+                                fontSize: 14,
+                                bold: true,
+                                color: '#337ab7'
+                            },
+                            anotherStyle: {
+                                italic: true,
+                                alignment: 'right'
+                            },
+                            myStyle:{
+                                fontSize: 11,
+                                marginBottom: 10
+                            },
+                            mainHead: {
+                                alignment: 'center',
+                                marginTop:20,
+                                bold: true
+                            }
+                        }
+                    }
+                    if(!status){
+                        pdfMake.createPdf(docDefinition).open();
+                    }
+                    else{
+                        var date = interview.interviewStartDate.replace(" ", "_");
+                        pdfMake.createPdf(docDefinition).download( interview.candidateName.replace(" ", "") + "_"+date +'_Chat.pdf');
+                    }
+                }
+
+                else{
+                    bootbox.alert('No messages available.');
+                }
+
+            })
+            .error(function(response){
+                console.log('Chat Messages Error', response);
+            })
+        
+    }
+
+});

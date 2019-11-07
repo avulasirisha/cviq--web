@@ -1,0 +1,156 @@
+<!-- START Top Navbar-->
+<nav role="navigation" class="navbar topnavbar">
+    <!-- START navbar header-->
+    <div class="navbar-header" style="background-color: #fff">
+        <a class="navbar-brand">
+            <div class="brand-logo">
+                <img src="app/images/logo.png" alt="App Logo" class="img-responsive img-logo"/>
+            </div>
+            <div class="brand-logo-collapsed">
+                <img src="app/images/cviq-icon.png" alt="App Logo" class="img-responsive"/>
+            </div>
+        </a>
+    </div>
+    <!-- END navbar header-->
+    <!-- START Nav wrapper-->
+    <div class="nav-wrapper">
+        <!-- START Left navbar-->
+        <ul class="nav navbar-nav">
+            <li>
+                <!-- Button used to collapse the left sidebar. Only visible on tablet and desktops-->
+                <a href="#" ng-click="app.layout.isCollapsed = !app.layout.isCollapsed" class="hidden-xs">
+                    <em class="fa fa-navicon icon-nav"></em>
+                </a>
+                <!-- Button to show/hide the sidebar on mobile. Visible on mobile only.-->
+                <a href="#" toggle-state="aside-toggled" no-persist="no-persist" class="visible-xs sidebar-toggle">
+                    <em class="fa fa-navicon icon-nav"></em>
+                </a>
+            </li>
+        </ul>
+        <!-- END Left navbar-->
+        <!-- START Right Navbar-->
+        <ul class="nav navbar-nav navbar-right">
+            <!--<li style="margin-top:6px;">-->
+                <!--<div  ng-show="super_admin_show" ng-controller="navBarController" style="color:#000" class = "btn btn-default notif-btn" href="#"  title="Send Notifications" ng-click="notificationPopup()">-->
+                    <!--<em class="icon-bell icon-nav"><strong>Send Notifications</strong></em>-->
+                <!--</div>-->
+            <!--</li>-->
+            <!-- Fullscreen (only desktops)-->
+            <li class="visible-lg">
+                <a toggle-fullscreen="toggle-fullscreen" title="Full Screen">
+                    <em class="fa fa-expand icon-nav"></em>
+                </a>
+            </li>
+            <!--<li>-->
+                <!--<a title="Change Password"  ng-click="$state.go('app.changepassword')">-->
+                    <!--<em class="fa fa-lock icon-nav"></em>-->
+                <!--</a>-->
+            <!--</li>-->
+            <li dropdown="" class="dropdown dropdown-list">
+                <a dropdown-toggle="">
+                    <em class="fa fa-user"></em>
+                        <span>Administrator</span>
+                </a>
+                <!-- START Dropdown menu-->
+                <ul class="dropdown-menu animated fadeInDown">
+                    <li>
+                        <div class="list-group">
+                            <!-- list item-->
+                            <a ui-sref="app.changepassword" class="list-group-item"  >
+                                <div class="media-box">
+                                    <div class="pull-left">
+                                        <em class="fa fa-lock  text-info"></em>
+                                    </div>
+                                    <div class="media-box-body clearfix">
+                                        <p class="m0 text-muted">Change Password</p>
+                                        <!--<p class="m0 text-muted">-->
+                                        <!--<small>1 new follower</small>-->
+                                        <!--</p>-->
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- list item-->
+                            <!--<a class="list-group-item" ng-show="super_admin_show" ng-controller="navBarController">-->
+                                <!--<div class="media-box"  ng-click="notificationPopup()">-->
+                                    <!--<div class="pull-left">-->
+                                        <!--<em class="icon-bell icon-nav  text-info"></em>-->
+                                    <!--</div>-->
+                                    <!--<div class="media-box-body clearfix">-->
+                                        <!--<p class="m0 text-muted">Send Notifications</p>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash;<li style="margin-top:6px;">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div  ng-show="super_admin_show" ng-controller="navBarController" ng-click="notificationPopup()">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<em class="icon-bell icon-nav"><strong>Send Notifications</strong></em>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                            <!--</a>-->
+                            <a class="list-group-item" ng-controller="LoginController" ng-click="logout()">
+                                <div class="media-box">
+                                <div class="pull-left">
+                                    <em class="icon-logout icon-nav  text-info"></em>
+                                </div>
+                                <div class="media-box-body clearfix">
+                                    <p class="m0 text-muted">Logout</p>
+                                </div>
+                                </div>
+                                <!-- ***************************************************************************
+                                ******************* Modal for logout dialog ************************************
+                                ********************************************************************************-->
+                                <script type="text/ng-template" id="logout_dialog">
+                                    <div class="ngdialog-message">
+                                        <h4 style="text-align: center;">Are you sure you want to logout ?</h4>
+                                        <div >
+                                            <form method="post" validate-form="" novalidate="" style="text-align: center;margin-top: 20px;">
+                                                <button type="submit" ng-click="logoutFunction()" class="btn btn-primary" >Yes</button>
+                                                <button type="button" ng-click="closeThisDialog(0)" class="btn btn-default" style='margin-left:20px;'>No</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </script>
+
+
+                            </a>
+                        </div>
+                </ul>
+            </li>
+        </ul>
+        <!-- END Right Navbar-->
+    </div>
+    <!-- END Nav wrapper-->
+    <!--==============================================
+                 NOTIFCATION DIALOG
+    =================================================-->
+    <script type="text/ng-template" id="notif_dialog" ng-controller="navBarController">
+        <div class="ngdialog-message">
+            <h3>Send Notifications</h3>
+
+            <div class="panel panel-default">
+                <form method="post" name="myForm" validate-form="" novalidate=""  ng-submit="sendNotifications(notif)">
+                    <div ng-show="notif.successMsg" class="alert alert-success text-center">{{notif.successMsg}}</div>
+                    <div ng-show="notif.errorMsg" class="alert alert-danger text-center">{{notif.errorMsg}}</div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <select  required ="required" ng-model="notif.user_type"  class="chosen-select form-control" ng-options="item.id as item.name for item in typeUser">
+                                <option value="">-- Select User--</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea type="text" required="required" class="form-control"
+                                      elastic ng-model="notif.message" />
+                        </div>
+
+
+                    </div>
+                    <div class="panel-footer btn-align">
+                        <button type="submit" class="btn btn-primary" >Submit</button>
+                        <button type="button" ng-click="closeThisDialog(0)" class="btn btn-default">Cancel</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+    </script>
+</nav>
+<!-- END Top Navbar-->

@@ -1,0 +1,68 @@
+<!--- gopi added -->
+<div class="modal fade" id="message" role="dialog">
+    <div class="modal-dialog" style="    padding: 160px 0px;width: 450px;">
+        <div class="modal-content" style="background-color: #fff;border-radius: 15px 0 15px 0;padding: 30px;" >
+            <h3 class="text-center">Send Message</h3>
+            <i class="fa fa-times fa-lg" style=" cursor: pointer;position: absolute;top: 5px;right: 5px;background: #eee;padding: 5px;color: #444;" data-dismiss="modal" aria-hidden="true"></i>
+            <div class="messageTitle">
+                <label for="title">TITLE</label>
+                <input  type="text" id="title" name="title" ng-model="message.messageTitle" placeholder="Enter Title">
+            </div>
+            <div class="error-message err" ng-show="messageModalTitleError"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter Title </div>
+            <div class="messageDescription">
+                <label >DESCRIPTION</label>
+                <textarea  type="text" name="Description" ng-model="message.message" placeholder="Enter Description"></textarea>
+            </div>
+            <div class="error-message err" ng-show="messageModalError"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please write a message or Attach a file. </div>
+            <label for="messagefile" class="attachlabel" >{{attachmentName}} <span class="attach"></span>Attach a File</label>
+            <input id="messagefile" style="display: none;"  type="file">
+            <button class="messageButton" style="    border-radius: 3px; background-color: #0297cf;color: #fff;font-family: 'Graphik-Medium';
+    display: inline-block;text-align: center;padding: 15px 0;margin-top: 30px;font-size: 15px;border: none;width: 100%;" type="submit" ng-click="sendMessage()">Send</button>
+
+        </div>
+    </div>
+</div>
+<!--- gopi added -->
+<div class="past-interview-container">
+    <div class="noData fullWidth" ng-show="upcomingInterviewDetails._id == undefined">
+        <h5>No Data Found.</h5>
+    </div>
+    <div class="upcoming-interview clearfix" ng-show="upcomingInterviewDetails._id != undefined">
+        <div class="upcoming-interview-left col-lg-8 col-md-7 col-sm-12 col-xs-12">
+            <h4>Details of Interviewer</h4>
+            <label>Status</label><span class="stat" ng-show="upcomingInterviewDetails.status == 4">Confirm</span><span class="stat" ng-show="upcomingInterviewDetails.status == 2">On going</span><span class="stat" ng-show="upcomingInterviewDetails.status == 1">Pending</span>
+            <br><label><b>Name : </b></label><span  >{{ upcomingInterviewDetails.interviewerID.firstName }}</span>
+            <ul>
+                <li><span>Experience</span><br />{{upcomingInterviewDetails.interviewerID.totalExperience}} Yrs</li>
+                <li><span>Skills</span><br /><span style="color: #000" ng-repeat="s in interviewerSkills track by $index">{{s}}{{$last ? '' : ($index==interviewerSkills.length-1) ? ', and ' : ',&nbsp;'}}</span></li>
+                <li><span>Industry</span><br />{{upcomingInterviewDetails.interviewerID.industry}}</li>
+
+            </ul>
+            <a ui-sref="home.instructions">View Instruction for interview</a>
+        </div>
+        <div class="upcoming-interview-left col-lg-4 col-md-5 col-sm-12 col-xs-12 text-right">
+            <h4>Interview Date & Time</h4>
+            <div class="cal-mname col-lg-4 col-md-4 col-sm-12 col-xs-12 pull-right text-center">
+               <p>{{upcomingInterviewDetails.interviewDate | date: 'MMMM'}}</p>
+                <h2>{{upcomingInterviewDetails.interviewDate | date: 'dd'}}</h2>
+                <span>{{upcomingInterviewDetails.interviewStartTime}}</span>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+            <button class="sbmt-btn" style="padding: 10px 30px" ng-click="cancelInterviewPopup()" ng-if="upcomingInterviewDetails.status == 1">CANCEL INTERVIEW</button>
+            <button class="sbmt-btn" style="padding: 10px 30px" ng-click="startInterview(upcomingInterviewDetails._id)" ng-if="upcomingInterviewDetails.status == 4">START INTERVIEW</button>
+            <button class="sbmt-btn" style="padding: 10px 30px" ng-click="startInterview(upcomingInterviewDetails._id)" ng-if="upcomingInterviewDetails.status == 2">RESUME INTERVIEW</button>
+            <button class="sbmt-btn" style="padding: 10px 30px" ng-click="start_chat(upcomingInterviewDetails._id)" ng-if="upcomingInterviewDetails.status == 4 || upcomingInterviewDetails.status == 2">START CHAT</button>
+            <p>Note: You cannot cancel 24 hours before interview schedule otherwise 50% fee is lost</p>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="cancelInterview" class="ngDialog-theme-default">
+    <h1>INTERVIEW CANCELLATION</h1>
+    <p>Do you really want to cancel interview ?</p>
+    <div class="clearfix">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><button ng-click="confirmCancelInterview(upcomingInterviewDetails._id)" type="submit">YES</button></div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><button ng-click="denyCancelInterview()" type="submit">NO</button></div>
+    </div>
+</script>

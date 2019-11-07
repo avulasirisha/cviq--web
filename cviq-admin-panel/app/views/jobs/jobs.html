@@ -1,0 +1,258 @@
+<h3>
+    All Jobs
+    <small>Displaying list of All Jobs in the system</small>
+</h3>
+
+<style>
+    .ngdialog.ngdialog-theme-default .ngdialog-content{
+        width: 700px;
+    }
+</style>
+<div ng-controller="jobsController" class="container-fluid">
+    <!--<div id="driverLocationMap" style="height:400px;width:100%;"></div>-->
+
+    <!-- START DATATABLE 2 -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default" ng-class="{'whirl duo' : showloader }">
+                <div class="panel-heading" >
+                    <button ng-show="hideExport" ng-click="exportData()" class="pull-right btn btn-sm btn-info">Export To CSV</button>
+                </div>
+                <div style="clear:both"></div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-5 col-sm-3 col-md-3 col-lg-3">
+                            <label>Records Per Page</label>
+                            <select class="form-control" ng-model="itemsPerPage" ng-options="pages for pages in searchModel.limitOptions" ng-change="getPagesCount()"></select>
+                        </div>
+                        <div class=" col-xs-5 col-sm-4 col-md-3 col-lg-3 col-xs-offset-2 col-sm-offset-5 col-md-offset-6 col-lg-offset-6">
+                            <div class="input-group" style="padding-top: 10%;">
+                                <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                                <input type="text" class="form-control" placeholder="Search" ng-model="search">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive" ng-switch="(list | filter:search).length">
+                        <div ng-switch-when="0" class="noSearch"><span>No Job found</span></div>
+                        <table id="datatable2" class="table table-hover" ng-switch-default>
+                            <thead>
+                            <tr>
+
+
+                                <th style="min-width:70px">
+                                    <div style="text-align:center;" ng-click="sort('index')">
+                                        Sr. No.
+                                        <span style="opacity:0.5" ng-hide="predicate == 'index' && reverse || predicate == 'index' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'index' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'index' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th style="min-width:100px">
+                                    <div style="text-align:center;" ng-click="sort('jobTitle')">
+                                        Title
+                                        <span style="opacity:0.5" ng-hide="predicate == 'jobTitle' && reverse || predicate == 'jobTitle' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'jobTitle' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'jobTitle' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                 <th style="min-width:250px">
+                                    <div style="text-align:center;" ng-click="sort('jobDescription')">
+                                        Description
+                                        <span style="opacity:0.5" ng-hide="predicate == 'jobDescription' && reverse || predicate == 'jobDescription' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'jobDescription' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'jobDescription' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                 <th style="min-width:100px">
+                                    <div style="text-align:center;" ng-click="sort('companyName')">
+                                        Company Name
+                                        <span style="opacity:0.5" ng-hide="predicate == 'companyName' && reverse || predicate == 'companyName' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'companyName' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'companyName' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th style="min-width:200px">
+                                    <div style="text-align:center;" ng-click="sort('industry')">
+                                        Industry/Functional Area
+                                        <span style="opacity:0.5" ng-hide="predicate == 'industry' && reverse || predicate == 'industry' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'industry' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'industry' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th style="min-width:250px">
+                                    <div style="text-align:center;" ng-click="sort('recruiterName')">
+                                        Recruiter Details
+                                        <span style="opacity:0.5" ng-hide="predicate == 'recruiterName' && reverse || predicate == 'recruiterName' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'recruiterName' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'recruiterName' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+
+                                <th style="min-width:180px">
+                                    <div style="text-align:center;" ng-click="sort('numOfCandidatesApplied')">
+                                        Number of Candidates Applied
+                                        <span style="opacity:0.5" ng-hide="predicate == 'numOfCandidatesApplied' && reverse || predicate == 'numOfCandidatesApplied' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'numOfCandidatesApplied' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'numOfCandidatesApplied' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th style="min-width:180px">
+                                    <div style="text-align:center;" ng-click="sort('postedOn')">
+                                        Posted On
+                                        <span style="opacity:0.5" ng-hide="predicate == 'postedOn' && reverse || predicate == 'postedOn' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'postedOn' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'postedOn' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th style="min-width:180px">
+                                    <div style="text-align:center;" ng-click="sort('isActive')">
+                                        Active Status
+                                        <span style="opacity:0.5" ng-hide="predicate == 'isActive' && reverse || predicate == 'isActive' && !reverse" class="fa fa-sort"></span>
+                                        <span ng-show="predicate == 'isActive' && !reverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="predicate == 'isActive' && reverse" class="fa fa-caret-up"></span>
+                                    </div>
+                                </th>
+                                <th style="min-width:100px">Candidates</th>
+                            </tr>
+                            </thead>
+                            <tbody ng-show="tBodyFlag">
+                            <tr style='background-color: {{data.color}} !important'
+                                ng-repeat="data in filtered =  list| filter:search | orderBy:predicate:reverse">
+                                <td class="text-center">{{data.index + 1}}</td>
+                                <td class="text-center">{{data.jobTitle}}</td>
+                                <td class="text-center" style="word-break: break-all;">{{data.jobDescription}}</td>
+                                <td class="text-center">{{data.companyName}}</td>
+                                <td><b>Industry</b> - {{data.industry}} <br>
+                                    <b>Functional Area</b> - {{data.functionalArea}}
+                                </td>
+                                <td style="word-break: break-all;" ><b>Name</b> - {{data.recruiterName}} <br>
+                                    <b>Email</b> - {{data.recruiterEmail}}<br>
+                                    <b>Contact</b> - {{data.recruiterphone}}<br>
+                                    <!--<b>Nationality</b> - {{data.nationality}}-->
+                                </td>
+                                <td class="text-center"> {{data.numOfCandidatesApplied}}</td>
+                                <td class="text-center">{{data.postedOn}}</td>
+                                <td class="text-center"><span ng-show="data.isActive">Yes</span>
+                                    <span ng-hide="data.isActive">No</span></td>
+                                <td>
+                                    <div  class="flexDisplay">
+                                        <a style="margin: 0px 2px;" class="btn btn-sm btn-default1" title="View Candidates" ng-disabled="data.numOfCandidatesApplied == 0" ng-click="candidatesApplied(data.appliedCandidates)"><!--style="background-color:#666666"-->
+                                            <i class="fa fa-users unblock-icon"></i>
+                                        </a>
+                                    </div>
+
+                                </td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-6" style="padding-top: 2%;" ng-show="hideExport">
+                            <span>Showing {{skipValue + 1}} to {{limitValue + 1}} of {{dataLength}} Entries</span>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6 ">
+                            <div class="pull-right" ng-show="sp_pagination"><!--ng-show="sp_pagination" ng-show="watchPagination"-->
+                                <nav ng-show="watchPagination">
+                                    <ul class="pagination">
+                                        <li ng-class="prevPageDisabled()">
+                                            <a class="link" ng-click="prevPage(currentPage)">Previous</a>
+                                        </li>
+                                        <li ng-class="{active: m == currentPage}"  ng-repeat="m in range()" ng-click="setPage(m)">
+                                            <a class="link" ng-click="currentData(m)">{{m+1}}</a>
+                                        </li>
+                                        <li ng-class="nextPageDisabled()">
+                                            <a class="link" ng-click="nextPage(currentPage)">Next</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END DATATABLE 2 -->
+
+    <!-- **************************************************************************
+    ******************* Modal to display msg **************************************
+    *******************************************************************************-->
+    <script type="text/ng-template" id="display_msg_modalDialog">
+        <div class="ngdialog-message">
+            <h4>{{displaymsg}}</h4>
+            <a type="submit" ng-click="refreshPage()" class="btn btn-primary" style="margin-top:20px;text-align: center;">OK</a>
+            <div style="clear: both;"></div>
+        </div>
+    </script>
+    <!-- **************************************************************************
+******************* Modal to display unauth msg **************************************
+*******************************************************************************-->
+    <script type="text/ng-template" id="unauth_msg_modalDialog">
+        <div class="ngdialog-message">
+            <h4>{{unAuthMsg}}</h4>
+            <a type="submit" ng-click="forceLogin()" class="btn btn-primary" style="margin-top:20px;text-align: center;">OK</a>
+            <div style="clear: both;"></div>
+        </div>
+    </script>
+
+    <!-- ***************************************************************************
+******************* Modal for candidates Applied ************************************
+********************************************************************************-->
+    <script type="text/ng-template" id="candidates_applied">
+        <div class="ngdialog-message">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default" ng-class="{'whirl duo' : showloader }">
+                        <div style="clear:both"></div>
+                        <div class="panel-body">
+                            <div class="table-responsive" ng-switch="(list | filter:search).length">
+                                <div ng-switch-when="0" class="noSearch"><span>No candidate found</span></div>
+                                <table  class="table table-hover" ng-switch-default>
+                                    <thead>
+                                    <tr>
+                                        <th style="min-width:70px">
+                                            <div style="text-align:center;">
+                                                Sr. No.
+                                            </div>
+                                        </th>
+                                        <th>Profile Image</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone Number</th>
+                                        <th style="min-width:100px">Actions</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody ng-show="tBodyFlag">
+                                    <tr
+                                        ng-repeat="data in candidatesList">
+                                        <td>{{$index + 1}}</td>
+                                        <td>
+                                            <img ng-src="{{data.profilePicURL.original || 'app/img/noimg.png'}}" class="tableImage">
+                                        </td>
+                                        <td>{{data.firstName}} {{data.lastName}}</td>
+                                        <td>{{data.email}} </td>
+                                        <td>{{data.countryCode}}-{{data.phoneNo}} </td>
+                                        <td>
+                                            <div  class="flexDisplay">
+                                                <a style="margin: 0px 2px;" class="btn btn-sm btn-default1" title="View Profile" ui-sref="page.viewProfile({id:'+{{data._id}}+'})" target="_blank"><!--style="background-color:#666666"-->
+                                                    <i class="fa fa-user unblock-icon"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+
+
+
+</div>

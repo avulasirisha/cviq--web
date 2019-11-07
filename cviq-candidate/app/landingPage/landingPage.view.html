@@ -1,0 +1,147 @@
+<div class="main-landing-page">
+    <header class="clearfix header unauth-header">
+        <div class="container">
+            <div class="row clearfix">
+                <img class="logUnauth" ui-sref="home.homeScreen.search" src="images/logo.png" alt="" />
+                <ul class="landingpage-menu">
+                    <li ng-init="imgsrc='images/login.png'" ng-mouseover="imgsrc='images/login-sel.png'" ng-mouseout="imgsrc='images/login.png'"><a ng-click="goToLogin()"><img ng-src="{{imgsrc}}" alt="" /></a></li>
+                    <li ng-init="imgsrcs='images/register.png'" ng-mouseover="imgsrcs='images/register-sel.png'" ng-mouseout="imgsrcs='images/register.png'"><a ng-click="goToSignup()"><img ng-src="{{imgsrcs}}" alt="" /></a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 landing-page">
+        <div class="container">
+            <div class="landing-page-main-inner">
+                <div class="landing-page-inner">
+                    <div class="text-center main-section-profile question-bank clearfix">
+                        <form name="searchJob" ng-submit="searchJob.$valid&&searching(search)" novalidate>
+                            <div class="row">
+                                <div class="ProfileFormElements clearfix form-elements col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <div class="custom-select-box main-dropdown advance-search">
+                                        <label>INDUSTRY</label>
+                                        <select id="sel-industry" name="selIndustry" ng-model="search.industry" ng-change="selectedIndustry(search.industry)" class="selectpicker" data-live-search="true" ng-options="indus.industryName for indus in searchDropDownData.industryList track by indus.industryName " required>
+                                            <option value="" disabled hidden>Select Industry</option>
+                                        </select>
+                                        <div ng-show="searchJob.$submitted || searchJob.selIndustry.$valid && searchJob.selIndustry.$invalid">
+                                            <div class="error-message" ng-show="searchJob.selIndustry.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="ProfileFormElements clearfix form-elements col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <div class="custom-select-box main-dropdown advance-search">
+                                        <label>FUNCTIONAL AREA</label>
+                                        <select ng-init="search.functionalArea=''" id="functionalAreaDropDown" name="location" ng-model="search.functionalArea" class="selectpicker" data-live-search="true" ng-options="area.functionalAreaName for area in functionAreaList">
+                                            <option value="" disabled hidden>Select Functional Area</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="ProfileFormElements clearfix form-elements col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <div class="custom-select-box main-dropdown advance-search">
+                                        <label>EXPERIENCE</label>
+                                        <select ng-init="search.experience=''" name="location" ng-model="search.experience" class="selectpicker" data-live-search="true" ng-options="exp for exp in searchDropDownData.ExperienceList">
+                                            <option value="" disabled hidden>Select Experience</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="ProfileFormElements clearfix form-elements col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <div class="custom-select-box main-dropdown advance-search">
+                                        <label>KEYWORDS</label>
+                                        <input ng-init="search.keywords=''" ng-keypress='FirsText($event)' class="search-input" type="text" ng-model="search.keywords" placeholder="Enter Keywords">
+                                    </div>
+                                </div>
+                            </div>
+                            <p ng-show="!typeSearch" class="basic-search"><input type="button" ng-click="asearches()" value="Advanced Search"></p>
+
+                            <div class="row advance-search-dropdowns" ng-show="typeSearch">
+                                <div class="ProfileFormElements clearfix form-elements col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <div class="custom-select-box main-dropdown advance-search">
+                                        <label>COUNTRY</label>
+                                        <select ng-init="search.curCountry=''" name="curCountry" ng-model="search.curCountry" ng-change="selectedCount(search.curCountry)" class="selectpicker" data-live-search="true" ng-options="count.countryName for count in searchDropDownData.countryList track by count.countryName">
+                                            <option value="" disabled hidden>Select Country</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="ProfileFormElements clearfix form-elements col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <div class="custom-select-box main-dropdown advance-search">
+                                        <label>STATE</label>
+                                        <select ng-init="search.curState=''" name="curState" ng-model="search.curState" ng-change="selStateID(search.curState)" class="selectpicker" data-live-search="true" ng-options="s.stateName for s in stateList">
+                                            <option value="" disabled hidden>Select State</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="ProfileFormElements clearfix form-elements col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <div class="custom-select-box main-dropdown advance-search">
+                                        <label>ZIP CODE</label>
+                                        <select ng-init="search.zipcode=''" name="zipcode" ng-model="search.zipcode" class="selectpicker" data-live-search="true" ng-options="zcode.zipCode as (zcode.areaName+' ('+ zcode.zipCode +')') for zcode in zipCodeList">
+                                            <option value="" disabled hidden>Select Zip Code</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="ProfileFormElements clearfix form-elements col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <div class="custom-select-box main-dropdown advance-search">
+                                        <label>HIGHEST QUALIFICATION</label>
+                                        <select ng-init="search.qual=''" name="qual" ng-model="search.qual" ng-change="getQualID(search.qual)" class="selectpicker" data-live-search="true" ng-options="quals for quals in searchDropDownData.highestQualification">
+                                            <option value="" disabled hidden>Select Highest Qualification</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="ProfileFormElements clearfix form-elements col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <div class="custom-select-box main-dropdown advance-search">
+                                        <label>SPECIALIZATION</label>
+                                        <select ng-init="search.special=''" name="special" ng-model="search.special" class="selectpicker" data-live-search="true" ng-options="q for q in qualSpecialization">
+                                            <option value="" disabled hidden>Select Specialization</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="ProfileFormElements clearfix form-elements col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <div class="custom-select-box main-dropdown advance-search">
+                                        <label>CERTIFICATION</label>
+                                        <input class="search-input" type="text" ng-keypress='FirsText($event)' ng-model="search.certifications" placeholder="Enter Certification Details">
+                                    </div>
+                                </div>
+
+                                <div class="ProfileFormElements clearfix form-elements col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <div class="custom-select-box main-dropdown advance-search">
+                                        <label>ANNUAL SALARY</label>
+                                        <input class="search-input" ng-keypress='isNumberKey($event)' maxlength="10" type="text" ng-model="search.salary" placeholder="Enter Annual Salary">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <p ng-show="!btypeSearch" class="basic-search"><input ng-click="bsearches()" type="button" value="Basic Search"></p>
+                            <!--<p ng-show="searches" class="basic-search"><input ng-click="basicSearch()" type="button" value="Basic Search"></p>-->
+                            <button class=" text-center searchjob-btn linkedin-btn col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-8 col-xs-offset-2 col-xs-8 col-xs-offset-2" type="submit">SEARCH JOB</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div ui-view=""></div>
+    <footer class="footer col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="container">
+            <div class="row clearfix">
+                <div class="footer-menu pull-left">
+                    <img src="images/footer-logo.png" alt="" />
+                    <ul>
+                        <li><a ui-sref="home.homeScreen.search">Home</a></li>
+                        <li><a>Career</a></li>
+                        <li><a>Support</a></li>
+                    </ul>
+                </div>
+                <div class="copyright pull-right">
+                    Copyright &copy; 2016 CVIQ. All Rights Reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

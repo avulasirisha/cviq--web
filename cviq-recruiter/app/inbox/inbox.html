@@ -1,0 +1,99 @@
+<section class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="min-height: 986px;box-shadow: inset 0 16px 20px -20px rgba(0,0,0,0.8);">
+
+    <div class="container" style="margin-top: 30px">
+        <div class="row">
+
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " >
+                <div class="inboxHeading ">
+                    <span style="padding: 15px 15px">INBOX</span>
+                </div>
+                <div style="min-height: 432px;margin-bottom: 40px">
+                    <ul class="commonBackground" style="min-height: 400px;">
+                        <li  ng-repeat="message in inboxArray">
+                            <div class="row  " style="padding: 15px 15px">
+
+                                <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2  pad">
+                                    <img class=" candidateImage" ng-src="{{message.candidateID.profilePicURL.original}}"  >
+                                </div>
+                                <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10  pad">
+                                    <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 inboxcandidatename" >
+                                        <a ui-sref="home.inboxMessages({id:'+{{message._id}}'})"><p>{{message.candidateID.firstName}} {{message.candidateID.lastName }}</p></a>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 inboxdate" >
+                                        <p >{{message.messageDetail[0].addedAt | date: 'dd MMM, yyyy hh:mm a'}}</p>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 inboxTitle" >
+                                        <p>{{message.messageTitle}}</p>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 inboxDescriptior" >
+                                        <p>{{message.messageDetail[0].message}}</p>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            <div class="inboxline2 container-fluid" ng-if="$index != inboxArray.length-1"></div>
+                        </li>
+                        <h1 class="text-center noCandidate" ng-show="inboxArray.length == 0" >No Messages in your Inbox</h1>
+                    </ul>
+
+                </div>
+            </div>
+
+            <!--<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">-->
+                <!--<div class="filterHeading">-->
+
+                    <!--<span style="padding: 15px 15px">Mails</span>-->
+                <!--</div>-->
+                <!--<div class="line2 container-fluid "></div>-->
+                <!--<div class="inbox-button-selected" id="inboxbutton1" ng-click="selection(1)">Inbox</div>-->
+                <!--<div class="inbox-button " id="inboxbutton2" ng-click="selection(2)">Sent mails</div>-->
+            <!--</div>-->
+            <!--<div ng-if="inbox" class="col-lg-9 col-md-9 col-sm-8 col-xs-9" >-->
+                <!--<div class="inboxHeading ">-->
+                    <!--<span style="padding: 15px 15px">INBOX</span>-->
+                <!--</div>-->
+                <!--<div style="min-height: 472px">-->
+                    <!--<ul class="commonBackground">-->
+                        <!--<li ng-repeat="">-->
+                            <!--<div class="row mycandidatedetails " style="padding: 15px 15px">-->
+                                <!--<div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 pad " style="color: #8b8b8b;padding: 0 10px">-->
+                                    <!--<p><span class="candidateDiv2span" >{{candidate.firstName}} - {{candidate.profileTitle}}</span></p>-->
+                                    <!--<p style="font-size: 11px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum</p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="line2 container-fluid" ng-if="$index != candidatesList.length-1"></div>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                    <!--<h1 class="text-center noCandidate" ng-show="noCandidate" >No Candidate Found</h1>-->
+                <!--</div>-->
+
+            <!--</div>-->
+            <!--<div ng-if="!inbox" class="col-lg-9 col-md-9 col-sm-8 col-xs-9" >-->
+                <!--<div class="inboxHeading ">-->
+                    <!--<span style="padding: 15px 15px">SENT MAILS</span>-->
+                <!--</div>-->
+                <!--<div style="min-height: 472px">-->
+                    <!--<ul class="commonBackground">-->
+                        <!--<li ng-repeat="">-->
+                            <!--<div class="row mycandidatedetails" style="padding: 15px 15px">-->
+                                <!--<div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 pad " style="color: #8b8b8b;padding: 0 10px">-->
+                                    <!--<p><span class="candidateDiv2span" >{{candidate.firstName}} - {{candidate.profileTitle}}</span></p>-->
+                                    <!--<p style="font-size: 11px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum</p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="line2 container-fluid" ng-if="$index != candidatesList.length-1"></div>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                    <!--<h1 class="text-center noCandidate" ng-show="noCandidate" >No Candidate Found</h1>-->
+                <!--</div>-->
+
+            <!--</div>-->
+
+        </div>
+
+    </div>
+
+</section>

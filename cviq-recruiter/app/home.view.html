@@ -1,0 +1,94 @@
+<script type="text/javascript">
+    $(document).click(function (e){
+        var container = $(".user-name");
+        if (!container.is(e.target) // if the target of the click isn't the container...
+                && container.has(e.target).length === 0) // ... nor a descendant of the container
+        {
+            if($(window).width() > 754){
+                $('.registered-user-menu').css("display", "none");
+            }
+
+        }
+    });
+</script>
+<div ng-switch="loggedIn">
+<header class="clearfix header unauth-header" ng-switch-default>
+    <div class="container">
+        <div class="row clearfix">
+            <img class="logUnauth" ng-click="var='SIGN IN'" ui-sref="home.login" src="images/logo.png" alt="" />
+            <ul class="unauth-menu">
+                <li ng-click="var='SIGN UP'" ng-class="{'active': var == 'SIGN UP'}"><a ui-sref="home.signup">SIGN UP</a></li>
+                <li ng-click="var='SIGN IN'" ng-class="{'active': var == 'SIGN IN'}"><a ui-sref="home.login">SIGN IN</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+<header class="clearfix header auth-header" ng-switch-when="true">
+    <div class="container">
+        <div class="row">
+            <img ng-click="var = 'HOME'" class="loggedLogo" ui-sref="home.dashboard.recentlyPostedJobs" src="images/logo.png" alt="" />
+            <div ng-click="toggle()" class="burger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="menu-sec">
+
+                <img class="bell" ng-init="imgSRC='images/notify.png'; imgSRC1='images/notify_red.png'" ng-click="imgSRC1='images/notify.png';call_notification()" ng-src="{{notification.length > 0 ? imgSRC1 : imgSRC}}"  />
+                    <i class="notificationCounter" ng-if="imgSRC1=='images/notify_red.png' && notification.length > 0">{{notification.length}}</i>
+               <div class="notification" ng-if="notification.length > 0">
+                    <ul>
+                        <li ng-repeat="n in notification track by $index">{{n}}</li>
+                    </ul>
+                </div>
+                <!--<img class="bell" src="images/notify.png" alt="" />-->
+                <div class="user-name">{{userData.firstName}}<img onclick="$('.registered-user-menu').slideToggle();" ng-src="{{userData.profilePicURL.thumbnail}}" alt="" />
+                    <ul class="registered-user-menu">
+                        <li><a ng-click="toggle1()" ui-sref="home.changePassword">Change Password</a></li>
+                        <li><a ng-click="toggle1()" ui-sref="home.faq">Faq</a></li>
+                        <li><a ng-click="logout()">Logout</a></li>
+                    </ul>
+                </div>
+                <ul class="auth-menu myDirective">
+                    <li id="home" ng-click="togglehome()" ui-sref="home.dashboard.recentlyPostedJobs" ng-class="{'selected': var == 'HOME'}"><a>HOME</a></li>
+                    <li id="member" ng-click="togglemembership()" ui-sref="home.upgradePackage" ng-class="{'selected': var == 'MEMBERSHIP'}"><a>MEMBERSHIP</a></li>
+                    <li id="candidate" ng-click="togglecandidate()" ui-sref="home.searchCandidate" ng-class="{'selected': var == 'SEARCH_CANDIDATE'}"><a>SEARCH CANDIDATE</a></li>
+                    <li id="inbox" ng-click="toggleinbox()" ui-sref="home.inbox" ng-class="{'selected': var == 'INBOX'}"><a>INBOX</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+</div>
+<div ui-view=""></div>
+<footer class="footer col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="container">
+        <div class="row clearfix">
+            <div class="footer-menu pull-left">
+                <img src="images/footer-logo.png" alt="" />
+                <ul>
+                    <li><a ui-sref="home.login">Home</a></li>
+                    <li><a ui-sref="home.upcoming">Career</a></li>
+                    <li><a ui-sref="home.upcoming">Support</a></li>
+                </ul>
+            </div>
+            <div class="copyright pull-right">
+                Copyright &copy; 2016 CVIQ. All Rights Reserved.
+            </div>
+        </div>
+    </div>
+</footer>
+<script type="text/ng-template" id="logout" class="ngDialog-theme-default">
+    <h1>LOGOUT CONFIRMATION</h1>
+    <p>Do you really want to Logout ?</p>
+
+    <div style="display: flex">
+        <span style="margin: 0 auto">
+             <button style="margin-top: 0px;width: 100px;padding: 5px;" ng-click="confirmLogOut()" type="submit">YES</button>
+        <button style="margin-top: 0px;width: 100px;padding: 5px;" ng-click="denyLogOut()" type="submit">NO</button>
+        </span>
+
+    </div>
+
+
+</script>

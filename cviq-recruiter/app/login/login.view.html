@@ -1,0 +1,50 @@
+<section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 banner">
+    <div class="container">
+        <div class="main-section col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 col-xs-12 clearfix">
+            <h1>RECRUITER - LOGIN</h1>
+            <a ng-click="liAuth()" class="linkedin-btn col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-6 col-sm-offset-3 col-xs-12">SIGN IN WITH LINKEDIN</a>
+            <div class="or"><span>OR</span></div>
+            <div class="row">
+                <div class="search-wrapper">
+                <form class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form" ng-submit="loginForm.$valid&&login(signin)" name="loginForm" novalidate>
+                    <div class="form-elements">
+                        <label>EMAIL</label>
+                        <input type="text" ng-model="signin.email" name="email" placeholder="Enter Email" ng-pattern="myregex" required />
+                        <div ng-show="loginForm.$submitted || loginForm.email.$touched">
+                            <div class="error-message" ng-show="loginForm.email.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                            <div class="error-message" ng-show="loginForm.email.$error.pattern"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Enter Valid Email.</div>
+                        </div>
+                    </div>
+                    <div class="form-elements">
+                        <label>PASSWORD</label>
+                        <input name="password" ng-model="signin.password" type="password" placeholder="Enter Password" required>
+                        <div ng-show="loginForm.$submitted || loginForm.password.$touched">
+                            <div class="error-message" ng-show="loginForm.password.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                        </div>
+                    </div>
+                    <button class="col-lg-12 col-md-12 col-sm-12 col-xs-12" type="submit">LOGIN</button>
+                </form>
+                    <!--<form class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form" name="loginForm">-->
+                        <!--<md-input-container flex="">-->
+                            <!--<label>EMAIL / PHONE NUMBER</label>-->
+                            <!--<input class="col-lg-12 col-md-12 col-sm-12 col-xs-12" type="email" placeholder="" required />-->
+                        <!--</md-input-container>-->
+                        <!--<md-input-container flex="">-->
+                            <!--<label>PASSWORD</label>-->
+                            <!--<input class="col-lg-12 col-md-12 col-sm-12 col-xs-12" type="password" placeholder="" required />-->
+                        <!--</md-input-container>-->
+                        <!--<button class="col-lg-12 col-md-12 col-sm-12 col-xs-12" type="submit">LOGIN</button>-->
+                    <!--</form>-->
+                </div>
+            </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  forgot-password text-center"><a ng-click="forgotPassword()">Forgot Password?</a></div>
+                <div class="or"></div>
+                <div class="new-user col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                    <div class="row">
+                        <span>New User?</span>
+                        <a class="pull-right sign-btn" ui-sref="home.signup">SIGN UP</a>
+                    </div>
+                </div>
+        </div>
+    </div>
+</section>

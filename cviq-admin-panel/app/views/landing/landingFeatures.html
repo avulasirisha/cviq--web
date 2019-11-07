@@ -1,0 +1,344 @@
+<style>
+    .whirl:after {  position: fixed;  }
+    .scores input{text-align: center}
+    h2{color: #0297cf;  }
+    h3{color: #0297cf;margin-top: 5px  }
+    h1,h2,h3,h4{
+        font-weight: normal;
+    }
+
+</style>
+
+<h3>
+    App Features
+    <!--<small>Displaying list of all the drivers in the system.</small>-->
+</h3>
+<div ng-controller="LandingFeaturesController" class="container-fluid">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " style="padding: 5px 0px 25px">
+                    <form ng-show="candidateEdit" name="candidateForm" novalidate>
+                        <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                            <div class="  candidate-profile-section clearfix">
+                                <div class="row" style="margin-top: 20px">
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form">
+                                        <h3 style="padding: 0 15px;">
+                                            Update Candidate App Features
+                                        </h3>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Text 1</label>
+                                            <input  type="text" maxlength="30" placeholder="Enter Text 1" name="text1" ng-model="candidateFeatures.text1" required/>
+                                            <div ng-show="candidateForm.$submitted || candidateForm.text1.$touched">
+                                                <div class="error-message" ng-show="candidateForm.text1.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <!--<div class="error-message" ng-show="NewPlan.planDescription.$invalid && NewPlan.planDescription.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Job Description must be at least 3 characters long.</div>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Text 1 Description</label>
+                                            <textarea style="min-height: 110px" class="textArea" type="text" maxlength="100" placeholder="Enter Text 1 Description" name="text1Description" ng-model="candidateFeatures.text1Description" required ></textarea>
+                                            <div ng-show="candidateForm.$submitted || candidateForm.text1Description.$touched">
+                                                <div class="error-message" ng-show="candidateForm.text1Description.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <!--<div class="error-message" ng-show="NewPlan.planDescription.$invalid && NewPlan.planDescription.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Job Description must be at least 3 characters long.</div>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Text 2</label>
+                                            <input  type="text" maxlength="30" placeholder="Enter Text 2" name="text2" ng-model="candidateFeatures.text2" required/>
+                                            <div ng-show="candidateForm.$submitted || candidateForm.text2.$touched">
+                                                <div class="error-message" ng-show="candidateForm.text2.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <!--<div class="error-message" ng-show="NewPlan.planDescription.$invalid && NewPlan.planDescription.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Job Description must be at least 3 characters long.</div>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Text 2 Description</label>
+                                            <textarea style="min-height: 110px" class="textArea" type="text" maxlength="100" placeholder="Enter Text 2 Description" name="text2Description" ng-model="candidateFeatures.text2Description" required ></textarea>
+                                            <div ng-show="candidateForm.$submitted || candidateForm.text2Description.$touched">
+                                                <div class="error-message" ng-show="candidateForm.text2Description.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <!--<div class="error-message" ng-show="NewPlan.planDescription.$invalid && NewPlan.planDescription.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Job Description must be at least 3 characters long.</div>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Text 3</label>
+                                            <input  type="text" maxlength="30" placeholder="Enter Text 3" name="text3" ng-model="candidateFeatures.text3" required/>
+                                            <div ng-show="candidateForm.$submitted || candidateForm.text3.$touched">
+                                                <div class="error-message" ng-show="candidateForm.text3.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <!--<div class="error-message" ng-show="NewPlan.planDescription.$invalid && NewPlan.planDescription.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Job Description must be at least 3 characters long.</div>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Text 3 Description</label>
+                                            <textarea style="min-height: 110px" class="textArea" type="text" maxlength="100" placeholder="Enter Text 3 Description" name="text3Description" ng-model="candidateFeatures.text3Description" required ></textarea>
+                                            <div ng-show="candidateForm.$submitted || candidateForm.text3Description.$touched">
+                                                <div class="error-message" ng-show="candidateForm.text3Description.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <!--<div class="error-message" ng-show="NewPlan.planDescription.$invalid && NewPlan.planDescription.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Job Description must be at least 3 characters long.</div>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Text 4</label>
+                                            <input  type="text" maxlength="30" placeholder="Enter Text 4" name="text4" ng-model="candidateFeatures.text4" required/>
+                                            <div ng-show="candidateForm.$submitted || candidateForm.text4.$touched">
+                                                <div class="error-message" ng-show="candidateForm.text4.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <!--<div class="error-message" ng-show="NewPlan.planDescription.$invalid && NewPlan.planDescription.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Job Description must be at least 3 characters long.</div>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Text 4 Description</label>
+                                            <textarea style="min-height: 110px" class="textArea" type="text" maxlength="100" placeholder="Enter Text 4 Description" name="text4Description" ng-model="candidateFeatures.text4Description" required ></textarea>
+                                            <div ng-show="candidateForm.$submitted || candidateForm.text4Description.$touched">
+                                                <div class="error-message" ng-show="candidateForm.text4Description.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <!--<div class="error-message" ng-show="NewPlan.planDescription.$invalid && NewPlan.planDescription.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Job Description must be at least 3 characters long.</div>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Text 5</label>
+                                            <input  type="text" maxlength="30" placeholder="Enter Text 5" name="text5" ng-model="candidateFeatures.text5" required/>
+                                            <div ng-show="candidateForm.$submitted || candidateForm.text5.$touched">
+                                                <div class="error-message" ng-show="candidateForm.text5.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <!--<div class="error-message" ng-show="NewPlan.planDescription.$invalid && NewPlan.planDescription.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Job Description must be at least 3 characters long.</div>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Text 5 Description</label>
+                                            <textarea style="min-height: 110px" class="textArea" type="text" maxlength="100" placeholder="Enter Text 5 Description" name="text5Description" ng-model="candidateFeatures.text5Description" required ></textarea>
+                                            <div ng-show="candidateForm.$submitted || candidateForm.text5Description.$touched">
+                                                <div class="error-message" ng-show="candidateForm.text5Description.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <!--<div class="error-message" ng-show="NewPlan.planDescription.$invalid && NewPlan.planDescription.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Job Description must be at least 3 characters long.</div>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Text 6</label>
+                                            <input  type="text" maxlength="30" placeholder="Enter Text 6" name="text6" ng-model="candidateFeatures.text6" required/>
+                                            <div ng-show="candidateForm.$submitted || candidateForm.text6.$touched">
+                                                <div class="error-message" ng-show="candidateForm.text6.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <!--<div class="error-message" ng-show="NewPlan.planDescription.$invalid && NewPlan.planDescription.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Job Description must be at least 3 characters long.</div>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Text 6 Description</label>
+                                            <textarea style="min-height: 110px" class="textArea" type="text"  maxlength="100" placeholder="Enter Text 6 Description" name="text6Description" ng-model="candidateFeatures.text6Description" required ></textarea>
+                                            <div ng-show="candidateForm.$submitted || candidateForm.text6Description.$touched">
+                                                <div class="error-message" ng-show="candidateForm.text6Description.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <!--<div class="error-message" ng-show="NewPlan.planDescription.$invalid && NewPlan.planDescription.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Job Description must be at least 3 characters long.</div>-->
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad ">
+                                    <div class="col-lg-4 col-md-4 col-sm-8 co-xs-12  col-lg-offset-4 col-md-offset-4 col-sm-offset-2" style="display: flex;text-align: center;" >
+                                        <button style="margin: 20px auto 0;" id="addButton" type="submit" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sbmt-btn" ng-click="candidateForm.$valid && updatecandidate()">UPDATE</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </form>
+                    <div ng-show="!candidateEdit" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <h3>Candidate App Features</h3>
+                            <br/>
+                            <h4 style="color: #0297cf;">Text 1.</h4>
+                            <h4>{{candidateFeatures.text1}}</h4>
+                            <p>{{candidateFeatures.text1Description}} </p>
+                            <h4 style="color: #0297cf;">Text 2.</h4>
+                            <h4> {{candidateFeatures.text2}} </h4>
+                            <p> {{candidateFeatures.text2Description}}</p>
+                            <h4 style="color: #0297cf;">Text 3.</h4>
+                            <h4>{{candidateFeatures.text3}}  </h4>
+                            <p>{{candidateFeatures.text3Description}}  </p>
+                            <h4 style="color: #0297cf;">Text 4.</h4>
+                            <h4>{{candidateFeatures.text4}}  </h4>
+                            <p>{{candidateFeatures.text4Description}}  </p>
+                            <h4 style="color: #0297cf;">Text 5.</h4>
+                            <h4>{{candidateFeatures.text5}}  </h4>
+                            <p>{{candidateFeatures.text5Description}}  </p>
+                            <h4 style="color: #0297cf;">Text 6.</h4>
+                            <h4>{{candidateFeatures.text6}}   </h4>
+                            <p>{{candidateFeatures.text6Description}}</p>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad ">
+                                <div class="col-lg-4 col-md-4 col-sm-8 co-xs-12  col-lg-offset-4 col-md-offset-4 col-sm-offset-2" style="text-align: center;display: flex" >
+                                    <button type="submit" style="max-width: 100px;margin: 20px auto 0" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sbmt-btn" ng-click="candidateEdit = true">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " style="padding: 5px 0px 25px;">
+                    <form ng-show="recruiterEdit" name="recruiterForm" novalidate>
+                        <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                            <div class="  candidate-profile-section clearfix">
+                                <div class="row" style="margin-top: 20px">
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form">
+                                        <h3>
+                                            Update Recruiter App Features
+                                        </h3>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Text 1</label>
+                                            <input  type="text" maxlength="30" placeholder="Enter Text 1" name="text1" ng-model="recruiterFeatures.text1" required/>
+                                            <div ng-show="recruiterForm.$submitted || recruiterForm.text1.$touched">
+                                                <div class="error-message" ng-show="recruiterForm.text1.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <!--<div class="error-message" ng-show="NewPlan.planDescription.$invalid && NewPlan.planDescription.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Job Description must be at least 3 characters long.</div>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Text 1 Description</label>
+                                            <textarea style="min-height: 110px" class="textArea" type="text" maxlength="100" placeholder="Enter Text 1 Description" name="text1Description" ng-model="recruiterFeatures.text1Description" required ></textarea>
+                                            <div ng-show="recruiterForm.$submitted || recruiterForm.text1Description.$touched">
+                                                <div class="error-message" ng-show="recruiterForm.text1Description.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <!--<div class="error-message" ng-show="NewPlan.planDescription.$invalid && NewPlan.planDescription.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Job Description must be at least 3 characters long.</div>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Text 2</label>
+                                            <input  type="text" maxlength="30" placeholder="Enter Text 2" name="text2" ng-model="recruiterFeatures.text2" required/>
+                                            <div ng-show="recruiterForm.$submitted || recruiterForm.text2.$touched">
+                                                <div class="error-message" ng-show="recruiterForm.text2.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <!--<div class="error-message" ng-show="NewPlan.planDescription.$invalid && NewPlan.planDescription.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Job Description must be at least 3 characters long.</div>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Text 2 Description</label>
+                                            <textarea style="min-height: 110px" class="textArea"  maxlength="100" type="text" placeholder="Enter Text 2 Description" name="text2Description" ng-model="recruiterFeatures.text2Description" required ></textarea>
+                                            <div ng-show="recruiterForm.$submitted || recruiterForm.text2Description.$touched">
+                                                <div class="error-message" ng-show="recruiterForm.text2Description.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <!--<div class="error-message" ng-show="NewPlan.planDescription.$invalid && NewPlan.planDescription.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Job Description must be at least 3 characters long.</div>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Text 3</label>
+                                            <input  type="text" maxlength="30" placeholder="Enter Text 3" name="text3" ng-model="recruiterFeatures.text3" required/>
+                                            <div ng-show="recruiterForm.$submitted || recruiterForm.text3.$touched">
+                                                <div class="error-message" ng-show="recruiterForm.text3.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <!--<div class="error-message" ng-show="NewPlan.planDescription.$invalid && NewPlan.planDescription.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Job Description must be at least 3 characters long.</div>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Text 3 Description</label>
+                                            <textarea style="min-height: 110px" class="textArea" type="text" maxlength="100" placeholder="Enter Text 3 Description" name="text3Description" ng-model="recruiterFeatures.text3Description" required ></textarea>
+                                            <div ng-show="recruiterForm.$submitted || recruiterForm.text3Description.$touched">
+                                                <div class="error-message" ng-show="recruiterForm.text3Description.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <!--<div class="error-message" ng-show="NewPlan.planDescription.$invalid && NewPlan.planDescription.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Job Description must be at least 3 characters long.</div>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Text 4</label>
+                                            <input  type="text"  maxlength="30" placeholder="Enter Text 4" name="text4" ng-model="recruiterFeatures.text4" required/>
+                                            <div ng-show="recruiterForm.$submitted || recruiterForm.text4.$touched">
+                                                <div class="error-message" ng-show="recruiterForm.text4.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <!--<div class="error-message" ng-show="NewPlan.planDescription.$invalid && NewPlan.planDescription.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Job Description must be at least 3 characters long.</div>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Text 4 Description</label>
+                                            <textarea style="min-height: 110px" class="textArea" type="text" maxlength="100" placeholder="Enter Text 4 Description" name="text4Description" ng-model="recruiterFeatures.text4Description" required ></textarea>
+                                            <div ng-show="recruiterForm.$submitted || recruiterForm.text4Description.$touched">
+                                                <div class="error-message" ng-show="recruiterForm.text4Description.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <!--<div class="error-message" ng-show="NewPlan.planDescription.$invalid && NewPlan.planDescription.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Job Description must be at least 3 characters long.</div>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Text 5</label>
+                                            <input  type="text" maxlength="30" placeholder="Enter Text 5" name="text5" ng-model="recruiterFeatures.text5" required/>
+                                            <div ng-show="recruiterForm.$submitted || recruiterForm.text5.$touched">
+                                                <div class="error-message" ng-show="recruiterForm.text5.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <!--<div class="error-message" ng-show="NewPlan.planDescription.$invalid && NewPlan.planDescription.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Job Description must be at least 3 characters long.</div>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Text 5 Description</label>
+                                            <textarea style="min-height: 110px" class="textArea" type="text" maxlength="100" placeholder="Enter Text 5 Description" name="text5Description" ng-model="recruiterFeatures.text5Description" required ></textarea>
+                                            <div ng-show="recruiterForm.$submitted || recruiterForm.text5Description.$touched">
+                                                <div class="error-message" ng-show="recruiterForm.text5Description.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <!--<div class="error-message" ng-show="NewPlan.planDescription.$invalid && NewPlan.planDescription.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Job Description must be at least 3 characters long.</div>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Text 6</label>
+                                            <input  type="text" maxlength="30" placeholder="Enter Text 6" name="text6" ng-model="recruiterFeatures.text6" required/>
+                                            <div ng-show="recruiterForm.$submitted || recruiterForm.text6.$touched">
+                                                <div class="error-message" ng-show="recruiterForm.text6.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <!--<div class="error-message" ng-show="NewPlan.planDescription.$invalid && NewPlan.planDescription.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Job Description must be at least 3 characters long.</div>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Text 6 Description</label>
+                                            <textarea style="min-height: 110px" class="textArea" type="text" maxlength="100" placeholder="Enter Text 6 Description" name="text6Description" ng-model="recruiterFeatures.text6Description" required ></textarea>
+                                            <div ng-show="recruiterForm.$submitted || recruiterForm.text6Description.$touched">
+                                                <div class="error-message" ng-show="recruiterForm.text6Description.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <!--<div class="error-message" ng-show="NewPlan.planDescription.$invalid && NewPlan.planDescription.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Job Description must be at least 3 characters long.</div>-->
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad ">
+                                    <div class="col-lg-4 col-md-4 col-sm-8 co-xs-12  col-lg-offset-4 col-md-offset-4 col-sm-offset-2" style="display: flex;text-align: center;" >
+                                        <button style="margin: 20px auto 0;" id="addButton1" type="submit" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sbmt-btn" ng-click="recruiterForm.$valid && updaterecruiter()">UPDATE</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </form>
+                    <div ng-show="!recruiterEdit" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <h3>Recruiter App Features</h3>
+                            <br/>
+                            <h4 style="color: #0297cf;">Text 1.</h4>
+                            <h4>{{recruiterFeatures.text1}} </h4>
+                            <p>{{recruiterFeatures.text1Description}} </p>
+                            <h4 style="color: #0297cf;">Text 2.</h4>
+                            <h4> {{recruiterFeatures.text2}} </h4>
+                            <p> {{recruiterFeatures.text2Description}} </p>
+                            <h4 style="color: #0297cf;">Text 3.</h4>
+                            <h4>{{recruiterFeatures.text3}}  </h4>
+                            <p>{{recruiterFeatures.text3Description}} </p>
+                            <h4 style="color: #0297cf;">Text 4.</h4>
+                            <h4>{{recruiterFeatures.text4}}  </h4>
+                            <p>{{recruiterFeatures.text4Description}} </p>
+                            <h4 style="color: #0297cf;">Text 5.</h4>
+                            <h4>{{recruiterFeatures.text5}}  </h4>
+                            <p>{{recruiterFeatures.text5Description}} </p>
+                            <h4 style="color: #0297cf;">Text 6.</h4>
+                            <h4>{{recruiterFeatures.text6}} </h4>
+                            <p>{{recruiterFeatures.text6Description}} </p>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad ">
+                                <div class="col-lg-4 col-md-4 col-sm-8 co-xs-12  col-lg-offset-4 col-md-offset-4 col-sm-offset-2" style="text-align: center;display: flex" >
+                                    <button type="submit" style="max-width: 100px;margin: 20px auto 0" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sbmt-btn" ng-click="recruiterEdit = true">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<script type="text/ng-template" id="success">
+    <div class="ngdialog-message">
+        <h4 style="text-align: center">Updated successfully</h4>
+        <!-- POP UP -->
+
+    </div>
+</script>
+<script type="text/ng-template" id="error">
+    <div class="ngdialog-message">
+        <h4 style="text-align: center">{{error}}</h4>
+
+    </div>
+</script>

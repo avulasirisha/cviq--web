@@ -1,0 +1,1303 @@
+/* ============================ Custom CSS Rules ==============================*/
+@font-face {
+    font-family: 'Graphik-Regular';
+    src: url('../fonts/graphik-regular/Graphik-Regular.eot?#iefix') format('embedded-opentype'),  url('../fonts/graphik-regular/Graphik-Regular.otf')  format('opentype'),
+    url('../fonts/graphik-regular/Graphik-Regular.woff') format('woff'), url('../fonts/graphik-regular/Graphik-Regular.ttf')  format('truetype'), url('../fonts/graphik-regular/Graphik-Regular.svg#Graphik-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Graphik-Medium';
+    src: url('../fonts/graphik-medium/Graphik-Medium.eot?#iefix') format('embedded-opentype'),  url('../fonts/graphik-medium/Graphik-Medium.otf')  format('opentype'),
+    url('../fonts/graphik-medium/Graphik-Medium.woff') format('woff'), url('../fonts/graphik-medium/Graphik-Medium.ttf')  format('truetype'), url('../fonts/graphik-medium/Graphik-Medium.svg#Graphik-Medium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Graphik-Regular';
+    overflow-x: hidden;
+
+}
+h1,h2,h3,h4,h5,h6,ul,p{
+    margin: 0;
+    padding: 0;
+}
+img{
+    max-width: 100%;
+}
+a, img, input,textarea, button,li,h4:focus{
+    outline: none !important;
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+}
+.clearfix:after{
+    display: block;
+    content: '';
+    clear:both;
+}
+ul{
+    list-style: none;
+}
+h1{
+    color: #2c2c2c;
+    font-size: 26px;
+    text-align: center;
+    line-height: 40px;
+}
+.line{
+    background: #0297cf;
+    height: 1px;
+    margin: 2px 0;
+}
+.banner{
+    background:#EFF2F5 url("../images/main-bg.png") no-repeat center top;
+    background-size: contain;
+    min-height: 650px;
+}
+header{
+    padding: 20px 0;
+    background: #fff;
+}
+header img{
+    width: 120px;
+    cursor: pointer;
+    float: left;
+}
+/*header img.logUnauth{*/
+    /*margin-left: 30px;*/
+/*}*/
+header ul{
+    float: right;
+}
+header ul li{
+    display: inline-block;
+    margin-left: 40px;
+}
+header ul.auth-menu{
+    margin-top: 6px;
+}
+header ul.auth-menu li{
+    padding: 0;
+}
+header ul.auth-menu li img.bell{
+    max-width: 20px;
+    float: none;
+}
+header ul li:first-child{
+    margin: 0;
+}
+header ul.unauth-menu li a{
+    color: #4f5f72;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 5px 30px;
+    display: block;
+    text-decoration: underline;
+}
+header ul.unauth-menu li.active a{
+    color: #fff;
+    text-decoration: none;
+}
+header ul.auth-menu li a{
+    color: #4f5f72;
+}
+header ul li.active{
+    border-radius: 3px;
+    background-color: #0297cf;
+    border: solid 1px #02a3d9;
+}
+header ul.auth-menu li.selected a{
+    color: #000;
+    text-decoration: underline;
+    font-weight: bold;
+}
+header ul li.user-name{
+    background: #e1e1e1;
+    border-radius: 30px;
+    padding: 5px 25px;
+    position: relative;
+}
+header ul li.user-name img{
+    width: 38px;
+    position: absolute;
+    top: -5px;
+    right: -20px;
+    border: 2px solid #4f5f72;
+    border-radius: 50%;
+}
+header img.bell{
+    width: 20px;
+    float: right;
+    margin-top: 5px;
+}
+.user-name{
+    border-radius: 30px;
+    padding: 5px 35px;
+    position: relative;
+    float: right;
+    margin:0 30px 0 0;
+    text-transform: capitalize;
+    font-size: 15px;
+    color: #4f5f72;
+}
+.user-name img{
+    width: 38px;
+    height: 38px;
+    position: absolute;
+    top: -5px;
+    right: -20px;
+    border: 2px solid #4f5f72;
+    border-radius: 50%;
+    background: url("../images/title-dp.png") no-repeat center;
+}
+.main-section{
+    border-radius: 15px 0 15px 0;
+    background-color: #ffffff;
+    border: solid 5px #f2f2f2;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 30px;
+}
+.linkedin-btn{
+    border-radius: 3px;
+    background-color: #0297cf;
+    color: #fff;
+    font-family: 'Graphik-Medium';
+    display: inline-block;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 30px;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+}
+.linkedin-btn:hover{
+    text-decoration: none;
+    color: #fff;
+}
+.or{
+    color: #2c2c2c;
+    font-size: 16px;
+    width: 100%;
+    float: left;
+    background: #dbdbdb;
+    height: 1px;
+    margin: 30px 0;
+    position: relative;
+}
+.or span{
+    position: absolute;
+    left: 50%;
+    height: 20px;
+    top: -10px;
+    background: #fff;
+    padding: 0 5px;
+    width: 34px;
+    margin-left: -17px;
+}
+.form input{
+    border-radius: 3px;
+    border: solid 1px #dedede;
+    padding: 25px 10px 10px 10px;
+    font-size: 13px;
+    margin-bottom: 10px;
+    width: 100%;
+    color: #000;
+    letter-spacing: 1px;
+}
+.form-elements{
+    position: relative;
+}
+.form-elements label {
+    position: absolute;
+    top: 10px;
+    font-size: 11px;
+    font-weight: bold;
+    left: 10px;
+    color: #727272;
+}
+input[type="checkbox"]{
+    width: auto;
+    float: left;
+    display: none;
+}
+label.checkbox-label:before{
+    content: '';
+    display: inline-block;
+    background:url("../images/check-bg.png") no-repeat center top;
+    border-radius: 3px;
+    position: absolute;
+    left: 0;
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+    color: #fff;
+    text-align: center;
+}
+label.pay-check:before{
+    margin-top: 2px;
+}
+.conditions{
+    color: #949494;
+    font-size: 12px;
+    padding-left: 25px;
+    position: relative;
+    cursor: pointer;
+    margin: 15px 0 0 0;
+    font-weight: normal;
+}
+input[type="checkbox"]:checked + label.checkbox-label:before{
+    background: url("../images/check.png") no-repeat center top;
+}
+.pay-check{
+    padding-left: 25px;
+    position: relative;
+    cursor: pointer;
+    font-weight: normal;
+}
+.form p{
+    font-size: 10px;
+    color: #6b6b6b;
+    text-align: center;
+}
+.form a.passcode{
+    font-size: 10px;
+    color: #0297cf;
+    cursor: pointer;
+    text-decoration: underline;
+}
+.form button{
+    border-radius: 3px;
+    background-color: #0297cf;
+    color: #fff;
+    font-family: 'Graphik-Medium';
+    display: inline-block;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 10px;
+    font-size: 15px;
+    border: none;
+}
+.forgot-password{
+    margin: 25px 0 0 0;
+}
+.forgot-password a{
+    color: #949494;
+    font-size: 12px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.new-user span{
+    color: #2c2c2c;
+    font-size: 16px;
+    line-height: 40px;
+}
+.new-user .sign-btn{
+    border-radius: 3px;
+    background-color: #056285;
+    color: #fff;
+    padding: 10px 35px;
+}
+footer{
+    background-color: #4f5f72;
+    padding: 30px 0;
+}
+.footer-menu img{
+    width: 120px;
+}
+.footer-menu ul{
+    margin-top: 20px;
+}
+.footer-menu ul li{
+    border-left: solid 1px #999999;
+    display: inline;
+    padding: 0 15px;
+}
+.footer-menu ul li:first-child{
+    border-left:none;
+    padding-left: 0;
+}
+.footer-menu ul li a, .footer-menu ul li a:hover{
+    color: #fff;
+    font-size: 13px;
+}
+.copyright{
+    color: #fff;
+    font-size: 13px;
+    margin-top: 60px;
+    font-weight: bold;
+}
+.sbmt-btn{
+    background-color: #0297cf;
+    border-radius: 3px;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    font-family: 'Graphik-Medium';
+    margin: 15px 0 0 0;
+}
+.sbmt-btn:hover{
+    color: #fff;
+    text-decoration: none;
+}
+.pass-outer{
+    position: relative;
+}
+.pass-outer .pass-link{
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    font-size: 12px;
+    border-radius: 100px;
+    padding: 3px 10px;
+    cursor: pointer;
+    color: #000;
+    text-decoration: underline;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+}
+.main-section2 {
+    border-radius: 5px;
+    background-color: #ffffff;
+    margin-top: 50px;
+    padding: 30px;
+}
+.payment-form form{
+    margin-top: 60px;
+}
+.cash-forms{
+    margin-top: 50px;
+    width: 48%;
+    float: left;
+}
+.cash-forms-left{
+    border-right: solid 1px #979797;
+    width: 50%;
+    padding-right: 20px;
+}
+.payment-form .cheque-form{
+    margin-top:20px ;
+}
+p.home-address{
+    margin-top: 20px;
+}
+.fifty-comb{
+    width: 49%;
+}
+.one-third{
+    width: 29%;
+    float: left;
+}
+.more-half{
+    width: 69%;
+    float: right;
+}
+.dashboard{
+    background: #fff url("../images/login-bg.png") no-repeat center top;
+    background-size: contain;
+}
+.dashboard .dashboard-inner{
+    margin: 30px 0 0 0;
+    float: left;
+    width: 100%;
+}
+.fPass{
+    text-align: center;
+    font-size: 12px;
+    margin: 20px 0;
+}
+.main-section-profile{
+    background: #eff2f5;
+    border-radius: 0px;
+}
+.main-section-profile h2{
+    font-size: 24px;
+    border-bottom: solid 1px #26a5d5;
+    padding: 0 0 10px 0;
+}
+.profile-pic{
+    border: solid 3px #efefef;
+    padding: 12px;
+    color: #000;
+    width: 190px;
+    float: left;
+}
+.dashboard-right{
+    width: 78%;
+    float: right;
+}
+.profile-pic h5{
+    font-size: 16px;
+    margin: 15px 0 5px;
+    position: relative;
+    text-transform: capitalize;
+}
+.profile-pic h5 img{
+    position: absolute;
+    right: 0;
+}
+.profile-pic p{
+    font-size: 12px;
+    color: #737373;
+}
+.profile-pic .change-photo{
+    position: relative;
+    background: url("../images/profile-placeholder.png") no-repeat center;
+    width: 160px;
+    height: 160px;
+    overflow: hidden;
+    border: solid 1px #efefef;
+}
+.profile-pic .change-photo img{
+    width: 160px;
+    height: 160px;
+}
+.profile-pic .change-photo a{
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    right: 0;
+    color: #ffffff;
+    font-size: 10px;
+    opacity: 0.58;
+    border-radius: 100px;
+    background-color: #000000;
+    width: 100px;
+    margin-left: -50px;
+    cursor: pointer;
+}
+.main-section-profile .ProfileFormElements{
+    margin-bottom: 15px;
+}
+.main-section-profile .ProfileFormElements span{
+    line-height: 35px;
+    color: #7a7a7a;
+}
+.main-section-profile .ProfileFormElements .dropdown{
+    margin-left: 20px;
+    padding: 0;
+}
+.main-section-profile .ProfileFormElements button{
+    text-align: left;
+    background: #fff url("../images/arrow-below.png") no-repeat 97%;
+    border: none;
+    border-radius: 3px;
+    font-family: 'Graphik-Regular';
+    font-size: 13px;
+    padding: 10px;
+}
+.open>.dropdown-toggle.btn-default{
+    background: #fff url("../images/arrow-below.png") no-repeat 97%;
+}
+.main-section-profile .ProfileFormElements .accomplish{
+    margin-left: 20px;
+    padding:0;
+}
+.main-section-profile .ProfileFormElements input{
+    background: #fff;
+    border: none;
+    font-size: 13px;
+    padding: 10px;
+    width: 100%;
+}
+.main-section-profile .ProfileFormElements button.upload{
+    border-radius: 3px;
+    background: #26a5d5;
+    color: #ffffff;
+    text-align: center;
+    margin-left: 20px;
+}
+.ngdialog.ngdialog-theme-default .ngdialog-content{
+    border-radius: 15px 0 15px 0;
+    background-color: #ffffff;
+    padding: 30px;
+}
+.ngdialog.ngdialog-theme-default .ngdialog-content h1{
+    color: #2c2c2c;
+    font-size: 22px;
+    text-align: center;
+}
+.ngdialog.ngdialog-theme-default .ngdialog-content p{
+    font-size: 14px;
+    color: #6b6b6b;
+    margin: 10px 0;
+    text-align: center;
+}
+.ngdialog.ngdialog-theme-default .ngdialog-content p.rate-message{
+    margin: 10px 0 0 0;
+}
+.ngdialog.ngdialog-theme-default .ngdialog-content .check{
+    padding: 5px 10px;
+}
+.ngdialog.ngdialog-theme-default .ngdialog-content span{
+    color: #949494;
+    font-size: 14px;
+    padding-left: 10px;
+}
+.ngdialog.ngdialog-theme-default .ngdialog-content button {
+    border-radius: 3px;
+    background-color: #0297cf;
+    color: #fff;
+    font-family: 'Graphik-Medium';
+    display: inline-block;
+    text-align: center;
+    padding: 5px 0;
+    margin-top: 30px;
+    font-size: 15px;
+    border: none;
+    width: 100%;
+}
+.ngdialog.ngdialog-theme-default .ngdialog-close:before{
+    background: #dedede;
+    font-size: 20px;
+    color: #000;
+    line-height: 22px;
+    width: 24px;
+    height: 24px;
+    border-radius: 0;
+}
+.candidate-desc h4{
+    color: #2d2d2d;
+    font-size: 16px;
+}
+.candidate-desc p{
+    color: #4f5f72;
+    font-size: 13px;
+}
+.candidate-edit-profile p{
+    color: #626262;
+    font-size: 12px;
+    width: 100%;
+    float: left;
+    margin: 5px 0;
+}
+
+.candidate-edit-profile2 p{
+    color: #626262;
+    font-size: 12px;
+    width: 100%;
+    float: left;
+    border-bottom: solid 1px #d7d7d7;
+    padding: 6px 10px;
+}
+.candidate-edit-profile2 p strong{
+    width: 80px;
+    float: left;
+}
+
+.brief-job-details{
+    padding: 15px;
+}
+.brief-job-details p{
+    margin: 10px 0;
+}
+.candidate-edit-profile input{
+    border: none;
+    background: none;
+    font-size: 14px;
+    color: #000;
+    padding: 5px 10px;
+}
+.cap{
+    text-transform: capitalize;
+}
+.candidate-edit-profile p label{
+    line-height: 30px;
+    font-size: 13px;
+}
+.candidate-edit-profile p img{
+    margin: 8px 0 0 10px;
+}
+.candidate-desc .candidate-details{
+    margin-top: 30px;
+    float: left;
+}
+.candidate-desc .candidate-details span{
+    color: #7a7a7a;
+}
+.candidate-desc h4.main-heading{
+    background: #d8d8d8;
+    padding: 0 10px;
+    font-size: 14px;
+    line-height: 34px;
+}
+.candidate-desc p.main-desc{
+    margin-top: 20px;
+    line-height: 20px;
+}
+.candidate-desc p.add-desc{
+    font-size: 12px;
+    margin: 5px 0;
+}
+.marks ul{
+    text-align: center;
+    margin: 30px 0;
+}
+.marks ul li{
+    display: inline-block;
+    border-left: solid 1px #d6d6d6;
+    width: 24%;
+}
+.marks ul li:first-child{
+    border-left:none;
+}
+.marks ul li h5{
+    color: #4f5f72;
+    font-size: 15px;
+    margin: 20px 0;
+    font-weight: bold;
+}
+.marks ul li span{
+    border-radius: 3px;
+    background-color: #26a5d5;
+    border: none;
+    color: #fff;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 10px 30px;
+    width: 100px;
+}
+.marks ul li input{
+    border-radius: 3px;
+    border: solid 1px #4f5f72;
+    padding: 5px 0;
+    width: 100px;
+    margin-left: 5px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+}
+.btn-sets{
+    margin: 20px 0;
+}
+.btn-sets button{
+    margin-left: 10px;
+}
+.interview-modes{
+    margin-top: 50px;
+}
+.interview-modes .available{
+    border-radius: 3px;
+    color: #fff;
+    padding: 5px 40px;
+    cursor: pointer;
+    background: #0297cf url("../images/arrow-right.png") no-repeat 95% center;
+    line-height: 22px;
+}
+.interview-details{
+    margin: 0 0 30px;
+}
+.interview-modes ul{
+    list-style: none;
+    display: inline-block;
+}
+.interview-modes ul li{
+    display: inline-block;
+}
+.interview-modes ul li a{
+    color: #4f5f72;
+    font-size: 14px;
+    display: inline-block;
+    padding: 10px 50px;
+    border-radius: 3px 3px 0 0;
+    background-color: #e9ecee;
+}
+.interview-modes ul li a.active{
+    background: #0297cf;
+    color: #fff;
+}
+.candidate-desc ul li img{
+    width: 75px;
+    float: left;
+    background: url("../images/profile-placeholder.png") no-repeat center top;
+    border: 1px solid #000;
+    height: 75px;
+    background-size: 75px 75px;
+}
+.candidate-desc .profile-description{
+    float: left;
+    margin-left: 20px;
+    width: 70%;
+    overflow: hidden;
+}
+.profile-description h4{
+    color: #4f5f72;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+}
+.profile-description p{
+    color: #8b8b8b;
+    font-size: 12px;
+    margin: 5px 0;
+    width: 280px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+}
+.profile-description ul li{
+    display: inline;
+    color: #737373;
+    font-size: 13px;
+    padding: 0 0 0 20px;
+    margin-left: 15px;
+}
+.profile-description ul li:first-child{
+    margin-left: 0;
+}
+.profile-description ul li.place{
+    background: url("../images/location.png") no-repeat left center;
+}
+.profile-description ul li.experience{
+    background: url("../images/experience.png") no-repeat left center;
+}
+.interview-details .candidate-desc .status-rating label{
+    color: #8b8b8b;
+    font-size: 10px;
+    display: block;
+    font-weight: normal;
+    margin: 0;
+    line-height: 16px;
+}
+.interview-details .candidate-desc .status-rating label.viewed{
+    display: table-cell;
+    vertical-align: middle;
+    height: 60px;
+}
+.interview-details .candidate-desc .status-rating button.status-complete{
+    background-color: #0297cf;
+    color: #fff;
+    padding: 5px 15px;
+    margin: 5px 0 0 0;
+    border-radius: 4px;
+    font-size: 10px;
+    display: inline-block;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+}
+.interview-details .candidate-desc .status-rating span.status-complete{
+    background-color: #0297cf;
+    color: #fff;
+    padding: 5px 15px;
+    margin: 5px 0 0 0;
+    border-radius: 4px;
+    font-size: 10px;
+    display: inline-block;
+    font-weight: bold;
+    cursor: pointer;
+}
+.interview-details .candidate-desc .status-rating span.credit{
+    color: #0297cd;
+    font-weight: bold;
+    font-size: 12px;
+}
+.interview-details .candidate-desc .status-rating label span.status-cancel{
+    background-color: #adbac0;
+    color: #3b3b3b;
+    padding: 7px 20px;
+    margin-left: 10px;
+    border-radius: 30px;
+}
+.interview-details .candidate-desc .status-rating label span.date{
+    color: #4f5f72;
+    font-weight: bold;
+    font-size: 14px;
+}
+.candidate-desc ul li.main-list{
+    border-top: solid 1px #d9d9d9;
+    padding: 20px 0;
+}
+.candidate-desc ul li.notViewed{
+    background: #e4e4e4;
+}
+.candidate-desc ul li.main-list:first-child{
+    border-top: none;
+}
+.candidate-desc h5, .candidate-desc .descriptionHead {
+    background: #e9ecee;
+    font-size: 15px;
+    padding: 10px 15px;
+    border-bottom: solid 1px #e0e0e0;
+}
+
+.candidate-desc .descriptionHead span{
+    font-size: 15px;
+}
+.candidate-desc .descriptionHead select{
+    font-size: 12px;
+    padding: 5px 10px;
+    background: transparent;
+    border: solid 1px #979797;
+    outline: none;
+}
+.candidate-desc .descriptionHead span.stat{
+    float: right;
+    font-size: 12px;
+    color: #737373;
+    margin-right: 10px;
+    line-height: 22px;
+}
+.candidate-desc .headingSpan{
+    background: #e9ecee;
+    font-size: 15px;
+    padding: 10px 15px;
+}
+.candidate-desc .headingSpan span{
+    color: #4f5f72;
+}
+.candidate-desc .headingSpan{
+    background: #e9ecee;
+    font-size: 15px;
+    padding: 10px 15px;
+}
+.candidate-desc .headingSpan span{
+    color: #4f5f72;
+}
+.status-rating{
+    display: table;
+}
+.visitedDate{
+    display: table;
+    height: 75px;
+}
+.visitedDate label{
+    display: table-cell !important;
+    vertical-align: middle;
+}
+.question-bank{
+    background: none;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 0;
+}
+.question-bank .question-search{
+    width: 25%;
+    display: inline-block;
+    position: relative;
+}
+.question-bank .question-search button, .question-bank .question-search input{
+    padding: 25px 10px 10px 10px;
+}
+.question-bank .question-search label{
+    position: absolute;
+    top: 10px;
+    color: #9b9b9b;
+    z-index: 1;
+    font-size: 11px;
+    left: 10px;
+}
+.question-bank .ProfileFormElements{
+    margin-bottom: 10px;
+}
+.search-bg{
+    background: #fff url("../images/login-bg.png") no-repeat center top;
+    background-size: cover;
+}
+.search-result{
+    background: #eff2f5;
+    padding: 15px 30px;
+}
+.search-section{
+    margin: 50px 0;
+}
+section.skype{
+    -webkit-box-shadow: inset 0 16px 20px -20px rgba(0,0,0,0.8);
+    -moz-box-shadow: inset 0 16px 20px -20px rgba(0,0,0,0.8);
+    box-shadow: inset 0 16px 20px -20px rgba(0,0,0,0.8);
+    padding: 30px 0;
+}
+.interview-pic h3{
+    margin:15px 0;
+}
+.interview-pic p{
+    margin: 15px 0;
+    text-align: center;
+}
+.interview-pic p span{
+    display: block;
+    font-weight: bold;
+}
+.calender-section{
+    background: rgba(38, 165, 213, 0.4);
+    padding: 15px;
+    width: 39%;
+    float: left;
+}
+.calender-section .well-sm{
+    padding: 20px;
+    margin-bottom: 0;
+    background: #eff2f5;
+    border-radius: 0;
+}
+.calender-section .well-sm table{
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    outline: none;
+
+}
+.calender-section .well-sm table strong{
+    font-weight: normal;
+    font-size: 14px;
+}
+.calender-section .well-sm table small{
+    color: rgba(0, 0, 0, 0.38);
+    font-size: 12px;
+    font-weight: normal;
+}
+.calender-section .well-sm table thead button{
+    background: none;
+    border: none;
+    color: #4f5f72;
+}
+.calender-section p{
+    background: #26a5d5;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+}
+.calender-section .well-sm table tbody button{
+    background: none;
+    border: none;
+    color: #4f5f72;
+    min-width: initial;
+}
+.calender-section .well-sm table tbody button.active span{
+    color: #fff;
+}
+.calender-section .well-sm table tbody button.active{
+    background: #26a5d5;
+    box-shadow: none;
+    border-radius: 50%;
+    height: 30px;
+}
+.time-box{
+    border: solid 1px #979797;
+    padding: 20px;
+    width: 59%;
+    float: right;
+    margin-left: 2%;
+}
+.cal-sec h1{
+    margin-bottom: 10px;
+    margin-top: 30px;
+}
+.time-box ul.time-unordered-list li{
+    display: inline-block;
+    margin: 0 0 20px 14px;
+}
+.time-box ul{
+    margin-left: -14px;
+}
+.time-box .avail h6{
+    border-radius: 3px 3px 0 0;
+    background-color: #26a5d5;
+    box-shadow: 0 2px 3px 0 rgba(163, 163, 163, 0.33);
+    color: #ffffff;
+    font-size: 11px;
+    padding: 10px 20px;
+    line-height: 16px;
+    width: 76px;
+}
+.time-box .avail p{
+    background: #fff;
+    color: #26a5d5;
+    font-size: 7px;
+    border: solid 1px #979797;
+    padding: 3px 0;
+}
+.time-box .unavail h6{
+    color: #727e8d;
+    background: #e3e3e3;
+}
+.time-box .unavail p{
+    background: #727e8d;
+    color: #fff;
+}
+.time-box label.checkbox-label:before {
+    margin-left: 5px;
+}
+.burger-menu{ border: 1px solid #fff; background: #4f5f72; border-radius: 6px; width: 45px; padding: 5px 10px; display: none; float: right; margin-top: 6px;}
+.burger-menu span{ height: 2px; background: #fff; margin: 3px 0; display: block; }
+.rating{ display: inline-block; margin:0 10px 5px 5px; }
+.rating li{ display: inline-block;}
+.rating li img{ width: 16px !important; }
+.interview-details .candidate-desc .status-rating label span.rate{ font-size: 10px; font-weight: normal; width: 110px; float: right; text-align: center;}
+.interview-details .candidate-desc .status-rating label span.rate small{border-right: 1px solid #4f5f72; font-size: 10px; padding-right: 4px; }
+.past-rate ul{ float: right; margin: 0 0 5px 5px;}
+.error-message{ font-size: 10px; color: #ff0000; margin-bottom: 5px;}
+.dropdown-outer{ padding:0; }
+.pic-outer{ width: 190px; float: left;}
+.additional{ width: 80%; float: right; padding: 0; }
+.registered-user-menu{
+    display: none;
+    border-radius: 10px;
+    background-color: #eff2f5;
+    right: -30px;
+    position: absolute;
+    width: 250px;
+    margin-top: 20px;
+    z-index: 999;
+    padding: 5px;
+    box-shadow: 0 5px 13px 0 rgba(60, 60, 60, 0.5);
+    -webkit-box-shadow: 0 5px 13px 0 rgba(60, 60, 60, 0.5);
+    -o-box-shadow: 0 5px 13px 0 rgba(60, 60, 60, 0.5);
+    -ms-box-shadow: 0 5px 13px 0 rgba(60, 60, 60, 0.5);
+    -moz-box-shadow: 0 5px 13px 0 rgba(60, 60, 60, 0.5);
+}
+.registered-user-menu::before{
+    border-bottom: 10px solid #eff2f5;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    position: absolute;
+    top: -10px;
+    right: 17px;
+    content: '';
+    display: block;
+}
+header ul.registered-user-menu li{
+    display: block;
+    margin: 0;
+    line-height: 20px;
+    border-top: solid 1px #d8d8d8;
+    cursor: pointer;
+    text-transform: capitalize;
+    padding: 5px 0;
+}
+header ul.registered-user-menu li a{ font-size: 12px;
+    display: block;
+    font-weight: normal !important;
+    color: #5c5c5c;
+    padding: 0 10px;
+    text-transform: uppercase;
+}
+header ul.registered-user-menu li:first-child{ border: none; }
+.displayDropDown{ display: block; }
+input.designation{ background: none; border: none; text-align: center; font-size: 14px;}
+.dropdown-menu li {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.dropdown-menu li:hover{
+    background: #d4d4d4;
+}
+
+.bootstrap-datetimepicker-widget.dropdown-menu li {
+    display: block;
+    padding: 0;
+    clear: none;
+    font-weight: normal;
+    line-height: normal;
+    color: #333;
+    white-space: normal;
+    cursor: pointer;
+}
+
+.bootstrap-datetimepicker-widget.dropdown-menu li:hover{
+    background: none;
+}
+.ProfileFormElements .custom-select-box .btn-group.bootstrap-select{ width: 100%; }
+.ProfileFormElements .custom-select-box .btn-group.bootstrap-select button .bs-caret{ display: none; }
+.ProfileFormElements .custom-select-box .btn-group.bootstrap-select .dropdown-menu li.disabled{ padding: 0 20px; }
+.ProfileFormElements .custom-select-box .btn-group.bootstrap-select .dropdown-menu li.active a{ background: #b7babd }
+/*.ProfileFormElements .custom-select-box .btn-group.bootstrap-select .dropdown-menu li.selected a{ background: url("../images/box.png") no-repeat left center; }*/
+.ProfileFormElements .custom-select-box .btn-group.bootstrap-select .dropdown-menu li.selected a span.glyphicon:before{ content: ''; }
+/*background: url("../images/box1.png") no-repeat left center;*/
+.ProfileFormElements .custom-select-box .btn-group.bootstrap-select .dropdown-menu li a{ font-size: 12px; background: none; }
+.ProfileFormElements .custom-select-box .btn-group.bootstrap-select .bs-searchbox input{ box-shadow: none; -webkit-box-shadow: none; -o-box-shadow: none; -ms-box-shadow: none; -moz-box-shadow: none; padding: 0 10px; }
+.ProfileFormElements .custom-select-box .btn-group.bootstrap-select span.text{ line-height: 25px;}
+.err{ margin-top: 10px; }
+.payment-form input{ background: #d4d4d4; }
+.pay-form-right{ margin-top: 60px;}
+.fullWidth { width: 100% !important; }
+
+
+/*=============================== Start: Bootbox Popup Css Rules ======================*/
+.bootbox .modal-content{ border: 5px solid #0297cf; text-align: center; padding: 10px; }
+.bootbox .modal-content .bootbox-body{ font-size: 18px; }
+.bootbox .modal-content .modal-footer{ text-align: center; }
+.bootbox .modal-content .modal-footer button{ background: #0297cf; padding: 6px 25px; border: none; }
+/*=============================== End: Bootbox Popup Css Rules ======================*/
+
+
+
+
+
+/*=============================== Start : Loader custom Css Rules ======================*/
+.loading{ width: 100%; height: 100%; position: fixed; top: 0; z-index: 99999; text-align: center; background: rgba(255,255,255, 0.6); }
+.loading img{position: absolute; top: 50%; width: 60px; height: 60px; margin-top: -30px;}
+/*=============================== End : Loader custom Css Rules ======================*/
+
+
+
+
+
+/*=============================== Start : Bootbox Modal Custom Css Rules ======================*/
+.bootbox.modal { display: table; width: 100%; height: 100%; }
+.bootbox .modal-dialog { display: table-cell; vertical-align: middle; }
+.bootbox .modal-content { border: 5px solid #0297cf; text-align: center; padding: 10px; }
+.modal-content { width: inherit; height: inherit; margin: 0 auto; }
+/*=============================== End : Bootbox Modal Custom Css Rules ======================*/
+
+
+/*=============================== Start : Filters Job Data ======================*/
+.filter span{ font-size: 12px; float: left; line-height: 24px; margin-right: 10px; }
+.filter input{ float: left;
+    border: none;
+    height: 24px;
+    padding: 0 5px 0 30px;
+    font-size: 12px;
+    color: #8b8b8b;
+    border-radius: 4px 0 0 4px;
+    background: #fff url("../images/calender.png") no-repeat 5%;
+    background-size: 14px;
+    width: 110px; }
+.filter button{ border-radius: 0 4px 4px 0; background-color: #0297cf; color: #fff; border: none; font-size: 12px; height: 24px; }
+.filter select { float: left; border: none; background: #fff; margin-right: 10px; height: 24px; font-size: 12px; color: #8b8b8b; }
+
+
+/*gopi added */
+
+.rating1 li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 1px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 20px;
+}
+.rating1 {
+    color: #a9a9a9;
+    margin: 0;
+    padding: 0;
+}
+.rating1 .filled {
+    color: #000;
+}
+
+/*=============================== End : Filters Job Data ======================*/
+
+.expDrop{ position: relative; float: left; }
+.expDrop .experience-lists{ position: absolute; top: 45px; }
+
+
+@media (max-width:1200px){
+    .main-section-profile .ProfileFormElements button.upload{ margin-bottom: 15px; }
+    .additional{ width: 76%; }
+}
+@media (max-width:1024px){
+    footer{padding: 20px;}
+}
+@media (max-width:991px) {
+    header.auth-header { text-align: center; }
+    .main-section-profile .ProfileFormElements button.edu{ margin-bottom: 10px; }
+    form.profile-form { margin-top: 30px; }
+    .fifty-comb, .one-third, .more-half{ width: 100%; }
+    .calender-section{ width: 100%; float: none; margin: 0 auto;}
+    .time-box{ width: 100%; margin: 20px 0 0 0;}
+    .marks ul li{width: 50%; border-left: none; margin-bottom:20px; }
+    .btn-sets button{ margin-bottom: 20px; }
+    .profile-pic{ float: none; margin: 0 auto;}
+    .dashboard-right{ width: 100%; }
+    .additional{ width: 100%; margin-top: 20px; }
+    .pic-outer{ float: none; margin: 0 auto;}
+    header ul.auth-menu li{ margin-left: 30px;}
+    header ul.auth-menu li:first-child{ margin-left: 0; }
+    header ul.auth-menu li a{ font-size: 13px;}
+    header ul.auth-menu{ float: left;}
+    header img.loggedLogo{ float: none; margin-bottom: 15px;}
+    .profile-form{ margin-top: 20px;}
+    .resume-btn{ margin-bottom: 10px !important;}
+    .resumeInProfile{ margin: 0; padding: 0;}
+    .yearDropDown{ width: 100% !important;}
+}
+@media (max-width:800px) {
+    header.unauth-header{padding: 20px;}
+}
+@media (max-width:768px){
+    header.auth-header{ padding:20px;}
+    header.auth-header{text-align: left;}
+    .menu-sec{ display: none; width: 100%; }
+    .burger-menu{ display: block; cursor: pointer;}
+    .main-section-profile .ProfileFormElements span{ text-align: left;}
+    header ul.auth-menu{ background: #4f5f72; width: 100%;; text-align: center; padding: 20px; margin-top: 20px; border-radius: 6px; }
+    header ul.auth-menu li{ display: block; padding: 10px 0; margin:10px 0 10px 0;  }
+    header ul.auth-menu li a{ color: #fff; font-weight: bold; display: block; }
+    header ul li.user-name img{top: 1px; right: 10px;}
+    .cash-forms-left{ padding: 0; border: none; }
+    .cash-forms{ width: 100%; }
+    .other .sbmt-btn{ margin-bottom: 20px; }
+    .candidate-desc ul li.main-list{ text-align: center;}
+    .interview-details .candidate-desc ul li img{ float: none; margin-bottom: 10px;}
+    .interview-details .candidate-desc .profile-description{ float: none; margin: 0; width: 100%; }
+    .status-rating{ text-align: center; margin: 20px 0 0 0;}
+    .candidate-desc ul li.main-list:first-child{ padding-top: 20px; }
+    .interview-modes ul{ display: block; }
+    .interview-modes ul li a{padding: 10px 25px;}
+    .interview-modes { padding-top: 50px; position: relative; margin-top: 0; }
+    .interview-modes .available{position: absolute; top: 0; right: 0;}
+    .main-section-profile .ProfileFormElements .dropdown{ width: 100%; margin: 0; }
+    .main-section-profile .ProfileFormElements .custom-select-box{ margin: 0 0 5px 0; }
+    .main-section-profile .ProfileFormElements .accomplish{ margin: 0;}
+    .main-section-profile .ProfileFormElements button.upload{ margin-left: 0; }
+    .interview-details .candidate-desc .status-rating label{text-align: center;}
+    .interview-details .candidate-desc .status-rating label span.rate{ float: none;}
+    .past-rate ul{ float: none; display: block; margin-top: 10px;}
+    .registered-user-menu{ width: 100%; margin-top: 12px; left: 0; position: static; margin-bottom: 10px; }
+    header ul.registered-user-menu li{ padding:0px; margin: 0; }
+    header ul.registered-user-menu li a{ font-size: 12px; padding: 5px; }
+    header img.loggedLogo{ float: left; margin: 0; }
+    .inDropDown{ width: 100%; display: block; }
+    header img.bell{ display: none;}
+    header img.bell{ margin: 10px 10px 0 0; }
+    .user-name{ width: 100%; float: left;  margin: 0; padding: 10px 25px; text-align: center; }
+    .user-name img{ right: 0; top: 0; position: static; float: none; margin-left: 10px; }
+    header ul.auth-menu{ margin-top: 0; }
+}
+@media (max-width:640px){
+    footer .footer-menu{ float: none !important; text-align: center;}
+    .copyright{margin-top: 30px; text-align: center; float: none !important;}
+    .one-third, .more-half, .fifty-comb{ width: 100%; }
+    .marks ul li{width: 100%;}
+}
+@media (max-width:480px){
+    header.unauth-header{text-align: center;}
+    header.unauth-header ul{float: none; margin: 0 auto; text-align: center; margin-top: 20px;}
+    header.unauth-header img{ float: none;}
+    header img.logUnauth{ margin: 0;}
+    h1{ font-size: 20px;}
+    .candidate-desc .headingSpan{ width: 100%; float: left; }
+    .candidate-desc .headingSpan .filter{ width: 100%; margin: 10px 0; }
+}
+@media (max-width:400px){
+    .new-user span{display: block; text-align: center;}
+    .new-user .sign-btn{text-align: center;  width: 100%;}
+    .pass-outer .pass-link{ position: static; text-align: center; float: left;  width: 100%; margin: 10px 0; }
+    .linkedin-btn{font-size: 13px;}
+    .form p{ text-align: left; }
+    header ul li{ margin: 0;}
+    h1 { font-size: 17px; }
+    .profile-description p{ width: auto; }
+    .modal-body #fileInput { margin-left: 0 !important; }
+}

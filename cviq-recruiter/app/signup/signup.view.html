@@ -1,0 +1,184 @@
+<!--<script type="text/javascript">
+    $(document).click(function (e){
+        var container = $("#experience");
+        if (!container.is(e.target) // if the target of the click isn't the container...
+                && container.has(e.target).length === 0) // ... nor a descendant of the container
+        {
+            $('.experience-lists').removeClass('showExperience');
+        }
+    });
+</script>-->
+<form name="signupForm" ng-submit="signupForm.$valid&&signup(register)" novalidate>
+    <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 banner">
+        <div class="container">
+            <div class="main-section col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 col-xs-12 candidate-profile-section clearfix">
+                <h1 class="text-center">CREATE YOUR PROFILE</h1>
+                <!--<div class="line"></div>
+                <div class="line"></div>-->
+                <a ng-click="liAuth()" class="linkedin-btn col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-6 col-sm-offset-3 col-xs-12">SIGN UP WITH LINKEDIN</a>
+                <div class="or"><span>OR</span></div>
+                <div class="row">
+                    <div class="search-wrapper">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form">
+                            <div class="clearfix">
+                                <div class="form-elements ">
+                                    <label>FIRST NAME</label>
+                                    <input type="text" class="fname" minlength="3" style="text-transform: capitalize" ng-keypress='FirsText($event)' maxlength="20" placeholder="Enter First Name" name="firstName" ng-model="register.firstName" required />
+                                    <div ng-show="signupForm.$submitted || signupForm.firstName.$touched">
+                                        <div class="error-message" ng-show="signupForm.firstName.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        <div class="error-message" ng-show="signupForm.firstName.$invalid&&signupForm.firstName.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> First Name must be at least 3 characters long.</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-elements ">
+                                    <label>LAST NAME</label>
+                                    <input class="lname" type="text" minlength="3" style="text-transform: capitalize" ng-keypress='FirsText($event)' maxlength="20" placeholder="Enter Last Name" name="lastName" ng-model="register.lastName" required />
+                                    <div ng-show="signupForm.$submitted || signupForm.lastName.$touched">
+                                        <div class="error-message" ng-show="signupForm.lastName.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        <div class="error-message" ng-show="signupForm.lastName.$invalid&&signupForm.lastName.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Last Name must be at least 3 characters long.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="clearfix">
+                                <div class="form-elements fifty-comb pull-left {{codeClass}}">
+                                    <label>EMAIL ADDRESS</label>
+                                    <input class="mail" id='mail' type="text" name="email" placeholder="Enter Email" ng-model="register.email" ng-pattern="myregex" required />
+                                    <div ng-show="signupForm.$submitted || signupForm.email.$touched">
+                                        <div class="error-message" ng-show="signupForm.email.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        <div class="error-message" ng-show="signupForm.email.$error.pattern"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Enter Valid Email.</div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-elements fifty-comb pull-right" ng-if="!PassField">
+                                    <label>CHOOSE A PASSWORD</label>
+                                    <input class="password" type="password" name="password" placeholder="Enter Password" ng-model="register.password" required>
+                                    <div ng-show="signupForm.$submitted || signupForm.password.$touched">
+                                        <div class="error-message" ng-show="signupForm.password.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                           <div class="ProfileFormElements clearfix form-elements">
+                                <div class="dropdown custom-select-box main-dropdown">
+                                    <label>CURRENT COUNTRY</label>
+                                    <select name="country" ng-model="register.currentCountry" ng-change="getCountryID(register.currentCountry)" class="selectpicker" data-live-search="true" ng-options="country.countryName for country in countryLists" required>
+                                        <option value="" disabled hidden>Current Country</option>
+                                    </select>
+                                    <div ng-show="signupForm.$submitted || signupForm.country.$valid && signupForm.country.$invalid">
+                                        <div class="error-message err" ng-show="signupForm.country.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ProfileFormElements clearfix form-elements">
+                                <div class="dropdown custom-select-box main-dropdown">
+                                    <label>CURRENT STATE</label>
+                                    <select name="states" id="current-state" ng-model="register.currentState" class="selectpicker" data-live-search="true" ng-options="state.stateName for state in stateRefinedList" required>
+                                        <option value="" disabled hidden>Current State</option>
+                                    </select>
+                                    <div ng-show="signupForm.$submitted || signupForm.states.$valid && signupForm.states.$invalid">
+                                        <div class="error-message err" ng-show="signupForm.states.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-elements ">
+                                    <label>CURRENT COMPANY</label>
+                                    <input type="text" class="fname" minlength="3" style="text-transform: capitalize" ng-keypress='FirsText($event)' maxlength="20" placeholder="Enter compnay Name" name="companyName" ng-model="register.companyName" required />
+                                    <div ng-show="signupForm.$submitted || signupForm.companyName.$touched">
+                                        <div class="error-message" ng-show="signupForm.companyName.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                    </div>
+                                </div>
+
+                            <div class="clearfix">
+                                <div class="form-elements one-third">
+                                    <!--<label>COUNTRY CODE</label>-->
+                                    <!--<input class="areaCode" id="areaCode" type="text" minlength="2" maxlength="4" ng-keypress='isCodeKey($event)' name="countryCode" placeholder="Enter Area Code" ng-model="register.countryCode" required>-->
+                                    <!--<div ng-show="signupForm.$submitted || signupForm.countryCode.$touched">-->
+                                        <!--<div class="error-message" ng-show="signupForm.countryCode.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>-->
+                                        <!--<div class="error-message" ng-show="signupForm.countryCode.$invalid&&signupForm.countryCode.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Country code must be at least 2 characters long.</div>-->
+
+                                    <!--</div>-->
+
+                                    <div class="ProfileFormElements clearfix form-elements">
+                                        <div class="dropdown custom-select-box main-dropdown">
+                                            <label>COUNTRY CODE</label>
+                                            <input class="areaCode" id="areaCode" type="text" minlength="2" maxlength="4" ng-keypress='isCodeKey($event)' name="code" placeholder="Enter Area Code" ng-model="register.countryCode" required>
+                                      
+                                            <div ng-show="signupForm.$submitted || signupForm.code.$valid && signupForm.code.$invalid">
+                                                <div class="error-message err" ng-show="signupForm.code.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-elements more-half">
+                                    <label>MOBILE NUMBER</label>
+                                    <input class="phone" type="text" minlength="10" maxlength="10" ng-keypress='isNumberKey($event)' ng-pattern="phoneRegex" name="mobile" placeholder="Enter Mobile Number" ng-model="register.mobileNumber" required>
+                                    <div ng-show="signupForm.$submitted || signupForm.mobile.$touched">
+                                        <div class="error-message" ng-show="signupForm.mobile.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        <div class="error-message" ng-show="signupForm.mobile.$invalid&&signupForm.mobile.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Phone Number must be valid and 10 digits long.</div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="form-elements">
+                                <div class="pass-outer">
+                                    <label>ADD REFERRAL CODE (optional)</label>
+                                    <input type="text" maxlength="6" name="referralCode" ng-model="register.referralCode" placeholder="Add Referral Code">
+                                    <div ng-show="signupForm.$submitted || signupForm.referralCode.$touched">
+                                        <div class="error-message" ng-show="signupForm.referralCode.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-elements" ng-if="!PassField">
+                                <div class="pass-outer">
+                                    <label>ENTER PASSCODE</label>
+                                    <input type="text" ng-keypress='isNumberKey($event)' minlength="6" maxlength="6" name="otp" ng-model="register.otp" placeholder="Enter Passcode" required>
+                                    <div ng-show="signupForm.$submitted || signupForm.otp.$touched">
+                                        <div class="error-message" ng-show="signupForm.otp.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        <div class="error-message" ng-show="signupForm.otp.$invalid&&signupForm.otp.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Passcode must be at least 6 characters long.</div>
+                                    </div>
+                                    <a class="pass-link" ng-click="openPopup()">Send Passcode</a>
+                                </div>
+                            </div>
+
+                            <p ng-if="!PassField">Passcode has been sent to your phone number.<a class="passcode" ng-click="resendPasscode(register)">Resend Passcode</a> in case you haven’t yet received.</p>
+                            <input type="checkbox" name="terms" id="terms" value="terms" required>
+                            <label for="terms" class="conditions "> I hereby certify that all the information above is true and accurate.</label>
+                            <div class="error-message" data-valmsg-for="Location" data-valmsg-replace="true" ng-if="authErrorCheck"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i>{{authErrorCheck}}</div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="new-user col-lg-12">
+                    <div class="row">
+                        <button type="submit" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sbmt-btn">SUBMIT</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+<script type="text/ng-template" id="templateId" class="ngDialog-theme-default">
+    <h1>SEND PASSCODE</h1>
+    <p>Where you want to receive Passcode?</p>
+    <div style="margin: 0 auto; width: 180px;">
+        <div class="check">
+            <input ng-init="otpPhone = false" ng-click="otpPhone = true; otpEmail = false" type="checkbox" ng-change="validCheck()" ng-model="otpPhone" id="onPhoneNumder" value="onPhoneNumder" required>
+            <label for="onPhoneNumder" class="pay-check "> <span>On Phone Number</span></label>
+        </div>
+        <div class="check">
+            <input ng-init="otpEmail = false" ng-click="otpPhone = false; otpEmail = true" type="checkbox" ng-change="validCheck()" ng-model="otpEmail" id="onEmail" value="onEmail" required>
+            <label for="onEmail" class="pay-check "> <span>On Email Address</span></label>
+        </div>
+    </div>
+    <div class="error-message text-center" data-valmsg-for="Otp" data-valmsg-replace="true" ng-if="valCheck"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> {{valCheck}}</div>
+    <button ng-click="genPasscode(register)" type="submit">DONE</button>
+</script>
+
+<script type="text/ng-template" id="passcodeId" class="ngDialog-theme-default">
+    <h1>FIELDS REQUIRED</h1>
+    <p>Please enter required fields to generate Passcode(Email, Country Code, Mobile Number)</p>
+</script>

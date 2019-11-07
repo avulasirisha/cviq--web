@@ -1,0 +1,85 @@
+<div class="modal fade" id="message" role="dialog">
+    <div class="modal-dialog" style="    padding: 160px 0px;width: 450px;">
+        <div class="modal-content" style="background-color: #fff;border-radius: 15px 0 15px 0;padding: 30px;" >
+            <h3 class="text-center">Send Message</h3>
+            <i class="fa fa-times fa-lg" style=" cursor: pointer;position: absolute;top: 5px;right: 5px;background: #eee;padding: 5px;color: #444;" data-dismiss="modal" aria-hidden="true"></i>
+            <div class="messageDescription">
+                <label >Reason</label>
+                <textarea  type="text" name="Description" ng-model="message.message" placeholder="Enter Description"></textarea>
+            </div>
+            <button class="messageButton" data-dismiss="modal" style="border-radius: 3px; background-color: #0297cf;color: #fff;font-family: 'Graphik-Medium';
+    display: inline-block;text-align: center;padding: 15px 0;margin-top: 30px;font-size: 15px;border: none;width: 100%;" type="submit" ng-click="declineInterview()">Send</button>
+
+        </div>
+    </div>
+</div>
+
+<div class="main-section2 main-section-profile interview-details col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix" ng-init="newInterview(1)">
+    <div class="candidate-desc">
+        <div class="row">
+            <ul>
+                <h6 style="margin: 10px 0; font-size: 15px;" class="text-center col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="filteredData.length == 0">No Data Found.</h6>
+                <li class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-list" ng-repeat="inter in filteredData">
+
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <img class="display-pic" ng-src="{{inter.candidateID.profilePicURL.thumbnail}}" alt="" />
+                            <div class="profile-description" ng-click="candidateDetails(inter.candidateID._id, inter._id, false)">
+                                <h4>{{inter.candidateID.firstName+' '+inter.candidateID.lastName+' - '+inter.candidateID.profileTitle}}</h4>
+                                <ul>
+                                    <li class="place">{{inter.candidateID.currentState+', '+inter.candidateID.currentCountry}}</li>
+                                    <li class="experience">{{inter.candidateID.totalExperience}}{{inter.candidateID.totalExperience > 1 ? ' Yrs' : ' Yr'}}</li>
+                                </ul>
+                            </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 pull-right text-right status-rating">
+                        <label><span class="status-complete" ng-click="acceptInterview(inter._id)">Accept</span><span style="cursor: pointer" class="status-cancel" ng-click="messageCandidate(inter._id)">Decline</span></label>
+                        <label><span class="date">{{inter.interviewDate | date:"dd MMM, y"}}{{" - "+inter.interviewStartTime}}</span></label>
+                    </div>
+                </li>
+                <!--<li class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-list">-->
+                    <!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">-->
+                            <!--<img src="images/candidate.png" alt="" />-->
+                            <!--<div class="profile-description">-->
+                                <!--<h4>John Miller -  IOS Developer</h4>-->
+                                <!--<p>Lorem Ipsum is simply dummy text…</p>-->
+                                <!--<ul>-->
+                                    <!--<li class="place">New York</li>-->
+                                    <!--<li class="experience">3 Yrs</li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 pull-right text-right status-rating">-->
+                        <!--<label><span class="status-complete">Accept</span><span class="status-cancel">Decline</span></label>-->
+                        <!--<label><span class="date">04 May, 2016   -   10:00am Est</span></label>-->
+                    <!--</div>-->
+                <!--</li>-->
+                <!--<li class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-list">-->
+                    <!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">-->
+                            <!--<img src="images/candidate.png" alt="" />-->
+                            <!--<div class="profile-description">-->
+                                <!--<h4>John Miller -  IOS Developer</h4>-->
+                                <!--<p>Lorem Ipsum is simply dummy text…</p>-->
+                                <!--<ul>-->
+                                    <!--<li class="place">New York</li>-->
+                                    <!--<li class="experience">3 Yrs</li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 pull-right text-right status-rating">-->
+                        <!--<label><span class="status-complete">Accept</span><span class="status-cancel">Decline</span></label>-->
+                        <!--<label><span class="date">04 May, 2016   -   10:00am Est</span></label>-->
+                    <!--</div>-->
+                <!--</li>-->
+            </ul>
+        </div>
+
+    </div>
+</div>
+<div class="pagination-container">
+    <pagination ng-if="numberOfInterviews > 10"
+            ng-model="currentPage"
+            total-items="numberOfInterviews"
+            max-size="maxSize"
+            boundary-links="true" ng-click="newInterview(currentPage)">
+    </pagination>
+</div>

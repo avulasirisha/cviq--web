@@ -1,0 +1,72 @@
+<div class="main-section2 main-section-profile interview-details col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix" ng-init="upcomingInterview(1)">
+    <div class="candidate-desc">
+        <div class="row">
+            <ul>
+                <h6 style="margin: 10px 0; font-size: 15px;" class="text-center col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="filteredData.length == 0">No Data Found.</h6>
+                <li class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-list" ng-repeat="inter in filteredData">
+
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <img class="display-pic" ng-src="{{inter.candidateID.profilePicURL.thumbnail}}" alt="" />
+                            <div class="profile-description" ng-click="candidateDetails(inter.candidateID._id, inter._id, false)">
+                                <h4>{{inter.candidateID.firstName+' '+inter.candidateID.lastName+' - '+inter.candidateID.profileTitle}}</h4>
+                                <ul>
+                                    <li class="place">{{inter.candidateID.currentState+', '+inter.candidateID.currentCountry}}</li>
+                                    <li class="experience">{{inter.candidateID.totalExperience}}{{inter.candidateID.totalExperience > 1 ? ' Yrs' : ' Yr'}}</li>
+                                </ul>
+                            </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 pull-right text-right status-rating">
+                        <label>Status :<span style="cursor: auto" class="status-complete">Confirmed</span>
+                                <span ng-if="inter.status==2"  style="cursor: pointer" ng-click="startInterview(inter._id)" class="status-cancel">Resume</span>
+                                <span ng-if="inter.status!=2"  style="cursor: pointer" ng-click="startInterview(inter._id)" class="status-cancel">Start</span>
+                        </label>
+                        <label><span class="date">{{inter.interviewDate | date:"dd MMM, y"}}{{" - "+inter.interviewStartTime}}</span></label>
+                    </div>
+                </li>
+                <!--<li class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-list">-->
+                    <!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">-->
+                            <!--<img src="images/candidate.png" alt="" />-->
+                            <!--<div class="profile-description">-->
+                                <!--<h4>John Miller -  IOS Developer</h4>-->
+                                <!--<p>Lorem Ipsum is simply dummy text…</p>-->
+                                <!--<ul>-->
+                                    <!--<li class="place">New York</li>-->
+                                    <!--<li class="experience">3 Yrs</li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 pull-right text-right status-rating">-->
+                        <!--<label>Status :<span class="status-complete">Confirmed</span><span class="status-cancel">Start</span></label>-->
+                        <!--<label><span class="date">04 May, 2016   -   10:00am Est</span></label>-->
+                    <!--</div>-->
+                <!--</li>-->
+                <!--<li class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-list">-->
+                    <!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">-->
+                            <!--<img src="images/candidate.png" alt="" />-->
+                            <!--<div class="profile-description">-->
+                                <!--<h4>John Miller -  IOS Developer</h4>-->
+                                <!--<p>Lorem Ipsum is simply dummy text…</p>-->
+                                <!--<ul>-->
+                                    <!--<li class="place">New York</li>-->
+                                    <!--<li class="experience">3 Yrs</li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 pull-right text-right status-rating">-->
+                        <!--<label>Status :<span class="status-complete">Confirmed</span><span class="status-cancel">Start</span></label>-->
+                        <!--<label><span class="date">04 May, 2016   -   10:00am Est</span></label>-->
+                    <!--</div>-->
+                <!--</li>-->
+            </ul>
+        </div>
+
+    </div>
+</div>
+<div class="pagination-container">
+    <pagination ng-if="numberOfInterviews > 10"
+            ng-model="currentPage"
+            total-items="numberOfInterviews"
+            max-size="maxSize"
+            boundary-links="true" ng-click="upcomingInterview(currentPage)">
+    </pagination>
+</div>

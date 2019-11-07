@@ -1,0 +1,248 @@
+<loading></loading>
+<form name="profileForm" ng-submit="profileForm.$valid&&editPersonalDetails(profile)" novalidate>
+<section class="commonBackground interview-details clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 name-desc clearfix">
+        <div style="width: auto; float: left">
+            <h2>{{userData.firstName}} {{userData.lastName}}</h2>
+            <p>{{userData.profileTitle}}</p>
+        </div>
+        <button type="button" class="sbmt-btn col-lg-2 col-md-2 col-sm-2 col-xs-2 pull-right" style="margin: 10px 0 0 0; padding: 5px; font-size: 12px;" ng-click="editProfile()">Edit</button>
+    </div>
+    <div class="candidate-desc candidate-edit-profile candidate-edit-profile-signup clearfix col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <p>
+            <label class="row col-lg-4 col-md-4 col-sm-4 col-xs-12">First Name</label>
+            <input ng-model="profile.fname" ng-keypress='FirsText($event)' name="firstName" class="col-lg-5 col-md-5 col-sm-5 col-xs-12 inp cap" type="text" ng-readonly="read" required>
+        </p>
+        <div ng-show="profileForm.$submitted" class="text-center">
+            <div class="error-message" ng-show="profileForm.firstName.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> First name is Required.</div>
+        </div>
+
+        <p>
+            <label class="row col-lg-4 col-md-4 col-sm-4 col-xs-12">Last Name</label>
+            <input ng-model="profile.lname" ng-keypress='FirsText($event)' name="lastName" class="col-lg-5 col-md-5 col-sm-5 col-xs-12 inp cap" type="text" ng-readonly="read" required>
+        </p>
+        <div ng-show="profileForm.$submitted" class="text-center">
+            <div class="error-message" ng-show="profileForm.lastName.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Last name is Required.</div>
+        </div>
+        <p>
+            <label class="row col-lg-4 col-md-4 col-sm-4 col-xs-12">Email</label>
+            <span style="text-transform: none" class="asinput">{{profile.email}}</span>
+        </p>
+        <p>
+            <label class="row col-lg-4 col-md-4 col-sm-4 col-xs-12">Date of Birth</label>
+            <input name="dob" id="dob" ng-model="profile.dob" class="col-lg-5 col-md-5 col-sm-5 col-xs-12 inp datetimepicker" type="text" ng-readonly="read">
+        </p>
+       
+        <p>
+            <label class="row col-lg-4 col-md-4 col-sm-4 col-xs-12">Job Title</label>
+            <input ng-model="profile.designation" ng-keypress='FirsText($event)' name="designation" class="col-lg-5 col-md-5 col-sm-5 col-xs-12 inp" type="text" ng-readonly="read" required>
+        </p>
+        <div ng-show="profileForm.$submitted" class="text-center">
+            <div class="error-message" ng-show="profileForm.designation.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+        </div>
+        <div class="fullWidth expDrop">
+        <p>
+            <label class="row col-lg-4 col-md-4 col-sm-4 col-xs-12">Experience</label>
+            <span class="asinput" ng-show="read">{{compExp}}</span>
+            <input style="cursor: pointer" ng-model="compExp" onclick="$('.experience-lists').toggleClass('showExperience');" onkeydown="return false" name="experience" class="col-lg-5 col-md-5 col-sm-5 col-xs-12 inp" type="text" ng-show="!read" required>
+        </p>
+        <div class="experience-lists clearfix">
+            <div class="lists-exp">
+                <h3>YEAR</h3>
+                <ul>
+                    <li><input ng-click="calculateYear()" type="radio" ng-model="year" value="1">1</li>
+                    <li><input ng-click="calculateYear()" type="radio" ng-model="year" value="2">2</li>
+                    <li><input ng-click="calculateYear()" type="radio" ng-model="year" value="3">3</li>
+                    <li><input ng-click="calculateYear()" type="radio" ng-model="year" value="4">4</li>
+                    <li><input ng-click="calculateYear()" type="radio" ng-model="year" value="5">5</li>
+                    <li><input ng-click="calculateYear()" type="radio" ng-model="year" value="6">6</li>
+                    <li><input ng-click="calculateYear()" type="radio" ng-model="year" value="7">7</li>
+                    <li><input ng-click="calculateYear()" type="radio" ng-model="year" value="8">8</li>
+                    <li><input ng-click="calculateYear()" type="radio" ng-model="year" value="9">9</li>
+                    <li><input ng-click="calculateYear()" type="radio" ng-model="year" value="10">10</li>
+                    <li><input ng-click="calculateYear()" type="radio" ng-model="year" value="11">11</li>
+                    <li><input ng-click="calculateYear()" type="radio" ng-model="year" value="12">12</li>
+                </ul>
+            </div>
+            <div class="lists-exp month">
+                <h3>MONTH</h3>
+                <ul>
+                    <li><input ng-click="calculateMonth()" type="radio" ng-model="month" value="0">0</li>
+                    <li><input ng-click="calculateMonth()" type="radio" ng-model="month" value="1">1</li>
+                    <li><input ng-click="calculateMonth()" type="radio" ng-model="month" value="2">2</li>
+                    <li><input ng-click="calculateMonth()" type="radio" ng-model="month" value="3">3</li>
+                    <li><input ng-click="calculateMonth()" type="radio" ng-model="month" value="4">4</li>
+                    <li><input ng-click="calculateMonth()" type="radio" ng-model="month" value="5">5</li>
+                    <li><input ng-click="calculateMonth()" type="radio" ng-model="month" value="6">6</li>
+                    <li><input ng-click="calculateMonth()" type="radio" ng-model="month" value="7">7</li>
+                    <li><input ng-click="calculateMonth()" type="radio" ng-model="month" value="8">8</li>
+                    <li><input ng-click="calculateMonth()" type="radio" ng-model="month" value="9">9</li>
+                    <li><input ng-click="calculateMonth()" type="radio" ng-model="month" value="10">10</li>
+                    <li><input ng-click="calculateMonth()" type="radio" ng-model="month" value="11">11</li>
+                    <li><input ng-click="calculateMonth()" type="radio" ng-model="month" value="12">12</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+        <div ng-show="profileForm.$submitted" class="text-center">
+            <div class="error-message" ng-show="profileForm.experience.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+        </div>
+        <p>
+            <label class="row col-lg-4 col-md-4 col-sm-4 col-xs-12">Annual Salary</label>
+            <input ng-model="profile.salary" name="sal" ng-keypress='isNumberKey($event)' class="col-lg-5 col-md-5 col-sm-5 col-xs-12 inp" type="text" ng-readonly="read">
+            <!--<div class="error-message" ng-show="profileForm.sal.$error.pattern"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Salary must be valid.</div>-->
+        </p>
+        <p>
+            <label class="row col-lg-4 col-md-4 col-sm-4 col-xs-12">Key Skills</label>
+            <input ng-model="profile.keySkills" ng-keypress='isSpecialKey($event)' name="keySkills" class="col-lg-5 col-md-5 col-sm-5 col-xs-12 inp cap" type="text" ng-readonly="read" required>
+        </p>
+        <div ng-show="profileForm.$submitted" class="text-center">
+            <div class="error-message" ng-show="profileForm.keySkills.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+        </div>
+
+
+        <p>
+            <label class="row col-lg-4 col-md-4 col-sm-4 col-xs-12">Industry</label>
+            <span class="asinput" ng-show="read">{{profile.industry}}</span>
+            <select name="indusNames" ng-model="profile.industry" ng-change="getIndustryID(profile.industry)" class="selectpicker col-lg-5 col-md-5 col-sm-5 col-xs-12 inp" data-live-search="true" ng-if="!read" required>
+                <option value="" disabled hidden>Select Industry</option>
+                <option ng-repeat="i in industryLists">{{i.industryName}}</option>
+            </select>
+        </p>
+        <div ng-show="profileForm.$submitted" class="text-center">
+            <div class="error-message" ng-show="profileForm.indusNames.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+        </div>
+        <p>
+            <label class="row col-lg-4 col-md-4 col-sm-4 col-xs-12">Functional Area</label>
+            <span class="asinput" ng-show="read">{{profile.functionalArea}}</span>
+            <select name="funAreaNames" ng-model="profile.functionalArea" class="selectpicker col-lg-5 col-md-5 col-sm-5 col-xs-12 inp" data-live-search="true" ng-if="!read" required>
+                <option value="" disabled hidden>Select Functional Area</option>
+                <option ng-repeat="f in oldFunAreaList">{{f.functionalAreaName}}</option>
+            </select>
+        </p>
+        <div ng-show="profileForm.$submitted" class="text-center">
+            <div class="error-message" ng-show="profileForm.funAreaNames.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+        </div>
+
+        <p>
+            <label class="row col-lg-4 col-md-4 col-sm-4 col-xs-12">Job Type</label>
+            <span class="asinput" ng-show="read">{{profile.jobType}}</span>
+            <select name="funAreaNames" ng-model="profile.jobType" class="selectpicker col-lg-5 col-md-5 col-sm-5 col-xs-12 inp" ng-if="!read">
+                <option value="" disabled hidden>Select Job Type</option>
+                <option value="Permanent Full Time">Permanent Full Time</option>
+                <option value="Contractual Part Time">Contractual Part Time</option>
+            </select>
+        </p>
+
+        <p>
+            <label class="row col-lg-4 col-md-4 col-sm-4 col-xs-12">Gender</label>
+            <span class="asinput" ng-show="read">{{profile.gender}}</span>
+            <!--<input ng-model="profile.gender" class="col-lg-5 col-md-5 col-sm-5 col-xs-12 inp" type="text" ng-readonly="read"><img src="images/edit.png" alt="" ng-if="!read" />-->
+            <select name="gender" ng-model="profile.gender" class="selectpicker col-lg-5 col-md-5 col-sm-5 col-xs-12" ng-if="!read" required>
+                <option value="" disabled hidden>Select Gender</option>
+                <option value="MALE">MALE</option>
+                <option value="FEMALE">FEMALE</option>
+            </select>
+        </p>
+        <div ng-show="profileForm.$submitted" class="text-center">
+            <div class="error-message" ng-show="profileForm.gender.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+        </div>
+
+        <p>
+            <label class="row col-lg-4 col-md-4 col-sm-4 col-xs-12">Country</label>
+            <span class="asinput" ng-show="read">{{profile.country}}</span>
+            <select name="country" ng-model="profile.country"  ng-change="getCountryID(profile.country)" class="selectpicker col-lg-5 col-md-5 col-sm-5 col-xs-12 inp" data-live-search="true" ng-if="!read" required>
+                <option value="" disabled hidden>Select Country</option>
+                <option ng-repeat="country in countryLists">{{country.countryName}}</option>
+            </select>
+        </p>
+        <div ng-show="profileForm.$submitted" class="text-center">
+            <div class="error-message" ng-show="profileForm.country.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+        </div>
+        <p>
+            <label class="row col-lg-4 col-md-4 col-sm-4 col-xs-12">State</label>
+            <span class="asinput" ng-show="read">{{profile.states}}</span>
+            <select name="stateNames" ng-model="profile.states" ng-change="getStateID(profile.states)" class="selectpicker col-lg-5 col-md-5 col-sm-5 col-xs-12 inp" data-live-search="true" ng-if="!read" required>
+                <option value="" disabled hidden>Select State</option>
+                <option ng-repeat="s in oldStateList">{{s.stateName}}</option>
+            </select>
+        </p>
+        <div ng-show="profileForm.$submitted" class="text-center">
+            <div class="error-message" ng-show="profileForm.stateNames.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+        </div>
+
+
+        <p>
+            <label class="row col-lg-4 col-md-4 col-sm-4 col-xs-12">Zipcode</label>
+            <span class="asinput" ng-show="read">{{profile.zipCode}}</span>
+            <select name="stateNames" ng-model="profile.zipCode" class="selectpicker col-lg-5 col-md-5 col-sm-5 col-xs-12 inp" data-live-search="true" ng-if="!read" required>
+                <option value="" disabled hidden>Select Zip Code</option>
+                <option ng-repeat="z in oldZipCodeList">{{z.zipCode}}</option>
+            </select>
+        </p>
+        <div ng-show="profileForm.$submitted" class="text-center">
+            <div class="error-message" ng-show="profileForm.stateNames.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+        </div>
+
+
+
+        <!--<p>-->
+            <!--<label class="row col-lg-4 col-md-4 col-sm-4 col-xs-12">Country</label>-->
+            <!--<span class="asinput" ng-show="read">{{profile.country}}</span>-->
+            <!--<select name="country" ng-model="profile.country"  ng-change="getCountryID(profile.country)" ng-options="country.countryName for country  in countryLists" class="selectpicker col-lg-5 col-md-5 col-sm-5 col-xs-12 inp" data-live-search="true" ng-if="!read" required>-->
+                <!--<option value="" disabled hidden>Select Country</option>-->
+            <!--</select>-->
+        <!--</p>-->
+        <!--<div ng-show="profileForm.$submitted" class="text-center">-->
+            <!--<div class="error-message" ng-show="profileForm.country.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>-->
+        <!--</div>-->
+        <!--<p>-->
+            <!--<label class="row col-lg-4 col-md-4 col-sm-4 col-xs-12">State</label>-->
+            <!--<span class="asinput" ng-show="read">{{profile.states}}</span>-->
+            <!--<select name="stateNames" ng-model="profile.states" ng-change="getStateID(profile.states)" ng-options="s.stateName for s in oldStateList" class="selectpicker col-lg-5 col-md-5 col-sm-5 col-xs-12 inp" data-live-search="true" ng-if="!read" required>-->
+                <!--<option value="" disabled hidden>Select State</option>-->
+            <!--</select>-->
+        <!--</p>-->
+        <!--<div ng-show="profileForm.$submitted" class="text-center">-->
+            <!--<div class="error-message" ng-show="profileForm.stateNames.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>-->
+        <!--</div>-->
+
+
+        <!--<p>-->
+            <!--<label class="row col-lg-4 col-md-4 col-sm-4 col-xs-12">Zipcode</label>-->
+            <!--<span class="asinput" ng-show="read">{{profile.zipCode}}</span>-->
+            <!--<select name="stateNames" ng-model="profile.zipCode" ng-options="z.zipCode for z in oldZipCodeList" class="selectpicker col-lg-5 col-md-5 col-sm-5 col-xs-12 inp" data-live-search="true" ng-if="!read" required>-->
+                <!--<option value="" disabled hidden>Select State</option>-->
+                <!--<option ng-repeat="z in oldZipCodeList">{{z.zipCode}}</option>-->
+            <!--</select>-->
+        <!--</p>-->
+        <!--<div ng-show="profileForm.$submitted" class="text-center">-->
+            <!--<div class="error-message" ng-show="profileForm.stateNames.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>-->
+        <!--</div>-->
+
+
+
+
+
+
+        <p>
+            <label class="row col-lg-4 col-md-4 col-sm-4 col-xs-12">Country Code</label>
+            <span class="asinput">{{profile.countryCode}}</span>
+        </p>
+        <p>
+            <label class="row col-lg-4 col-md-4 col-sm-4 col-xs-12">Contact Number</label>
+            <input ng-model="profile.phoneNumber" minlength="10" maxlength="10" ng-keypress='isNumberKey($event)' ng-pattern="/^[1-9]{1}[0-9]{9}$/" name="phoneNumber" class="col-lg-5 col-md-5 col-sm-5 col-xs-12 inp" type="text" ng-readonly="read" required>
+        </p>
+        <div ng-show="profileForm.$submitted" class="text-center">
+            <div class="error-message" ng-show="profileForm.phoneNumber.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+            <div class="error-message" ng-show="profileForm.phoneNumber.$error.pattern"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Phone number must be valid & 10 characters long.</div>
+        </div>
+
+        <p style="padding-top: 20px; padding-bottom: 10px; border-top: solid 1px #d9d9d9;">
+            <button type="button" ng-click="cancelPersonalDetails()" class="sbmt-btn col-lg-2 col-md-2 col-sm-2 col-xs-4 pull-left" style="margin: 0; padding: 5px"  ng-hide="read">Cancel</button>
+            <button type="submit" class="sbmt-btn col-lg-2 col-md-2 col-sm-2 col-xs-4 pull-right" style="margin: 0; padding: 5px" ng-disabled="saveBtn"  ng-hide="read">Save</button>
+        </p>
+    </div>
+</section>
+</form>
+<div ng-include src="'app/inbox/recentlySearchJobs.html'"></div>

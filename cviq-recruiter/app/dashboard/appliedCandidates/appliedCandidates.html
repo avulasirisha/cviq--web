@@ -1,0 +1,52 @@
+<section class="commonBackground interview-details">
+    <div class="candidate-desc">
+        <div class="col-lg-12 headingSpan">
+
+        </div>
+        <ul class="clearfix">
+            <div class="fixHeight" ng-hide="fixHeight"></div>
+            <h1 class="text-center noCandidate" ng-show="nofavourite" >No Favourite Candidate Found</h1>
+            <li ng-show="candidate.isFavourite" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-list" ng-repeat="candidate in favourite">
+                <div  class="row mycandidatedetails" style="padding: 15px 15px">
+
+                    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-12 pad " style="padding-left: 5px">
+                        <img class=" candidateImage" ng-src="{{candidate.candidateID.profilePicURL.original}}" alt="" />
+                    </div>
+
+                    <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12 pad">
+                        <div class="profile-description">
+                            <a ui-sref="home.candidate.aggregated({id:'+{{candidate.candidateID._id}}'})" target="_blank">
+                                <h4>{{candidate.candidateID.firstName}} {{candidate.candidateID.lastName}} - {{candidate.candidateID.profileTitle}}</h4>
+                            </a>
+                            <p> &nbsp
+                                <!--Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum-->
+                            </p>
+                            <ul>
+                                <li class="place">{{candidate.candidateID.currentState}}</li>
+                                <li class="experience">{{candidate.candidateID.totalExperience}} Yrs</li>
+                                <li><i style="cursor: pointer;color: #0297cf"  ng-click="unFavourite($index,candidate.candidateID._id,candidate.candidateID.firstName)" class="fa fa-star" ></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 pull-right text-right status-rating">
+                        <p class="text-right" style="color: #4f5f72"><span style="font-size: 10px">Aggregated Score </span><b> {{candidate.candidateID.aggregatedScore}}</b></p>
+                        <p class="text-right" style="color: #4f5f72"> <a class="text-right scheduleJobViewDetails" ui-sref="home.candidate.aggregated({id:'+{{candidate.candidateID._id}}'})" target="_blank" >View Details</a></p>
+
+                    </div>
+
+                </div>
+
+            </li>
+        </ul>
+    </div>
+</section>
+<script type="text/ng-template" id="favourite"  class="ngdialog-theme-default">
+
+    <p>Are you sure you want to Remove {{unfavname}} from your favourite list</p>
+
+    <p style="display: flex">
+        <button ng-click="confirmUnFavourite()" class="confirmation" type="submit">YES</button>
+        <button ng-click="denyUnFavourite()" class="confirmation" type="submit">NO</button>
+    </p>
+
+</script>

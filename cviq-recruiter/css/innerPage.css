@@ -1,0 +1,309 @@
+/*=============== Candidate Section Css Rules ======================*/
+
+.notificationCounter {position: absolute;font-style: normal;right: -15px;padding: 2px 0 0 0;top: -10px;display: inline;background: #ff0000;border-radius: 50%;color: #fff;font-size: 11px;width: 18px;height: 18px;text-align: center;}.ProfileFormElements .main-dropdown button{ margin: 0 0 10px; border-radius: 3px; border: solid 1px #dedede; padding: 25px 10px 10px 10px; font-size: 13px; width: 100%; color: #4f5f72; letter-spacing: 1px; background: #fff url("../images/arrow-below.png") no-repeat 97%; }
+.ProfileFormElements .main-dropdown label{ z-index: 9;}
+.ProfileFormElements .main-dropdown button span{ font-weight: normal; color: #4f5f72; font-size: 12px; font-family: 'Graphik-Regular';  opacity: 0.9;   }
+.ProfileFormElements .main-dropdown .bs-searchbox input{ padding: 0 10px;}
+.ProfileFormElements .main-dropdown .dropdown-menu ul li.active{ background: #b7babd; }
+.ProfileFormElements .custom-select-box .btn-group.bootstrap-select .dropdown-menu li.disabled{ background: none; }
+.ProfileFormElements .custom-select-box .btn-group.bootstrap-select .dropdown-menu li.disabled a{ background: none; padding: 0; }
+.ProfileFormElements .custom-select-box .btn-group.bootstrap-select .dropdown-menu li.disabled a span{ color: #000; }
+
+
+
+/*=============== Custom Dropdown Plugin Css Rules ======================*/
+#experience{ cursor: pointer; height: 55px; background: #fff url("../images/arrow-below.png") no-repeat 97%; border-radius: 3px; border: solid 1px #dedede; padding: 25px 10px 10px 10px; font-size: 13px; margin-bottom: 10px; width: 100%; color: #4f5f72; letter-spacing: 1px; }
+.experience-lists{ display: none; width: 100%; margin-bottom: 20px; box-shadow: 0 6px 6px 0 rgba(137, 137, 137, 0.5); border-radius: 3px; position: absolute; z-index: 99; background: #fff;}
+.showExperience{ display: block; width: 100%; margin-bottom: 20px; box-shadow: 0 6px 6px 0 rgba(137, 137, 137, 0.5);  border-radius: 3px;  }
+p.exp{ color: #4f5f72; text-align: left;  font-size: 13px;}
+.experience-lists h3{ background: #d6d9dc; color: #727272; padding: 10px 20px; font-size: 11px; font-weight: bold;}
+.experience-lists .lists-exp{ width: 50%; float: left;}
+.experience-lists .month h3{ background: #b7babd; color: #000;}
+.experience-lists ul{ height: 200px; overflow: auto; margin: 15px 0; }
+.experience-lists ul li { display: block; padding: 2px 10px; font-size: 11px; }
+.experience-lists input[type="radio"]{ width: auto; margin-right: 10px; }
+#experience span.divPlace{ font-size: 12px; color:#C7C7CD; }
+.instructions{ border-radius: 3px; background-color: #f0f0f0; box-shadow: 0 6px 6px 0 rgba(137, 137, 137, 0.5); padding: 10px 15px; margin: -10px 0 10px; }
+.instructions ul{ list-style: disc; padding-left: 5px; }
+.instructions ul li{ color: #6c6c6c; font-size: 10px; margin: 5px 0 0 0; }
+.instructions ul li:first-child{ margin: 0;}
+.candidate-profile-section{ border-radius: 0; }
+
+
+
+/*=============== Inbox Section Css Rules ======================*/
+.inbox-bg{ background: #fff url("../images/main-bg.png") no-repeat center top; background-size: cover; }
+.advance-search{ position: relative; }
+.ProfileFormElements .advance-search button{ padding: 15px 10px 0px 10px; }
+.advance-search .bs-searchbox input{ border-radius: 3px; border: solid 1px #e2e2e2;}
+.advance-search-dropdowns{ margin-top: 15px; }
+.basic-search{ width: 100%; float: left; text-align: right; }
+.basic-search input[type="button"]{ color: #ffffff; text-decoration: underline; font-size: 12px; cursor: pointer; background: none; border: none; padding: 0; }
+.searchjob-btn{ margin-top: 0;}
+.navigation-bar-left{ width: 19%; float: left; color: #757575; font-size: 14px; }
+.navigation-bar-left h5{ border-bottom: 1px solid #c3c3c3; padding: 0 0 20px 0; }
+.navigation-bar-left ul{ margin: 10px 0; border-bottom: 1px solid #c3c3c3;}
+.navigation-bar-left ul li a { color: #757575; font-size: 14px; cursor: pointer; display: block; padding: 5px 10px; margin-bottom: 10px;  }
+.navigation-bar-left ul li a.active{ background: #ebebeb; color: #4b5a6c; font-weight: bold; }
+.information-section-middle{ width: 58%; float: left; margin: 0 2%; }
+.alertsMails .company-name{ font-weight: bold;  }
+.alertsMails .dated{ color: #4f5f72; }
+.alertsMails ul.listAlerts{ padding: 0 10px; }
+.alertsMails ul.listAlerts li{ border-top: solid 1px #d9d9d9; display: block; padding: 20px 0; font-size: 11px; color: #757575; }
+.alertsMails ul.listAlerts li:first-child{ border: none;}
+.newsletter-section-right{width:95%; float: right; }
+.newsletter-section-right p{ font-size: 12px; margin: 5px 0 10px; }
+.newsletter-section-right .gopro{ background: #e9ecee; padding: 15px; margin: 0 0 10px 0; }
+.newsletter-section-right .gopro h3{ font-size: 16px; color: #4f5f72; font-weight: bold; }
+.newsletter-section-right .newsletter{ background: #e9ecee; padding: 15px 0 0 0;  }
+.newsletter-section-right #newsLetterForm{ background: #eff2f5; padding: 30px 10px;}
+.newsletter-section-right #newsLetterForm input{ border-radius: 3px; background-color: #ffffff; border: solid 1px #dedede; height: 40px; width: 100%; padding: 10px;}
+.inboxMenu ul.inboxMenu-inner li{ display: inline-block; border-radius: 3px 3px 0 0; background: #e9ecee; cursor: pointer; }
+.inboxMenu ul.inboxMenu-inner li a{ display: block; color: #4f5f72; padding: 12px 40px; }
+.commonBackground{ background: #eff2f5; border: solid 3px #efefef; }
+.inboxMenu ul.inboxMenu-inner li.act{ background: #0297cd; }
+.inboxMenu ul.inboxMenu-inner li.act a{ color: #fff; font-weight: bold; }
+.company-Details{ padding: 20px;}
+.company-Details h3{ border-bottom: solid 1px #d9d9d9; font-size: 14px; padding: 10px 0; }
+.company-Details h3 span{ font-size: 10px; font-weight: bold; }
+.company-Details p{ font-size: 12px; line-height: 1.67; color: #8b8b8b; margin: 10px 0;}
+.company-Details .replyForm{ border-top: solid 1px #d9d9d9; padding: 15px 0; }
+.company-Details .replyForm textarea{ width: 100%; border: solid 1px #e3e3e3; background: #fff; padding: 10px; height: 100px; resize: none;}
+.company-Details .replyForm .attach-file{ background: #ebebeb; padding: 10px; }
+.company-Details .replyForm .attach-file input[type="submit"]{ border-radius: 3px; background-color: #0297cf; color: #fff; border: none; font-size: 14px; padding: 5px 20px;}
+.company-Details .replyForm .attach-file span{ background: url("../images/attach.png") no-repeat left center; float: right; width: 100px; text-align: right; margin-top: 5px; cursor: pointer; }
+.name-desc{ padding: 10px; border-bottom: solid 1px #d9d9d9; }
+.name-desc h2{ font-size: 16px; line-height: 24px; font-weight: bold; color: #4f5f72; }
+.name-desc p{ font-size: 14px; margin: 5px 0; }
+.candidate-edit-profile{ padding: 10px;}
+.success-applied-status{background: url("../images/success.png") no-repeat left top; padding-left: 40px; margin: 0 0 20px;}
+.success-applied-status h2{ color: #4f5f72; font-size: 18px; font-weight: bold; line-height: 30px; }
+.success-applied-status span{ color: #0297cd; font-weight: bold; text-decoration: underline; }
+.createNewJobBtn{  position: absolute;top:0px;right: 0px; font-weight: 500 }
+
+/*=============================== Start : Loader custom Css Rules ======================*/
+.loading{ width: 100%; height: 100%; position: fixed; top: 0; z-index: 99999;
+    /*text-align: center;*/
+    background: rgba(255,255,255, 0.6); }
+.loading img{position: absolute; top: 50%; width: 60px; height: 60px; margin-top: -30px;left: 50%;margin-left: -30px;}
+/*=============================== End : Loader custom Css Rules ======================*/
+
+
+@media (max-width: 992px) {
+    .inboxMenu ul.inboxMenu-inner li{
+        width: 100%;
+        text-align: center;
+    }
+    .createNewJobBtn{  position: static; margin-bottom: 10px; font-weight: 500 }
+
+}
+
+/*=============== Create Resume Css Rules ======================*/
+.candidate-dashboard{
+    webkit-box-shadow: inset 0 16px 20px -20px rgba(0,0,0,0.8);
+    -moz-box-shadow: inset 0 16px 20px -20px rgba(0,0,0,0.8);
+    -o-box-shadow: inset 0 16px 20px -20px rgba(0,0,0,0.8);
+    -ms-box-shadow: inset 0 16px 20px -20px rgba(0,0,0,0.8);
+    box-shadow: inset 0 16px 20px -20px rgba(0,0,0,0.8);
+    padding: 30px 0;
+}
+.candidate-dashboard .candidate-dashboard-inner{
+    border: solid 2px #f2f2f2;
+    padding: 20px;
+}
+.candidate-dashboard .candidate-dashboard-inner .form{
+    margin: 15px 0 0 0;
+}
+.candidate-dashboard .candidate-dashboard-inner .form textarea{
+    width: 100%;
+    border-radius: 3px;
+    border: solid 1px #dedede;
+    padding: 25px 10px 10px 10px;
+    font-size: 13px;
+    margin-bottom: 10px;
+    color: #4f5f72;
+    letter-spacing: 1px;
+    resize: none;
+    height: 100px;
+}
+.candidate-dashboard .candidate-dashboard-inner .form h4{
+    margin: 10px 0 10px 0;
+    padding: 0 0 0 10px;
+    font-weight: bold;
+}
+.resume{
+    background: #eff2f5;
+    border-top: 8px solid #4e5e70;
+    padding: 20px;
+}
+.resume input{
+    background: none;
+    border: none;
+    font-size: 13px;
+    width: 100%;
+    color: #000;
+}
+.resume .divAsTextArea{
+    background: none;
+    border: none;
+    font-size: 13px;
+    width: 100%;
+    margin: 5px 0;
+    color: #000;
+    min-height: 10px;
+}
+.resume .resume-head{
+    font-size: 15px;
+    margin: 5px 0;
+}
+.resume label{
+    color: #727272;
+    letter-spacing: 0;
+    font-weight: normal;
+    font-size: 14px;
+    margin: 20px 0 0 0;
+}
+.resume h4{
+    margin: 30px 0 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.candidate-dashboard-inner .add-more{
+    margin: 0 0 10px;
+}
+.candidate-dashboard-inner .add-more a{
+    font-size: 11px;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/*=============== Candidate Dashboard Css Rules ======================*/
+
+
+
+
+.memberShip{
+    width: 80%;
+    float: right;
+}
+.memberShip .interview-details{
+    min-height: 180px;
+}
+.memberShip button{
+    margin: 0 0 20px;
+    padding: 10px 50px;
+}
+.memberShip .candidate-edit-profile p:first-child{
+    border-bottom: solid 1px #d7d7d7;
+    padding-bottom: 10px;
+    margin-bottom: 0;
+}
+.memberShip .candidate-edit-profile ul{
+    float: right;
+}
+.memberShip .candidate-edit-profile ul li{
+    display: inline-block;
+    padding-left: 25px;
+    margin-left: 20px;
+}
+.memberShip .candidate-edit-profile ul li a{
+    color: #727f8e;
+    font-weight: bold;
+    font-size: 12px;
+    text-decoration: underline;
+}
+.memberShip .candidate-edit-profile ul li:first-child{
+    background: url("../images/edit-profile.png") no-repeat left center;
+}
+.memberShip .candidate-edit-profile ul li:last-child{
+    background: url("../images/linkedin-profile.png") no-repeat left center;
+}
+.memberShip .candidate-edit-profile .social-bar{
+    position: relative;
+    width: 100%;
+    float: left;
+}
+.memberShip .candidate-edit-profile label{
+    font-size: 9px;
+    font-weight: normal;
+    margin-top: 5px;
+    position: absolute;
+    right: 0;
+}
+.borderAsLine{
+    background: #fff;
+    height: 1px;
+    margin: 2px 0;
+}
+.scores-obtained{
+    margin: 20px 0;
+}
+.padonsmallscreen{
+    padding:0px;
+}
+@media (max-width: 805px) {
+    .padonsmallscreen{
+        padding:0px 15px;
+    }
+
+}
+.scores-obtained h3{
+    font-weight: bold;
+    color: #4f5f72;
+    line-height: 40px;
+    font-size: 20px;
+}
+.score-container{
+    background: #eff2f5;
+    text-align: center;
+    padding: 50px;
+    min-height: 300px;
+    display: table;
+    width: 100%;
+}
+.score-container-inner{
+    display: table-cell;
+    vertical-align: middle;
+}
+.score-container h4{
+    line-height: 30px;
+}
+.score-record ul li{
+    width: 30%;
+    background: #fff;
+    border-top: 3px solid #0297cf;
+    margin-left: 5%;
+    float: left;
+}
+.score-record ul li:first-child{
+    margin-left: 0;
+}
+.score-record ul li h5{
+    font-weight: bold;
+    padding: 15px 0;
+    color: #536275;
+    border-bottom: solid 1px #ededed;
+}
+.score-record ul li p{
+    padding: 20px;
+    color: #737373;
+    font-size: 12px;
+}
+.score-record ul li strong{
+    font-size: 28px;
+    padding: 30px 0 0 0;
+    display: block;
+
+
+
+
+}/*=============== Candidate Profile Css Rules ======================*/
+
+
+
+.candidateProfileTop{
+    margin: 50px 0 20px 0;
+
+
+}

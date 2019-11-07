@@ -1,0 +1,76 @@
+<style>
+    .whirl:after {  position: fixed;  }
+    .scores input{text-align: center}
+    h2{color: #0297cf;  }
+    h3{color: #0297cf;margin-top: 5px  }
+    h1,h2,h3,h4{
+        font-weight: normal;
+    }
+
+</style>
+<h3>
+    Home
+    <!--<small>Displaying list of all the drivers in the system.</small>-->
+</h3>
+<div ng-controller="CandidateInterviewController" class="container-fluid">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"    ng-class="{'whirl duo' : showloader }">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " style="padding: 25px 0px">
+                    <form ng-show="edit" name="NewPlan" novalidate>
+                        <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                            <div class="  candidate-profile-section clearfix">
+                                <div class="row" style="margin-top: 20px">
+
+                                    <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12 form">
+                                        <h3 style="padding: 0 15px;">
+                                            Update Interview Rate
+                                        </h3>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-elements ">
+                                            <label>Rate (in USD)</label>
+                                            <input type="number" limit-to="4" placeholder="Enter candidate Interview Charges" name="candidateInterviewCharges" ng-model="candidateInterviewCharges" required >
+                                            <div ng-show="NewPlan.$submitted || NewPlan.candidateInterviewCharges.$touched">
+                                                <div class="error-message" ng-show="NewPlan.candidateInterviewCharges.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <div class="error-message" ng-show="NewPlan.candidateInterviewCharges.$invalid && NewPlan.candidateInterviewCharges.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i>Max value allowed is $1000 characters.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12 pad ">
+                                    <div class="col-lg-4 col-md-4 col-sm-8 co-xs-12  col-lg-offset-4 col-md-offset-4 col-sm-offset-2" style="display: flex;text-align: center;" >
+                                        <button style="margin: 20px auto 0;" id="addButton" type="submit" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sbmt-btn" ng-click="NewPlan.$valid && update()">UPDATE</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </form>
+                    <div ng-show="!edit" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <h3>Interview Rate</h3>
+                            <h4>$ {{candidateInterviewCharges}}</h4>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad ">
+                                <div class="col-lg-4 col-md-4 col-sm-8 co-xs-12  col-lg-offset-4 col-md-offset-4 col-sm-offset-2" style="display: flex;text-align: center;" >
+                                    <button type="submit" style="max-width: 100px;margin: 20px auto 0;" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sbmt-btn" ng-click="edit = true">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="success">
+    <div class="ngdialog-message">
+        <h4 style="text-align: center">Updated successfully</h4>
+        <!-- POP UP -->
+
+    </div>
+</script>
+<script type="text/ng-template" id="error">
+    <div class="ngdialog-message">
+        <h4 style="text-align: center">{{error}}</h4>
+
+    </div>
+</script>

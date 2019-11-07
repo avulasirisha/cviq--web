@@ -1,0 +1,61 @@
+.containerBar {
+    display: inline-block;
+    width: 100%;
+    border-radius: 5px;
+    height: 30px;    
+}
+
+/*.maxValue {*/
+    /*position: relative;    */
+    /*height: 100%;*/
+    /*width: 100%;    */
+    /*border-radius: 5px;*/
+    /*background-color: #555;    */
+    /*overflow: hidden;*/
+/*}*/
+.maxValue {
+    position: relative;
+    height: 18px;
+    width: 100%;
+    border-radius: 12px;
+    background-color: #d8d8d8;
+    overflow: hidden;
+}
+
+/*.currentValue {*/
+    /*position: absolute;*/
+    /*left: 0px;*/
+    /*z-index: 1;    */
+    /*height: 100%;*/
+    /*border-radius: 5px;*/
+    /*background-color: #99cc00;*/
+/*}*/
+.currentValue {
+    position: absolute;
+    left: 0px;
+    z-index: 1;
+    height: 100%;
+    border-radius: 12px;
+    background-color: #02a9e0;
+}
+
+/* Sub value bar animation on change. You need to include ngAnimate module for this */
+.currentValue {
+    -webkit-transition:all ease-out 0.8s;
+    transition:all ease-out 0.8s;
+}
+
+.infoText {    
+    font-weight: bold;
+    /*position: absolute;*/
+    text-align: center;
+    color: #fff;        
+    z-index: 2;
+}
+.linearProgressbar span{
+    color:#fff!important;
+    font-size: 14px!important;
+}
+.progressLineardemoBasicUsage{
+    font-size: 14px!important;
+}

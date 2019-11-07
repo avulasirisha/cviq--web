@@ -1,0 +1,808 @@
+<form ng-show="!review" name="NewJob" ng-submit="NewJob.$valid" novalidate>
+
+    <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 banner">
+        <div class="container">
+            <div class="main-section col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 col-xs-12 candidate-profile-section clearfix">
+                <h1 class="text-left">CREATE NEW JOB</h1>
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="row" style="margin-top: 20px">
+                    <div class="search-wrapper">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form">
+                            <div class="clearfix">
+                                <div class="form-elements ">
+                                    <label>JOB TITLE</label>
+                                    <input type="text"  minlength="3" placeholder="Enter Job Title" name="jobTitle" ng-model="job.jobTitle" required />
+                                    <div ng-show="NewJob.$submitted || NewJob.jobTitle.$touched">
+                                        <div class="error-message" ng-show="NewJob.jobTitle.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        <div class="error-message" ng-show="NewJob.jobTitle.$invalid&&NewJob.jobTitle.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i>Job Title must be at least 3 characters long.</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-elements ">
+                                    <label>JOB DESCRIPTION</label>
+                                    <textarea class="textArea" type="text" minlength="3" placeholder="Enter Job Description" name="jobDescription" ng-model="job.jobDescription" required ></textarea>
+                                    <div ng-show="NewJob.$submitted || NewJob.jobDescription.$touched">
+                                        <div class="error-message" ng-show="NewJob.jobDescription.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        <div class="error-message" ng-show="NewJob.jobDescription.$invalid&&NewJob.jobDescription.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Job Description must be at least 3 characters long.</div>
+                                    </div>
+                                </div>
+                                <div class="form-elements ">
+                                    <label>MINIMUM AGGREGATE SCORE  </label>
+                                    <input  type="number" min="0" max="1580" limit-to="4"  placeholder="Enter Minimum Aggregated Score (0 - 1580)" ng-keypress='isNumberKey($event)' name="aggregatedScore" ng-model="job.aggregatedScore" required />
+                                    <div ng-show="NewJob.$submitted || NewJob.aggregatedScore.$touched">
+                                        <div class="error-message" ng-show="NewJob.aggregatedScore.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        <div class="error-message" ng-show="NewJob.aggregatedScore.$invalid&&NewJob.aggregatedScore.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Aggregated score must be between 0 to 1580</div>
+                                    </div>
+                                </div>
+                                <div class="form-elements ">
+                                    <label>MINIMUM QUANTITATIVE SCORE  </label>
+                                    <input  type="number"  min="0" max="500"  limit-to="3"  placeholder="Enter Minimum Quantitative Score (0 - 500)" ng-keypress='isNumberKey($event)' name="quantitativeScore" ng-model="job.quantitativeScore" required />
+                                    <div ng-show="NewJob.$submitted || NewJob.quantitativeScore.$touched">
+                                        <div class="error-message" ng-show="NewJob.quantitativeScore.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        <div class="error-message" ng-show="NewJob.quantitativeScore.$invalid&&NewJob.quantitativeScore.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i>  Quantitative Score must be between 0 to 500</div>
+                                    </div>
+                                </div>
+                                <div class="form-elements ">
+                                    <label>MINIMUM QUALITATIVE SCORE </label>
+                                    <input  type="number" min="0" max="1080"  limit-to="4"  placeholder="Enter Minimum Qualitative Score (0 - 1080)" ng-keypress='isNumberKey($event)' name="qualitativeScore" ng-model="job.qualitativeScore" required />
+                                    <div ng-show="NewJob.$submitted || NewJob.qualitativeScore.$touched">
+                                        <div class="error-message" ng-show="NewJob.qualitativeScore.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        <div class="error-message" ng-show="NewJob.qualitativeScore.$invalid&&NewJob.qualitativeScore.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Qualitative score must be between 0 to 1080</div>
+                                    </div>
+                                </div>
+
+
+                                 <div class="form-elements ">
+                                    <label>JOB Skills</label>
+                                    <input type="text"  minlength="3" placeholder="Enter Job skills" name="jobskill" ng-model="job.jobskill" required />
+                                    <div ng-show="NewJob.$submitted || NewJob.jobskill.$touched">
+                                        <div class="error-message" ng-show="NewJob.jobskill.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                    </div>
+                                </div>
+                                <div>
+                                <p class="text-left-important" style="margin-bottom: 10px">Enter job skills with , seperated</p>                                  
+                                </div>
+                                <div class="createJobHeadings">
+                                    <span class="text-left " >Job Type <br/> </span>
+                                </div>
+
+                                <div class="">
+                                    <!--<input style="width: 12px;margin: 0px 5px;"  type="radio"  name="commute" ng-model="job.commute" required value="true"/><span> Yes  </span>-->
+                                    <!--<input  style="width: 12px;margin: 0px 5px;" type="radio" name="commute" ng-model="job.commute" required value="false" /><span> No  </span>-->
+                                    <input type="radio" id="radio03" name="jType" ng-model="job.jobType" required value="Permanent" />
+                                    <label for="radio03"><span></span>Permanent</label>
+                                    <input type="radio" id="radio04" name="jType" ng-model="job.jobType" required value="Freelance"/>
+                                    <label for="radio04"><span></span>Freelance</label>
+                                    <!--<input  style="margin: 0px 5px;"  type="radio"  name="commute" ng-model="job.commute" required value="true"/><span> Yes  </span>-->
+                                    <!--<input  style="margin: 0px 5px;"  type="radio" name="commute" ng-model="job.commute" required value="false" /><span> No  </span>-->
+                                    <div ng-show="NewJob.$submitted ">
+                                        <div class="error-message" ng-show="NewJob.jType.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                    </div>
+                                </div>
+                                
+
+                                <div class="createJobHeadings">
+                                    <span class="text-left " >Can you Commute <br/> </span>
+                                </div>
+
+                                <div class="">
+                                    <!--<input style="width: 12px;margin: 0px 5px;"  type="radio"  name="commute" ng-model="job.commute" required value="true"/><span> Yes  </span>-->
+                                    <!--<input  style="width: 12px;margin: 0px 5px;" type="radio" name="commute" ng-model="job.commute" required value="false" /><span> No  </span>-->
+                                    <input type="radio" id="radio02" name="commute" ng-model="job.commute" required value="true" />
+                                    <label for="radio02"><span></span>Yes</label>
+                                    <input type="radio" id="radio01" name="commute" ng-model="job.commute" required value="false"/>
+                                    <label for="radio01"><span></span>No</label>
+                                    <!--<input  style="margin: 0px 5px;"  type="radio"  name="commute" ng-model="job.commute" required value="true"/><span> Yes  </span>-->
+                                    <!--<input  style="margin: 0px 5px;"  type="radio" name="commute" ng-model="job.commute" required value="false" /><span> No  </span>-->
+                                    <div ng-show="NewJob.$submitted ">
+                                        <div class="error-message" ng-show="NewJob.commute.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                    </div>
+                                </div>
+                                <div class="createJobHeadings">
+                                    <span class="text-left " > Work Experience</span>
+                                </div>
+                                <div class="ProfileFormElements form-elements">
+                                    <div class="dropdown custom-select-box main-dropdown">
+                                        <label>WORK EXPERIENCE (in Years) </label>
+                                        <select name="workEx" ng-model="job.workExp" class="selectpicker" data-live-search="false" ng-options="workex for workex in workExperience" required>
+                                            <option value="" disabled hidden>Select Work Experience</option>
+                                        </select>
+                                        <div ng-show="NewJob.$submitted || NewJob.workEx.$valid && NewJob.workEx.$invalid">
+                                            <div class="error-message err" ng-show="NewJob.workEx.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="createJobHeadings">
+                                    <span class="text-left " >Annual Compensation </span>
+                                </div>
+                                <div class="ProfileFormElements form-elements">
+                                    <div class="dropdown custom-select-box main-dropdown">
+                                        <label>ANNUAL SALARY (in USD)</label>
+                                        <select name="salary" ng-model="job.salary" class="selectpicker" data-live-search="false" ng-options="salary for salary in salaryList" required>
+                                            <option value="" disabled hidden>Select Annual Salary Range </option>
+                                        </select>
+                                        <div ng-show="NewJob.$submitted || NewJob.salary.$valid && NewJob.salary.$invalid">
+                                            <div class="error-message err" ng-show="NewJob.salary.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--<div class="ProfileFormElements fifty-comb pull-left form-elements">-->
+                                <!--<label>MINIMUM SALARY IN $</label>-->
+                                <!--<input  type="number" placeholder="Enter Minimum Salary" name="minSalary" ng-model="job.minSalary" required />-->
+                                <!--<div ng-show="NewJob.$submitted || NewJob.minSalary.$touched">-->
+                                <!--<div class="error-message" ng-show="NewJob.minSalary.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>-->
+                                <!--&lt;!&ndash;<div class="error-message" ng-show="NewJob.minSalary.$invalid&&NewJob.minSalary.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Qualitative score must be between 0 to 1080</div>&ndash;&gt;-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="ProfileFormElements fifty-comb pull-right form-elements">-->
+
+                                <!--<label>MAXIMUM SALARY IN $</label>-->
+                                <!--<input  type="number" placeholder="Enter Maximum Salary" name="maxSalary" ng-model="job.maxSalary" required />-->
+                                <!--<div ng-show="NewJob.$submitted || NewJob.maxSalary.$touched">-->
+                                <!--<div class="error-message" ng-show="NewJob.maxSalary.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>-->
+                                <!--&lt;!&ndash;<div class="error-message" ng-show="NewJob.maxSalary.$invalid&&NewJob.maxSalary.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Qualitative score must be between 0 to 1080</div>&ndash;&gt;-->
+                                <!--</div>-->
+
+                                <!--</div>-->
+                                <div class="createJobHeadings ">
+                                    <span class="text-left col-lg-12 col-md-12 pad " style="padding-bottom: 10px">Location </span>
+                                </div>
+                                <div class="ProfileFormElements fifty-comb pull-left form-elements">
+                                    <div class="dropdown custom-select-box main-dropdown">
+                                        <label>CURRENT COUNTRY</label>
+                                        <select name="country" ng-model="job.currentCountry" ng-change="getCountryID(job.currentCountry)" class="selectpicker" data-live-search="true" ng-options="country.countryName for country in countryLists" required>
+                                            <option value="" disabled hidden>Select Current Country</option>
+                                        </select>
+                                        <div ng-show="NewJob.$submitted || NewJob.country.$touched ">
+                                            <div class="error-message err" ng-show="NewJob.country.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ProfileFormElements fifty-comb pull-right form-elements">
+                                    <div class="dropdown custom-select-box main-dropdown">
+                                        <label>CURRENT STATE</label>
+                                        <select name="states" ng-model="job.currentState" ng-change="getZipCode(job.currentState)" class="selectpicker" data-live-search="true" ng-options="state.stateName for state in stateRefinedList" required>
+                                            <option value="" disabled hidden>Select Current State</option>
+                                        </select>
+                                        <div ng-show="NewJob.$submitted || NewJob.states.$valid && NewJob.states.$invalid">
+                                            <div class="error-message err" ng-show="NewJob.states.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="ProfileFormElements clearfix form-elements">
+                                <div class="dropdown custom-select-box main-dropdown">
+                                    <label>ZIP CODE</label>
+                                    <select name="zipCode" ng-model="job.zipCode" class="selectpicker" data-live-search="true" ng-options="zip.zipCode as (zip.areaName+' ( '+ zip.zipCode +' )') for zip in zipCodeList" required>
+                                        <option value="" disabled hidden>Select Zip Code</option>
+                                    </select>
+                                    <div ng-show="NewJob.$submitted || NewJob.zipCode.$valid && NewJob.zipCode.$invalid">
+                                        <div class="error-message err" ng-show="NewJob.zipCode.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="form-elements ">
+                                <label>Adress :</label>
+                                <input type="text"  minlength="3" placeholder="Enter address" name="address" ng-model="job.address"  />
+                            </div>
+                                
+                                
+                            <div class="ProfileFormElements clearfix form-elements">
+                                <div class="dropdown custom-select-box main-dropdown">
+                                    <label>INDUSTRY</label>
+                                    <select name="industry" ng-model="job.industry" ng-change="findFunctionalArea(job.industry)" class="selectpicker" data-live-search="true" ng-options="industry.industryName for industry in industriesList" required>
+                                        <option value="" disabled hidden>Select Industry</option>
+                                    </select>
+                                    <!--<div ng-show="NewJob.$submitted || NewJob.industry.$valid && NewJob.industry.$invalid">-->
+                                    <!--<div class="error-message err" ng-show="NewJob.industry.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>-->
+                                    <!--</div>-->
+                                </div>
+                            </div>
+
+                            <div class="ProfileFormElements clearfix form-elements">
+                                <div class="dropdown custom-select-box main-dropdown">
+                                    <label>FUNCTIONAL AREA</label>
+                                    <select name="function" id="functional-area" ng-model="job.function" class="selectpicker" data-live-search="true" ng-options="functions.functionalAreaName for functions in functionalAreaRefinedList" required>
+                                        <option value="" disabled hidden>Select Function</option>
+                                    </select>
+                                    <div ng-show="NewJob.$submitted || NewJob.function.$valid && NewJob.function.$invalid">
+                                        <div class="error-message err" ng-show="NewJob.function.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-elements ">
+                                <label>Date </label>
+                                <em class="fa fa-calendar fa-lg iconColor"></em>
+                                <input type="text" placeholder="Select" name="date" ng-model="job.date" readonly="" disabled id="datepicker1"/>
+                            </div>
+
+
+                            <!-- <div class='input-group date' id="datepicker">
+                                 <input type='text' class="form-control" required="required" ng-model="addIncidentRide.date" placeholder="Date"/>
+                             <span class="input-group-addon">
+                             <em class="fa fa-calendar"></em>
+                             </span>
+                             </div>-->
+
+                            <div class="createJobHeadings">
+                                <span class="text-left " >Desired Candidate Profile </span>
+                            </div>
+                            <div class="ProfileFormElements clearfix form-elements">
+                                <div class="dropdown custom-select-box main-dropdown">
+                                    <label >UNDER GRADUATE QUALIFICATIONS</label>
+                                    <select name="ugQualifications" ng-model="job.ugQualifications" class="selectpicker" data-live-search="true" required ng-options="Graduation.courseName for Graduation in GraduationList">
+                                        <option value="" disabled hidden>Select Industry</option>
+                                    </select>
+                                    <div ng-show="NewJob.$submitted ">
+                                        <div class="error-message err" ng-show="NewJob.ugQualifications.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ProfileFormElements clearfix form-elements">
+                                <div class="dropdown custom-select-box main-dropdown">
+                                    <label >POST GRADUATE QUALIFICATIONS</label>
+                                    <select name="pgQualifications" ng-model="job.pgQualifications" class="selectpicker" data-live-search="true" ng-options="PostGraduation.courseName for PostGraduation in PostGraduationList">
+                                        <option value="" disabled hidden>Select Function</option>
+                                    </select>
+                                    <!-- <div ng-show="NewJob.$submitted || NewJob.pgQualifications.$valid && NewJob.pgQualifications.$invalid">
+                                         <div class="error-message err" ng-show="NewJob.pgQualifications.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                     </div>-->
+                                </div>
+                            </div>
+                            <div class="form-elements " ng-repeat="certifications in certificationList">
+                                <label>CERTIFICATIONS</label>
+                                <input type="text"   placeholder="Enter your Certifications" name="Certifications" ng-model="certificationMessages[certifications.id]"  />
+                                <!-- <div ng-show="NewJob.$submitted || NewJob.jobTitle.$touched">
+                                     <div class="error-message" ng-show="NewJob.jobTitle.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                     <div class="error-message" ng-show="NewJob.jobTitle.$invalid&&NewJob.jobTitle.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i>Job Title must be at least 3 characters long.</div>
+                                 </div>-->
+                            </div>
+                            <div class="text-right">
+                                <a ng-hide ="certificates" class="addMore" ng-click="addMoreCertificates()"> +Add more </a>
+                            </div>
+                            <div class="createJobHeadings">
+                                <span class="text-left " >About Company </span>
+                            </div>
+                            <div style="position: relative">
+                                <span class="mycheckbox" >
+                                    <input type="checkbox" id="test1" name="confidential" ng-model="job.confidential"/>
+                                    <label for="test1">Confidential</label>
+                                </span>
+                                <div class="form-elements ">
+                                    <label>POSITION AT</label>
+                                    <input type="text"  minlength="3" placeholder="Enter Compnay Name" name="positionAt" ng-model="job.positionAt" required />
+                                    <div ng-show="NewJob.$submitted || NewJob.positionAt.$touched">
+                                        <div class="error-message" ng-show="NewJob.positionAt.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        <!--<div class="error-message" ng-show="NewJob.positionAt.$invalid&&NewJob.positionAt.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i>Job Title must be at least 3 characters long.</div>-->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-elements ">
+                                <label>CONTACT PERSON</label>
+                                <input type="text" style="text-transform: capitalize"  ng-keypress='FirsText($event)' minlength="3" placeholder="Enter Contact Person name" name="contactPerson" ng-model="job.contactPerson" required />
+                                <div ng-show="NewJob.$submitted || NewJob.contactPerson.$touched">
+                                    <div class="error-message err" ng-show="NewJob.contactPerson.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                    <div class="error-message err" ng-show="NewJob.contactPerson.$invalid&&NewJob.contactPerson.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i>Job Title must be at least 3 characters long.</div>
+                                </div>
+                            </div>
+                            <div class="form-elements {{codeClass}}">
+                                <label>CONTACT EMAIL </label>
+                                <input class="mail" type="text" name="contactEmail" placeholder="Enter Email" ng-model="job.contactEmail" ng-pattern="myregex" required />
+                                <div ng-show="NewJob.$submitted || NewJob.contactEmail.$touched">
+                                    <div class="error-message err" ng-show="NewJob.contactEmail.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                    <div class="error-message err" ng-show="NewJob.contactEmail.$error.pattern"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Enter Valid Email.</div>
+                                </div>
+                            </div>
+                            <div class="clearfix">
+                                <!--<div class="form-elements one-third">-->
+                                <!--<div class="ProfileFormElements clearfix form-elements">-->
+                                <!--<div class="dropdown custom-select-box main-dropdown">-->
+                                <!--<label>COUNTRY CODE</label>-->
+                                <!--<select name="contactCountryCode" ng-model="job.contactCountryCode" class="selectpicker" data-live-search="true" ng-options="country.countryCode as (country.countryName +'('+country.countryCode+')') for country in countryLists" required>-->
+                                <!--<option value="" disabled hidden>Country Code</option>-->
+                                <!--</select>-->
+                                <!--<div ng-show="NewJob.$submitted || NewJob.contactCountryCode.$valid && NewJob.contactCountryCode.$invalid">-->
+                                <!--<div class="error-message err" ng-show="NewJob.contactCountryCode.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--</div>-->
+
+                                <div class="form-elements">
+                                    <label>CONTACT MOBILE NUMBER</label>
+                                    <input class="phone" type="text" ng-pattern="phoneRegex" minlength="10" maxlength="10" ng-keypress='isNumberKey($event)' name="contactNumber" placeholder="Enter Mobile Number" ng-model="job.contactNumber" required>
+                                    <div ng-show="NewJob.$submitted || NewJob.contactNumber.$touched">
+                                        <div class="error-message err" ng-show="NewJob.contactNumber.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        <div class="error-message err" ng-show="NewJob.contactNumber.$invalid&&NewJob.contactNumber.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Phone Number must be valid & atleast 10 characters long.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div >
+                                <span class="createJobHeadings text-left " >Add Questionnaire</span>
+                                <p class="text-left-important" style="margin-bottom: 10px">Questions will be hidden for candidate</p>
+                            </div>
+                            <div>
+                                Technical Questions
+                            </div>
+                            <div class="form-elements " ng-repeat="questions in questionList">
+                                <label >QUESTION</label>
+                                <textarea class="textArea" type="text" minlength="3" placeholder="Enter your question" name="techQuestions" ng-model="questionnaire[questions.id]" ></textarea>
+                                <!--<div ng-show="NewJob.$submitted || NewJob.techQuestions.$touched">-->
+                                <!--<div class="error-message" ng-show="NewJob.techQuestions.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>-->
+                                <!--<div class="error-message" ng-show="NewJob.techQuestions.$invalid&&NewJob.techQuestions.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Question must be at least 3 characters long.</div>-->
+                                <!--</div>-->
+                            </div>
+                            <div class="text-right"  >
+                                <a ng-hide="questions" class="addMore"   ng-click="addMoreTechQuestions()"> +Add more </a>
+                            </div>
+                            <div>
+                                Non Technical Questions
+                            </div>
+                            <div class="form-elements " ng-repeat="questions1 in questionList1">
+                                <label>QUESTION</label>
+                                <textarea class="textArea" type="text" minlength="3" placeholder="Enter your question" name="nonTechQuestions" ng-model="questionnaire1[questions1.id]" ></textarea>
+                                <!--<div ng-show="NewJob.$submitted || NewJob.nonTechQuestions.$touched">-->
+                                <!--<div class="error-message" ng-show="NewJob.nonTechQuestions.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>-->
+                                <!--<div class="error-message" ng-show="NewJob.nonTechQuestions.$invalid&&NewJob.nonTechQuestions.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Question must be at least 3 characters long.</div>-->
+                                <!--</div>-->
+                            </div>
+                            <div  class="text-right"  >
+                                <a ng-hide ="questions" class="addMore"  ng-click="addMoreNonTechQuestions()"> +Add more </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad ">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12  " >
+                        <button type="submit" class="btn-block sbmt-btn" ng-click="NewJob.$valid && post(1)">POST NOW</button>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12  " >
+                        <button type="submit" class="btn-block sbmt-btn" ng-click="NewJob.$valid && post(2)">POST LATER</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+<section ng-show="review" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 banner">
+    <div class="container">
+        <div class="pad postNowFontColor main-section col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12 candidate-profile-section clearfix">
+            <h1 class="text-left">REVIEW JOB</h1>
+
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="row" style="margin-top: 20px">
+                <div >
+                    <h4>Job Details</h4>
+                </div>
+                <br>
+                <div >
+                    <h5 >Job Title</h5>
+                    <p>{{jobData.jobTitle}}</p>
+                </div>
+                <br>
+                <div >
+                    <h5 >Job Description</h5>
+                    <p>{{jobData.jobDescription}}</p>
+                </div>
+                <br>
+                <div >
+                    <h5>Work Location</h5>
+                    <p>{{jobData.state}}</p>
+                </div>
+                <br>
+                <div >
+                    <h5>Experience Required</h5>
+                    <p>{{workEx}}</p>
+                </div>
+                <br>
+                <div >
+                    <h5>Annual Salary (in USD)</h5>
+                    <p>{{salary}}</p>
+                </div>
+                <!-- </br>
+                 <div >
+                     <h5>Skills Required</h5>
+                     <p>{{jobData.jobDescription}}</p>
+                 </div>-->
+                <br>
+                <div >
+                    <h5>Education Required</h5>
+                    <p>{{education}}</p>
+                </div>
+                <br>
+                <div >
+                    <h5>Industry</h5>
+                    <p>{{jobData.industryName}}</p>
+                </div>
+                <br>
+                <div >
+                    <h5>Functional Area</h5>
+                    <p>{{jobData.functionalAreaName}}</p>
+                </div>
+                <br>
+                <div >
+                    <h5>Aggregated Score</h5>
+                    <p>{{jobData.aggregatedScore.min}}</p>
+                </div>
+                <br>
+                <div >
+                    <h5>Quantitative Score</h5>
+                    <p>{{jobData.quantitativeScore.min}}</p>
+                </div>
+                <br>
+                <div >
+                    <h5>Qualitative Score</h5>
+                    <p>{{jobData.qualitativeScore.min}}</p>
+                </div>
+                <br>
+                <div ng-if="certificates.length">
+                    <h5>Certificates</h5>
+                    <p ng-repeat="certi in certificates track by $index">{{$index + 1}} : {{certi}}</p>
+                    <br>
+                </div>
+
+                <div ng-if="jobData.technicalQuestions.length != 0">
+                    <h5>Technical Questions</h5>
+                    <p ng-repeat="tech in jobData.technicalQuestions track by $index">{{$index + 1}} : {{tech}}</p>
+                    <br>
+                </div>
+
+                <div ng-if="jobData.nonTechnicalQuestions.length != 0">
+                    <h5>Non Technical Questions</h5>
+                    <p ng-repeat="ntech in jobData.nonTechnicalQuestions track by $index">{{$index + 1}} : {{ntech}}</p>
+                    <br>
+                </div>
+
+                <div >
+                    <h4>Recruiter Details</h4><br>
+                    <span><b>Company Name :</b></span><span> {{jobData.companyName}} </span><br>
+                    <span><b>Contact Person :</b></span><span> {{jobData.contactPerson}} </span><br>
+                    <span><b>Email :</b></span><span> {{jobData.contactEmail}}  </span><br>
+                    <span><b>Telephone :</b></span><span>  {{jobData.contactNumber}}   </span><br>
+                </div>
+
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad ">
+                <div class="col-lg-6 col-md-6 col-sm-6 co-xs-12 " >
+                    <button type="submit" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sbmt-btn text-center" ng-click="reviewJob()">Edit Job</button>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 co-xs-12 " >
+                    <button type="submit" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sbmt-btn text-center" ng-click="postnow()">Post Job</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!--          version 1-2
+<form name="NewJob" ng-submit="NewJob.$valid" novalidate>
+
+    <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 banner">
+        <div class="container">
+            <div class="main-section col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 col-xs-12 candidate-profile-section clearfix">
+                <h1 class="text-left">CREATE NEW JOB</h1>
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="row" style="margin-top: 20px">
+                    <div class="search-wrapper">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form">
+                            <div class="clearfix">
+                                <div class="form-elements ">
+                                    <label>JOB TITLE</label>
+                                    <input type="text"  minlength="3" placeholder="Enter Job Title" name="jobTitle" ng-model="job.jobTitle" required />
+                                    <div ng-show="NewJob.$submitted || NewJob.jobTitle.$touched">
+                                        <div class="error-message" ng-show="NewJob.jobTitle.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        <div class="error-message" ng-show="NewJob.jobTitle.$invalid&&NewJob.jobTitle.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i>Job Title must be at least 3 characters long.</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-elements ">
+                                    <label>JOB DESCRIPTION</label>
+                                    <textarea class="textArea" type="text" minlength="3" placeholder="Enter Job Description" name="jobDescription" ng-model="job.jobDescription" required ></textarea>
+                                    <div ng-show="NewJob.$submitted || NewJob.jobDescription.$touched">
+                                        <div class="error-message" ng-show="NewJob.jobDescription.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        <div class="error-message" ng-show="NewJob.jobDescription.$invalid&&NewJob.jobDescription.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Job Description must be at least 3 characters long.</div>
+                                    </div>
+                                </div>
+                                <div class="form-elements ">
+                                    <label>MINIMUM AGGREGATE SCORE  </label>
+                                    <input  type="number" min="0" max="1580" placeholder="Enter Minimum Aggregated Score (0 - 1580)" ng-keypress='isNumberKey($event)' name="aggregatedScore" ng-model="job.aggregatedScore" required />
+                                    <div ng-show="NewJob.$submitted || NewJob.aggregatedScore.$touched">
+                                        <div class="error-message" ng-show="NewJob.aggregatedScore.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        <div class="error-message" ng-show="NewJob.aggregatedScore.$invalid&&NewJob.aggregatedScore.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Aggregated score must be between 0 to 1580</div>
+                                    </div>
+                                </div>
+                                <div class="form-elements ">
+                                    <label>MINIMUM QUANTATIVE SCORE  </label>
+                                    <input  type="number"  min="0" max="500" placeholder="Enter Minimum Quantative Score (0 - 500)" ng-keypress='isNumberKey($event)' name="quantativeScore" ng-model="job.quantativeScore" required />
+                                    <div ng-show="NewJob.$submitted || NewJob.quantativeScore.$touched">
+                                        <div class="error-message" ng-show="NewJob.quantativeScore.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        <div class="error-message" ng-show="NewJob.quantativeScore.$invalid&&NewJob.quantativeScore.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i>  Quantative Score must be between 0 to 500</div>
+                                    </div>
+                                </div>
+                                <div class="form-elements ">
+                                    <label>MINIMUM QUALITATIVE SCORE </label>
+                                    <input  type="number" min="0" max="1080" placeholder="Enter Minimum Qualitative Score (0 - 1080)" ng-keypress='isNumberKey($event)' name="qualitativeScore" ng-model="job.qualitativeScore" required />
+                                    <div ng-show="NewJob.$submitted || NewJob.qualitativeScore.$touched">
+                                        <div class="error-message" ng-show="NewJob.qualitativeScore.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        <div class="error-message" ng-show="NewJob.qualitativeScore.$invalid&&NewJob.qualitativeScore.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Qualitative score must be between 0 to 1080</div>
+                                    </div>
+                                </div>
+                                <div class="createJobHeadings">
+                                    <span class="text-left " >Can you Commute <br/> </span>
+                                </div>
+
+                                <div class="form-elements ">
+                                    <input  type="radio" name="commute" ng-model="job.commute" required value="true"/><span> Yes &nbsp &nbsp</span>
+                                    <input  type="radio" name="commute" ng-model="job.commute" required value="false" /><span> No &nbsp &nbsp</span>
+                                        <div ng-show="NewJob.$submitted ">
+                                        <div class="error-message" ng-show="NewJob.commute.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                    </div>
+                                </div>
+                                <div class="createJobHeadings">
+                                    <span class="text-left " > Work Experience</span>
+                                </div>
+                                <div class="ProfileFormElements form-elements">
+                                    <div class="dropdown custom-select-box main-dropdown">
+                                        <label>WORK EXPERIENCE (in Years) </label>
+                                        <select name="workEx" ng-model="job.workExp" class="selectpicker" data-live-search="false" ng-options="workex for workex in workExperience" required>
+                                            <option value="" disabled hidden>Select Work Experience</option>
+                                        </select>
+                                        <div ng-show="NewJob.$submitted || NewJob.workEx.$valid && NewJob.workEx.$invalid">
+                                            <div class="error-message err" ng-show="NewJob.workEx.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="createJobHeadings">
+                                    <span class="text-left " >Annual Compensation </span>
+                                </div>
+                                <div class="ProfileFormElements form-elements">
+                                    <div class="dropdown custom-select-box main-dropdown">
+                                        <label>SALARY (in USD)</label>
+                                        <select name="salary" ng-model="job.salary" class="selectpicker" data-live-search="false" ng-options="salary for salary in salaryList" required>
+                                            <option value="" disabled hidden>Select Salary Range </option>
+                                        </select>
+                                        <div ng-show="NewJob.$submitted || NewJob.salary.$valid && NewJob.salary.$invalid">
+                                            <div class="error-message err" ng-show="NewJob.salary.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                &lt;!&ndash;<div class="ProfileFormElements fifty-comb pull-left form-elements">&ndash;&gt;
+                                    &lt;!&ndash;<label>MINIMUM SALARY IN $</label>&ndash;&gt;
+                                    &lt;!&ndash;<input  type="number" placeholder="Enter Minimum Salary" name="minSalary" ng-model="job.minSalary" required />&ndash;&gt;
+                                    &lt;!&ndash;<div ng-show="NewJob.$submitted || NewJob.minSalary.$touched">&ndash;&gt;
+                                        &lt;!&ndash;<div class="error-message" ng-show="NewJob.minSalary.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>&ndash;&gt;
+                                        &lt;!&ndash;&lt;!&ndash;<div class="error-message" ng-show="NewJob.minSalary.$invalid&&NewJob.minSalary.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Qualitative score must be between 0 to 1080</div>&ndash;&gt;&ndash;&gt;
+                                    &lt;!&ndash;</div>&ndash;&gt;
+                                &lt;!&ndash;</div>&ndash;&gt;
+                                &lt;!&ndash;<div class="ProfileFormElements fifty-comb pull-right form-elements">&ndash;&gt;
+
+                                    &lt;!&ndash;<label>MAXIMUM SALARY IN $</label>&ndash;&gt;
+                                    &lt;!&ndash;<input  type="number" placeholder="Enter Maximum Salary" name="maxSalary" ng-model="job.maxSalary" required />&ndash;&gt;
+                                    &lt;!&ndash;<div ng-show="NewJob.$submitted || NewJob.maxSalary.$touched">&ndash;&gt;
+                                        &lt;!&ndash;<div class="error-message" ng-show="NewJob.maxSalary.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>&ndash;&gt;
+                                        &lt;!&ndash;&lt;!&ndash;<div class="error-message" ng-show="NewJob.maxSalary.$invalid&&NewJob.maxSalary.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Qualitative score must be between 0 to 1080</div>&ndash;&gt;&ndash;&gt;
+                                    &lt;!&ndash;</div>&ndash;&gt;
+
+                                &lt;!&ndash;</div>&ndash;&gt;
+                                <div class="createJobHeadings ">
+                                    <span class="text-left col-lg-12 col-md-12 pad " style="padding-bottom: 10px">Location </span>
+                                </div>
+                                <div class="ProfileFormElements fifty-comb pull-left form-elements">
+                                    <div class="dropdown custom-select-box main-dropdown">
+                                        <label>CURRENT COUNTRY</label>
+                                        <select name="country" ng-model="job.currentCountry" ng-change="getCountryID(job.currentCountry)" class="selectpicker" data-live-search="true" ng-options="country.countryName for country in countryLists" required>
+                                            <option value="" disabled hidden>Select Current Country</option>
+                                        </select>
+                                        <div ng-show="NewJob.$submitted || NewJob.country.$touched ">
+                                            <div class="error-message err" ng-show="NewJob.country.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ProfileFormElements fifty-comb pull-right form-elements">
+                                    <div class="dropdown custom-select-box main-dropdown">
+                                        <label>CURRENT STATE</label>
+                                        <select name="states" ng-model="job.currentState" ng-change="getZipCode(job.currentState)" class="selectpicker" data-live-search="true" ng-options="state.stateName for state in stateRefinedList" required>
+                                            <option value="" disabled hidden>Select Current State</option>
+                                        </select>
+                                        <div ng-show="NewJob.$submitted || NewJob.states.$valid && NewJob.states.$invalid">
+                                            <div class="error-message err" ng-show="NewJob.states.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="ProfileFormElements clearfix form-elements">
+                                <div class="dropdown custom-select-box main-dropdown">
+                                    <label>ZIP CODE</label>
+                                    <select name="zipCode" ng-model="job.zipCode" class="selectpicker" data-live-search="true" ng-options="zip.zipCode as (zip.areaName+' ( '+ zip.zipCode +' )') for zip in zipCodeList" required>
+                                        <option value="" disabled hidden>Select Zip Code</option>
+                                    </select>
+                                    <div ng-show="NewJob.$submitted || NewJob.zipCode.$valid && NewJob.zipCode.$invalid">
+                                        <div class="error-message err" ng-show="NewJob.zipCode.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="ProfileFormElements clearfix form-elements">
+                                 <div class="dropdown custom-select-box main-dropdown">
+                                     <label>INDUSTRY</label>
+                                     <select name="industry" ng-model="job.industry" ng-change="findFunctionalArea(job.industry)" class="selectpicker" data-live-search="true" ng-options="industry.industryName for industry in industriesList" required>
+                                         <option value="" disabled hidden>Select Industry</option>
+                                     </select>
+                                     &lt;!&ndash;<div ng-show="NewJob.$submitted || NewJob.industry.$valid && NewJob.industry.$invalid">&ndash;&gt;
+                                         &lt;!&ndash;<div class="error-message err" ng-show="NewJob.industry.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>&ndash;&gt;
+                                     &lt;!&ndash;</div>&ndash;&gt;
+                                 </div>
+                             </div>
+
+                            <div class="ProfileFormElements clearfix form-elements">
+                                <div class="dropdown custom-select-box main-dropdown">
+                                    <label>FUNCTIONAL AREA</label>
+                                    <select name="function" id="functional-area" ng-model="job.function" class="selectpicker" data-live-search="true" ng-options="functions.functionalAreaName for functions in functionalAreaRefinedList" required>
+                                        <option value="" disabled hidden>Select Function</option>
+                                    </select>
+                                    <div ng-show="NewJob.$submitted || NewJob.function.$valid && NewJob.function.$invalid">
+                                        <div class="error-message err" ng-show="NewJob.function.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-elements ">
+                                <label>Date </label>
+                                <em class="fa fa-calendar fa-lg iconColor"></em>
+                                <input type="text" placeholder="Select" name="date" ng-model="job.date" readonly="" disabled id="datepicker1"/>
+                            </div>
+
+
+                           &lt;!&ndash; <div class='input-group date' id="datepicker">
+                                <input type='text' class="form-control" required="required" ng-model="addIncidentRide.date" placeholder="Date"/>
+                            <span class="input-group-addon">
+                            <em class="fa fa-calendar"></em>
+                            </span>
+                            </div>&ndash;&gt;
+
+                            <div class="createJobHeadings">
+                                <span class="text-left " >Desired Candidate Profile </span>
+                            </div>
+                            <div class="ProfileFormElements clearfix form-elements">
+                                <div class="dropdown custom-select-box main-dropdown">
+                                    <label>UNDER GRADUATE QUALIFICATIONS</label>
+                                    <select name="ugQualifications" ng-model="job.ugQualifications" class="selectpicker" data-live-search="true" required ng-options="Graduation.courseName for Graduation in GraduationList">
+                                        <option value="" disabled hidden>Select Industry</option>
+                                    </select>
+                                    <div ng-show="NewJob.$submitted ">
+                                        <div class="error-message err" ng-show="NewJob.ugQualifications.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ProfileFormElements clearfix form-elements">
+                                <div class="dropdown custom-select-box main-dropdown">
+                                    <label>POST GRADUATE QUALIFICATIONS</label>
+                                    <select name="pgQualifications" ng-model="job.pgQualifications" class="selectpicker" data-live-search="true" ng-options="PostGraduation.courseName for PostGraduation in PostGraduationList">
+                                        <option value="" disabled hidden>Select Function</option>
+                                    </select>
+                                   &lt;!&ndash; <div ng-show="NewJob.$submitted || NewJob.pgQualifications.$valid && NewJob.pgQualifications.$invalid">
+                                        <div class="error-message err" ng-show="NewJob.pgQualifications.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                    </div>&ndash;&gt;
+                                </div>
+                            </div>
+                            <div class="form-elements " ng-repeat="certifications in certificationList">
+                                <label>CERTIFICATIONS</label>
+                                <input type="text"   placeholder="Enter your Certifications" name="Certifications" ng-model="certificationMessages[certifications.id]"  />
+                               &lt;!&ndash; <div ng-show="NewJob.$submitted || NewJob.jobTitle.$touched">
+                                    <div class="error-message" ng-show="NewJob.jobTitle.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                    <div class="error-message" ng-show="NewJob.jobTitle.$invalid&&NewJob.jobTitle.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i>Job Title must be at least 3 characters long.</div>
+                                </div>&ndash;&gt;
+                            </div>
+                            <div class="text-right">
+                                <a ng-hide ="certificates" class="addMore" ng-click="addMoreCertificates()"> +Add more </a>
+                            </div>
+                            <div class="createJobHeadings">
+                                <span class="text-left " >About Company </span>
+                            </div>
+                            <div class="form-elements ">
+                                <label>POSITION AT</label>
+                                <span class="checkbox" > <input type="checkbox" name="confidential" ng-model="job.confidential" ><span>Confidential</span></span>
+                                <input type="text"  minlength="3" placeholder="Enter Job Title" name="positionAt" ng-model="job.positionAt" required />
+                                <div ng-show="NewJob.$submitted || NewJob.positionAt.$touched">
+                                    <div class="error-message" ng-show="NewJob.positionAt.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                    &lt;!&ndash;<div class="error-message" ng-show="NewJob.positionAt.$invalid&&NewJob.positionAt.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i>Job Title must be at least 3 characters long.</div>&ndash;&gt;
+                                </div>
+                            </div>
+                            <div class="form-elements ">
+                                <label>CONTACT PERSON</label>
+                                <input type="text" style="text-transform: capitalize"  ng-keypress='FirsText($event)' minlength="3" placeholder="Enter Contact Person name" name="contactPerson" ng-model="job.contactPerson" required />
+                                <div ng-show="NewJob.$submitted || NewJob.contactPerson.$touched">
+                                    <div class="error-message err" ng-show="NewJob.contactPerson.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                    <div class="error-message err" ng-show="NewJob.contactPerson.$invalid&&NewJob.contactPerson.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i>Job Title must be at least 3 characters long.</div>
+                                </div>
+                            </div>
+                            <div class="form-elements {{codeClass}}">
+                                <label>CONTACT EMAIL </label>
+                                <input class="mail" type="text" name="contactEmail" placeholder="Enter Email" ng-model="job.contactEmail" ng-pattern="myregex" required />
+                                <div ng-show="NewJob.$submitted || NewJob.contactEmail.$touched">
+                                    <div class="error-message err" ng-show="NewJob.contactEmail.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                    <div class="error-message err" ng-show="NewJob.contactEmail.$error.pattern"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Enter Valid Email.</div>
+                                </div>
+                            </div>
+                            <div class="clearfix">
+                                &lt;!&ndash;<div class="form-elements one-third">&ndash;&gt;
+                                    &lt;!&ndash;<div class="ProfileFormElements clearfix form-elements">&ndash;&gt;
+                                        &lt;!&ndash;<div class="dropdown custom-select-box main-dropdown">&ndash;&gt;
+                                            &lt;!&ndash;<label>COUNTRY CODE</label>&ndash;&gt;
+                                            &lt;!&ndash;<select name="contactCountryCode" ng-model="job.contactCountryCode" class="selectpicker" data-live-search="true" ng-options="country.countryCode as (country.countryName +'('+country.countryCode+')') for country in countryLists" required>&ndash;&gt;
+                                                &lt;!&ndash;<option value="" disabled hidden>Country Code</option>&ndash;&gt;
+                                            &lt;!&ndash;</select>&ndash;&gt;
+                                            &lt;!&ndash;<div ng-show="NewJob.$submitted || NewJob.contactCountryCode.$valid && NewJob.contactCountryCode.$invalid">&ndash;&gt;
+                                                &lt;!&ndash;<div class="error-message err" ng-show="NewJob.contactCountryCode.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>&ndash;&gt;
+                                            &lt;!&ndash;</div>&ndash;&gt;
+                                        &lt;!&ndash;</div>&ndash;&gt;
+                                    &lt;!&ndash;</div>&ndash;&gt;
+                                &lt;!&ndash;</div>&ndash;&gt;
+
+                                <div class="form-elements">
+                                    <label>CONTACT MOBILE NUMBER</label>
+                                    <input class="phone" type="text" ng-pattern="phoneRegex" minlength="10" maxlength="10" ng-keypress='isNumberKey($event)' name="contactNumber" placeholder="Enter Mobile Number" ng-model="job.contactNumber" required>
+                                    <div ng-show="NewJob.$submitted || NewJob.contactNumber.$touched">
+                                        <div class="error-message err" ng-show="NewJob.contactNumber.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                        <div class="error-message err" ng-show="NewJob.contactNumber.$invalid&&NewJob.contactNumber.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Phone Number must be at least 10 characters long.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div >
+                                <span class="createJobHeadings text-left " >Add Questionnaire</span>
+                                <p class="text-left-important" style="margin-bottom: 10px">Questions will be hidden for candidate</p>
+                            </div>
+                            <div>
+                                Technical Questions
+                            </div>
+                            <div class="form-elements " ng-repeat="questions in questionList">
+                                <label >QUESTION</label>
+                                <textarea class="textArea" type="text" minlength="3" placeholder="Enter your question" name="techQuestions" ng-model="questionnaire[questions.id]" ></textarea>
+                                &lt;!&ndash;<div ng-show="NewJob.$submitted || NewJob.techQuestions.$touched">&ndash;&gt;
+                                    &lt;!&ndash;<div class="error-message" ng-show="NewJob.techQuestions.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>&ndash;&gt;
+                                    &lt;!&ndash;<div class="error-message" ng-show="NewJob.techQuestions.$invalid&&NewJob.techQuestions.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Question must be at least 3 characters long.</div>&ndash;&gt;
+                                &lt;!&ndash;</div>&ndash;&gt;
+                            </div>
+                            <div class="text-right"  >
+                                <a ng-hide="questions" class="addMore"   ng-click="addMoreTechQuestions()"> +Add more </a>
+                            </div>
+                            <div>
+                                Non Technical Questions
+                            </div>
+                            <div class="form-elements " ng-repeat="questions1 in questionList1">
+                                <label>QUESTION</label>
+                                <textarea class="textArea" type="text" minlength="3" placeholder="Enter your question" name="nonTechQuestions" ng-model="questionnaire1[questions1.id]" ></textarea>
+                                &lt;!&ndash;<div ng-show="NewJob.$submitted || NewJob.nonTechQuestions.$touched">&ndash;&gt;
+                                    &lt;!&ndash;<div class="error-message" ng-show="NewJob.nonTechQuestions.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>&ndash;&gt;
+                                    &lt;!&ndash;<div class="error-message" ng-show="NewJob.nonTechQuestions.$invalid&&NewJob.nonTechQuestions.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Question must be at least 3 characters long.</div>&ndash;&gt;
+                                &lt;!&ndash;</div>&ndash;&gt;
+                            </div>
+                            <div  class="text-right"  >
+                                <a ng-hide ="questions" class="addMore"  ng-click="addMoreNonTechQuestions()"> +Add more </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad ">
+                    <div class="col-lg-6 col-md-6 col-sm-12 co-xs-12  " >
+                        <button type="submit" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sbmt-btn" ng-click="NewJob.$valid&&post(1)">POST NOW</button>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 co-xs-12  " >
+                        <button type="submit" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sbmt-btn" ng-click="NewJob.$valid&&post(2)">POST LATER</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+-->

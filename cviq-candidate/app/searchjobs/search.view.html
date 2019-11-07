@@ -1,0 +1,230 @@
+<style>
+   .filterclass input[type="checkbox"] {
+    display:block;
+    height: 15px;
+    margin:0px -40px 0px 0px;
+    }
+</style>
+<section class="clearfix">
+    <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 inbox-bg">
+        <div class="container text-center main-section-profile question-bank">
+            <form name="searchJob" ng-submit="searchJob.$valid&&searching(search)" novalidate>
+                <div class="row">
+                   
+                    <div class="ProfileFormElements clearfix form-elements col-lg-3 col-md-3 col-sm-5 col-xs-12">
+                        <div class="custom-select-box main-dropdown advance-search">
+                            <label>KEYWORDS</label>
+                            <input class="search-input" id="NewKeywordSearch"  name="keywords" type="text" ng-model="search.keywords" placeholder="Enter Keywords" required>
+                        </div>
+                        <div ng-show="searchJob.$submitted || searchJob.keywords.$valid && searchJob.keywords.$invalid">
+                                <div class="error-message" ng-show="searchJob.keywords.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                        </div>
+                    </div> 
+                    
+                   <div class="ProfileFormElements clearfix form-elements col-lg-3 col-md-3 col-sm-5 col-xs-12">
+                        <div class="custom-select-box main-dropdown advance-search">
+                            <label>LOCATION</label>
+                            <input class="search-input" id="LocationSearch"  name="location" autocomplete="off" type="text" ng-model="search.location" placeholder="Enter location" required>
+                        </div>
+                        <div ng-show="searchJob.$submitted || searchJob.location.$valid && searchJob.location.$invalid">
+                                <div class="error-message" ng-show="searchJob.location.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                        </div>
+                    </div>
+                    <input  id="zipcode"  name="zipcode" type="hidden" ng-model="search.zipcode">
+                    <div class="ProfileFormElements clearfix form-elements col-lg-3 col-md-3 col-sm-3 col-xs-12">         
+                        <input type="checkbox" name="Searchagent" value="checked" ng-model="search.searchAgent"  style="display:block !important"> <span style='color:white'> save this search </span> 
+                    </div>
+                </div>
+                  
+                <p ng-show="!typeSearch" class="basic-search"><input type="button" ng-click="asearches()" value="Advanced Search"></p>
+               
+                <div class="row advance-search-dropdowns" ng-show="typeSearch">
+                      <div class="ProfileFormElements clearfix form-elements col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <div class="custom-select-box main-dropdown advance-search">
+                            <label>INDUSTRY</label>
+                            <select id="sel-industry" ng-init="search.industry=''" name="selIndustry" ng-model="search.industry" ng-change="selectedIndustry(search.industry)" class="selectpicker" data-live-search="true" ng-options="indus.industryName for indus in searchDropDownData.industryList track by indus.industryName " >
+                                <option value="" >Select Industry</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="ProfileFormElements clearfix form-elements col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <div class="custom-select-box main-dropdown advance-search">
+                            <label>FUNCTIONAL AREA</label>
+                            <select ng-init="search.functionalArea=''" name="functionalArea" ng-model="search.functionalArea" class="selectpicker" data-live-search="true" ng-options="area.functionalAreaName for area in functionAreaList">
+                                <option value="" >Select Functional Area</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="ProfileFormElements clearfix form-elements col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <div class="custom-select-box main-dropdown advance-search">
+                            <label>EXPERIENCE</label>
+                            <select name="experience" ng-model="search.experience" class="selectpicker" data-live-search="true" ng-options="exp for exp in searchDropDownData.ExperienceList">
+                                <option value="">Select Experience</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="ProfileFormElements clearfix form-elements col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <div class="custom-select-box main-dropdown advance-search">
+                            <label>HIGHEST QUALIFICATION</label>
+                            <select name="qual" ng-model="search.qual" ng-change="getQualID(search.qual)" class="selectpicker" data-live-search="true" ng-options="quals for quals in searchDropDownData.highestQualification">
+                                <option value="" >Select Highest Qualification</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="ProfileFormElements clearfix form-elements col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <div class="custom-select-box main-dropdown advance-search">
+                            <label>ANNUAL SALARY</label>
+                            <input class="search-input" ng-keypress='isNumberKey($event)' maxlength="10" type="text" ng-model="search.salary" placeholder="Enter Annual Salary">
+                        </div>
+                    </div>
+
+                </div>
+                <p ng-show="!btypeSearch" class="basic-search"><input ng-click="bsearches()" type="button" value="Basic Search"></p>
+                <button class=" text-center searchjob-btn linkedin-btn col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-8 col-xs-offset-2 col-xs-8 col-xs-offset-2" type="submit">SEARCH JOB</button>
+            </form>
+        </div>
+    </section>
+    <section class="search-section col-lg-12 col-md-12 col-sm-12 col-xs-12"  ng-show="SearchComplete">
+        <div class="container">
+            <div class="row clearfix">         
+                    <div class="filter col-md-3 col-lg-3 col-sm-12 col-xs-12" style="width:19%" >
+
+                <div class="filterHeading">
+
+                    <span style="padding: 15px 15px">Filters</span>
+                </div>
+                    <div class="line2 container-fluid "></div>
+
+                <div class="filter-elements" style="padding-left: 10px">
+                    <p> <input type="checkbox" name="industry" ng-model="filter.industry" id="test1">
+                        <label for="test1">Indusrty</label></p>
+                      
+                    <div ng-show="filter.industry">   
+                        <div ng-repeat="n in slideIndustrylist track by $index" class="filterclass">
+                                    <input type="checkbox" ng-model="filters.industry[n]"  ng-checked="n==searcSselected.industry" > {{ n }}
+                        </div>    
+                    </div>
+                   
+                    <p> <input type="checkbox" name="functionalarea"  ng-model="filter.functionalarea" id="test2">
+                    <label for="test2">Function</label></p>
+                    <div ng-show="filter.functionalarea">      
+                     <div ng-repeat="n in slideFunctionlist track by $index" class="filterclass" >
+                                    <input type="checkbox" ng-model="filters.functionalarea[n]" ng-checked="n==searcSselected.functionalArea" > {{ n }}
+                        </div>    
+                    </div>
+                   
+  
+                     <p> <input type="checkbox" name="company"  ng-model="filter.company" id="test5">
+                        <label for="test5">Company</label></p>
+                    <div ng-show="filter.company">       
+                         <div ng-repeat="n in slideCompanylist track by $index" class="filterclass">
+                                    <input type="checkbox" ng-model="filters.company[n]">{{ n }}
+                        </div> 
+                    </div>
+
+                    <p> <input type="checkbox" name="experience"  ng-model="filter.experience"   id="test3">
+                        <label for="test3">Work Experience (in Years)</label></p>
+                    <div ng-show="filter.experience">
+                     <div ng-repeat="n in slideWorkexperience track by $index" class="filterclass">
+                                    <input type="checkbox" ng-model="filters.experience[n]" ng-checked="n==searcSselected.experience" >{{ n }}
+                        </div>
+                    </div>
+
+                    <p> <input type="checkbox" name="quantitative"  ng-model="filter.quantitative" id="test7">
+                        <label for="test7">Quantitative</label></p>
+                    <div ng-show="filter.quantitative">
+                      <div ng-repeat="n in slideQuantitative track by $index" class="filterclass">
+                                    <input type="checkbox" ng-model="filters.quantitative[n]">{{ n }}
+                        </div>
+                    </div>
+                      <p> <input type="checkbox" name="date" ng-model="filter.datesort" id="test1">
+                        <label for="test1">Sort</label></p>
+                      
+                    <div ng-show="filter.industry">   
+                        <div ng-repeat="n in slideDatesort track by $index" class="filterclass">
+                                    <input type="checkbox"  ng-model="filters.datesort[n]" ng-click="checkDatesort($event, n)" ng-checked="n==relevance"  ng-attr-id="{{ 'sort_date_' + $index }}"  > {{ n }}    
+                        </div>                                                                                                                                                                        
+                    </div>
+
+                    <button class=" text-center filtersearchjob-btn1 " ng-click="applyFilter(filters)">Apply Filter</button>
+                    <ul>
+                        <li><a ng-click="var1='VIEWED PROFILE'" ng-class="{'active': var1 == 'VIEWED PROFILE'}" ui-sref="home.search.viewedProfile">Who Viewed My Profile</a><span>{{countForJobs.profileVisitedCount}}</span></li>
+                        <li><a ng-click="var1='APPLIED JOBS'" ng-class="{'active': var1 == 'APPLIED JOBS'}" ui-sref="home.search.appliedJobs">Applied Jobs</a><span>{{countForJobs.appliedJobCount}}</span></li>
+                        <li><a ng-click="var1='FAVOURITE JOBS'" ng-class="{'active': var1 == 'FAVOURITE JOBS'}" ui-sref="home.search.favouritejobs">Favourite Jobs</a><span>{{countForJobs.favouritejobs}}</span></li>
+                    </ul>
+                </div>
+            </div>            
+            
+                <div class="information-section-middle">
+                    <div ui-view=""></div>
+                </div>
+                <div class="newsletter-section-right text-center">
+                    <div class="newsletter" ng-show="candidateSearch">
+                        <img src="images/email.png" alt="email" />
+                        <p><b> Create a Job Alert </b> <br>( based on this search ) </p>
+                        <form id="newsLetterForm" class="clearfix">
+                            <input type="email" placeholder="Enter Your Email" id="newsLetterId">
+                            <div class="text-center"><button style="float: none;"  ng-click="submit_jobalerts()" type="submit" class="col-lg-12 col-md-3 col-sm-3 col-xs-12 sbmt-btn">SUBMIT</button></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+
+<script>
+   
+var options = {
+  url: function(phrase) {
+  return  api_url + "/api/candidate/JobAutocomplete?keyword=" + phrase ;
+  },
+ // listLocation:"data",
+  categories: [
+        {   
+            listLocation: function(data) {
+                return data["data"]["jobTitle"];
+            },
+            header: "-- Title --"
+        }, 
+        {   
+            listLocation: function(data) {
+                return data["data"]["keyskill"];
+            },
+            header: "-- Keyskill --"
+        }
+    ],
+  list: {
+		match: {
+			enabled: true
+		}
+	}
+};
+
+$("#NewKeywordSearch").easyAutocomplete(options);
+
+
+var options = {
+  url: function(phrase) {
+  return  api_url + "/api/candidate/LocationAutocomplete?keyword=" + phrase ;
+  },
+  listLocation:"data",
+  getValue: "location",
+  list: {
+        onSelectItemEvent: function() {
+			var index = $("#LocationSearch").getSelectedItemData().zipCode;
+			$("#zipcode").val(index).trigger("change");
+		},
+		match: {
+			enabled: true
+		}
+	}
+};
+
+$("#LocationSearch").easyAutocomplete(options);
+
+
+</script>

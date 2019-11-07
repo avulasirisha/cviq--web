@@ -1,0 +1,350 @@
+<style>
+    .whirl:after {  position: fixed;  }
+    .scores input{text-align: center}
+    h2{color: #0297cf;  }
+    h3{color: #0297cf;margin-top: 5px  }
+    h1,h2,h3,h4{
+        font-weight: normal;
+    }
+
+</style>
+
+<h3>
+    Our Team
+    <!--<small>Displaying list of all the drivers in the system.</small>-->
+</h3>
+<div ng-controller="LandingTeamController" class="container-fluid">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                 <div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " style="padding: 25px 0px">
+                    <form ng-show="edit" name="NewPlan" novalidate>
+                        <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                            <div class="  candidate-profile-section clearfix">
+                                <div class="row" style="margin-top: 20px">
+
+                                    <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12 form">
+                                        <h3 style="padding: 0 15px;">
+                                            Update Message
+                                        </h3>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-elements ">
+
+                                            <label>MESSAGE</label>
+                                            <textarea style="min-height: 110px" class="textArea" type="text" maxlength="300" placeholder="Enter Description" name="message" ng-model="message" required ></textarea>
+                                            <div ng-show="NewPlan.$submitted || NewPlan.message.$touched">
+                                                <div class="error-message" ng-show="NewPlan.message.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                                <!--<div class="error-message" ng-show="NewPlan.planDescription.$invalid && NewPlan.planDescription.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Job Description must be at least 3 characters long.</div>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12 pad ">
+                                    <div class="col-lg-4 col-md-4 col-sm-8 co-xs-12  col-lg-offset-4 col-md-offset-4 col-sm-offset-2" style="display: flex;text-align: center;" >
+                                        <button style="margin: 20px auto 0;" id="addButton" type="submit" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sbmt-btn" ng-click="NewPlan.$valid && update()">UPDATE</button>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </section>
+                    </form>
+                    <div ng-show="!edit" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+                        <h3>Description</h3>
+                        <h4>{{message}}</h4>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad ">
+                            <div class="col-lg-4 col-md-4 col-sm-8 co-xs-12  col-lg-offset-4 col-md-offset-4 col-sm-offset-2" style="display: flex;text-align: center;" >
+                                <button type="submit" style="max-width: 100px;margin: 20px auto 0;" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sbmt-btn" ng-click="edit = true">Edit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin: 15px 0px">
+        <h3>Our Team</h3>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div style="clear:both"></div>
+                    <div class="panel-body">
+                        <div class="row" style="position: relative">
+                            <button type="submit"  class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my-sbmt-btn" ng-click="addNew()">Add New</button>
+                            <div class=" col-xs-5 col-sm-4 col-md-3 col-lg-3 col-xs-offset-7 col-sm-offset-8 col-md-offset-9 col-lg-offset-9">
+                                <div class="input-group" style="padding-top: 10%;">
+                                    <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                                    <input type="text" class="form-control" placeholder="Search" ng-model="search">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive" ng-switch="(list | filter:search).length">
+                            <div ng-switch-when="0" class="noSearch"><span>No Team Member Found</span></div>
+                            <table id="datatable2" class="table table-hover" ng-switch-default>
+                                <thead>
+                                <tr>
+                                    <th style="min-width:70px">
+                                        <div style="text-align:center;" ng-click="sort('index')">
+                                            Sr. No.
+                                            <span style="opacity:0.5" ng-hide="predicate == 'index' && reverse || predicate == 'index' && !reverse" class="fa fa-sort"></span>
+                                            <span ng-show="predicate == 'index' && !reverse" class="fa fa-caret-down"></span>
+                                            <span ng-show="predicate == 'index' && reverse" class="fa fa-caret-up"></span>
+                                        </div>
+                                    </th>
+                                    <th>Profile Image</th>
+                                    <th style="min-width:100px">
+                                        <div style="text-align:center;" ng-click="sort('name')">
+                                            Name
+                                            <span style="opacity:0.5" ng-hide="predicate == 'name' && reverse || predicate == 'name' && !reverse" class="fa fa-sort"></span>
+                                            <span ng-show="predicate == 'name' && !reverse" class="fa fa-caret-down"></span>
+                                            <span ng-show="predicate == 'name' && reverse" class="fa fa-caret-up"></span>
+                                        </div>
+                                    </th>
+                                    <th style="min-width:100px">
+                                        <div style="text-align:center;" ng-click="sort('designation')">
+                                            Designation
+                                            <span style="opacity:0.5" ng-hide="predicate == 'designation' && reverse || predicate == 'designation' && !reverse" class="fa fa-sort"></span>
+                                            <span ng-show="predicate == 'designation' && !reverse" class="fa fa-caret-down"></span>
+                                            <span ng-show="predicate == 'designation' && reverse" class="fa fa-caret-up"></span>
+                                        </div>
+                                    </th>
+                                    <th>Linked In</th>
+                                    <th>Description</th>
+                                    <th style="min-width:100px">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody >
+                                <tr style='background-color: {{data.color}} !important'
+                                    ng-repeat="data in filtered =  list| filter:search | orderBy:predicate:reverse">
+                                    <td class="text-center">{{data.index + 1}}</td>
+                                    <td class="text-center">
+                                        <img ng-src="{{data.picURL || 'app/img/noimg.png'}}" class="tableImage">
+                                    </td>
+                                    <td class="text-center">{{data.name}}</td>
+                                    <td class="text-center">{{data.designation}}</td>
+                                    <td class="text-center">{{data.linkedin}}</td>
+                                    <td class="text-center">{{data.description}}</td>
+                                    <td class="text-center">
+                                        <div  class="flexDisplay">
+                                            <a style="margin: 0px 2px;" class="btn btn-sm btn-default1" title="Edit" ng-click="editMember(data)"><!--style="background-color:#666666"-->
+                                                <i class="fa fa-pencil-square-o"></i>
+                                            </a>
+                                            <a style="margin: 0px 2px;"  class="btn btn-sm btn-default1" title="Delete" ng-click="deleteMember(data)"><!--style="background-color:#666666"-->
+                                                <i class="fa fa-trash-o"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/ng-template" id="success">
+    <div class="ngdialog-message">
+        <h4 style="text-align: center">Updated successfully</h4>
+        <!-- POP UP -->
+
+    </div>
+</script>
+<script type="text/ng-template" id="error">
+    <div class="ngdialog-message">
+        <h4 style="text-align: center">{{error}}</h4>
+    </div>
+</script>
+
+<!-- **************************************************************************
+   ******************* Modal to display msg **************************************
+   *******************************************************************************-->
+<script type="text/ng-template" id="display_msg_modalDialog">
+    <div style="text-align: center" class="ngdialog-message">
+        <h4>{{displaymsg}}</h4>
+        <a type="submit" ng-click="refreshPage()" class=" btn btn-primary" style="margin-top:20px;text-align: center">OK</a>
+        <div style="clear: both;"></div>
+    </div>
+</script>
+<!-- **************************************************************************
+******************* Modal to display unauth msg **************************************
+*******************************************************************************-->
+<script type="text/ng-template" id="unauth_msg_modalDialog">
+    <div style="text-align: center" class="ngdialog-message">
+        <h4>{{unAuthMsg}}</h4>
+        <a type="submit" ng-click="forceLogin()" class=" btn btn-primary" style="margin-top:20px;text-align: center">OK</a>
+        <div style="clear: both;"></div>
+    </div>
+</script>
+
+<!-- ***************************************************************************
+******************* Modal for add new member ************************************
+********************************************************************************-->
+
+
+<script type="text/ng-template" id="add_new_member">
+    <div class="ngdialog-message" >
+        <h4>ADD TEAM MEMBER</h4>
+        <form  name="memberForm" ng-submit="editCat.edit_image != undefined && memberForm.$valid && addmember(data)" novalidate>
+            <section>
+                <div class=" member-form clearfix">
+                    <div class="row" style="margin-top: 20px">
+                        <div class="search-wrapper">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form">
+                                <div class="clearfix">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 profile-pic" style="    margin-bottom: 20px;">
+                                        <div class="change-photo fileUpload">
+                                            <label for="myimage"> </label>
+                                            <input style="display: none" id="myimage" filestyle="" type="file" accept="image/*" image="image"
+                                                   onchange="angular.element(this).scope().add_file_to_upload(this.files,0)"
+                                                   data-button-text="Single" data-class-button="btn btn-default"
+                                                   data-classinput="form-control inline" nv-file-select=""
+                                                   uploader="uploader" class="form-control upload" name="profilePic" required/>
+                                            <img  style="width:135px;height: 135px;" ng-src="{{editCat.edit_image}}" id="edit_image">
+                                        </div>
+                                        <div ng-show="memberForm.$submitted">
+                                            <div style="text-align: center" class="error-message" ng-show="editCat.edit_image == undefined"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Upload Image.</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-elements col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                                        <label>Name</label>
+                                        <input class="text-capitalize" type="text" minlength="2" maxlength="30" ng-keypress='isCharacterFunction($event)' ng-model="data.name" name="name" placeholder="Enter Name"  required />
+                                        <div ng-show="memberForm.$submitted || memberForm.name.$touched">
+                                            <div class="error-message" ng-show="memberForm.name.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter Name.</div>
+                                            <div class="error-message" ng-show="!memberForm.name.$error.required && memberForm.name.$invalid"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Min 2 Characters Required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-elements col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                                        <label>Designation</label>
+                                        <input class="text-capitalize" type="text" minlength="2" maxlength="30" ng-keypress='isCharacterFunction($event)' ng-model="data.designation" name="designation" placeholder="Enter Designation"  required />
+                                        <div ng-show="memberForm.$submitted || memberForm.designation.$touched">
+                                            <div class="error-message" ng-show="memberForm.designation.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter Designation.</div>
+                                            <div class="error-message" ng-show="!memberForm.designation.$error.required && memberForm.designation.$invalid"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Min 2 Characters Required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-elements ">
+                                        <label>Description</label>
+                                        <textarea style="min-height: 180px" class="textArea" type="text" minlength="225" maxlength="300" placeholder="Enter Description" name="description" ng-model="data.description" required ></textarea>
+                                        <div ng-show="memberForm.$submitted || memberForm.description.$touched">
+                                            <div class="error-message" ng-show="memberForm.description.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                            <div class="error-message" ng-show="memberForm.description.$invalid && memberForm.description.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Description must be at least 225 characters long.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-elements col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                                        <label>LinkedIn Link </label>
+                                        <input type="text"  ng-model="data.linkedin" name="linkedin" placeholder="Enter LinkedIn Link" required /> <!--ng-pattern="phoneRegex"-->
+                                        <div ng-show="memberForm.$submitted || memberForm.linkedin.$touched">
+                                            <div class="error-message" ng-show="memberForm.linkedin.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter linkedIn Link.</div>
+                                            </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 " >
+                                        <button style="width: 50%;margin-top:2px;float: left;" type="submit" class="btn btn-primary sbmt-btn myButton" >SAVE </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </form>
+    </div>
+</script>
+
+
+
+
+
+<!-- ***************************************************************************
+******************* Modal for update member ************************************
+********************************************************************************-->
+
+
+<script type="text/ng-template" id="update_member">
+    <div class="ngdialog-message">
+        <h4>UPDATE MEMBER DETAILS</h4>
+        <form  name="upmemberForm" ng-submit="updateeditCat.edit_image != undefined && upmemberForm.$valid && updateMember(updatedata)" novalidate>
+            <section>
+                <div class=" member-form clearfix">
+                    <div class="row" style="margin-top: 20px">
+                        <div class="search-wrapper">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form">
+                                <div class="clearfix">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 profile-pic" style="margin-bottom: 20px">
+                                        <div class="change-photo fileUpload">
+                                            <label for="myupdateimage"> </label>
+                                            <input  style="display: none;" id="myupdateimage" filestyle="" type="file" accept="image/*" image="image"
+                                                   onchange="angular.element(this).scope().file_to_upload(this.files,0)"
+                                                   data-button-text="Single" data-class-button="btn btn-default"
+                                                   data-classinput="form-control inline" nv-file-select=""
+                                                   uploader="uploader" class="form-control upload" name="profilePic" required/>
+                                            <img  style="width:135px;height: 135px;" ng-src="{{updateeditCat.edit_image}}" id="update_edit_image">
+
+                                        </div>
+                                        <div ng-show="upmemberForm.$submitted">
+                                            <div style="text-align: center" class="error-message" ng-show="updateeditCat.edit_image == undefined"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Upload Image.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-elements col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                                        <label>Name</label>
+                                        <input class="text-capitalize" type="text" minlength="2" maxlength="30" ng-keypress='isCharacterFunction($event)' ng-model="updatedata.name" name="name" placeholder="Enter Name"  required />
+                                        <div ng-show="upmemberForm.$submitted || upmemberForm.name.$touched">
+                                            <div class="error-message" ng-show="upmemberForm.name.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter Name.</div>
+                                            <div class="error-message" ng-show="!upmemberForm.name.$error.required && upmemberForm.name.$invalid"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Min 2 Characters Required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-elements col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                                        <label>Designation</label>
+                                        <input class="text-capitalize" type="text" minlength="2" maxlength="30" ng-keypress='isCharacterFunction($event)' ng-model="updatedata.designation" name="designation" placeholder="Enter Designation"  required />
+                                        <div ng-show="upmemberForm.$submitted || upmemberForm.designation.$touched">
+                                            <div class="error-message" ng-show="upmemberForm.designation.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter Designation.</div>
+                                            <div class="error-message" ng-show="!upmemberForm.designation.$error.required && upmemberForm.designation.$invalid"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Min 2 Characters Required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-elements ">
+                                        <label>Description</label>
+                                        <textarea style="min-height: 180px" class="textArea" type="text" minlength="225" maxlength="300" placeholder="Enter Description" name="description" ng-model="updatedata.description" required ></textarea>
+                                        <div ng-show="upmemberForm.$submitted || upmemberForm.description.$touched">
+                                            <div class="error-message" ng-show="upmemberForm.description.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> This Field is Required.</div>
+                                            <div class="error-message" ng-show="upmemberForm.description.$invalid && upmemberForm.description.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Description must be at least 225 characters long.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-elements col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                                        <label>LinkedIn Link </label>
+                                        <input type="text"  ng-model="updatedata.linkedin" name="linkedin" placeholder="Enter LinkedIn Link" required /> <!--ng-pattern="phoneRegex"-->
+                                        <div ng-show="upmemberForm.$submitted || upmemberForm.linkedin.$touched">
+                                            <div class="error-message" ng-show="upmemberForm.linkedin.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please Enter linkedIn Link.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 " >
+                                        <button style="width: 50%;margin-top: 2px;float: left;" type="submit" class="btn btn-primary sbmt-btn myButton" >SAVE </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </form>
+    </div>
+</script>
+
+
+<!-- ***************************************************************************
+******************* Modal for delete member ************************************
+********************************************************************************-->
+<script type="text/ng-template" id="delete_member_modalDialog">
+    <div class="ngdialog-message">
+        <h4>Are you sure you want to delete {{Member_name}}?</h4>
+        <div style="  margin-top: 20px;text-align: center;">
+            <button style="margin-right: 5px;" type="submit" ng-click="confirmDeletemember(Member_id)" class="myButton btn btn-primary" >Yes</button>
+            <button style="margin-left: 5px;" type="submit" ng-click="closeThisDialog(0)" class="btn btn-default" >No</button>
+        </div>
+    </div>
+</script>
+
+

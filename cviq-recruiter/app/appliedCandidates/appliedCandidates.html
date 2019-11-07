@@ -1,0 +1,52 @@
+<section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 banner">
+    <div class="container">
+        <div class="pad postNowFontColor main-section col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12 candidate-profile-section clearfix">
+            <h1 class="text-left">CANDIDATE DETAILS</h1>
+
+            <div class="line"></div>
+            <div class="line"></div>
+        <div class="candidate-desc">
+        <ul class="clearfix">
+            <div class="fixHeight" ng-hide="fixHeight"></div>
+            <h1 class="text-center noCandidate" ng-show="nofavourite" >No Favourite Candidate Found</h1>
+            <li  class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-list" ng-repeat="candidate in searchResult">
+                <div  class="row mycandidatedetails" style="padding: 15px 15px">
+
+                    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-12 pad " style="padding-left: 5px">
+                        <img class=" candidateImage" ng-src="{{candidate.profilePicURL.original}}" alt="" />
+                    </div>
+
+                    <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12 pad">
+                        <div class="profile-description">
+                            <a ui-sref="home.candidate.aggregated({id:'+{{candidate._id}}'})" target="_blank">
+                                <h4>{{candidate.firstName}} {{candidate.lastName}} - {{candidate.profileTitle}}</h4>
+                            </a>
+                            <p> &nbsp
+                                <!--Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum-->
+                            </p>
+                            <ul>
+                                <li class="place">{{candidate.currentState}}</li>
+                                <li class="experience">{{candidate.totalExperience}} Yrs</li>
+                                <li><i style="cursor: pointer;color: #0297cf"  ng-click="unFavourite($index,candidate._id,candidate.firstName)" class="fa fa-star" ></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 pull-right text-right status-rating">
+                        <p class="text-right" style="color: #4f5f72"><span style="font-size: 10px">Aggregated Score </span><b> {{candidate.aggregatedScore}}</b></p>
+                        <p class="text-right" style="color: #4f5f72"> <a class="text-right scheduleJobViewDetails" ui-sref="home.candidate.aggregated({id:'+{{candidate._id}}'})" target="_blank" >View Details</a></p>
+
+                    </div>
+
+                </div>
+
+            </li>
+        </ul>
+        </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad ">
+                <div class="col-lg-6 col-md-6 col-sm-12 co-xs-12 col-lg-offset-3 col-md-offset-3  " >
+                    <!--<button type="submit" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sbmt-btn" ng-click="post()">go BAck</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

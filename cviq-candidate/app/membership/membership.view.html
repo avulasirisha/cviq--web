@@ -1,0 +1,127 @@
+<loading></loading>
+<section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 banner">
+    <div class="container">
+        <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12 clearfix membership-bar pad">
+            <h2 ng-if="rev_ation">BUY REVALUATION FEES </h2>
+            <h2 ng-if="!rev_ation"> BUY MEMBERSHIP</h2>
+            <div ng-if="Membershipdata.planType=='Premium'">
+              <p> {{ Membershipdata.planDescription }} </p>
+              <p>  Plan duration : {{ Membershipdata.planDuration }} Months </p>
+              <p>  Amount :  ${{Membershipdata.planRate}} </p>
+            </div>
+            <div ng-if="Membershipdata.planType=='Basic'">
+             <p>To get Qualitative score you need to buy membership of $ {{Membershipdata.planRate}}</p>
+             <p> Plan duration = {{ Membershipdata.planDuration }} </p>  
+        </div>
+        <div class="main-section col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12 clearfix payment-container">
+            <div class="row">
+                <div class="search-wrapper">
+                    <form class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form" ng-submit="paymentForm.$valid&&pay(payment)" name="paymentForm" novalidate>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad promocode">
+                            <div class="col-lg-4" style="line-height: 54px">ENTER PROMO CODE</div>
+                            <div class="col-lg-8 pull-right">
+                                <!--<div class="form-elements">-->
+                                    <!--<label>PROMO CODE</label>-->
+                                    <!--<input type="text" ng-model="payment.promo" name="email" placeholder="Enter Promo Code">-->
+                                <!--</div>-->
+                                <div class="form-elements fullWidth pull-right ProfileFormElements clearfix">
+                                    <div class="dropdown custom-select-box main-dropdown">
+                                        <label>PROMO CODE</label>
+                                        <select name="pcode" ng-model="promoCodes" class="selectpicker"  ng-options="p.promoName for p in promoCodeLists">
+                                            <option value="" disabled hidden>Select Promo Code</option>
+                                        </select>
+                                    </div>
+                                <p ng-if="promoCodes.description" class="text-left applyPromo promocodeDesc">Description: {{promoCodes.description}}</p>
+                                </div>
+                                <p class="applyPromo" ng-if="appliedPromoCode.promoID == undefined"><span ng-click="applyPromoCode(promoCodes)">Apply promo code.</span></p>
+                                <p class="applyPromo promoSuccess" ng-if="appliedPromoCode.promoID != undefined"><span>Promo code ("{{appliedPromoCode.promoName}}") applied successfully.<i> Now you have to pay</i> ${{appliedPromoCode.amount}}.</span></p>
+                                <p class="applyPromo" ng-if="appliedPromoCode.promoID != undefined"><i ng-click="applyPromoCode(promoCodes)" class="pull-right" ng-disabled="disBtn">Apply promo code.</i></p>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 card-details-form">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">SELECT  PAYMENT MODE</div>
+                            <!--<div class="col-lg-4 col-md-3 col-sm-3 col-xs-3 pull-left credbt pad">-->
+                                <!--<p ng-click="selCard = 'DEBIT'" ng-class="{'sCard': selCard == 'DEBIT'}">Debit Card</p>-->
+                                <!--<p style="margin-top: 10px" ng-click="selCard = 'CREDIT'" ng-class="{'sCard': selCard == 'CREDIT'}">Credit Card</p>-->
+                            <!--</div>-->
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 pull-right">
+                                <div class="form-elements card-num">
+                                    <label>CARD NUMBER</label>
+                                    <img src="images/visa.png" alt="" ng-if="cardVal == 'visa'" />
+                                    <img src="images/visa.png" alt="" ng-if="cardVal == 'visa_electron'" />
+                                    <img src="images/discover.png" alt="" ng-if="cardVal == 'discover'" />
+                                    <img src="images/maestro.png" alt="" ng-if="cardVal == 'maestro'" />
+                                    <img src="images/mastercard.png" alt="" ng-if="cardVal == 'mastercard'" />
+                                    <input type="text" id="cc_number" ng-model="payment.card" ng-keypress='isNumberKey($event)' minlength="12" maxlength="19" name="cardNo" placeholder="Enter Card Number" required>
+                                    <div ng-show="paymentForm.$submitted || paymentForm.cardNo.$touched">
+                                        <div class="error-message" ng-show="paymentForm.cardNo.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please enter card number.</div>
+                                        <div class="error-message" ng-show="paymentForm.cardNo.$invalid&&paymentForm.cardNo.$error.required!=true"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Card number must be at least 12 characters long.</div>
+                                    </div>
+                                </div>
+                                <!--<div class="form-elements fifty-comb pull-left">-->
+                                    <!--<label>MM/YYYY</label>-->
+                                    <!--<input type="text" ng-model="payment.mmyy" name="mmyy" ng-keypress='isNumberKey($event)' ng-change="monthYearValid()" maxlength="7" placeholder="Enter Month/Year" required>-->
+                                    <!--<div ng-show="paymentForm.$submitted || paymentForm.mmyy.$touched">-->
+                                        <!--<div class="error-message" ng-show="paymentForm.mmyy.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please enter month and year.</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <div class="form-elements fifty-comb pull-left ProfileFormElements clearfix">
+                                    <div class="dropdown custom-select-box main-dropdown">
+                                    <label>MM</label>
+                                    <select name="mm" ng-model="payment.mm" ng-keypress='isNumberKey($event)' class="selectpicker" required>
+                                        <option value="" disabled hidden>Select Month</option>
+                                        <option value="01">01</option>
+                                        <option value="02">02</option>
+                                        <option value="03">03</option>
+                                        <option value="04">04</option>
+                                        <option value="05">05</option>
+                                        <option value="06">06</option>
+                                        <option value="07">07</option>
+                                        <option value="08">08</option>
+                                        <option value="09">09</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+                                        </div>
+                                    <!--<input type="text" ng-model="payment.mmyy" name="mmyy" ng-keypress='isNumberKey($event)' ng-change="monthYearValid()" maxlength="7" placeholder="Enter Month/Year" required>-->
+                                    <div ng-show="paymentForm.$submitted || paymentForm.mm.$touched">
+                                        <div class="error-message" ng-show="paymentForm.mm.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please enter month.</div>
+                                    </div>
+                                </div>
+                                <div class="form-elements fifty-comb pull-right ProfileFormElements clearfix">
+                                    <div class="dropdown custom-select-box main-dropdown">
+                                        <label>YY</label>
+                                        <select name="yy" ng-model="payment.yy" ng-keypress='isNumberKey($event)' class="selectpicker" ng-options="y for y in currentYearArray" required>
+                                            <option value="" disabled hidden>Select Year</option>
+                                        </select>
+                                    </div>
+                                    <!--<input type="text" ng-model="payment.mmyy" name="mmyy" ng-keypress='isNumberKey($event)' ng-change="monthYearValid()" maxlength="7" placeholder="Enter Month/Year" required>-->
+                                    <div ng-show="paymentForm.$submitted || paymentForm.yy.$touched">
+                                        <div class="error-message" ng-show="paymentForm.yy.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please enter year.</div>
+                                    </div>
+                                </div>
+                                <div class="form-elements fifty-comb fullWidth" style="float: left">
+                                    <label>CVV</label>
+                                    <input type="password" ng-model="payment.cvv" name="cvv" ng-keypress='isNumberKey($event)' placeholder="Enter CVV" maxlength="3" required>
+                                    <div ng-show="paymentForm.$submitted || paymentForm.cvv.$touched">
+                                        <div class="error-message" ng-show="paymentForm.cvv.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please enter cvv.</div>
+                                    </div>
+                                </div>
+                                <div class="form-elements card-num pull-left fullWidth">
+                                    <label>NAME ON CARD</label>
+                                    <input type="text" ng-model="payment.name" ng-keypress='FirsText($event)' name="name" placeholder="Enter Name" required>
+                                    <div ng-show="paymentForm.$submitted || paymentForm.name.$touched">
+                                        <div class="error-message" ng-show="paymentForm.name.$error.required"><i class="fa fa-exclamation-triangle err-icon" aria-hidden="true"></i> Please enter name.</div>
+                                    </div>
+                                </div>
+                                <button class="col-lg-12 col-md-12 col-sm-12 col-xs-12" type="submit">PAY NOW</button>
+                                <p class="payWith text-left">You can also <span ng-click="payPalPayment()">pay with PayPal.</span></p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
